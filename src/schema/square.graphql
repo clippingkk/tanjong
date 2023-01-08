@@ -1,0 +1,16 @@
+query fetchSquareData($pagination: Pagination!) {
+  featuredClippings(pagination: $pagination) {
+    id
+    title
+    content
+    bookID
+    pageAt
+    creator {
+      id
+      avatar
+      clippingsCount
+      name
+      domain
+    }
+  }
+} 

@@ -1,0 +1,58 @@
+query profile($id: Int!, $domain: String) {
+  me(id: $id, domain: $domain) {
+    id
+    name
+    email
+    password
+    phone
+    avatar
+    checked
+    bio
+    createdAt
+    updatedAt
+    wechatOpenid
+    isFan
+    domain
+    followers {
+      id
+      name
+      avatar
+      bio
+    }
+
+    recents {
+      id
+      bookID
+      title
+      content
+      createdAt
+      pageAt
+    }
+    analysis {
+      monthly {
+        date
+        count
+      }
+      daily {
+        date
+        count
+      }
+    }
+    comments {
+      id
+      content
+      belongsTo {
+        id
+        content
+        bookID
+        creator {
+          id
+          avatar
+          name
+        }
+      }
+    }
+
+    clippingsCount
+  }
+}

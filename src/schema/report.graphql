@@ -1,0 +1,19 @@
+query fetchYearlyReport($year: Int!, $uid: Int!) {
+  
+  reportYearly(year: $year, uid: $uid) {
+    user {
+      id
+      avatar
+      name
+      domain
+    }
+    books {
+      doubanId
+      clippingsCount
+      clippings {
+        id
+        content
+      }
+    }
+  }
+}

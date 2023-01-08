@@ -1,0 +1,52 @@
+query fetchClipping($id: Int!) {
+  clipping(id: $id) {
+    id
+    bookID
+    title
+    content
+    createdAt
+    pageAt
+    visible
+    prevClipping {
+      userClippingID
+      bookClippingID
+    }
+    nextClipping {
+      userClippingID
+      bookClippingID
+    }
+    reactionData {
+      count
+      symbolCounts {
+        symbol
+        count
+        done
+        recently {
+          id
+          symbol
+          creator {
+            id
+            avatar
+            name
+          }
+          createdAt
+        }
+      }
+    }
+    creator {
+      id
+      name
+      avatar
+      domain
+    }
+    comments {
+      id
+      content
+      creator {
+        id
+        avatar
+        name
+      }
+    }
+  }
+}

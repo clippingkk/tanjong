@@ -1,0 +1,5 @@
+mutation createClippings($payload: [ClippingInput!]!, $visible: Boolean) {
+    createClippings(payload: $payload, visible: $visible) {
+        id
+    }
+}

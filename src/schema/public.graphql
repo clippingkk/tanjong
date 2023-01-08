@@ -1,0 +1,26 @@
+query publicData {
+  public {
+    users {
+      id
+      avatar
+      bio
+      name
+      domain
+    }
+    books {
+      doubanId
+    }
+    clippings {
+      id
+      content
+      bookID
+      title
+      creator {
+        id
+        name
+        avatar
+        domain
+      }
+    }
+  }
+}

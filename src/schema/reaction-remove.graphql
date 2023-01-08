@@ -1,0 +1,3 @@
+mutation reactionRemove($symbol: String!) {
+    removeReaction(rid: 0, symbol: $symbol)
+}

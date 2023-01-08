@@ -1,0 +1,21 @@
+mutation doLoginV3($payload: LoginV3Payload!) {
+  loginV3(payload: $payload) {
+    user {
+      id
+      name
+      email
+      phone
+      password
+      avatar
+      checked
+      createdAt
+      updatedAt
+      bio
+      domain
+      wechatOpenid
+    }
+    token
+    noAccountFrom3rdPart
+	isNewUser
+  }
+}

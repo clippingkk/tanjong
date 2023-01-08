@@ -9,7 +9,7 @@
  */
 
 import React, { useEffect, type PropsWithChildren } from 'react';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+// import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import {
   SafeAreaView,
   ScrollView,
@@ -70,7 +70,8 @@ function HomeTabPages(props: HomeTabPagesProps) {
         options={{
           tabBarLabel: 'Feeds',
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="home" color={color} size={size} />
+            // <MaterialCommunityIcons name="home" color={color} size={size} />
+            <Text>📚</Text>
           ),
         }}
       />
@@ -80,7 +81,7 @@ function HomeTabPages(props: HomeTabPagesProps) {
         options={{
           tabBarLabel: 'Profile',
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="account-circle" color={color} size={size} />
+            <Text>🏠</Text>
           ),
         }}
       />

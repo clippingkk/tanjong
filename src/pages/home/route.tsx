@@ -20,7 +20,7 @@ function HomeRoutePage(props: HomeRoutePageProps) {
       }}
     >
       <HomeStack.Screen
-        name={RouteKeys.TabHome}
+        name={RouteKeys.Book}
         options={({ route }: any) => ({
           headerTitle: 'Books',
         })}

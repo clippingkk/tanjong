@@ -1,14 +1,14 @@
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { ApolloProvider } from '@apollo/client';
-// import App from './app'
+import App from './app'
 import { client } from './utils/apollo'
 import { NativeBaseProvider, Box } from "native-base";
 import { TailwindProvider } from 'tailwind-rn';
 import utilities from '../tailwind.json';
 
-// import "fast-text-encoding"
-// import './utils/init'
+import "fast-text-encoding"
+import './utils/init'
 import { Provider } from 'jotai'
 import { SWRConfig } from 'swr';
 import { wenquRequest } from './service/wenqu';
@@ -25,7 +25,7 @@ function Root() {
           <NativeBaseProvider>
             <TailwindProvider utilities={utilities}>
               <NavigationContainer>
-                {/* <App /> */}
+                <App />
               </NavigationContainer>
             </TailwindProvider>
           </NativeBaseProvider>

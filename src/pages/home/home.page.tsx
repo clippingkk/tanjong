@@ -11,7 +11,7 @@ function HomePage(props: HomePageProps) {
 
   const uid = useAtomValue(uidAtom)
 
-  useBooksQuery({
+  const bs = useBooksQuery({
     variables: {
       id: uid!,
       pagination: {

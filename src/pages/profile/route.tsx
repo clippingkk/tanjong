@@ -20,9 +20,9 @@ function ProfileRoutePage(props: ProfileRoutePageProps) {
       }}
     >
       <ProfileStack.Screen
-        name={RouteKeys.TabHome}
+        name={RouteKeys.Profile}
         options={({ route }: any) => ({
-          headerTitle: 'Books',
+          headerTitle: 'Profile',
         })}
         component={ProfilePage}
       />

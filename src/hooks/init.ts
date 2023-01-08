@@ -1,17 +1,19 @@
-import { useAtom, useSetAtom } from "jotai"
+import { useAtom, useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
 import { updateLocalToken } from "../utils/apollo"
-import { profileAtom, tokenAtom } from "../atomic"
+import { profileAtom, tokenAtom, uidAtom } from "../atomic"
 import { useProfileQuery } from "../schema/generated"
 // import SplashScreen from 'react-native-splash-screen'
 
 export function useOnInit() {
   const setProfile = useSetAtom(profileAtom)
+  const uid = useAtomValue(uidAtom)
 
   const np = useProfileQuery({
     variables: {
-      id: 1,
-    }
+      id: uid!,
+    },
+    skip: !uid
   })
 
   useEffect(() => {

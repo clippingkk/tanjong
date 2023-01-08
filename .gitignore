@@ -64,4 +64,4 @@ buck-out/
 /vendor/bundle/
 
 __generated__
-generated.tsx
+src/schema/generated.tsx

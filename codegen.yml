@@ -10,8 +10,8 @@ generates:
     plugins:
       - "typescript"
       - "typescript-operations"
-      # - "typescript-react-apollo"
-      - "typescript-react-query"
+      - "typescript-react-apollo"
+    #   - "typescript-react-query"
   ./src/schema/schema.json:
     plugins:
       - "introspection"

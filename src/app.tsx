@@ -112,6 +112,9 @@ const App = () => {
       />
       <RootRouteStack.Screen
         name={RouteKeys.AuthQRCode}
+        options={{
+          headerShown: true
+        }}
         component={AuthQRCodePage}
       />
       {/* <RootRouteStack.Screen

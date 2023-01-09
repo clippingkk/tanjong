@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { RouteKeys } from '../../routes'
 import HomePage from './home.page'
 import ClippingPage from '../clipping/clipping'
+import BookPage from '../book/book.page'
 
 type HomeRoutePageProps = {
 }
@@ -25,6 +26,10 @@ function HomeRoutePage(props: HomeRoutePageProps) {
           headerTitle: 'Books',
         })}
         component={HomePage}
+      />
+      <HomeStack.Screen
+        name={RouteKeys.BookDetail}
+        component={BookPage}
       />
       <HomeStack.Screen
         name={RouteKeys.HomeClipping}

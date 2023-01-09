@@ -4,6 +4,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { RouteKeys } from '../../routes'
 import ClippingPage from '../clipping/clipping'
 import ProfilePage from './profile.page'
+import SettingsPage from '../settings/settings.page'
+import DebugPage from '../settings/debug.page'
 
 type ProfileRoutePageProps = {
 }
@@ -29,6 +31,20 @@ function ProfileRoutePage(props: ProfileRoutePageProps) {
       <ProfileStack.Screen
         name={RouteKeys.ProfileClipping}
         component={ClippingPage}
+      />
+      <ProfileStack.Screen
+        name={RouteKeys.ProfileSettings}
+        options={{
+          headerTitle: 'Settings'
+        }}
+        component={SettingsPage}
+      />
+      <ProfileStack.Screen
+        name={RouteKeys.ProfileDebug}
+        options={{
+          headerTitle: 'Debug'
+        }}
+        component={DebugPage}
       />
     </ProfileStack.Navigator>
   )

@@ -1,5 +1,9 @@
+// export const API_HOST = __DEV__ ?
+//   'http://127.0.0.1:19654' :
+//   'https://clippingkk-api.annatarhe.com'
 export const API_HOST = __DEV__ ?
-  'http://127.0.0.1:19654' :
+//   'http://127.0.0.1:19654' :
+  'https://clippingkk-api.annatarhe.com' :
   'https://clippingkk-api.annatarhe.com'
 
 export const WENQU_API_HOST = 'https://wenqu.annatarhe.cn/api/v1'

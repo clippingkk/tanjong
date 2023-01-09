@@ -2,13 +2,15 @@ import { useNavigation } from '@react-navigation/native'
 import { useSetAtom } from 'jotai'
 import jwtDecode from 'jwt-decode'
 import { View, Text } from 'native-base'
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { ActivityIndicator, Linking, StyleSheet } from 'react-native'
 import { Camera, useCameraDevices } from 'react-native-vision-camera'
 import { useScanBarcodes, BarcodeFormat } from 'vision-camera-code-scanner'
 import { tokenAtom, uidAtom } from '../../atomic'
+import { usePostAuth } from '../../hooks/auth'
 import { JwtPayload } from '../../service/jwt'
 import { updateLocalToken } from '../../utils/apollo'
+import AuthLegacyPage from './auth.legacy.page'
 
 type AuthQRCodePageProps = {
 }
@@ -28,9 +30,8 @@ function AuthQRCodePage(props: AuthQRCodePageProps) {
 
   const devices = useCameraDevices()
   const device = devices.back
-  const setToken = useSetAtom(tokenAtom)
-  const setUid = useSetAtom(uidAtom)
-  const nav = useNavigation()
+
+  const onPostAuth = usePostAuth()
 
   useEffect(() => {
     if (!barcodes || barcodes.length === 0) {
@@ -45,15 +46,12 @@ function AuthQRCodePage(props: AuthQRCodePageProps) {
     if (!decodedValue.id) {
       return
     }
-    setToken(barcode.rawValue)
-    updateLocalToken(barcode.rawValue)
-    setUid(~~decodedValue.id)
-    nav.goBack()
-  }, [barcodes])
+    onPostAuth(barcode.rawValue, ~~decodedValue.id)
+  }, [barcodes, onPostAuth])
 
   if (device == null) {
     return (
-      <ActivityIndicator />
+      <AuthLegacyPage />
     )
   }
 

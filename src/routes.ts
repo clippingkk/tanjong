@@ -6,6 +6,9 @@ export enum RouteKeys {
   Book = 'Book',
   Profile = 'Profile',
   HomeClipping = 'HomeClipping',
+  BookDetail = 'BookDetail',
   SquareClipping = 'SquareClipping',
-  ProfileClipping = 'ProfileClipping'
+  ProfileClipping = 'ProfileClipping',
+  ProfileSettings = 'ProfileSettings',
+  ProfileDebug = 'ProfileDebug'
 }

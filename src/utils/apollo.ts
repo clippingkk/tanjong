@@ -15,7 +15,12 @@ let token = getLocalToken()
 // let token = localProfile?.token
 
 export function getLocalToken() {
-  return storage.getString('clippingkk-token')
+  const tk = storage.getString('me:token')
+  if (!tk) {
+    return null
+  }
+  const parsed: string = JSON.parse(tk)
+  return parsed.replace(/"/g, '')
 }
 
 export function updateLocalToken(nt: string) {
@@ -23,6 +28,7 @@ export function updateLocalToken(nt: string) {
 }
 
 export async function request<T>(url: string, options: RequestInit = {}): Promise<T> {
+  console.log('will request ...', token)
   if (token) {
     options.headers = {
       ...(options.headers || {}),
@@ -43,10 +49,6 @@ export async function request<T>(url: string, options: RequestInit = {}): Promis
     // toast.error('请求挂了... 一会儿再试试')
     return Promise.reject(e)
   }
-}
-
-export function updateToken(t: string) {
-  token = t
 }
 
 const authLink = new ApolloLink((operation, forward) => {
@@ -89,7 +91,7 @@ const errorLink = onError((errData) => {
   if (ne) {
     console.log(`[Network error]: ${ne}`)
     if (ne.statusCode && ne.statusCode === 401) {
-      updateToken('')
+      updateLocalToken('')
       // profile.onLogout()
     }
     // toast.error(`${ne.statusCode}: ${ne.name}`)
@@ -127,7 +129,11 @@ export const client = new ApolloClient({
       },
       User: {
         fields: {
-          recents: offsetLimitPagination()
+          recents: {
+            merge(existings = [], incoming = []) {
+              return [...existings, ...incoming]
+            }
+          }
         }
       }
     }

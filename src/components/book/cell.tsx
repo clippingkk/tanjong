@@ -1,7 +1,9 @@
 import { CachedImage } from '@georstat/react-native-image-cache'
+import { Link } from '@react-navigation/native'
 import { Center, Text, View } from 'native-base'
 import React, { useMemo, useState } from 'react'
 import { ActivityIndicator, ImageLoadEventData } from 'react-native'
+import { RouteKeys } from '../../routes'
 import { WenquBook } from '../../service/wenqu'
 
 type BookCellProps = {
@@ -13,7 +15,7 @@ function BookCell(props: BookCellProps) {
 
   const ratio = useMemo(() => {
     if (!loadedImage) {
-      return 16/9
+      return 16 / 9
     }
     return loadedImage.width / loadedImage.height
   }, [loadedImage?.height, loadedImage?.width])
@@ -22,24 +24,32 @@ function BookCell(props: BookCellProps) {
   }
   return (
     <Center height={250} shadow='6'>
-      <CachedImage
-        source={props.book.image}
-        onLoad={e => {
-          setLoadedImage(e.nativeEvent.source)
-        }}
-        loadingImageComponent={() => (
-          <Center>
-            <ActivityIndicator />
-          </Center>
-        )}
-        style={{
-          aspectRatio: ratio,
-          height: 250,
-          // width: '80%'
-        }}
-        resizeMode='cover'
-      />
-      {/* <Text>{props.book.title}</Text> */}
+      <Link
+        to={{
+          screen: RouteKeys.BookDetail,
+          params: {
+            book: props.book
+          }
+        }}>
+        <CachedImage
+          source={props.book.image}
+          onLoad={e => {
+            setLoadedImage(e.nativeEvent.source)
+          }}
+          loadingImageComponent={() => (
+            <Center>
+              <ActivityIndicator />
+            </Center>
+          )}
+          style={{
+            aspectRatio: ratio,
+            height: 250,
+            // width: '80%'
+          }}
+          resizeMode='cover'
+        />
+        {/* <Text>{props.book.title}</Text> */}
+      </Link>
     </Center>
   )
 }

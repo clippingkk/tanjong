@@ -28,6 +28,7 @@ import { RouteKeys } from './routes';
 import { BlurView } from '@react-native-community/blur';
 import AuthQRCodePage from './pages/auth/qrcode.page';
 import HomeRoutePage from './pages/home/route';
+import ClippingPage from './pages/clipping/clipping';
 
 const RootRouteStack = createNativeStackNavigator()
 const TabStack = createBottomTabNavigator()
@@ -117,6 +118,14 @@ const App = () => {
         }}
         component={AuthQRCodePage}
       />
+      <RootRouteStack.Screen
+        name={RouteKeys.Clipping}
+        options={{
+          headerShown: true
+        }}
+        component={ClippingPage}
+      />
+
       {/* <RootRouteStack.Screen
         name={RouteKeys.Auth}
         component={AuthV2Page}

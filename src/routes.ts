@@ -1,3 +1,4 @@
+import { Clipping } from "./schema/generated"
 
 export enum RouteKeys {
   AuthQRCode = 'AuthQRCode',
@@ -5,10 +6,14 @@ export enum RouteKeys {
   TabProfile = 'TabProfile',
   Book = 'Book',
   Profile = 'Profile',
-  HomeClipping = 'HomeClipping',
+  Clipping = 'Clipping',
   BookDetail = 'BookDetail',
-  SquareClipping = 'SquareClipping',
-  ProfileClipping = 'ProfileClipping',
   ProfileSettings = 'ProfileSettings',
   ProfileDebug = 'ProfileDebug'
+}
+
+export type RouteParamList = {
+  Clipping: {
+    clipping: Pick<Clipping, 'id' | 'bookID' | 'content' | 'title'>
+  }
 }

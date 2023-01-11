@@ -29,10 +29,6 @@ function ProfileRoutePage(props: ProfileRoutePageProps) {
         component={ProfilePage}
       />
       <ProfileStack.Screen
-        name={RouteKeys.ProfileClipping}
-        component={ClippingPage}
-      />
-      <ProfileStack.Screen
         name={RouteKeys.ProfileSettings}
         options={{
           headerTitle: 'Settings'

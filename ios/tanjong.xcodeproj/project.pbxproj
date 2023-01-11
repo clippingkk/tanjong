@@ -12,8 +12,11 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		3D1E73B27CCB447B94A753E9 /* LXGWWenKai-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 48DBFB0344EA48849DF30A98 /* LXGWWenKai-Light.ttf */; };
+		426A1308707C4108B9A06C30 /* LXGWWenKai-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84B99AAF85C8430FAFEFE746 /* LXGWWenKai-Regular.ttf */; };
 		7699B88040F8A987B510C191 /* libPods-tanjong-tanjongTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-tanjong-tanjongTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		E9DE66C9B35C4D36BC8DFBD7 /* LXGWWenKai-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 19C31A02128743359AA18ED2 /* LXGWWenKai-Bold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,12 +39,15 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = tanjong/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = tanjong/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = tanjong/main.m; sourceTree = "<group>"; };
+		19C31A02128743359AA18ED2 /* LXGWWenKai-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "LXGWWenKai-Bold.ttf"; path = "../assets/fonts/LXGWWenKai-Bold.ttf"; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-tanjong-tanjongTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-tanjong-tanjongTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B4392A12AC88292D35C810B /* Pods-tanjong.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tanjong.debug.xcconfig"; path = "Target Support Files/Pods-tanjong/Pods-tanjong.debug.xcconfig"; sourceTree = "<group>"; };
+		48DBFB0344EA48849DF30A98 /* LXGWWenKai-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "LXGWWenKai-Light.ttf"; path = "../assets/fonts/LXGWWenKai-Light.ttf"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-tanjong.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tanjong.release.xcconfig"; path = "Target Support Files/Pods-tanjong/Pods-tanjong.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-tanjong-tanjongTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tanjong-tanjongTests.debug.xcconfig"; path = "Target Support Files/Pods-tanjong-tanjongTests/Pods-tanjong-tanjongTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-tanjong.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-tanjong.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = tanjong/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		84B99AAF85C8430FAFEFE746 /* LXGWWenKai-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "LXGWWenKai-Regular.ttf"; path = "../assets/fonts/LXGWWenKai-Regular.ttf"; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-tanjong-tanjongTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tanjong-tanjongTests.release.xcconfig"; path = "Target Support Files/Pods-tanjong-tanjongTests/Pods-tanjong-tanjongTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -122,6 +128,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				BCAC152CAD2E4B78ACA724CB /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -146,6 +153,17 @@
 				89C6BE57DB24E9ADA2F236DE /* Pods-tanjong-tanjongTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		BCAC152CAD2E4B78ACA724CB /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				19C31A02128743359AA18ED2 /* LXGWWenKai-Bold.ttf */,
+				48DBFB0344EA48849DF30A98 /* LXGWWenKai-Light.ttf */,
+				84B99AAF85C8430FAFEFE746 /* LXGWWenKai-Regular.ttf */,
+			);
+			name = Resources;
+			path = "";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -244,6 +262,9 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				E9DE66C9B35C4D36BC8DFBD7 /* LXGWWenKai-Bold.ttf in Resources */,
+				3D1E73B27CCB447B94A753E9 /* LXGWWenKai-Light.ttf in Resources */,
+				426A1308707C4108B9A06C30 /* LXGWWenKai-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

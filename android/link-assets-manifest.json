@@ -1,0 +1,17 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/fonts/LXGWWenKai-Bold.ttf",
+      "sha1": "14339d55d1ad9bbb1c42acd3448bdba128da0e74"
+    },
+    {
+      "path": "assets/fonts/LXGWWenKai-Light.ttf",
+      "sha1": "d138e59d7b753379dfa9406d12d3229114de1f70"
+    },
+    {
+      "path": "assets/fonts/LXGWWenKai-Regular.ttf",
+      "sha1": "ecece368b2cfe93b3138a1f458f9b7f43dedaa30"
+    }
+  ]
+}

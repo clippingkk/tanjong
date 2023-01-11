@@ -32,7 +32,7 @@ function HomeRoutePage(props: HomeRoutePageProps) {
         component={BookPage}
       />
       <HomeStack.Screen
-        name={RouteKeys.HomeClipping}
+        name={RouteKeys.Clipping}
         component={ClippingPage}
       />
     </HomeStack.Navigator>

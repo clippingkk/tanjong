@@ -1,7 +1,9 @@
+import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
+import { useHeaderHeight } from '@react-navigation/elements'
 import { FlashList, MasonryFlashList } from '@shopify/flash-list'
 import { useAtomValue } from 'jotai'
 import { Text, View } from 'native-base'
-import React, { useMemo } from 'react'
+import React, { useCallback, useMemo } from 'react'
 import { uidAtom } from '../../atomic'
 import AuthGuard from '../../components/auth-guard/auth-guard'
 import BookCell from '../../components/book/cell'
@@ -48,6 +50,22 @@ function HomePage(props: HomePageProps) {
     return result as WenquBook[]
   }, [bs.data?.books, books.data?.books])
 
+  const onReachedEnd = useCallback(() => {
+    const allLength = bs.data?.books.length ?? 0
+    return bs.fetchMore({
+      variables: {
+        id: uid,
+        pagination: {
+          limit: 10,
+          offset: allLength
+        }
+      }
+    })
+  }, [uid, bs.data?.books.length])
+
+  const bh = useBottomTabBarHeight()
+  const hh = useHeaderHeight()
+
   if (!uid) {
     return (
       <AuthGuard />
@@ -69,7 +87,7 @@ function HomePage(props: HomePageProps) {
   return (
     <MasonryFlashList
       ListHeaderComponent={() => (
-        <View height={200} bg='amber.300' />
+        <View height={hh + 200} bg='amber.300' />
       )}
       onRefresh={() => bs.refetch()}
       refreshing={bs.loading}
@@ -79,6 +97,11 @@ function HomePage(props: HomePageProps) {
         return <BookCell book={item} />
       }}
       estimatedItemSize={250}
+      onEndReached={onReachedEnd}
+      onEndReachedThreshold={1}
+      ListFooterComponent={(
+        <View width='100%' height={bh} />
+      )}
       ItemSeparatorComponent={() => (
         <View height={4} />
       )}

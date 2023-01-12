@@ -11,8 +11,9 @@ import ClippingCell from '../../components/clipping/cell'
 import ErrorBox from '../../components/errorbox/errorbox'
 import LoadingBox from '../../components/loading/loading'
 import BasicBoard from '../../components/profile/basic-board'
+import { useClippingCellAvgHeight } from '../../hooks/clipping'
 import { RouteKeys } from '../../routes'
-import { useProfileQuery } from '../../schema/generated'
+import { Clipping, useProfileQuery } from '../../schema/generated'
 
 type ProfilePageProps = {
 }
@@ -37,30 +38,7 @@ function ProfilePage(props: ProfilePageProps) {
     skip: !uid
   })
 
-  const itemSizeCellHeight = useMemo(() => {
-    const recents = p.data?.me.recents
-    if (!recents) {
-      return 10
-    }
-    const screenWidth = Dimensions.get('screen').width
-
-    const availableWidth = screenWidth - 16 * 2 - 8 * 2
-
-    const textsInOneLine = availableWidth / 14
-
-    const lines = recents.reduce((acc, cur) => {
-      const ls = cur.content.length / textsInOneLine
-      acc += ls
-      return acc
-    }, 0)
-
-    const avgLines = lines / recents.length
-
-    // 行数 * line-height * font-size + paddingTop + paddingBottom
-    const cellHeight = avgLines * 1.2 * 14 + 16 * 2
-    return cellHeight
-  }, [p.data?.me.recents])
-
+  const itemSizeCellHeight = useClippingCellAvgHeight(p.data?.me.recents ?? [])
   const bh = useBottomTabBarHeight()
 
   if (!uid) {

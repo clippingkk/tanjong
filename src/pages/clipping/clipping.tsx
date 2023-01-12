@@ -1,8 +1,10 @@
 import { CachedImage } from '@georstat/react-native-image-cache'
+import { useHeaderHeight } from '@react-navigation/elements'
 import { useNavigation } from '@react-navigation/native'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { Divider, ScrollView, Text, View } from 'native-base'
 import React, { useEffect, useMemo, useState } from 'react'
+import { useColorScheme } from 'react-native'
 import ImageColors from 'react-native-image-colors'
 import { useSingleBook } from '../../hooks/wenqu'
 import { RouteParamList } from '../../routes'
@@ -14,16 +16,19 @@ type ClippingPageProps = NativeStackScreenProps<RouteParamList, 'Clipping'>
 
 function ClippingPage(props: ClippingPageProps) {
   const navigate = useNavigation()
+  const cs = useColorScheme()
+  const hh = useHeaderHeight()
   const { id, bookID, content, title } = props.route.params.clipping
   useEffect(() => {
     if (!title) {
       return
     }
     navigate.setOptions({
-      title: title
+      title,
+      headerTransparent: true,
+      headerBlurEffect: cs === 'dark' ? 'dark' : 'light',
     })
   }, [title])
-
 
   const clippingResult = useFetchClippingQuery({
     variables: {
@@ -40,29 +45,11 @@ function ClippingPage(props: ClippingPageProps) {
 
     return bks[0]
   }, [books.data?.books])
-  const [bookImagePrimaryColor, setBookImagePrimaryColor] = useState<string | null>(null)
-  useEffect(() => {
-    if (!book) {
-      return
-    }
 
-    ImageColors.getColors(book.image).then(res => {
-      if (res.platform === 'android') {
-        setBookImagePrimaryColor(res.vibrant!)
-        return
-      }
-      if (res.platform === 'ios') {
-        setBookImagePrimaryColor(res.primary!)
-      }
-    })
-  }, [books.data?.books])
-
-  console.log(bookImagePrimaryColor)
   return (
     <ScrollView>
-      <View padding={4}>
+      <View paddingLeft={4} paddingRight={4} paddingTop={hh + 8}>
         <View>
-
           <Text
             fontFamily={FontLXGW}
             fontSize='lg'
@@ -77,18 +64,18 @@ function ClippingPage(props: ClippingPageProps) {
           <View flexDirection='row'>
             <CachedImage
               source={book.image}
-              style={{
+              style={[{
                 height: 200,
                 width: 100
-              }}
+              }, basicStyles.shadow]}
             />
             <View paddingLeft={4} paddingTop={8}>
               <Text
-              fontFamily={FontLXGW}
+                fontFamily={FontLXGW}
               >{book.title}</Text>
               <Text
-              fontFamily={FontLXGW}
-              fontSize='sm'
+                fontFamily={FontLXGW}
+                fontSize='sm'
               >{book.author}</Text>
             </View>
           </View>

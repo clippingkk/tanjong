@@ -11,14 +11,15 @@ import "fast-text-encoding"
 import './utils/init'
 import { Provider } from 'jotai'
 import { SWRConfig } from 'swr';
-import { wenquRequest } from './service/wenqu';
+import { wenquRequest, WenquSWRCache } from './service/wenqu';
 
 function Root() {
   return (
     <ApolloProvider client={client}>
       <SWRConfig
         value={{
-          fetcher: wenquRequest
+          fetcher: wenquRequest,
+          provider: () => new WenquSWRCache(),
         }}
       >
         <Provider>

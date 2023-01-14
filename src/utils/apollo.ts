@@ -1,4 +1,4 @@
-import { ApolloClient, ApolloLink, HttpLink, InMemoryCache } from '@apollo/client'
+import { ApolloClient, ApolloLink, Cache, HttpLink, InMemoryCache } from '@apollo/client'
 import { onError } from "@apollo/client/link/error"
 import { API_HOST, WENQU_API_HOST, WENQU_SIMPLE_TOKEN } from '../constants/config'
 // import profile from '../utils/profile'
@@ -119,20 +119,26 @@ export const client = new ApolloClient({
               return [...p, ...n]
             }
           },
+          books: {
+            keyArgs: ['doubanId'],
+            merge(p = [], n) {
+              return [...p, ...n]
+            }
+          }
         }
       },
       Book: {
         keyFields: ["doubanId"],
         fields: {
-          clippings: offsetLimitPagination()
+          clippings: {
+            merge: simpleDistArrayMerge
+          }
         }
       },
       User: {
         fields: {
           recents: {
-            merge(existings = [], incoming = []) {
-              return [...existings, ...incoming]
-            }
+            merge: simpleDistArrayMerge
           }
         }
       }
@@ -140,3 +146,12 @@ export const client = new ApolloClient({
   }),
   link: errorLink.concat(authLink.concat(httpLink)),
 })
+
+function simpleDistArrayMerge(existings: {__ref: string}[] = [], incoming: {__ref: string}[] = []) {
+  return [...existings, ...incoming].reduce((acc, x) => {
+    if (acc.findIndex((z: any) => z.__ref === x.__ref) === -1) {
+      acc.push(x)
+    }
+    return acc
+  }, [] as any[])
+}

@@ -1,5 +1,6 @@
 import { Cache, Key, State } from "swr"
 import { WENQU_SIMPLE_TOKEN, WENQU_API_HOST } from "../constants/config"
+import { storage } from "../utils/storage"
 
 type WenquErrorResponse = {
   code: number
@@ -51,20 +52,42 @@ export interface WenquSearchResponse {
   books: WenquBook[]
 }
 
-export class WenquSWRCache implements Cache<WenquBook> {
-  private _cache = new Map()
+export class WenquSWRCache implements Cache<WenquBook[]> {
+  private _cache = new Map<string, any>()
+  private _keys = new Set<string>()
+  private prefix = 'wenqu:cache:'
+  private cacheKeysKey = 'wenqu:cache:keys'
+
+  constructor() {
+    // load keys
+    const lks = storage.getString(this.cacheKeysKey)
+    if (!lks) {
+      return
+    }
+    try {
+      const ks: string[] = JSON.parse(lks)
+      this._keys = new Set(ks)
+    } catch (err) {
+      console.error(err)
+      // do nothing
+    }
+
+    // TODO: load keys from storage to memory
+  }
 
   keys(): IterableIterator<string> {
     return this._cache.keys()
   }
-  get(key: Key): State<WenquBook, any> | undefined {
-    throw new Error("Method not implemented.")
+  get(key: Key): State<WenquBook[], any> | undefined {
+    if (!key) {
+      return undefined
+    }
+    return this._cache.get(key as any)
   }
-  set(key: Key, value: State<WenquBook, any>): void {
-    throw new Error("Method not implemented.")
+  set(key: Key, value: State<WenquBook[], any>): void {
+    this._cache.set(key as any, value)
   }
   delete(key: Key): void {
-    throw new Error("Method not implemented.")
+    this._cache.delete(key as any)
   }
-
 }

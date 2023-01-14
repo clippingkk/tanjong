@@ -40,20 +40,30 @@ function BookPage(props: BookPageProps) {
   })
   const bh = useBottomTabBarHeight()
   // const primaryColor = useImagePrimaryColor(book.image)
+  const [atEnd, setAtEnd] = useState(false)
 
   const [loadedImage, setLoadedImage] = useState<ImageLoadEventData['source'] | null>(null)
   const onReachedEnd = useCallback(() => {
+    if (atEnd) {
+      return
+    }
     const allLength = bs.data?.book.clippings.length ?? 0
     return bs.fetchMore({
       variables: {
-        id: book.id,
+        id: book.doubanId,
         pagination: {
           limit: 10,
           offset: allLength
         }
       }
+    }).then(res => {
+      if (
+        res.data.book.clippings.length < 10
+      ) {
+        setAtEnd(true)
+      }
     })
-  }, [book.id, bs.data?.book.clippings.length])
+  }, [book.doubanId, bs.fetchMore, bs.data?.book.clippings.length, atEnd])
 
   const ratio = useMemo(() => {
     if (!loadedImage) {

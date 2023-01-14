@@ -3,16 +3,19 @@ import { Link } from '@react-navigation/native'
 import { Center, Text, View } from 'native-base'
 import React, { useMemo, useState } from 'react'
 import { ActivityIndicator, ImageLoadEventData } from 'react-native'
+import { useSingleBook } from '../../hooks/wenqu'
 import { RouteKeys } from '../../routes'
 import { WenquBook } from '../../service/wenqu'
 import { FontLXGW } from '../../styles/font'
 
 type BookCellProps = {
-  book: WenquBook
+  bookDoubanID: string
 }
 
 function BookCell(props: BookCellProps) {
   const [loadedImage, setLoadedImage] = useState<ImageLoadEventData['source'] | null>(null)
+
+  const { data: books, isLoading } = useSingleBook(props.bookDoubanID)
 
   const ratio = useMemo(() => {
     if (!loadedImage) {
@@ -20,7 +23,18 @@ function BookCell(props: BookCellProps) {
     }
     return loadedImage.width / loadedImage.height
   }, [loadedImage?.height, loadedImage?.width])
-  if (!props.book) {
+
+  if (isLoading) {
+    return (
+      <Center height={250}>
+        <ActivityIndicator />
+      </Center>
+    )
+  }
+
+  const book = books?.books ? books.books[0] : null
+
+  if (!book) {
     return <View height={250} width='100%' />
   }
 
@@ -30,13 +44,13 @@ function BookCell(props: BookCellProps) {
         to={{
           screen: RouteKeys.BookDetail,
           params: {
-            book: props.book
+            book: book
           }
         }}
       >
         <View flexDirection='column' alignItems='center'>
           <CachedImage
-            source={props.book.image}
+            source={book.image}
             onLoad={e => {
               setLoadedImage(e.nativeEvent.source)
             }}
@@ -59,7 +73,7 @@ function BookCell(props: BookCellProps) {
             fontSize='sm'
             textAlign='center'
           >
-            {props.book.title}
+            {book.title}
           </Text>
         </View>
       </Link>

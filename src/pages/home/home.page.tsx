@@ -3,15 +3,13 @@ import { useHeaderHeight } from '@react-navigation/elements'
 import { FlashList, MasonryFlashList } from '@shopify/flash-list'
 import { useAtomValue } from 'jotai'
 import { Text, View } from 'native-base'
-import React, { useCallback, useMemo } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 import { uidAtom } from '../../atomic'
 import AuthGuard from '../../components/auth-guard/auth-guard'
 import BookCell from '../../components/book/cell'
 import ErrorBox from '../../components/errorbox/errorbox'
 import LoadingBox from '../../components/loading/loading'
-import { useMultipBook } from '../../hooks/wenqu'
 import { useBooksQuery } from '../../schema/generated'
-import { WenquBook } from '../../service/wenqu'
 
 type HomePageProps = {
 }
@@ -30,27 +28,12 @@ function HomePage(props: HomePageProps) {
     skip: !uid
   })
 
-  const books = useMultipBook(
-    bs.data?.books.map(x => x.doubanId) ?? []
-  )
-
-  const bookList = useMemo<WenquBook[]>(() => {
-    if (!bs.data?.books) {
-      return []
-    }
-    if (!books.data?.books) {
-      return []
-    }
-
-    const result = bs
-      .data
-      .books
-      .map(b => books.data?.books.find(x => x.doubanId.toString() === b.doubanId))
-      .filter(x => x)
-    return result as WenquBook[]
-  }, [bs.data?.books, books.data?.books])
+  const [atEnd, setAtEnd] = useState(false)
 
   const onReachedEnd = useCallback(() => {
+    if (atEnd) {
+      return
+    }
     const allLength = bs.data?.books.length ?? 0
     return bs.fetchMore({
       variables: {
@@ -60,8 +43,14 @@ function HomePage(props: HomePageProps) {
           offset: allLength
         }
       }
+    }).then(res => {
+      if (
+        res.data.books.length < 10
+      ) {
+        setAtEnd(true)
+      }
     })
-  }, [uid, bs.data?.books.length])
+  }, [uid, bs.data?.books.length, atEnd])
 
   const bh = useBottomTabBarHeight()
   const hh = useHeaderHeight()
@@ -78,7 +67,7 @@ function HomePage(props: HomePageProps) {
     )
   }
 
-  if (bs.loading) {
+  if (bs.loading && (bs.data?.books.length ?? 0) === 0) {
     return (
       <LoadingBox />
     )
@@ -92,9 +81,9 @@ function HomePage(props: HomePageProps) {
       onRefresh={() => bs.refetch()}
       refreshing={bs.loading}
       numColumns={2}
-      data={bookList}
+      data={bs.data?.books ?? []}
       renderItem={({ item }) => {
-        return <BookCell book={item} />
+        return <BookCell bookDoubanID={item.doubanId} />
       }}
       estimatedItemSize={250}
       onEndReached={onReachedEnd}

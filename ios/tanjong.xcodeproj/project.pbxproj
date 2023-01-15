@@ -12,6 +12,22 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		2B3700B1297453E7002D1AFF /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B3700B0297453E6002D1AFF /* WidgetKit.framework */; };
+		2B3700B3297453E7002D1AFF /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B3700B2297453E7002D1AFF /* SwiftUI.framework */; };
+		2B3700B6297453E7002D1AFF /* clippingkk_widgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3700B5297453E7002D1AFF /* clippingkk_widgetBundle.swift */; };
+		2B3700B8297453E7002D1AFF /* clippingkk_widgetLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3700B7297453E7002D1AFF /* clippingkk_widgetLiveActivity.swift */; };
+		2B3700BA297453E7002D1AFF /* clippingkk_widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3700B9297453E7002D1AFF /* clippingkk_widget.swift */; };
+		2B3700BD297453E8002D1AFF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B3700BC297453E8002D1AFF /* Assets.xcassets */; };
+		2B3700BF297453E8002D1AFF /* clippingkk_widget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 2B3700BB297453E7002D1AFF /* clippingkk_widget.intentdefinition */; };
+		2B3700C0297453E8002D1AFF /* clippingkk_widget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 2B3700BB297453E7002D1AFF /* clippingkk_widget.intentdefinition */; };
+		2B3700C3297453E8002D1AFF /* clippingkk.widgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 2B3700AF297453E6002D1AFF /* clippingkk.widgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		2B3700CC297454B4002D1AFF /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3700C8297454B4002D1AFF /* UserManager.swift */; };
+		2B3700CD297454B4002D1AFF /* types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3700C9297454B4002D1AFF /* types.swift */; };
+		2B3700CE297454B4002D1AFF /* backend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3700CA297454B4002D1AFF /* backend.swift */; };
+		2B3700CF297454B4002D1AFF /* wenqu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3700CB297454B4002D1AFF /* wenqu.swift */; };
+		2B3700D229745794002D1AFF /* LXGWWenKai-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 19C31A02128743359AA18ED2 /* LXGWWenKai-Bold.ttf */; };
+		2B3700D329745796002D1AFF /* LXGWWenKai-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 48DBFB0344EA48849DF30A98 /* LXGWWenKai-Light.ttf */; };
+		2B3700D429745798002D1AFF /* LXGWWenKai-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84B99AAF85C8430FAFEFE746 /* LXGWWenKai-Regular.ttf */; };
 		3D1E73B27CCB447B94A753E9 /* LXGWWenKai-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 48DBFB0344EA48849DF30A98 /* LXGWWenKai-Light.ttf */; };
 		426A1308707C4108B9A06C30 /* LXGWWenKai-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84B99AAF85C8430FAFEFE746 /* LXGWWenKai-Regular.ttf */; };
 		7699B88040F8A987B510C191 /* libPods-tanjong-tanjongTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-tanjong-tanjongTests.a */; };
@@ -27,7 +43,28 @@
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
 			remoteInfo = tanjong;
 		};
+		2B3700C1297453E8002D1AFF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2B3700AE297453E6002D1AFF;
+			remoteInfo = clippingkk.widgetExtension;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2B3700C7297453E8002D1AFF /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				2B3700C3297453E8002D1AFF /* clippingkk.widgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		00E356EE1AD99517003FC87E /* tanjongTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tanjongTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -39,15 +76,30 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = tanjong/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = tanjong/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = tanjong/main.m; sourceTree = "<group>"; };
-		19C31A02128743359AA18ED2 /* LXGWWenKai-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "LXGWWenKai-Bold.ttf"; path = "../assets/fonts/LXGWWenKai-Bold.ttf"; sourceTree = "<group>"; };
+		19C31A02128743359AA18ED2 /* LXGWWenKai-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "LXGWWenKai-Bold.ttf"; path = "../assets/fonts/LXGWWenKai-Bold.ttf"; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-tanjong-tanjongTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-tanjong-tanjongTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B3700AF297453E6002D1AFF /* clippingkk.widgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = clippingkk.widgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B3700B0297453E6002D1AFF /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		2B3700B2297453E7002D1AFF /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		2B3700B5297453E7002D1AFF /* clippingkk_widgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = clippingkk_widgetBundle.swift; sourceTree = "<group>"; };
+		2B3700B7297453E7002D1AFF /* clippingkk_widgetLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = clippingkk_widgetLiveActivity.swift; sourceTree = "<group>"; };
+		2B3700B9297453E7002D1AFF /* clippingkk_widget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = clippingkk_widget.swift; sourceTree = "<group>"; };
+		2B3700BB297453E7002D1AFF /* clippingkk_widget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = clippingkk_widget.intentdefinition; sourceTree = "<group>"; };
+		2B3700BC297453E8002D1AFF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2B3700BE297453E8002D1AFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2B3700C8297454B4002D1AFF /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		2B3700C9297454B4002D1AFF /* types.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = types.swift; sourceTree = "<group>"; };
+		2B3700CA297454B4002D1AFF /* backend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = backend.swift; sourceTree = "<group>"; };
+		2B3700CB297454B4002D1AFF /* wenqu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = wenqu.swift; sourceTree = "<group>"; };
+		2B3700D029745543002D1AFF /* clippingkk.widgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = clippingkk.widgetExtension.entitlements; sourceTree = "<group>"; };
+		2B3700D12974555D002D1AFF /* tanjong.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = tanjong.entitlements; path = tanjong/tanjong.entitlements; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-tanjong.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tanjong.debug.xcconfig"; path = "Target Support Files/Pods-tanjong/Pods-tanjong.debug.xcconfig"; sourceTree = "<group>"; };
-		48DBFB0344EA48849DF30A98 /* LXGWWenKai-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "LXGWWenKai-Light.ttf"; path = "../assets/fonts/LXGWWenKai-Light.ttf"; sourceTree = "<group>"; };
+		48DBFB0344EA48849DF30A98 /* LXGWWenKai-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "LXGWWenKai-Light.ttf"; path = "../assets/fonts/LXGWWenKai-Light.ttf"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-tanjong.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tanjong.release.xcconfig"; path = "Target Support Files/Pods-tanjong/Pods-tanjong.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-tanjong-tanjongTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tanjong-tanjongTests.debug.xcconfig"; path = "Target Support Files/Pods-tanjong-tanjongTests/Pods-tanjong-tanjongTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-tanjong.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-tanjong.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = tanjong/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		84B99AAF85C8430FAFEFE746 /* LXGWWenKai-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "LXGWWenKai-Regular.ttf"; path = "../assets/fonts/LXGWWenKai-Regular.ttf"; sourceTree = "<group>"; };
+		84B99AAF85C8430FAFEFE746 /* LXGWWenKai-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "LXGWWenKai-Regular.ttf"; path = "../assets/fonts/LXGWWenKai-Regular.ttf"; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-tanjong-tanjongTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tanjong-tanjongTests.release.xcconfig"; path = "Target Support Files/Pods-tanjong-tanjongTests/Pods-tanjong-tanjongTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -66,6 +118,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C80B921A6F3F58F76C31292 /* libPods-tanjong.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2B3700AC297453E6002D1AFF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2B3700B3297453E7002D1AFF /* SwiftUI.framework in Frameworks */,
+				2B3700B1297453E7002D1AFF /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,6 +153,7 @@
 		13B07FAE1A68108700A75B9A /* tanjong */ = {
 			isa = PBXGroup;
 			children = (
+				2B3700D12974555D002D1AFF /* tanjong.entitlements */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -102,12 +164,31 @@
 			name = tanjong;
 			sourceTree = "<group>";
 		};
+		2B3700B4297453E7002D1AFF /* clippingkk.widget */ = {
+			isa = PBXGroup;
+			children = (
+				2B3700B5297453E7002D1AFF /* clippingkk_widgetBundle.swift */,
+				2B3700B7297453E7002D1AFF /* clippingkk_widgetLiveActivity.swift */,
+				2B3700CA297454B4002D1AFF /* backend.swift */,
+				2B3700C9297454B4002D1AFF /* types.swift */,
+				2B3700C8297454B4002D1AFF /* UserManager.swift */,
+				2B3700CB297454B4002D1AFF /* wenqu.swift */,
+				2B3700B9297453E7002D1AFF /* clippingkk_widget.swift */,
+				2B3700BB297453E7002D1AFF /* clippingkk_widget.intentdefinition */,
+				2B3700BC297453E8002D1AFF /* Assets.xcassets */,
+				2B3700BE297453E8002D1AFF /* Info.plist */,
+			);
+			path = clippingkk.widget;
+			sourceTree = "<group>";
+		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				5DCACB8F33CDC322A6C60F78 /* libPods-tanjong.a */,
 				19F6CBCC0A4E27FBF8BF4A61 /* libPods-tanjong-tanjongTests.a */,
+				2B3700B0297453E6002D1AFF /* WidgetKit.framework */,
+				2B3700B2297453E7002D1AFF /* SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -122,9 +203,11 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				2B3700D029745543002D1AFF /* clippingkk.widgetExtension.entitlements */,
 				13B07FAE1A68108700A75B9A /* tanjong */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* tanjongTests */,
+				2B3700B4297453E7002D1AFF /* clippingkk.widget */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
@@ -140,6 +223,7 @@
 			children = (
 				13B07F961A680F5B00A75B9A /* tanjong.app */,
 				00E356EE1AD99517003FC87E /* tanjongTests.xctest */,
+				2B3700AF297453E6002D1AFF /* clippingkk.widgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -163,7 +247,6 @@
 				84B99AAF85C8430FAFEFE746 /* LXGWWenKai-Regular.ttf */,
 			);
 			name = Resources;
-			path = "";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,15 +285,34 @@
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				00EEFC60759A1932668264C0 /* [CP] Embed Pods Frameworks */,
 				E235C05ADACE081382539298 /* [CP] Copy Pods Resources */,
+				2B3700C7297453E8002D1AFF /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				2B3700C2297453E8002D1AFF /* PBXTargetDependency */,
 			);
 			name = tanjong;
 			productName = tanjong;
 			productReference = 13B07F961A680F5B00A75B9A /* tanjong.app */;
 			productType = "com.apple.product-type.application";
+		};
+		2B3700AE297453E6002D1AFF /* clippingkk.widgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2B3700C4297453E8002D1AFF /* Build configuration list for PBXNativeTarget "clippingkk.widgetExtension" */;
+			buildPhases = (
+				2B3700AB297453E6002D1AFF /* Sources */,
+				2B3700AC297453E6002D1AFF /* Frameworks */,
+				2B3700AD297453E6002D1AFF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = clippingkk.widgetExtension;
+			productName = clippingkk.widgetExtension;
+			productReference = 2B3700AF297453E6002D1AFF /* clippingkk.widgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -218,6 +320,7 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1210;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
@@ -226,6 +329,9 @@
 					};
 					13B07F861A680F5B00A75B9A = {
 						LastSwiftMigration = 1120;
+					};
+					2B3700AE297453E6002D1AFF = {
+						CreatedOnToolsVersion = 14.2;
 					};
 				};
 			};
@@ -244,6 +350,7 @@
 			targets = (
 				13B07F861A680F5B00A75B9A /* tanjong */,
 				00E356ED1AD99517003FC87E /* tanjongTests */,
+				2B3700AE297453E6002D1AFF /* clippingkk.widgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -265,6 +372,17 @@
 				E9DE66C9B35C4D36BC8DFBD7 /* LXGWWenKai-Bold.ttf in Resources */,
 				3D1E73B27CCB447B94A753E9 /* LXGWWenKai-Light.ttf in Resources */,
 				426A1308707C4108B9A06C30 /* LXGWWenKai-Regular.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2B3700AD297453E6002D1AFF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2B3700D229745794002D1AFF /* LXGWWenKai-Bold.ttf in Resources */,
+				2B3700BD297453E8002D1AFF /* Assets.xcassets in Resources */,
+				2B3700D429745798002D1AFF /* LXGWWenKai-Regular.ttf in Resources */,
+				2B3700D329745796002D1AFF /* LXGWWenKai-Light.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,7 +552,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
+				2B3700C0297453E8002D1AFF /* clippingkk_widget.intentdefinition in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2B3700AB297453E6002D1AFF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2B3700B8297453E7002D1AFF /* clippingkk_widgetLiveActivity.swift in Sources */,
+				2B3700BA297453E7002D1AFF /* clippingkk_widget.swift in Sources */,
+				2B3700BF297453E8002D1AFF /* clippingkk_widget.intentdefinition in Sources */,
+				2B3700CD297454B4002D1AFF /* types.swift in Sources */,
+				2B3700CC297454B4002D1AFF /* UserManager.swift in Sources */,
+				2B3700B6297453E7002D1AFF /* clippingkk_widgetBundle.swift in Sources */,
+				2B3700CF297454B4002D1AFF /* wenqu.swift in Sources */,
+				2B3700CE297454B4002D1AFF /* backend.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -445,6 +579,11 @@
 			isa = PBXTargetDependency;
 			target = 13B07F861A680F5B00A75B9A /* tanjong */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
+		};
+		2B3700C2297453E8002D1AFF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2B3700AE297453E6002D1AFF /* clippingkk.widgetExtension */;
+			targetProxy = 2B3700C1297453E8002D1AFF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -504,11 +643,15 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3B4392A12AC88292D35C810B /* Pods-tanjong.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = tanjong/tanjong.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = VY3AP6C55K;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = tanjong/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ClippingKK;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -518,7 +661,8 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.annatarhe.ck.$(PRODUCT_NAME:rfc1034identifier)";
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = com.annatarhe.ck.tanjong;
 				PRODUCT_NAME = tanjong;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -530,10 +674,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5709B34CF0A7D63546082F79 /* Pods-tanjong.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = tanjong/tanjong.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = VY3AP6C55K;
 				INFOPLIST_FILE = tanjong/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ClippingKK;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -543,10 +691,93 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.annatarhe.ck.--PRODUCT-NAME-rfc1034identifier-";
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = com.annatarhe.ck.tanjong;
 				PRODUCT_NAME = tanjong;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
+		2B3700C5297453E8002D1AFF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = clippingkk.widgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = VY3AP6C55K;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = clippingkk.widget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = clippingkk.widget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.annatarhe.ck.tanjong.clippingkk-widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2B3700C6297453E8002D1AFF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = clippingkk.widgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = VY3AP6C55K;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = clippingkk.widget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = clippingkk.widget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.annatarhe.ck.tanjong.clippingkk-widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -704,6 +935,15 @@
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
 				13B07F951A680F5B00A75B9A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2B3700C4297453E8002D1AFF /* Build configuration list for PBXNativeTarget "clippingkk.widgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2B3700C5297453E8002D1AFF /* Debug */,
+				2B3700C6297453E8002D1AFF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

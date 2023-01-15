@@ -18,7 +18,7 @@ function SettingsPage(props: SettingsPageProps) {
     if (!timer.current) {
       timer.current = setTimeout(() => {
         timer.current = null
-      }, 10_000)
+      }, 10000)
     }
     setCount(c => c+1)
   }, [])

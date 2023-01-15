@@ -43,6 +43,7 @@
     "react-native-svg": "^13.6.0",
     "react-native-vector-icons": "^9.2.0",
     "react-native-vision-camera": "^2.15.2",
+    "react-native-widgetkit": "^1.0.9",
     "swr": "^2.0.0",
     "tailwind-rn": "^4.2.0",
     "vision-camera-code-scanner": "^0.2.0"

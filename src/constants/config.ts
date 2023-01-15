@@ -32,3 +32,5 @@ export const APP_API_STEP_LIMIT = 10
 
 export const APP_URL_ORIGIN = __DEV__ ? 'http://localhost:3000' : 'https://clippingkk.annatarhe.com'
 export const CF_TURNSTILE_SITE_KEY = '0x4AAAAAAAA361EJRDzUhf_b'
+
+export const SharedGroupPreferencesKey = 'group.com.annatarhe.clippingkk'

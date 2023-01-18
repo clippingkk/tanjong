@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { ApolloProvider } from '@apollo/client';
 import App from './app'
 import { client } from './utils/apollo'
-import { NativeBaseProvider, Box } from "native-base";
+import { NativeBaseProvider, Box, extendTheme } from "native-base";
 import { TailwindProvider } from 'tailwind-rn';
 import utilities from '../tailwind.json';
 
@@ -23,7 +23,13 @@ function Root() {
         }}
       >
         <Provider>
-          <NativeBaseProvider>
+          <NativeBaseProvider
+            theme={extendTheme({
+              config: {
+                useSystemColorMode: true
+              }
+            })}
+          >
             <TailwindProvider utilities={utilities}>
               <NavigationContainer>
                 <App />

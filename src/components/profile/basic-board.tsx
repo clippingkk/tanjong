@@ -81,12 +81,20 @@ function BasicBoard(props: BasicBoardProps) {
             <View justifyContent='center' alignItems='center'>
               <Text
                 fontSize='xs'
+                color='gray.900'
+                _dark={{
+                  color: 'gray.100'
+                }}
               >{props.profile.name}</Text>
             </View>
           </View>
           <View paddingLeft={4}>
             <Text
               fontSize='xs'
+              color='gray.900'
+              _dark={{
+                color: 'gray.100'
+              }}
             >{props.profile.bio}</Text>
           </View>
 

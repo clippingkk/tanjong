@@ -15,7 +15,6 @@ import { FontLXGW } from '../../styles/font'
 type ClippingPageProps = NativeStackScreenProps<RouteParamList, 'Clipping'>
 
 function ClippingPage(props: ClippingPageProps) {
-  const navigate = useNavigation()
   const cs = useColorScheme()
   const hh = useHeaderHeight()
   const { id, bookID, content, title } = props.route.params.clipping
@@ -23,12 +22,12 @@ function ClippingPage(props: ClippingPageProps) {
     if (!title) {
       return
     }
-    navigate.setOptions({
+    props.navigation.setOptions({
       title,
       headerTransparent: true,
       headerBlurEffect: cs === 'dark' ? 'dark' : 'light',
     })
-  }, [title])
+  }, [title, props.navigation])
 
   const clippingResult = useFetchClippingQuery({
     variables: {
@@ -47,7 +46,7 @@ function ClippingPage(props: ClippingPageProps) {
   }, [books.data?.books])
 
   return (
-    <ScrollView>
+    <ScrollView backgroundColor='gray.100' _dark={{ backgroundColor: 'gray.900' }}>
       <View paddingLeft={4} paddingRight={4} paddingTop={hh + 8}>
         <View>
           <Text

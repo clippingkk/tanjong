@@ -60,20 +60,27 @@ function ProfilePage(props: ProfilePageProps) {
   }
 
   return (
-    <FlashList
-      onRefresh={p.refetch}
-      refreshing={p.loading}
-      ListHeaderComponent={(<BasicBoard profile={p.data?.me} />)}
-      data={p.data?.me.recents ?? []}
-      renderItem={({ item }) => <ClippingCell clipping={item} />}
-      ItemSeparatorComponent={() => (
-        <View paddingTop={1} paddingBottom={1} width='100%' height={1} />
-      )}
-      ListFooterComponent={(
-        <View width='100%' height={bh + 16} />
-      )}
-      estimatedItemSize={itemSizeCellHeight}
-    />
+    <View
+      backgroundColor='gray.100'
+      _dark={{ backgroundColor: 'gray.900' }}
+      width='100%'
+      height='100%'
+    >
+      <FlashList
+        onRefresh={p.refetch}
+        refreshing={p.loading}
+        ListHeaderComponent={(<BasicBoard profile={p.data?.me} />)}
+        data={p.data?.me.recents ?? []}
+        renderItem={({ item }) => <ClippingCell clipping={item} />}
+        ItemSeparatorComponent={() => (
+          <View paddingTop={1} paddingBottom={1} width='100%' height={1} />
+        )}
+        ListFooterComponent={(
+          <View width='100%' height={bh + 16} />
+        )}
+        estimatedItemSize={itemSizeCellHeight}
+      />
+    </View>
   )
 }
 

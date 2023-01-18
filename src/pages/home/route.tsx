@@ -5,6 +5,8 @@ import { RouteKeys } from '../../routes'
 import HomePage from './home.page'
 import ClippingPage from '../clipping/clipping'
 import BookPage from '../book/book.page'
+import { useColorModeValue } from 'native-base'
+import { useTextColor } from '../../hooks/color'
 
 type HomeRoutePageProps = {
 }
@@ -13,11 +15,15 @@ const HomeStack = createNativeStackNavigator()
 
 function HomeRoutePage(props: HomeRoutePageProps) {
   const c = useColorScheme()
+  const textColor = useTextColor()
   return (
     <HomeStack.Navigator
       screenOptions={{
         headerTransparent: true,
         headerBlurEffect: c === 'dark' ? 'dark' : 'light',
+        headerTitleStyle: {
+          color: textColor
+        }
       }}
     >
       <HomeStack.Screen

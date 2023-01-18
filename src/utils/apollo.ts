@@ -23,7 +23,7 @@ export function getLocalToken() {
   return parsed.replace(/"/g, '')
 }
 
-export function updateLocalToken(nt: string) {
+export function updateLocalToken(nt: string | null) {
   token = nt
 }
 

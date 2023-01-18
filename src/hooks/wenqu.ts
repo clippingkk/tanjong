@@ -9,7 +9,7 @@ type bookRequestReturn = {
 
 const cache = new Map<number, WenquBook | null>()
 
-export function useSingleBook(doubanId?: string, skip?: boolean) {
+export function useSingleBook(doubanId?: string | null, skip?: boolean) {
   return useSWR<WenquSearchResponse>( doubanId && `/books/search?dbId=${doubanId}`)
 }
 

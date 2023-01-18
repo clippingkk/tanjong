@@ -63,7 +63,7 @@ function AuthLegacyPage(props: AuthLegacyPageProps) {
       }}
       behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
-      <Center marginTop={12}>
+      <Center paddingTop={12} bgColor='gray.100' _dark={{ bgColor: 'gray.900' }}>
         <VStack width="80%" space={4}>
           <FormControl isRequired isInvalid={'email' in errors}>
             <FormControl.Label>Email</FormControl.Label>

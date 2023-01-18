@@ -29,6 +29,7 @@ import { BlurView } from '@react-native-community/blur';
 import AuthQRCodePage from './pages/auth/qrcode.page';
 import HomeRoutePage from './pages/home/route';
 import ClippingPage from './pages/clipping/clipping';
+import { useTextColor } from './hooks/color';
 
 const RootRouteStack = createNativeStackNavigator()
 const TabStack = createBottomTabNavigator()
@@ -38,6 +39,7 @@ type HomeTabPagesProps = {
 
 function HomeTabPages(props: HomeTabPagesProps) {
   const c = useColorScheme()
+  const textColor = useTextColor()
 
   return (
     <TabStack.Navigator
@@ -48,6 +50,9 @@ function HomeTabPages(props: HomeTabPagesProps) {
           bottom: 0,
           left: 0,
           right: 0,
+        },
+        headerTitleStyle: {
+          color: textColor
         },
         tabBarBackground: () => (
           <BlurView
@@ -69,9 +74,8 @@ function HomeTabPages(props: HomeTabPagesProps) {
         name={RouteKeys.TabHome}
         component={HomeRoutePage}
         options={{
-          tabBarLabel: 'Feeds',
+          tabBarLabel: 'Books',
           tabBarIcon: ({ color, size }) => (
-            // <MaterialCommunityIcons name="home" color={color} size={size} />
             <Text>📚</Text>
           ),
         }}
@@ -92,6 +96,7 @@ function HomeTabPages(props: HomeTabPagesProps) {
 
 const App = () => {
   useOnInit()
+  const textColor = useTextColor()
   // const isDarkMode = useColorScheme() === 'dark';
 
   // const backgroundStyle = {
@@ -105,6 +110,9 @@ const App = () => {
     <RootRouteStack.Navigator
       screenOptions={{
         headerShown: false,
+        headerTitleStyle: {
+          color: textColor
+        },
       }}
     >
       <RootRouteStack.Screen

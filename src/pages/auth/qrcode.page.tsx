@@ -7,6 +7,7 @@ import { ActivityIndicator, Linking, StyleSheet } from 'react-native'
 import { Camera, useCameraDevices } from 'react-native-vision-camera'
 import { useScanBarcodes, BarcodeFormat } from 'vision-camera-code-scanner'
 import { tokenAtom, uidAtom } from '../../atomic'
+import Page from '../../components/page'
 import { usePostAuth } from '../../hooks/auth'
 import { JwtPayload } from '../../service/jwt'
 import { updateLocalToken } from '../../utils/apollo'
@@ -51,7 +52,9 @@ function AuthQRCodePage(props: AuthQRCodePageProps) {
 
   if (device == null) {
     return (
-      <AuthLegacyPage />
+      <Page>
+        <AuthLegacyPage />
+      </Page>
     )
   }
 

@@ -18,11 +18,12 @@ function ClippingCell(props: ClippingCellProps) {
       <Link to={{
         screen: RouteKeys.Clipping,
         params: {
-        clipping: props.clipping
+          clipping: props.clipping
         }
       }}>
         <View
           backgroundColor={'amber.300'}
+          _dark={{ backgroundColor: 'amber.900' }}
           borderRadius={3}
           shadow='4'
           padding='4'

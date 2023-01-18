@@ -9,6 +9,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { ActivityIndicator, ImageLoadEventData, useColorScheme } from 'react-native'
 import BookHead from '../../components/book/head'
 import ClippingCell from '../../components/clipping/cell'
+import Page from '../../components/page'
 import { useClippingCellAvgHeight } from '../../hooks/clipping'
 import { useImagePrimaryColor } from '../../hooks/image'
 import { RouteParamList } from '../../routes'
@@ -75,37 +76,39 @@ function BookPage(props: BookPageProps) {
   const itemSizeCellHeight = useClippingCellAvgHeight(bs.data?.book.clippings ?? [])
 
   if ((bs.data?.book.clippingsCount ?? 0) === 0) {
-    return null
+    return <Page><View /></Page>
   }
 
   return (
-    <FlashList
-      ListHeaderComponent={() => (
-        <BookHead book={book} />
-      )}
-      onRefresh={() => bs.refetch()}
-      refreshing={bs.loading}
-      data={bs.data?.book.clippings ?? []}
-      renderItem={({ item }) => {
-        return <ClippingCell clipping={item} />
-      }}
-      ListEmptyComponent={(
-        <View>
-          <Text>
-            empty
-          </Text>
-        </View>
-      )}
-      estimatedItemSize={itemSizeCellHeight}
-      onEndReached={onReachedEnd}
-      onEndReachedThreshold={1}
-      ListFooterComponent={(
-        <View width='100%' height={bh} />
-      )}
-      ItemSeparatorComponent={() => (
-        <View height={4} />
-      )}
-    />
+    <Page>
+      <FlashList
+        ListHeaderComponent={() => (
+          <BookHead book={book} />
+        )}
+        onRefresh={() => bs.refetch()}
+        refreshing={bs.loading}
+        data={bs.data?.book.clippings ?? []}
+        renderItem={({ item }) => {
+          return <ClippingCell clipping={item} />
+        }}
+        ListEmptyComponent={(
+          <View>
+            <Text>
+              empty
+            </Text>
+          </View>
+        )}
+        estimatedItemSize={itemSizeCellHeight}
+        onEndReached={onReachedEnd}
+        onEndReachedThreshold={1}
+        ListFooterComponent={(
+          <View width='100%' height={bh} />
+        )}
+        ItemSeparatorComponent={() => (
+          <View height={4} />
+        )}
+      />
+    </Page>
   )
 }
 

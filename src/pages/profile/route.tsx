@@ -6,6 +6,7 @@ import ClippingPage from '../clipping/clipping'
 import ProfilePage from './profile.page'
 import SettingsPage from '../settings/settings.page'
 import DebugPage from '../settings/debug.page'
+import { useTextColor } from '../../hooks/color'
 
 type ProfileRoutePageProps = {
 }
@@ -14,11 +15,15 @@ const ProfileStack = createNativeStackNavigator()
 
 function ProfileRoutePage(props: ProfileRoutePageProps) {
   const c = useColorScheme()
+  const textColor = useTextColor()
   return (
     <ProfileStack.Navigator
       screenOptions={{
         headerTransparent: true,
         headerBlurEffect: c === 'dark' ? 'dark' : 'light',
+        headerTitleStyle: {
+          color: textColor
+        }
       }}
     >
       <ProfileStack.Screen

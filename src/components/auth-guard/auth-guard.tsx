@@ -14,9 +14,13 @@ function AuthGuard(props: AuthGuardProps) {
         to={{
           screen: RouteKeys.AuthQRCode
         }}
-        style={{ width: '100%', textAlign: 'center' }}
+        style={{
+          width: '100%', textAlign: 'center'
+        }}
       >
-        Go to Auth
+        <Text color='gray.100'>
+          Go to Auth
+        </Text>
       </Link>
     </Page>
   )

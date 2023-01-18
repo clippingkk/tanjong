@@ -25,7 +25,7 @@ function AuthQRCodePage(props: AuthQRCodePageProps) {
     })
   }, [])
 
-  const [frameProcessor, barcodes] = useScanBarcodes([BarcodeFormat.QR_CODE], {
+  const [frameProcessor, barcodes] = useScanBarcodes([BarcodeFormat.ALL_FORMATS], {
     checkInverted: true,
   });
 
@@ -38,16 +38,23 @@ function AuthQRCodePage(props: AuthQRCodePageProps) {
     if (!barcodes || barcodes.length === 0) {
       return
     }
+
     const barcode = barcodes[0]
     if (!barcode.rawValue) {
       return
     }
-    console.log(barcode, barcode.rawValue)
-    const decodedValue = jwtDecode<JwtPayload>(barcode.rawValue)
-    if (!decodedValue.id) {
-      return
+    try {
+      const decodedValue = jwtDecode<JwtPayload>(barcode.rawValue)
+      if (!decodedValue.id) {
+        return
+      }
+      onPostAuth(barcode.rawValue, ~~decodedValue.id).catch(err => {
+        console.error(err)
+      })
+    } catch (e) {
+      // do nothing....
+      console.error(e)
     }
-    onPostAuth(barcode.rawValue, ~~decodedValue.id)
   }, [barcodes, onPostAuth])
 
   if (device == null) {

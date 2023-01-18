@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native'
 import { useSetAtom } from 'jotai'
 import jwtDecode from 'jwt-decode'
-import { View, Text } from 'native-base'
+import { View, Text, Toast } from 'native-base'
 import React, { useCallback, useEffect } from 'react'
 import { ActivityIndicator, Linking, StyleSheet } from 'react-native'
 import { Camera, useCameraDevices } from 'react-native-vision-camera'
@@ -48,9 +48,10 @@ function AuthQRCodePage(props: AuthQRCodePageProps) {
       if (!decodedValue.id) {
         return
       }
-      onPostAuth(barcode.rawValue, ~~decodedValue.id).catch(err => {
-        console.error(err)
-      })
+      onPostAuth(barcode.rawValue, ~~decodedValue.id)
+        .catch(err => {
+          console.error(err)
+        })
     } catch (e) {
       // do nothing....
       console.error(e)

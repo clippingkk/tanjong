@@ -17,7 +17,23 @@ type ClippingPageProps = NativeStackScreenProps<RouteParamList, 'Clipping'>
 function ClippingPage(props: ClippingPageProps) {
   const cs = useColorScheme()
   const hh = useHeaderHeight()
-  const { id, bookID, content, title } = props.route.params.clipping
+  const paramClipping = props.route.params.clipping
+  const cid = props.route.params.clippingID
+
+  const id = paramClipping?.id ?? cid
+
+  const clippingResult = useFetchClippingQuery({
+    variables: {
+      id: id!
+    }
+  })
+
+  const remoteClipping = clippingResult.data?.clipping
+
+  const bookID = paramClipping?.bookID ?? remoteClipping?.bookID
+  const content = paramClipping?.content ?? remoteClipping?.content
+  const title = paramClipping?.title ?? remoteClipping?.title
+
   useEffect(() => {
     if (!title) {
       return
@@ -28,12 +44,6 @@ function ClippingPage(props: ClippingPageProps) {
       headerBlurEffect: cs === 'dark' ? 'dark' : 'light',
     })
   }, [title, props.navigation])
-
-  const clippingResult = useFetchClippingQuery({
-    variables: {
-      id
-    }
-  })
 
   const books = useSingleBook(bookID)
   const book = useMemo(() => {

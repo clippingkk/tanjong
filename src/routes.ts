@@ -18,6 +18,7 @@ export type RouteParamList = {
     book: WenquBook
   }
   Clipping: {
-    clipping: Pick<Clipping, 'id' | 'bookID' | 'content' | 'title'>
+    clipping?: Pick<Clipping, 'id' | 'bookID' | 'content' | 'title'>
+    clippingID?: number
   }
 }

@@ -5,7 +5,7 @@ import { tokenAtom, uidAtom } from "../atomic"
 import { updateLocalToken } from "../utils/apollo"
 // import SharedGroupPreferences from 'react-native-shared-group-preferences'
 import { SharedGroupPreferencesKey } from "../constants/config"
-import WidgetKit from 'react-native-widgetkit'
+import { setItem as WidgetKitSetItem, reloadAllTimelines as WidgetKitReloadAllTimelines } from 'react-native-widgetkit'
 import { Platform } from "react-native"
 import { useApolloClient } from "@apollo/client"
 
@@ -25,9 +25,9 @@ export function usePostAuth() {
     if (Platform.OS === 'ios') {
       // await SharedGroupPreferences.setItem(widgetAppIDKey, uid, SharedGroupPreferencesKey)
       // await SharedGroupPreferences.setItem(widgetAppTokenKey, token, SharedGroupPreferencesKey)
-      WidgetKit.setItem(widgetAppIDKey, uid.toString(), SharedGroupPreferencesKey)
-      WidgetKit.setItem(widgetAppTokenKey, token, SharedGroupPreferencesKey)
-      WidgetKit.reloadAllTimelines()
+      WidgetKitSetItem(widgetAppIDKey, uid.toString(), SharedGroupPreferencesKey)
+      WidgetKitSetItem(widgetAppTokenKey, token, SharedGroupPreferencesKey)
+      WidgetKitReloadAllTimelines()
     }
 
     await client.resetStore()

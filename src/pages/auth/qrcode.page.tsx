@@ -1,9 +1,10 @@
+import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
 import { useNavigation } from '@react-navigation/native'
 import { useSetAtom } from 'jotai'
 import jwtDecode from 'jwt-decode'
 import { View, Text, Toast } from 'native-base'
 import React, { useCallback, useEffect } from 'react'
-import { ActivityIndicator, Linking, StyleSheet } from 'react-native'
+import { ActivityIndicator, Linking, SafeAreaView, StyleSheet } from 'react-native'
 import { Camera, useCameraDevices } from 'react-native-vision-camera'
 import { useScanBarcodes, BarcodeFormat } from 'vision-camera-code-scanner'
 import { tokenAtom, uidAtom } from '../../atomic'
@@ -67,13 +68,28 @@ function AuthQRCodePage(props: AuthQRCodePageProps) {
   }
 
   return (
-    <Camera
-      style={StyleSheet.absoluteFill}
-      device={device}
-      isActive={true}
-      frameProcessor={frameProcessor}
-      frameProcessorFps={5}
-    />
+    <>
+      <Camera
+        style={StyleSheet.absoluteFill}
+        device={device}
+        isActive={true}
+        frameProcessor={frameProcessor}
+        frameProcessorFps={5}
+      />
+      <SafeAreaView style={{ flex: 1 }}>
+        <View flex={1} alignItems='center' justifyContent='space-between'>
+          <View alignItems='center'>
+            <Text>Go to https://clippingkk.annatarhe.com/ and login</Text>
+            <Text>Then scan the icon at top right cornner 📱 </Text>
+            <Text>May need some patience</Text>
+          </View>
+          <View w='sm' h='sm' borderColor='green.400' borderWidth={3} />
+          <View>
+            <Text>Find the QRCode to login</Text>
+          </View>
+        </View>
+      </SafeAreaView>
+    </>
   )
 }
 

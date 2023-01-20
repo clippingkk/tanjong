@@ -652,7 +652,7 @@
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = tanjong/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ClippingKK;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -665,8 +665,12 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.annatarhe.clippingkk.clippingkk-ios";
 				PRODUCT_NAME = tanjong;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -683,7 +687,7 @@
 				DEVELOPMENT_TEAM = VY3AP6C55K;
 				INFOPLIST_FILE = tanjong/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ClippingKK;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -696,7 +700,11 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.annatarhe.clippingkk.clippingkk-ios";
 				PRODUCT_NAME = tanjong;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;

@@ -66,7 +66,7 @@ function SettingsPage(props: SettingsPageProps) {
         }}
       >
         <Pressable onPress={onDebugClick}>
-          <Text color='gray.100'>created by @AnnatarHe</Text>
+          <Text color='gray.900' _dark={{ color: 'amber.100' }}>created by @AnnatarHe</Text>
         </Pressable>
       </VStack>
       <View flex={1} />

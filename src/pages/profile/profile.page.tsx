@@ -3,7 +3,7 @@ import { Link, useNavigation } from '@react-navigation/native'
 import { FlashList } from '@shopify/flash-list'
 import { useAtomValue } from 'jotai'
 import { Text, View } from 'native-base'
-import React, { useEffect, useMemo } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { Dimensions } from 'react-native'
 import { uidAtom } from '../../atomic'
 import AuthGuard from '../../components/auth-guard/auth-guard'
@@ -33,13 +33,50 @@ function ProfilePage(props: ProfilePageProps) {
 
   const p = useProfileQuery({
     variables: {
-      id: uid!
+      id: uid!,
+      pagination: {
+        recents: {
+          lastId: 1 << 30,
+          limit: 10
+        }
+      }
     },
     skip: !uid
   })
 
   const itemSizeCellHeight = useClippingCellAvgHeight(p.data?.me.recents ?? [])
   const bh = useBottomTabBarHeight()
+
+  const [atEnd, setAtEnd] = useState(false)
+
+  const onReachedEnd = useCallback(() => {
+    if (atEnd) {
+      return
+    }
+    const rcs = p.data?.me.recents
+    if (!rcs || rcs.length === 0) {
+      return;
+    }
+    const last = rcs[rcs.length - 1]
+    return p.fetchMore({
+      variables: {
+        id: uid,
+        pagination: {
+          recents: {
+            lastId: last.id,
+            limit: 10,
+          }
+        }
+      }
+    }).then(res => {
+      if (
+        res.data.me.recents.length < 10
+      ) {
+        setAtEnd(true)
+      }
+    })
+  }, [uid, p.data?.me.recents.length, atEnd])
+
 
   if (!uid) {
     return (
@@ -79,6 +116,8 @@ function ProfilePage(props: ProfilePageProps) {
           <View width='100%' height={bh + 16} />
         )}
         estimatedItemSize={itemSizeCellHeight}
+        onEndReached={onReachedEnd}
+        onEndReachedThreshold={1}
       />
     </View>
   )

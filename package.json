@@ -1,6 +1,6 @@
 {
   "name": "tanjong",
-  "version": "0.0.1",
+  "version": "3.0.0",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
@@ -11,7 +11,7 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "build:tailwind": "tailwindcss --input input.css --output tailwind.css --no-autoprefixer && tailwind-rn",
     "dev:tailwind": "concurrently \"tailwindcss --input input.css --output tailwind.css --no-autoprefixer --watch\" \"tailwind-rn --watch\"",
-	"release:base": "standard-version --commit-all",
+    "release:base": "standard-version --commit-all",
     "release": "npm run release:base --",
     "release:pre": "npm run release:base -- --prerelease alpha"
   },

@@ -77,7 +77,6 @@ function ProfilePage(props: ProfilePageProps) {
     })
   }, [uid, p.data?.me.recents.length, atEnd])
 
-
   if (!uid) {
     return (
       <AuthGuard />
@@ -86,13 +85,34 @@ function ProfilePage(props: ProfilePageProps) {
 
   if (p.error) {
     return (
-      <ErrorBox err={p.error} onRefresh={p.refetch} />
+      <ErrorBox
+        err={p.error}
+        onRefresh={() => p.refetch({
+          id: uid!,
+          pagination: {
+            recents: {
+              lastId: 1 << 30,
+              limit: 10
+            }
+          }
+        })}
+      />
     )
   }
 
   if (p.loading) {
     return (
-      <LoadingBox />
+      <LoadingBox
+        retry={() => p.refetch({
+          id: uid!,
+          pagination: {
+            recents: {
+              lastId: 1 << 30,
+              limit: 10
+            }
+          }
+        })}
+      />
     )
   }
 

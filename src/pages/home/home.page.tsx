@@ -82,13 +82,30 @@ function HomePage(props: HomePageProps) {
 
   if (bs.error) {
     return (
-      <ErrorBox err={bs.error} onRefresh={bs.refetch} />
+      <ErrorBox
+        err={bs.error}
+        onRefresh={() => bs.refetch({
+          id: uid,
+          pagination: {
+            limit: 10,
+            offset: 0
+          }
+        })}
+      />
     )
   }
 
   if (bs.loading && (bs.data?.books.length ?? 0) === 0) {
     return (
-      <LoadingBox />
+      <LoadingBox
+        retry={() => bs.refetch({
+          id: uid,
+          pagination: {
+            limit: 10,
+            offset: 0
+          }
+        })}
+      />
     )
   }
 

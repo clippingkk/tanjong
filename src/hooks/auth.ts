@@ -8,9 +8,10 @@ import { SharedGroupPreferencesKey } from "../constants/config"
 import { setItem as WidgetKitSetItem, reloadAllTimelines as WidgetKitReloadAllTimelines } from 'react-native-widgetkit'
 import { Platform } from "react-native"
 import { useApolloClient } from "@apollo/client"
-
+import { Toast } from "native-base"
 const widgetAppIDKey = "app:my:id"
 const widgetAppTokenKey = "app:token"
+const widgetAppWidgetType = "app:widgetType"
 
 export function usePostAuth() {
   const setToken = useSetAtom(tokenAtom)
@@ -27,10 +28,16 @@ export function usePostAuth() {
       // await SharedGroupPreferences.setItem(widgetAppTokenKey, token, SharedGroupPreferencesKey)
       WidgetKitSetItem(widgetAppIDKey, uid.toString(), SharedGroupPreferencesKey)
       WidgetKitSetItem(widgetAppTokenKey, token, SharedGroupPreferencesKey)
+      WidgetKitSetItem(widgetAppWidgetType, "public", SharedGroupPreferencesKey)
       WidgetKitReloadAllTimelines()
     }
 
+    Toast.show({
+      title: 'Logged in'
+    })
     await client.resetStore()
-    nav.goBack()
+    if (nav.canGoBack()) {
+      nav.goBack()
+    }
   }, [setToken, setUid, nav])
 }

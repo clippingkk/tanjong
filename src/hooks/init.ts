@@ -6,6 +6,8 @@ import { useProfileQuery } from "../schema/generated"
 import { Linking } from "react-native"
 import { useLinkTo } from "@react-navigation/native"
 import { RouteKeys } from "../routes"
+import * as Sentry from "@sentry/react-native";
+
 // import SplashScreen from 'react-native-splash-screen'
 
 export function useOnInit() {
@@ -25,6 +27,11 @@ export function useOnInit() {
       return
     }
     setProfile(np.data.me)
+    Sentry.setUser({
+      id: np.data.me.id.toString(),
+      email: np.data.me.email,
+      username: np.data.me.name
+    })
   }, [np.data?.me])
 
   useDeeplinkHandler()

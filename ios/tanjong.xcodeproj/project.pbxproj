@@ -728,7 +728,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = clippingkk.widget/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = clippingkk.widget;
+				INFOPLIST_KEY_CFBundleDisplayName = ClippingKK;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -770,7 +770,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = clippingkk.widget/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = clippingkk.widget;
+				INFOPLIST_KEY_CFBundleDisplayName = ClippingKK;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (

@@ -23,7 +23,7 @@ function AuthGuard(props: AuthGuardProps) {
           }}
         >
           <Text color='gray.900' _dark={{ color: 'gray.100' }}>
-            Go to Auth
+            Click me to synchronize your personal data with your account
           </Text>
         </Link>
       </View>

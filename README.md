@@ -9,6 +9,9 @@ still in progress.
 please change the udid to your device id
 
 ```bash
+emulator -avd Pixel_3a_API_33_arm64-v8a
+npm run android
+
 npm run ios -- --no-packager --udid 00008101-00154D013410001E
 npm run ios -- --no-packager --udid 00008101-00154D013410001E --configuration ReleaseOS
 ```

@@ -50,7 +50,6 @@ react {
     // hermesFlags = ["-O", "-output-source-map"]
 }
 
-apply from: "../../node_modules/react-native/react.gradle"
 // FIXME: temporary disable sentry, like iOS
 // apply from: "../../node_modules/@sentry/react-native/sentry.gradle"
 

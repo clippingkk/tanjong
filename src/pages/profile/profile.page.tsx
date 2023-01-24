@@ -8,6 +8,7 @@ import { Dimensions } from 'react-native'
 import { uidAtom } from '../../atomic'
 import AuthGuard from '../../components/auth-guard/auth-guard'
 import ClippingCell from '../../components/clipping/cell'
+import EmptyBox from '../../components/empty/empty'
 import ErrorBox from '../../components/errorbox/errorbox'
 import LoadingBox from '../../components/loading/loading'
 import BasicBoard from '../../components/profile/basic-board'
@@ -116,6 +117,12 @@ function ProfilePage(props: ProfilePageProps) {
     )
   }
 
+  if ((p.data?.me.recents.length ?? 0) === 0) {
+    return (
+      <EmptyBox />
+    )
+  }
+
   return (
     <View
       backgroundColor='gray.100'
@@ -131,6 +138,11 @@ function ProfilePage(props: ProfilePageProps) {
         renderItem={({ item }) => <ClippingCell clipping={item} />}
         ItemSeparatorComponent={() => (
           <View paddingTop={1} paddingBottom={1} width='100%' height={1} />
+        )}
+        ListEmptyComponent={(
+          <View>
+            <Text>empty</Text>
+            </View>
         )}
         ListFooterComponent={(
           <View width='100%' height={bh + 16} />

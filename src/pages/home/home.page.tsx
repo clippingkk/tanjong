@@ -8,6 +8,7 @@ import { uidAtom } from '../../atomic'
 import AuthGuard from '../../components/auth-guard/auth-guard'
 import BookCell from '../../components/book/cell'
 import BookHero from '../../components/book/hero'
+import EmptyBox from '../../components/empty/empty'
 import ErrorBox from '../../components/errorbox/errorbox'
 import LoadingBox from '../../components/loading/loading'
 import { useBooksQuery } from '../../schema/generated'
@@ -95,7 +96,7 @@ function HomePage(props: HomePageProps) {
     )
   }
 
-  if (bs.loading && (bs.data?.books.length ?? 0) === 0) {
+  if (bs.loading) {
     return (
       <LoadingBox
         retry={() => bs.refetch({
@@ -106,6 +107,12 @@ function HomePage(props: HomePageProps) {
           }
         })}
       />
+    )
+  }
+
+  if ((bs.data?.books.length ?? 0) === 0) {
+    return (
+      <EmptyBox />
     )
   }
 

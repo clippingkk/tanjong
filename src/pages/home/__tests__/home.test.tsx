@@ -3,7 +3,6 @@ import React from 'react'
 import HomePage from '../home.page'
 import nock from 'nock'
 import { act, render, screen } from '@testing-library/react-native'
-import "fast-text-encoding"
 import { ApolloProvider } from '@apollo/client'
 import { client } from '../../../utils/apollo'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'

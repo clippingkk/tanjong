@@ -1,9 +1,7 @@
 import 'react-native'
 import React from 'react'
-import nock from 'nock'
 import { act, render, screen } from '@testing-library/react-native'
-import "fast-text-encoding"
-import { NativeBaseProvider, Text } from 'native-base'
+import { NativeBaseProvider } from 'native-base'
 import { NavigationContainer } from '@react-navigation/native'
 import { Provider } from 'jotai'
 import { uidAtom } from '../../../atomic'

@@ -1,4 +1,4 @@
-## Tanjong
+## Tanjong [![codecov](https://codecov.io/gh/clippingkk/tanjong/branch/master/graph/badge.svg?token=373R35M1SY)](https://codecov.io/gh/clippingkk/tanjong)
 
 It's the [ClippingKK](https://clippingkk.annatarhe.com)'s mobile version that rewrite with react-native
 

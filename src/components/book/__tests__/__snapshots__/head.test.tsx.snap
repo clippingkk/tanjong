@@ -1,0 +1,346 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`head book will correctly rendering 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    style={
+      [
+        {
+          "flex": 1,
+        },
+        undefined,
+      ]
+    }
+  >
+    <RNSScreenStack
+      style={
+        {
+          "flex": 1,
+        }
+      }
+    >
+      <RNSScreen
+        collapsable={false}
+        forwardedRef={[Function]}
+        gestureResponseDistance={
+          {
+            "bottom": -1,
+            "end": -1,
+            "start": -1,
+            "top": -1,
+          }
+        }
+        nativeBackButtonDismissalEnabled={false}
+        onAppear={[Function]}
+        onDisappear={[Function]}
+        onDismissed={[Function]}
+        onHeaderBackButtonClicked={[Function]}
+        onNativeDismissCancelled={[Function]}
+        onTransitionProgress={[Function]}
+        onWillDisappear={[Function]}
+        replaceAnimation="push"
+        stackPresentation="push"
+        style={
+          {
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          }
+        }
+        swipeDirection="horizontal"
+      >
+        <RNSScreenStackHeaderConfig
+          backButtonInCustomView={false}
+          backgroundColor="rgb(255, 255, 255)"
+          color="rgb(0, 122, 255)"
+          direction="ltr"
+          disableBackButtonMenu={false}
+          hidden={false}
+          hideBackButton={false}
+          largeTitleHideShadow={false}
+          title="/h"
+          titleColor="rgb(28, 28, 30)"
+          topInsetEnabled={false}
+          translucent={false}
+        />
+        <View
+          accessibilityElementsHidden={false}
+          importantForAccessibility="auto"
+          style={
+            {
+              "flex": 1,
+              "flexDirection": "column-reverse",
+            }
+          }
+        >
+          <View
+            style={
+              [
+                {
+                  "flex": 1,
+                },
+                {
+                  "backgroundColor": "rgb(242, 242, 242)",
+                },
+                undefined,
+              ]
+            }
+          >
+            <View
+              dataSet={{}}
+              style={
+                {
+                  "marginBottom": -31,
+                }
+              }
+            >
+              <View
+                dataSet={{}}
+                style={
+                  {
+                    "height": 344,
+                  }
+                }
+              >
+                <View
+                  style={
+                    [
+                      {
+                        "backgroundColor": "transparent",
+                      },
+                      {
+                        "bottom": 0,
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    style={
+                      [
+                        {
+                          "alignItems": "center",
+                          "alignSelf": "center",
+                          "bottom": 0,
+                          "justifyContent": "center",
+                          "left": 0,
+                          "position": "absolute",
+                          "right": 0,
+                          "top": 0,
+                        },
+                      ]
+                    }
+                  >
+                    <Image
+                      accessibilityRole="image"
+                      accessible={true}
+                      resizeMode="cover"
+                      style={
+                        [
+                          {
+                            "opacity": 1,
+                          },
+                          {
+                            "bottom": 0,
+                            "left": 0,
+                            "position": "absolute",
+                            "right": 0,
+                            "top": 0,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+                <BlurView
+                  blurAmount={30}
+                  blurType="light"
+                  reducedTransparencyFallbackColor="white"
+                  style={
+                    [
+                      {
+                        "backgroundColor": "transparent",
+                      },
+                      {
+                        "bottom": 0,
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      },
+                    ]
+                  }
+                />
+                <View
+                  dataSet={{}}
+                  style={
+                    {
+                      "alignItems": "flex-start",
+                      "flexDirection": "row",
+                      "justifyContent": "space-around",
+                      "marginLeft": 8,
+                      "marginRight": 8,
+                      "marginTop": 94,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      [
+                        {
+                          "backgroundColor": "transparent",
+                        },
+                        [
+                          {
+                            "aspectRatio": 1.7777777777777777,
+                            "borderRadius": 8,
+                            "height": 150,
+                          },
+                          {
+                            "shadowColor": "#000",
+                            "shadowOffset": {
+                              "height": 2,
+                              "width": 0,
+                            },
+                            "shadowRadius": 3.84,
+                          },
+                        ],
+                      ]
+                    }
+                  >
+                    <View
+                      style={
+                        [
+                          {
+                            "alignItems": "center",
+                            "alignSelf": "center",
+                            "bottom": 0,
+                            "justifyContent": "center",
+                            "left": 0,
+                            "position": "absolute",
+                            "right": 0,
+                            "top": 0,
+                          },
+                          {
+                            "opacity": 1,
+                          },
+                        ]
+                      }
+                    >
+                      <View
+                        dataSet={{}}
+                        style={
+                          {
+                            "alignItems": "center",
+                            "display": "flex",
+                            "justifyContent": "center",
+                          }
+                        }
+                      >
+                        <ActivityIndicator />
+                      </View>
+                    </View>
+                  </View>
+                  <View
+                    dataSet={{}}
+                    style={
+                      {
+                        "maxWidth": 240,
+                      }
+                    }
+                  >
+                    <Text
+                      dataSet={{}}
+                      style={
+                        {
+                          "backgroundColor": undefined,
+                          "color": "#171717",
+                          "fontFamily": "LXGWWenKai-Regular",
+                          "fontSize": 20,
+                          "fontStyle": "normal",
+                          "fontWeight": "400",
+                          "letterSpacing": 0,
+                          "lineHeight": 30,
+                          "textDecorationLine": undefined,
+                        }
+                      }
+                    >
+                      happy chinese year
+                    </Text>
+                    <Text
+                      dataSet={{}}
+                      style={
+                        {
+                          "backgroundColor": undefined,
+                          "color": "#171717",
+                          "fontFamily": "LXGWWenKai-Regular",
+                          "fontSize": 14,
+                          "fontStyle": "normal",
+                          "fontWeight": "400",
+                          "letterSpacing": 0,
+                          "lineHeight": 21,
+                          "textDecorationLine": undefined,
+                        }
+                      }
+                    >
+                      annatarhe
+                    </Text>
+                    <View
+                      aria-orientation="horizontal"
+                      dataSet={{}}
+                      style={
+                        {
+                          "backgroundColor": "#d4d4d4",
+                          "height": 1,
+                          "marginBottom": 8,
+                          "marginTop": 8,
+                          "width": "100%",
+                        }
+                      }
+                      thickness="1"
+                    />
+                    <Text
+                      dataSet={{}}
+                      numberOfLines={4}
+                      style={
+                        {
+                          "backgroundColor": undefined,
+                          "color": "#171717",
+                          "fontFamily": "LXGWWenKai-Regular",
+                          "fontSize": 14,
+                          "fontStyle": "normal",
+                          "fontWeight": "400",
+                          "letterSpacing": 0,
+                          "lineHeight": 21,
+                          "textDecorationLine": undefined,
+                        }
+                      }
+                    >
+                      summmary
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+      </RNSScreen>
+    </RNSScreenStack>
+  </View>
+</RNCSafeAreaProvider>
+`;

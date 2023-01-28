@@ -1,0 +1,119 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`book cell will rendered correctly 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    dataSet={{}}
+    style={
+      {
+        "alignItems": "center",
+        "display": "flex",
+        "elevation": 7,
+        "height": 250,
+        "justifyContent": "center",
+        "shadowColor": "#000000",
+        "shadowOffset": {
+          "height": 3,
+          "width": 0,
+        },
+        "shadowOpacity": 0.29,
+        "shadowRadius": 4.65,
+      }
+    }
+  >
+    <Text
+      accessibilityRole="link"
+      href="/BookDetail?book=%5Bobject%20Object%5D"
+      onPress={[Function]}
+    >
+      <View
+        dataSet={{}}
+        style={
+          {
+            "alignItems": "center",
+            "flexDirection": "column",
+          }
+        }
+      >
+        <View
+          style={
+            [
+              {
+                "backgroundColor": "transparent",
+              },
+              {
+                "aspectRatio": 1.7777777777777777,
+                "height": 200,
+              },
+            ]
+          }
+        >
+          <View
+            style={
+              [
+                {
+                  "alignItems": "center",
+                  "alignSelf": "center",
+                  "bottom": 0,
+                  "justifyContent": "center",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                },
+                {
+                  "opacity": 1,
+                },
+              ]
+            }
+          >
+            <View
+              dataSet={{}}
+              style={
+                {
+                  "alignItems": "center",
+                  "display": "flex",
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <ActivityIndicator />
+            </View>
+          </View>
+        </View>
+        <Text
+          dataSet={{}}
+          numberOfLines={2}
+          style={
+            {
+              "backgroundColor": undefined,
+              "color": "#171717",
+              "fontFamily": "LXGWWenKai-Regular",
+              "fontSize": 14,
+              "fontStyle": "normal",
+              "fontWeight": "400",
+              "letterSpacing": 0,
+              "lineHeight": 21,
+              "marginTop": 8,
+              "textAlign": "center",
+              "textDecorationLine": undefined,
+            }
+          }
+        >
+          wwww
+        </Text>
+      </View>
+    </Text>
+  </View>
+</RNCSafeAreaProvider>
+`;

@@ -1,0 +1,1154 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`home page renders with list 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    style={
+      [
+        {
+          "flex": 1,
+        },
+        undefined,
+      ]
+    }
+  >
+    <RNSScreenNavigationContainer
+      style={
+        {
+          "flex": 1,
+          "overflow": "hidden",
+        }
+      }
+    >
+      <RNSScreen
+        activityState={2}
+        collapsable={false}
+        forwardedRef={[Function]}
+        gestureResponseDistance={
+          {
+            "bottom": -1,
+            "end": -1,
+            "start": -1,
+            "top": -1,
+          }
+        }
+        style={
+          {
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+            "zIndex": 0,
+          }
+        }
+      >
+        <View
+          accessibilityElementsHidden={false}
+          importantForAccessibility="auto"
+          style={
+            [
+              {
+                "backgroundColor": "rgb(242, 242, 242)",
+                "flex": 1,
+              },
+              [
+                {
+                  "flex": 1,
+                  "flexDirection": "column-reverse",
+                },
+                undefined,
+              ],
+            ]
+          }
+        >
+          <View
+            style={
+              {
+                "flex": 1,
+              }
+            }
+          >
+            <View
+              dataSet={{}}
+              style={
+                {
+                  "backgroundColor": "#f4f4f5",
+                  "height": "100%",
+                  "width": "100%",
+                }
+              }
+            >
+              <View
+                style={
+                  {
+                    "flex": 1,
+                    "overflow": "hidden",
+                  }
+                }
+              >
+                <RCTScrollView
+                  ListFooterComponent={
+                    <ForwardRef
+                      height={49}
+                      width="100%"
+                    />
+                  }
+                  ListHeaderComponent={[Function]}
+                  applyWindowCorrection={[Function]}
+                  canChangeSize={true}
+                  contentContainerStyle={
+                    {
+                      "backgroundColor": undefined,
+                      "minHeight": 1,
+                      "minWidth": 1,
+                      "paddingLeft": 0,
+                      "paddingRight": 0,
+                    }
+                  }
+                  contentHeight={0}
+                  contentWidth={0}
+                  data={
+                    [
+                      [
+                        {
+                          "originalIndex": 0,
+                          "originalItem": {
+                            "doubanId": "22",
+                          },
+                        },
+                      ],
+                      [],
+                    ]
+                  }
+                  dataProvider={
+                    DataProvider {
+                      "_data": [
+                        [
+                          {
+                            "originalIndex": 0,
+                            "originalItem": {
+                              "doubanId": "22",
+                            },
+                          },
+                        ],
+                        [],
+                      ],
+                      "_firstIndexToProcess": 0,
+                      "_hasStableIds": false,
+                      "_requiresDataChangeHandling": false,
+                      "_size": 2,
+                      "getStableId": [Function],
+                      "rowHasChanged": [Function],
+                    }
+                  }
+                  disableRecycling={false}
+                  estimatedItemSize={250}
+                  extendedState={{}}
+                  externalScrollView={[Function]}
+                  finalRenderAheadOffset={250}
+                  forceNonDeterministicRendering={true}
+                  horizontal={false}
+                  initialOffset={0}
+                  initialRenderIndex={0}
+                  isHorizontal={false}
+                  layoutProvider={
+                    GridLayoutProviderWithProps {
+                      "_acceptableRelayoutDelta": 1,
+                      "_getHeightOrWidth": [Function],
+                      "_getLayoutTypeForIndex": [Function],
+                      "_getSpan": [Function],
+                      "_hasExpired": false,
+                      "_maxSpan": 2,
+                      "_setLayoutForType": [Function],
+                      "_tempDim": {
+                        "height": 0,
+                        "width": 0,
+                      },
+                      "averageWindow": AverageWindow {
+                        "currentAverage": 250,
+                        "currentCount": 1,
+                        "inputValues": [
+                          250,
+                        ],
+                        "nextIndex": 1,
+                      },
+                      "defaultEstimatedItemSize": 100,
+                      "layoutObject": {
+                        "size": undefined,
+                        "span": undefined,
+                      },
+                      "props": {
+                        "ListFooterComponent": <ForwardRef
+                          height={49}
+                          width="100%"
+                        />,
+                        "ListHeaderComponent": [Function],
+                        "data": [
+                          [
+                            {
+                              "originalIndex": 0,
+                              "originalItem": {
+                                "doubanId": "22",
+                              },
+                            },
+                          ],
+                          [],
+                        ],
+                        "estimatedItemSize": 250,
+                        "horizontal": false,
+                        "numColumns": 2,
+                        "onEndReached": [Function],
+                        "onEndReachedThreshold": 1,
+                        "onRefresh": [Function],
+                        "onScroll": [Function],
+                        "overrideItemLayout": undefined,
+                        "refreshing": false,
+                        "renderItem": [Function],
+                      },
+                      "renderWindowInsets": {
+                        "height": 0,
+                        "width": 0,
+                      },
+                      "shouldRefreshWithAnchoring": true,
+                    }
+                  }
+                  maxRenderAhead={750}
+                  numColumns={2}
+                  onEndReached={[Function]}
+                  onEndReachedThreshold={0}
+                  onEndReachedThresholdRelative={1}
+                  onItemLayout={[Function]}
+                  onLayout={[Function]}
+                  onRefresh={[Function]}
+                  onScroll={[Function]}
+                  onScrollBeginDrag={[Function]}
+                  onSizeChanged={[Function]}
+                  onVisibleIndicesChanged={[Function]}
+                  refreshControl={
+                    <RefreshControlMock
+                      onRefresh={[Function]}
+                      refreshing={false}
+                    />
+                  }
+                  refreshing={false}
+                  removeClippedSubviews={false}
+                  renderAheadOffset={0}
+                  renderAheadStep={250}
+                  renderContentContainer={[Function]}
+                  renderItem={[Function]}
+                  renderItemContainer={[Function]}
+                  rowRenderer={[Function]}
+                  scrollEventThrottle={16}
+                  scrollThrottle={16}
+                  scrollViewProps={
+                    {
+                      "contentContainerStyle": {
+                        "backgroundColor": undefined,
+                        "minHeight": 1,
+                        "minWidth": 1,
+                        "paddingLeft": 0,
+                        "paddingRight": 0,
+                      },
+                      "onLayout": [Function],
+                      "onScrollBeginDrag": [Function],
+                      "refreshControl": <RefreshControlMock
+                        onRefresh={[Function]}
+                        refreshing={false}
+                      />,
+                      "style": {
+                        "minHeight": 1,
+                        "minWidth": 1,
+                      },
+                    }
+                  }
+                  style={
+                    {
+                      "minHeight": 1,
+                      "minWidth": 1,
+                    }
+                  }
+                  suppressBoundedSizeException={true}
+                  windowCorrectionConfig={
+                    {
+                      "applyToInitialOffset": true,
+                      "applyToItemScroll": true,
+                      "value": {
+                        "endCorrection": 0,
+                        "startCorrection": 0,
+                        "windowShift": -1,
+                      },
+                    }
+                  }
+                >
+                  <RCTRefreshControl />
+                  <View>
+                    <View
+                      style={
+                        {
+                          "flexDirection": "column",
+                        }
+                      }
+                    >
+                      <AutoLayoutView
+                        enableInstrumentation={false}
+                        horizontal={false}
+                        onBlankAreaEvent={[Function]}
+                        onLayout={[Function]}
+                        renderAheadOffset={0}
+                        scrollOffset={0}
+                        style={
+                          {
+                            "height": 0,
+                            "width": 0,
+                          }
+                        }
+                        windowSize={0}
+                      />
+                    </View>
+                  </View>
+                </RCTScrollView>
+              </View>
+            </View>
+          </View>
+          <View
+            onLayout={[Function]}
+            style={null}
+          >
+            <View
+              collapsable={false}
+              pointerEvents="box-none"
+              style={
+                {
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                  "zIndex": 0,
+                }
+              }
+            >
+              <View
+                collapsable={false}
+                style={
+                  {
+                    "backgroundColor": "rgb(255, 255, 255)",
+                    "borderBottomColor": "rgb(216, 216, 216)",
+                    "flex": 1,
+                    "shadowColor": "rgb(216, 216, 216)",
+                    "shadowOffset": {
+                      "height": 0.5,
+                      "width": 0,
+                    },
+                    "shadowOpacity": 0.85,
+                    "shadowRadius": 0,
+                  }
+                }
+              />
+            </View>
+            <View
+              collapsable={false}
+              pointerEvents="box-none"
+              style={
+                {
+                  "height": 44,
+                  "maxHeight": undefined,
+                  "minHeight": undefined,
+                  "opacity": undefined,
+                  "transform": undefined,
+                }
+              }
+            >
+              <View
+                pointerEvents="none"
+                style={
+                  {
+                    "height": 0,
+                  }
+                }
+              />
+              <View
+                pointerEvents="box-none"
+                style={
+                  {
+                    "alignItems": "stretch",
+                    "flex": 1,
+                    "flexDirection": "row",
+                  }
+                }
+              >
+                <View
+                  collapsable={false}
+                  pointerEvents="box-none"
+                  style={
+                    {
+                      "alignItems": "flex-start",
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                      "justifyContent": "center",
+                      "marginStart": 0,
+                    }
+                  }
+                />
+                <View
+                  collapsable={false}
+                  pointerEvents="box-none"
+                  style={
+                    {
+                      "justifyContent": "center",
+                      "marginHorizontal": 16,
+                      "maxWidth": 718,
+                    }
+                  }
+                >
+                  <Text
+                    accessibilityRole="header"
+                    aria-level="1"
+                    collapsable={false}
+                    numberOfLines={1}
+                    style={
+                      {
+                        "color": "rgb(28, 28, 30)",
+                        "fontSize": 17,
+                        "fontWeight": "600",
+                      }
+                    }
+                  >
+                    TabHome
+                  </Text>
+                </View>
+                <View
+                  collapsable={false}
+                  pointerEvents="box-none"
+                  style={
+                    {
+                      "alignItems": "flex-end",
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                      "justifyContent": "center",
+                      "marginEnd": 0,
+                    }
+                  }
+                />
+              </View>
+            </View>
+          </View>
+        </View>
+      </RNSScreen>
+    </RNSScreenNavigationContainer>
+    <View
+      collapsable={false}
+      onLayout={[Function]}
+      pointerEvents="auto"
+      style={
+        {
+          "backgroundColor": "rgb(255, 255, 255)",
+          "borderTopColor": "rgb(216, 216, 216)",
+          "borderTopWidth": 0.5,
+          "bottom": 0,
+          "elevation": 8,
+          "height": 49,
+          "left": 0,
+          "paddingBottom": 0,
+          "paddingHorizontal": 0,
+          "position": null,
+          "right": 0,
+          "transform": [
+            {
+              "translateY": 0,
+            },
+          ],
+        }
+      }
+    >
+      <View
+        pointerEvents="none"
+        style={
+          {
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          }
+        }
+      />
+      <View
+        accessibilityRole="tablist"
+        style={
+          {
+            "flex": 1,
+            "flexDirection": "row",
+          }
+        }
+      >
+        <View
+          accessibilityLabel="Books, tab, 1 of 1"
+          accessibilityRole="button"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": true,
+            }
+          }
+          accessibilityStates={
+            [
+              "selected",
+            ]
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            [
+              {
+                "alignItems": "center",
+                "flex": 1,
+              },
+              {
+                "backgroundColor": "transparent",
+              },
+              {
+                "flexDirection": "column",
+                "justifyContent": "flex-end",
+              },
+              undefined,
+            ]
+          }
+        >
+          <View
+            style={
+              [
+                {
+                  "flex": 1,
+                },
+                undefined,
+              ]
+            }
+          >
+            <View
+              style={
+                [
+                  {
+                    "alignItems": "center",
+                    "alignSelf": "center",
+                    "height": "100%",
+                    "justifyContent": "center",
+                    "minWidth": 25,
+                    "position": "absolute",
+                    "width": "100%",
+                  },
+                  {
+                    "opacity": 1,
+                  },
+                ]
+              }
+            >
+              <Text
+                dataSet={{}}
+                style={
+                  {
+                    "backgroundColor": undefined,
+                    "color": "#171717",
+                    "fontFamily": undefined,
+                    "fontSize": 14,
+                    "fontStyle": "normal",
+                    "fontWeight": "400",
+                    "letterSpacing": 0,
+                    "lineHeight": 21,
+                    "textDecorationLine": undefined,
+                  }
+                }
+              >
+                📚
+              </Text>
+            </View>
+            <View
+              style={
+                [
+                  {
+                    "alignItems": "center",
+                    "alignSelf": "center",
+                    "height": "100%",
+                    "justifyContent": "center",
+                    "minWidth": 25,
+                    "position": "absolute",
+                    "width": "100%",
+                  },
+                  {
+                    "opacity": 0,
+                  },
+                ]
+              }
+            >
+              <Text
+                dataSet={{}}
+                style={
+                  {
+                    "backgroundColor": undefined,
+                    "color": "#171717",
+                    "fontFamily": undefined,
+                    "fontSize": 14,
+                    "fontStyle": "normal",
+                    "fontWeight": "400",
+                    "letterSpacing": 0,
+                    "lineHeight": 21,
+                    "textDecorationLine": undefined,
+                  }
+                }
+              >
+                📚
+              </Text>
+            </View>
+          </View>
+          <Text
+            numberOfLines={1}
+            style={
+              [
+                {
+                  "backgroundColor": "transparent",
+                  "textAlign": "center",
+                },
+                {
+                  "color": "rgb(0, 122, 255)",
+                },
+                {
+                  "fontSize": 10,
+                },
+                undefined,
+              ]
+            }
+          >
+            Books
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+</RNCSafeAreaProvider>
+`;
+
+exports[`home page renders with permission block 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    style={
+      [
+        {
+          "flex": 1,
+        },
+        undefined,
+      ]
+    }
+  >
+    <RNSScreenNavigationContainer
+      style={
+        {
+          "flex": 1,
+          "overflow": "hidden",
+        }
+      }
+    >
+      <RNSScreen
+        activityState={2}
+        collapsable={false}
+        forwardedRef={[Function]}
+        gestureResponseDistance={
+          {
+            "bottom": -1,
+            "end": -1,
+            "start": -1,
+            "top": -1,
+          }
+        }
+        style={
+          {
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+            "zIndex": 0,
+          }
+        }
+      >
+        <View
+          accessibilityElementsHidden={false}
+          importantForAccessibility="auto"
+          style={
+            [
+              {
+                "backgroundColor": "rgb(242, 242, 242)",
+                "flex": 1,
+              },
+              [
+                {
+                  "flex": 1,
+                  "flexDirection": "column-reverse",
+                },
+                undefined,
+              ],
+            ]
+          }
+        >
+          <View
+            style={
+              {
+                "flex": 1,
+              }
+            }
+          >
+            <View
+              dataSet={{}}
+              style={
+                {
+                  "backgroundColor": "#f4f4f5",
+                  "flex": 1,
+                  "height": "100%",
+                  "justifyContent": "center",
+                  "justifyItems": "center",
+                  "width": "100%",
+                }
+              }
+            >
+              <View
+                dataSet={{}}
+                style={
+                  {
+                    "alignItems": "center",
+                    "flex": 1,
+                    "justifyContent": "center",
+                    "width": "100%",
+                  }
+                }
+              >
+                <Text
+                  dataSet={{}}
+                  style={
+                    {
+                      "backgroundColor": undefined,
+                      "color": "#171717",
+                      "fontFamily": undefined,
+                      "fontSize": 48,
+                      "fontStyle": "normal",
+                      "fontWeight": "400",
+                      "letterSpacing": 0,
+                      "lineHeight": 72,
+                      "textAlign": "center",
+                      "textDecorationLine": undefined,
+                      "width": "100%",
+                    }
+                  }
+                >
+                  ⛔
+                </Text>
+                <Text
+                  accessibilityRole="link"
+                  href="/AuthQRCode"
+                  onPress={[Function]}
+                  style={
+                    {
+                      "textAlign": "center",
+                      "width": "100%",
+                    }
+                  }
+                >
+                  <Text
+                    dataSet={{}}
+                    style={
+                      {
+                        "backgroundColor": undefined,
+                        "color": "#18181b",
+                        "fontFamily": undefined,
+                        "fontSize": 14,
+                        "fontStyle": "normal",
+                        "fontWeight": "400",
+                        "letterSpacing": 0,
+                        "lineHeight": 21,
+                        "textDecorationLine": undefined,
+                      }
+                    }
+                  >
+                    Click me to synchronize your personal data with your account
+                  </Text>
+                </Text>
+              </View>
+            </View>
+          </View>
+          <View
+            onLayout={[Function]}
+            style={null}
+          >
+            <View
+              collapsable={false}
+              pointerEvents="box-none"
+              style={
+                {
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                  "zIndex": 0,
+                }
+              }
+            >
+              <View
+                collapsable={false}
+                style={
+                  {
+                    "backgroundColor": "rgb(255, 255, 255)",
+                    "borderBottomColor": "rgb(216, 216, 216)",
+                    "flex": 1,
+                    "shadowColor": "rgb(216, 216, 216)",
+                    "shadowOffset": {
+                      "height": 0.5,
+                      "width": 0,
+                    },
+                    "shadowOpacity": 0.85,
+                    "shadowRadius": 0,
+                  }
+                }
+              />
+            </View>
+            <View
+              collapsable={false}
+              pointerEvents="box-none"
+              style={
+                {
+                  "height": 44,
+                  "maxHeight": undefined,
+                  "minHeight": undefined,
+                  "opacity": undefined,
+                  "transform": undefined,
+                }
+              }
+            >
+              <View
+                pointerEvents="none"
+                style={
+                  {
+                    "height": 0,
+                  }
+                }
+              />
+              <View
+                pointerEvents="box-none"
+                style={
+                  {
+                    "alignItems": "stretch",
+                    "flex": 1,
+                    "flexDirection": "row",
+                  }
+                }
+              >
+                <View
+                  collapsable={false}
+                  pointerEvents="box-none"
+                  style={
+                    {
+                      "alignItems": "flex-start",
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                      "justifyContent": "center",
+                      "marginStart": 0,
+                    }
+                  }
+                />
+                <View
+                  collapsable={false}
+                  pointerEvents="box-none"
+                  style={
+                    {
+                      "justifyContent": "center",
+                      "marginHorizontal": 16,
+                      "maxWidth": 718,
+                    }
+                  }
+                >
+                  <Text
+                    accessibilityRole="header"
+                    aria-level="1"
+                    collapsable={false}
+                    numberOfLines={1}
+                    style={
+                      {
+                        "color": "rgb(28, 28, 30)",
+                        "fontSize": 17,
+                        "fontWeight": "600",
+                      }
+                    }
+                  >
+                    TabHome
+                  </Text>
+                </View>
+                <View
+                  collapsable={false}
+                  pointerEvents="box-none"
+                  style={
+                    {
+                      "alignItems": "flex-end",
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                      "justifyContent": "center",
+                      "marginEnd": 0,
+                    }
+                  }
+                />
+              </View>
+            </View>
+          </View>
+        </View>
+      </RNSScreen>
+    </RNSScreenNavigationContainer>
+    <View
+      collapsable={false}
+      onLayout={[Function]}
+      pointerEvents="auto"
+      style={
+        {
+          "backgroundColor": "rgb(255, 255, 255)",
+          "borderTopColor": "rgb(216, 216, 216)",
+          "borderTopWidth": 0.5,
+          "bottom": 0,
+          "elevation": 8,
+          "height": 49,
+          "left": 0,
+          "paddingBottom": 0,
+          "paddingHorizontal": 0,
+          "position": null,
+          "right": 0,
+          "transform": [
+            {
+              "translateY": 0,
+            },
+          ],
+        }
+      }
+    >
+      <View
+        pointerEvents="none"
+        style={
+          {
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          }
+        }
+      />
+      <View
+        accessibilityRole="tablist"
+        style={
+          {
+            "flex": 1,
+            "flexDirection": "row",
+          }
+        }
+      >
+        <View
+          accessibilityLabel="Books, tab, 1 of 1"
+          accessibilityRole="button"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": true,
+            }
+          }
+          accessibilityStates={
+            [
+              "selected",
+            ]
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            [
+              {
+                "alignItems": "center",
+                "flex": 1,
+              },
+              {
+                "backgroundColor": "transparent",
+              },
+              {
+                "flexDirection": "column",
+                "justifyContent": "flex-end",
+              },
+              undefined,
+            ]
+          }
+        >
+          <View
+            style={
+              [
+                {
+                  "flex": 1,
+                },
+                undefined,
+              ]
+            }
+          >
+            <View
+              style={
+                [
+                  {
+                    "alignItems": "center",
+                    "alignSelf": "center",
+                    "height": "100%",
+                    "justifyContent": "center",
+                    "minWidth": 25,
+                    "position": "absolute",
+                    "width": "100%",
+                  },
+                  {
+                    "opacity": 1,
+                  },
+                ]
+              }
+            >
+              <Text
+                dataSet={{}}
+                style={
+                  {
+                    "backgroundColor": undefined,
+                    "color": "#171717",
+                    "fontFamily": undefined,
+                    "fontSize": 14,
+                    "fontStyle": "normal",
+                    "fontWeight": "400",
+                    "letterSpacing": 0,
+                    "lineHeight": 21,
+                    "textDecorationLine": undefined,
+                  }
+                }
+              >
+                📚
+              </Text>
+            </View>
+            <View
+              style={
+                [
+                  {
+                    "alignItems": "center",
+                    "alignSelf": "center",
+                    "height": "100%",
+                    "justifyContent": "center",
+                    "minWidth": 25,
+                    "position": "absolute",
+                    "width": "100%",
+                  },
+                  {
+                    "opacity": 0,
+                  },
+                ]
+              }
+            >
+              <Text
+                dataSet={{}}
+                style={
+                  {
+                    "backgroundColor": undefined,
+                    "color": "#171717",
+                    "fontFamily": undefined,
+                    "fontSize": 14,
+                    "fontStyle": "normal",
+                    "fontWeight": "400",
+                    "letterSpacing": 0,
+                    "lineHeight": 21,
+                    "textDecorationLine": undefined,
+                  }
+                }
+              >
+                📚
+              </Text>
+            </View>
+          </View>
+          <Text
+            numberOfLines={1}
+            style={
+              [
+                {
+                  "backgroundColor": "transparent",
+                  "textAlign": "center",
+                },
+                {
+                  "color": "rgb(0, 122, 255)",
+                },
+                {
+                  "fontSize": 10,
+                },
+                undefined,
+              ]
+            }
+          >
+            Books
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+</RNCSafeAreaProvider>
+`;

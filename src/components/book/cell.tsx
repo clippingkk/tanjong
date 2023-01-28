@@ -16,7 +16,6 @@ function BookCell(props: BookCellProps) {
   const [loadedImage, setLoadedImage] = useState<ImageLoadEventData['source'] | null>(null)
 
   const { data: books, isLoading } = useSingleBook(props.bookDoubanID)
-
   const ratio = useMemo(() => {
     if (!loadedImage) {
       return 16 / 9

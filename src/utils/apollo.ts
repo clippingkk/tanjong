@@ -53,7 +53,7 @@ export async function request<T>(url: string, options: RequestInit = {}): Promis
 
 const authLink = new ApolloLink((operation, forward) => {
   operation.setContext(({ headers = {} }) => {
-    if (!token) {
+    if (!token || token === 'null') {
       return headers
     }
 

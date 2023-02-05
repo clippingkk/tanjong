@@ -2,6 +2,7 @@ import { Clipping } from "./schema/generated"
 import { WenquBook } from "./service/wenqu"
 
 export enum RouteKeys {
+  AuthV3 = 'AuthV3',
   AuthQRCode = 'AuthQRCode',
   TabHome = 'TabHome',
   TabProfile = 'TabProfile',

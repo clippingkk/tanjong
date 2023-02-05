@@ -7,7 +7,7 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-	"test:coverage": "jest --watchAll=false --coverage",
+    "test:coverage": "jest --watchAll=false --coverage",
     "codegen": "graphql-codegen --config codegen.yml",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "build:tailwind": "tailwindcss --input input.css --output tailwind.css --no-autoprefixer && tailwind-rn",
@@ -19,6 +19,7 @@
   "dependencies": {
     "@apollo/client": "^3.7.3",
     "@georstat/react-native-image-cache": "^2.3.0",
+    "@invertase/react-native-apple-authentication": "^2.2.2",
     "@react-native-community/blur": "^4.3.0",
     "@react-native-community/netinfo": "^9.3.7",
     "@react-navigation/bottom-tabs": "^6.5.2",

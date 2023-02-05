@@ -16,7 +16,7 @@ function AuthGuard(props: AuthGuardProps) {
         </Text>
         <Link
           to={{
-            screen: RouteKeys.AuthQRCode
+            screen: RouteKeys.AuthV3
           }}
           style={{
             width: '100%', textAlign: 'center'

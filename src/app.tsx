@@ -30,6 +30,7 @@ import AuthQRCodePage from './pages/auth/qrcode.page';
 import HomeRoutePage from './pages/home/route';
 import ClippingPage from './pages/clipping/clipping';
 import { useTextColor } from './hooks/color';
+import AuthV3Page from './pages/auth/auth.v3';
 
 const RootRouteStack = createNativeStackNavigator()
 const TabStack = createBottomTabNavigator()
@@ -96,6 +97,7 @@ function HomeTabPages(props: HomeTabPagesProps) {
 
 const App = () => {
   useOnInit()
+  const c = useColorScheme()
   const textColor = useTextColor()
   // const isDarkMode = useColorScheme() === 'dark';
 
@@ -110,6 +112,7 @@ const App = () => {
     <RootRouteStack.Navigator
       screenOptions={{
         headerShown: false,
+        headerBlurEffect: c === 'dark' ? 'dark' : 'light',
         headerTitleStyle: {
           color: textColor
         },
@@ -125,6 +128,14 @@ const App = () => {
           headerShown: true
         }}
         component={AuthQRCodePage}
+      />
+      <RootRouteStack.Screen
+        name={RouteKeys.AuthV3}
+        options={{
+          headerTransparent: true,
+          headerShown: true
+        }}
+        component={AuthV3Page}
       />
       <RootRouteStack.Screen
         name={RouteKeys.Clipping}

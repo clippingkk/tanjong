@@ -8,6 +8,16 @@ import { useLinkTo } from "@react-navigation/native"
 import { RouteKeys } from "../routes"
 import * as Sentry from "@sentry/react-native";
 
+import AV from 'leancloud-storage/core';
+import * as adapters from '@leancloud/platform-adapters-react-native';
+import { LEANCLOUD } from "../constants/config"
+AV.setAdapters(adapters);
+
+AV.init({
+  appId: LEANCLOUD.APP_ID,
+  appKey: LEANCLOUD.APP_KEY,
+  serverURL: LEANCLOUD.SERVER_URL
+})
 // import SplashScreen from 'react-native-splash-screen'
 
 export function useOnInit() {
@@ -41,7 +51,7 @@ export function useOnInit() {
   }, [])
 }
 
-function getInfoFromDeeplinkUrl(url: string): { uid: number, cid: number} | null {
+function getInfoFromDeeplinkUrl(url: string): { uid: number, cid: number } | null {
   const regexp = /clippingkk:\/\/\/dash\/(\d+)\/clippings\/(\d+)/
   const matched = url.match(regexp)
   console.log(matched)
@@ -72,7 +82,7 @@ export function useDeeplinkHandler() {
   }, [])
 
   useEffect(() => {
-    function onUrlChange(event: { url: string}) {
+    function onUrlChange(event: { url: string }) {
       const urlInfo = getInfoFromDeeplinkUrl(event.url)
       lt({
         screen: RouteKeys.Clipping,

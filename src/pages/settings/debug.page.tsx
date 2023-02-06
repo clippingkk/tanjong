@@ -1,8 +1,10 @@
 import { useHeaderHeight } from '@react-navigation/elements'
+import { Link } from '@react-navigation/native'
 import { useAtom } from 'jotai'
 import { Divider, Input, Text, View } from 'native-base'
 import React, { useEffect } from 'react'
 import { tokenAtom, uidAtom } from '../../atomic'
+import { RouteKeys } from '../../routes'
 import { updateLocalToken } from '../../utils/apollo'
 
 type DebugPageProps = {
@@ -38,6 +40,13 @@ function DebugPage(props: DebugPageProps) {
           keyboardType='numeric'
           onChangeText={v => setUid(~~v)}
         />
+      </View>
+      <View p={2}>
+        <Link to={{ screen: RouteKeys.AuthAppleBind }}>
+          <Text>
+            Apple Bind Page
+          </Text>
+        </Link>
       </View>
     </View>
   )

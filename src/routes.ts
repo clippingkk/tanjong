@@ -3,6 +3,7 @@ import { WenquBook } from "./service/wenqu"
 
 export enum RouteKeys {
   AuthV3 = 'AuthV3',
+  AuthAppleBind = 'AuthAppleBind',
   AuthQRCode = 'AuthQRCode',
   TabHome = 'TabHome',
   TabProfile = 'TabProfile',

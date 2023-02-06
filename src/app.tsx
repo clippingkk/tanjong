@@ -31,6 +31,7 @@ import HomeRoutePage from './pages/home/route';
 import ClippingPage from './pages/clipping/clipping';
 import { useTextColor } from './hooks/color';
 import AuthV3Page from './pages/auth/auth.v3';
+import AuthApplePhoneBind from './pages/auth/phone/phone';
 
 const RootRouteStack = createNativeStackNavigator()
 const TabStack = createBottomTabNavigator()
@@ -136,6 +137,14 @@ const App = () => {
           headerShown: true
         }}
         component={AuthV3Page}
+      />
+      <RootRouteStack.Screen
+        name={RouteKeys.AuthAppleBind}
+        options={{
+          headerTransparent: true,
+          headerShown: true
+        }}
+        component={AuthApplePhoneBind}
       />
       <RootRouteStack.Screen
         name={RouteKeys.Clipping}

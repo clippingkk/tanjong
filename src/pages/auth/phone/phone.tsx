@@ -20,7 +20,6 @@ function AuthApplePhoneBind(props: AuthApplePhoneBindProps) {
   const toast = useToast()
 
   const onPhoneNumberConfirm = useCallback(async () => {
-    console.log('tttt', pn, capture)
     if (!phoneInput.current?.isValidNumber(pn)) {
       toast.show({
         title: 'Error. Phone number is invalid'

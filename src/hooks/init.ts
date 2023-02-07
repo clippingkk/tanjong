@@ -54,7 +54,6 @@ export function useOnInit() {
 function getInfoFromDeeplinkUrl(url: string): { uid: number, cid: number } | null {
   const regexp = /clippingkk:\/\/\/dash\/(\d+)\/clippings\/(\d+)/
   const matched = url.match(regexp)
-  console.log(matched)
   if (!matched || matched.length < 3) {
     return null
   }

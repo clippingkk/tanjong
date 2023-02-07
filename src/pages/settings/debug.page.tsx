@@ -42,7 +42,11 @@ function DebugPage(props: DebugPageProps) {
         />
       </View>
       <View p={2}>
-        <Link to={{ screen: RouteKeys.AuthAppleBind }}>
+        <Link to={{
+          screen: RouteKeys.AuthAppleBind, params: {
+            idToken: 'hello-debug'
+          }
+        }}>
           <Text>
             Apple Bind Page
           </Text>

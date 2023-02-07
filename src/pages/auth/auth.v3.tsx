@@ -1,4 +1,4 @@
-import { Button, Center, FormControl, Input, KeyboardAvoidingView, Text, useToast, View, VStack } from 'native-base'
+import { Button, Center, Divider, FormControl, Input, KeyboardAvoidingView, Text, useToast, View, VStack } from 'native-base'
 import { useForm, Controller } from "react-hook-form";
 import React, { useCallback, useEffect } from 'react'
 import { Platform, SafeAreaView } from 'react-native';
@@ -6,6 +6,8 @@ import { AppleVerifyPayload, useAuthLazyQuery, useAuthQuery, useLoginByAppleLazy
 import { usePostAuth } from '../../hooks/auth';
 import SigninWithApple from '../../components/signinWithApple/signinWithApple';
 import { AndroidSigninResponse, AppleRequestResponse } from '@invertase/react-native-apple-authentication';
+import { Link, useLinkTo } from '@react-navigation/native';
+import { RouteKeys, RouteParamList } from '../../routes';
 
 type AuthV3PageProps = {
 }
@@ -22,6 +24,7 @@ function AuthV3Page(props: AuthV3PageProps) {
   const toast = useToast()
 
   const onPostAuth = usePostAuth()
+  const linkTo = useLinkTo<RouteParamList>()
   const signinWithAppleOnSuccess = useCallback(async (data: AppleVerifyPayload) => {
     const authResp = await doAppleAuth({
       variables: {
@@ -38,10 +41,12 @@ function AuthV3Page(props: AuthV3PageProps) {
     const { noAccountFrom3rdPart, token, user } = authResp.data.loginByApple
 
     if (noAccountFrom3rdPart) {
-      toast.show({
-        title: 'TODO: will go to bind'
+      linkTo({
+        screen: RouteKeys.AuthAppleBind,
+        params: {
+          idToken: data.idToken
+        }
       })
-      // TODO: will go to bind existing account
       return
     }
     // goto auth
@@ -63,6 +68,12 @@ function AuthV3Page(props: AuthV3PageProps) {
             onSuccess={signinWithAppleOnSuccess}
             onError={signinWithAppleOnError}
           />
+          <Divider my={8} />
+          <Button>
+            <Link to={{ screen: RouteKeys.AuthQRCode }}>
+              Login by Scan qrcode
+            </Link>
+          </Button>
         </View>
       </SafeAreaView>
     </View>

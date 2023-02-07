@@ -1,13 +1,9 @@
 mutation bindAppleUnique(
-    $phone: String,
-    $code: String,
-    $payload: appleVerifyPayload!
+	$phone: String
+	$code: String
+	$payload: appleVerifyPayload!
 ) {
-    bindAppleUnique(
-		phone: $phone,
-		code: $code,
-		payload: $payload
-    ) {
+	bindAppleUnique(phone: $phone, code: $code, payload: $payload) {
 		user {
 			id
 			name
@@ -24,3 +20,4 @@ mutation bindAppleUnique(
 		token
 	}
 }
+

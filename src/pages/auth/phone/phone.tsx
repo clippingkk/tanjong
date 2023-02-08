@@ -8,6 +8,7 @@ import { RouteKeys, RouteParamList } from '../../../routes'
 import { ActivityIndicator, Keyboard, Platform, TouchableWithoutFeedback } from 'react-native'
 import * as Sentry from "@sentry/react-native";
 import { useLinkTo } from '@react-navigation/native'
+import SignupSkipButton from './signup-skip-button'
 
 type AuthApplePhoneBindProps = NativeStackScreenProps<RouteParamList, 'AuthAppleBind'>
 
@@ -17,6 +18,14 @@ function AuthApplePhoneBind(props: AuthApplePhoneBindProps) {
   const [capture, setCapture] = useState<AV.Captcha | null>(null)
   const [verifyCode, setVerifyCode] = useState('')
   const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    props.navigation.setOptions({
+      headerRight: (hprops) => (
+        <SignupSkipButton {...hprops} idToken={props.route.params.idToken} navigation={props.navigation} />
+      )
+    })
+  }, [props.navigation])
 
   const toast = useToast()
 

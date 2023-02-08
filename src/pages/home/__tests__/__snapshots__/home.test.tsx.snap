@@ -784,7 +784,7 @@ exports[`home page renders with permission block 1`] = `
                 </Text>
                 <Text
                   accessibilityRole="link"
-                  href="/AuthQRCode"
+                  href="/AuthV3"
                   onPress={[Function]}
                   style={
                     {

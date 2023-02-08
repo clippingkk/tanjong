@@ -62,7 +62,9 @@ function AuthQRCodePage(props: AuthQRCodePageProps) {
   if (device == null) {
     return (
       <Page>
-        <AuthLegacyPage />
+        <SafeAreaView>
+          <AuthLegacyPage />
+        </SafeAreaView>
       </Page>
     )
   }

@@ -36,7 +36,7 @@ export function usePostAuth() {
       title: 'Logged in'
     })
     await client.resetStore()
-    if (nav.canGoBack()) {
+    while(nav.canGoBack()) {
       nav.goBack()
     }
   }, [setToken, setUid, nav])

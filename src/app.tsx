@@ -31,6 +31,8 @@ import HomeRoutePage from './pages/home/route';
 import ClippingPage from './pages/clipping/clipping';
 import { useTextColor } from './hooks/color';
 import AuthV3Page from './pages/auth/auth.v3';
+import AuthApplePhoneBind from './pages/auth/phone/phone';
+import AuthPhoneOTPPage from './pages/auth/phone/otp';
 
 const RootRouteStack = createNativeStackNavigator()
 const TabStack = createBottomTabNavigator()
@@ -125,6 +127,7 @@ const App = () => {
       <RootRouteStack.Screen
         name={RouteKeys.AuthQRCode}
         options={{
+          headerTransparent: true,
           headerShown: true
         }}
         component={AuthQRCodePage}
@@ -136,6 +139,22 @@ const App = () => {
           headerShown: true
         }}
         component={AuthV3Page}
+      />
+      <RootRouteStack.Screen
+        name={RouteKeys.AuthAppleBind}
+        options={{
+          headerTransparent: true,
+          headerShown: true
+        }}
+        component={AuthApplePhoneBind}
+      />
+      <RootRouteStack.Screen
+        name={RouteKeys.AuthPhoneOTP}
+        options={{
+          headerTransparent: true,
+          headerShown: true
+        }}
+        component={AuthPhoneOTPPage}
       />
       <RootRouteStack.Screen
         name={RouteKeys.Clipping}

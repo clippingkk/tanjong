@@ -1,21 +1,17 @@
-import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
-import { useNavigation } from '@react-navigation/native'
-import { useSetAtom } from 'jotai'
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import jwtDecode from 'jwt-decode'
 import { View, Text, Toast } from 'native-base'
-import React, { useCallback, useEffect } from 'react'
-import { ActivityIndicator, Linking, SafeAreaView, StyleSheet } from 'react-native'
+import React, {  useEffect } from 'react'
+import { Linking, SafeAreaView, StyleSheet } from 'react-native'
 import { Camera, useCameraDevices } from 'react-native-vision-camera'
 import { useScanBarcodes, BarcodeFormat } from 'vision-camera-code-scanner'
-import { tokenAtom, uidAtom } from '../../atomic'
 import Page from '../../components/page'
 import { usePostAuth } from '../../hooks/auth'
+import { RouteParamList } from '../../routes'
 import { JwtPayload } from '../../service/jwt'
-import { updateLocalToken } from '../../utils/apollo'
 import AuthLegacyPage from './auth.legacy.page'
 
-type AuthQRCodePageProps = {
-}
+type AuthQRCodePageProps = NativeStackScreenProps<RouteParamList, 'empty'>
 
 function AuthQRCodePage(props: AuthQRCodePageProps) {
   useEffect(() => {
@@ -33,7 +29,7 @@ function AuthQRCodePage(props: AuthQRCodePageProps) {
   const devices = useCameraDevices()
   const device = devices.back
 
-  const onPostAuth = usePostAuth()
+  const onPostAuth = usePostAuth(props.navigation)
 
   useEffect(() => {
     if (!barcodes || barcodes.length === 0) {
@@ -63,7 +59,7 @@ function AuthQRCodePage(props: AuthQRCodePageProps) {
     return (
       <Page>
         <SafeAreaView>
-          <AuthLegacyPage />
+          <AuthLegacyPage navigation={props.navigation} route={props.route} />
         </SafeAreaView>
       </Page>
     )

@@ -1,7 +1,7 @@
 import { useHeaderHeight } from '@react-navigation/elements'
-import { Link } from '@react-navigation/native'
+import { Link, StackActions, useNavigation } from '@react-navigation/native'
 import { useAtom } from 'jotai'
-import { Divider, Input, Text, View } from 'native-base'
+import { Button, Divider, Input, Text, View } from 'native-base'
 import React, { useEffect } from 'react'
 import { tokenAtom, uidAtom } from '../../atomic'
 import { RouteKeys } from '../../routes'
@@ -14,6 +14,7 @@ function DebugPage(props: DebugPageProps) {
   const [token, setToken] = useAtom(tokenAtom)
   const [uid, setUid] = useAtom(uidAtom)
   const hh = useHeaderHeight()
+  const nav = useNavigation()
 
   useEffect(() => {
     updateLocalToken(token)
@@ -51,6 +52,13 @@ function DebugPage(props: DebugPageProps) {
             Apple Bind Page
           </Text>
         </Link>
+      </View>
+      <View p={2}>
+        <Button onPress={() => {
+          nav.dispatch(StackActions.popToTop())
+        }}>
+          Back To Top
+        </Button>
       </View>
     </View>
   )

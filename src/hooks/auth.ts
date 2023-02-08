@@ -1,4 +1,4 @@
-import { useNavigation } from "@react-navigation/native"
+import { StackActions } from "@react-navigation/native"
 import { useSetAtom } from "jotai"
 import { useCallback } from "react"
 import { tokenAtom, uidAtom } from "../atomic"
@@ -9,21 +9,25 @@ import { setItem as WidgetKitSetItem, reloadAllTimelines as WidgetKitReloadAllTi
 import { Platform } from "react-native"
 import { useApolloClient } from "@apollo/client"
 import { Toast } from "native-base"
-import { StackActions } from '@react-navigation/native'
+import * as Sentry from '@sentry/react-native'
+import { NativeStackNavigationProp } from "@react-navigation/native-stack"
+import { RouteParamList } from "../routes"
 export const widgetAppIDKey = "app:my:id"
 export const widgetAppTokenKey = "app:token"
 export const widgetAppWidgetType = "app:widgetType"
 
-export function usePostAuth() {
+export function usePostAuth(nav: NativeStackNavigationProp<RouteParamList, any, undefined>) {
   const setToken = useSetAtom(tokenAtom)
   const setUid = useSetAtom(uidAtom)
-  const nav = useNavigation()
   const client = useApolloClient()
 
   return useCallback(async (token: string, uid: number) => {
     setToken(token)
     updateLocalToken(token)
     setUid(uid)
+    Sentry.setUser({
+      id: uid.toString(),
+    })
     if (Platform.OS === 'ios') {
       // await SharedGroupPreferences.setItem(widgetAppIDKey, uid, SharedGroupPreferencesKey)
       // await SharedGroupPreferences.setItem(widgetAppTokenKey, token, SharedGroupPreferencesKey)

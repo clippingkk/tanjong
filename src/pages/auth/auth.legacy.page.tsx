@@ -4,9 +4,10 @@ import React, { useEffect } from 'react'
 import { Platform } from 'react-native';
 import { useAuthLazyQuery, useAuthQuery } from '../../schema/generated';
 import { usePostAuth } from '../../hooks/auth';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RouteParamList } from '../../routes';
 
-type AuthLegacyPageProps = {
-}
+type AuthLegacyPageProps= NativeStackScreenProps<RouteParamList, 'empty'>
 
 function AuthLegacyPage(props: AuthLegacyPageProps) {
   const { control, handleSubmit, formState: { errors } } = useForm({
@@ -18,7 +19,7 @@ function AuthLegacyPage(props: AuthLegacyPageProps) {
 
   const [doAuth, authResp] = useAuthLazyQuery()
   const toast = useToast()
-  const onPostAuth = usePostAuth()
+  const onPostAuth = usePostAuth(props.navigation)
 
   const onSubmit = async (data: { email: string, password: string }) => {
     try {

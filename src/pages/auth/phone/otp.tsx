@@ -24,7 +24,7 @@ function AuthPhoneOTPPage(props: AuthPhoneOTPPageProps) {
   }, [props.route.params.idToken])
 
   const [doBind, doBindResult] = useBindAppleUniqueMutation()
-  const onPostAuth = usePostAuth()
+  const onPostAuth = usePostAuth(props.navigation)
 
   const onCodeFilled = useCallback(async (code: string) => {
     try {

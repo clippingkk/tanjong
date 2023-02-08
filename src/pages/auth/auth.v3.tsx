@@ -22,7 +22,7 @@ function AuthV3Page(props: AuthV3PageProps) {
   const [doAppleAuth, appleAuthResp] = useLoginByAppleLazyQuery()
   const toast = useToast()
 
-  const onPostAuth = usePostAuth()
+  const onPostAuth = usePostAuth(props.navigation)
   const linkTo = useLinkTo<RouteParamList>()
   const signinWithAppleOnSuccess = useCallback(async (data: AppleVerifyPayload) => {
     const authResp = await doAppleAuth({

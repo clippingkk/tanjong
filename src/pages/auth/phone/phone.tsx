@@ -5,7 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import PhoneInput from "react-native-phone-number-input"
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { RouteKeys, RouteParamList } from '../../../routes'
-import { ActivityIndicator, Platform } from 'react-native'
+import { ActivityIndicator, Keyboard, Platform, TouchableWithoutFeedback } from 'react-native'
 import * as Sentry from "@sentry/react-native";
 import { useLinkTo } from '@react-navigation/native'
 
@@ -91,64 +91,69 @@ function AuthApplePhoneBind(props: AuthApplePhoneBindProps) {
   }, [verifyCode, capture])
 
   return (
-    <KeyboardAvoidingView
-      h={{
-        base: '100%',
-        lg: "auto"
-      }}
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
+    <TouchableWithoutFeedback
+      onPress={Keyboard.dismiss}
+      accessible={false}
     >
-      <View bgColor='gray.100' _dark={{ bgColor: 'gray.900' }}>
-        <SafeAreaView>
-          <View alignItems='center' justifyContent='center' height='100%'>
-            <View>
-              <PhoneInput
-                ref={phoneInput}
-                // defaultValue={value}
-                value={pn}
-                defaultCode="CN"
-                layout="first"
-                onChangeText={setPn}
-                withDarkTheme
-                withShadow
-                autoFocus
-              />
-              <Button onPress={onPhoneNumberConfirm} isLoading={loading}>
-                <Text>Confirm</Text>
-              </Button>
-            </View>
-            <Divider my={4} />
-            {capture ? (
-              <View px={6}>
-                <View justifyContent='center' width='100%' flexDir='row'>
-                  <Pressable
-                    onPress={onPhoneNumberConfirm}
-                  >
-                    <Image
-                      source={{ uri: capture.url }}
-                      alt='verify code'
-                      width='100px'
-                      height='40px'
-                      resizeMode='cover'
-                    />
-                  </Pressable>
-                  <Input
-                    ml={4}
-                    placeholder='verify code'
-                    flex={1}
-                    value={verifyCode}
-                    onChangeText={setVerifyCode}
-                  />
-                </View>
-                <Button onPress={onSMSSendPress} mt={5} isLoading={loading}>
-                  Send SMS
+      <KeyboardAvoidingView
+        h={{
+          base: '100%',
+          lg: "auto"
+        }}
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+      >
+        <View bgColor='gray.100' _dark={{ bgColor: 'gray.900' }}>
+          <SafeAreaView>
+            <View alignItems='center' justifyContent='center' height='100%'>
+              <View>
+                <PhoneInput
+                  ref={phoneInput}
+                  // defaultValue={value}
+                  value={pn}
+                  defaultCode="CN"
+                  layout="first"
+                  onChangeText={setPn}
+                  withDarkTheme
+                  withShadow
+                  autoFocus
+                />
+                <Button onPress={onPhoneNumberConfirm} isLoading={loading}>
+                  <Text>Confirm</Text>
                 </Button>
               </View>
-            ) : null}
-          </View>
-        </SafeAreaView>
-      </View>
-    </KeyboardAvoidingView>
+              <Divider my={4} />
+              {capture ? (
+                <View px={6}>
+                  <View justifyContent='center' width='100%' flexDir='row'>
+                    <Pressable
+                      onPress={onPhoneNumberConfirm}
+                    >
+                      <Image
+                        source={{ uri: capture.url }}
+                        alt='verify code'
+                        width='100px'
+                        height='40px'
+                        resizeMode='cover'
+                      />
+                    </Pressable>
+                    <Input
+                      ml={4}
+                      placeholder='verify code'
+                      flex={1}
+                      value={verifyCode}
+                      onChangeText={setVerifyCode}
+                    />
+                  </View>
+                  <Button onPress={onSMSSendPress} mt={5} isLoading={loading}>
+                    Send SMS
+                  </Button>
+                </View>
+              ) : null}
+            </View>
+          </SafeAreaView>
+        </View>
+      </KeyboardAvoidingView>
+    </TouchableWithoutFeedback>
   )
 }
 

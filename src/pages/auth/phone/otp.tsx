@@ -3,7 +3,7 @@ import React, { useCallback, useMemo, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { RouteParamList } from '../../../routes'
-import { Platform } from 'react-native'
+import { Keyboard, Platform, TouchableWithoutFeedback } from 'react-native'
 import OTPInputView from '@twotalltotems/react-native-otp-input'
 import { AppleLoginPlatforms, useBindAppleUniqueMutation } from '../../../schema/generated'
 import { usePostAuth } from '../../../hooks/auth'
@@ -48,33 +48,38 @@ function AuthPhoneOTPPage(props: AuthPhoneOTPPageProps) {
   }, [doBind, requestPayload])
 
   return (
-    <KeyboardAvoidingView
-      h={{
-        base: '100%',
-        lg: "auto"
-      }}
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
+    <TouchableWithoutFeedback
+      onPress={Keyboard.dismiss}
+      accessible={false}
     >
-      <View bgColor='gray.100' _dark={{ bgColor: 'gray.900' }}>
-        <SafeAreaView>
-          <View alignItems='center' justifyContent='center' height='100%'>
-            <View>
-              <Text>Please type the SMS code below</Text>
+      <KeyboardAvoidingView
+        h={{
+          base: '100%',
+          lg: "auto"
+        }}
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+      >
+        <View bgColor='gray.100' _dark={{ bgColor: 'gray.900' }}>
+          <SafeAreaView>
+            <View alignItems='center' justifyContent='center' height='100%'>
+              <View>
+                <Text>Please type the SMS code below</Text>
+              </View>
+              <OTPInputView
+                style={{ width: '80%', height: 200 }}
+                pinCount={6}
+                onCodeFilled={onCodeFilled}
+                code={code}
+                onCodeChanged={setCode}
+              />
+              <Button onPress={() => setCode('')} isLoading={doBindResult.loading}>
+                Clean
+              </Button>
             </View>
-            <OTPInputView
-              style={{ width: '80%', height: 200 }}
-              pinCount={6}
-              onCodeFilled={onCodeFilled}
-              code={code}
-              onCodeChanged={setCode}
-            />
-            <Button onPress={() => setCode('')} isLoading={doBindResult.loading}>
-              Clean
-            </Button>
-          </View>
-        </SafeAreaView>
-      </View>
-    </KeyboardAvoidingView>
+          </SafeAreaView>
+        </View>
+      </KeyboardAvoidingView>
+    </TouchableWithoutFeedback>
   )
 }
 

@@ -1,15 +1,44 @@
-import { Button, Center, Pressable, Text, Toast, View, VStack } from 'native-base'
+import { Button, Center, Divider, Pressable, Switch, Text, Toast, View, VStack } from 'native-base'
 import { useHeaderHeight } from '@react-navigation/elements'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
-import { useLinkTo, useNavigation } from '@react-navigation/native'
-import { RouteKeys } from '../../routes'
+import { useLinkTo } from '@react-navigation/native'
+import { setItem as WidgetKitSetItem, getItem as WidgetKitGetItem, reloadAllTimelines as WidgetKitReloadAllTimelines } from 'react-native-widgetkit'
+import { RouteKeys, RouteParamList } from '../../routes'
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
 import { useApolloClient } from '@apollo/client'
 import { useAtom, useSetAtom } from 'jotai'
 import { tokenAtom, uidAtom } from '../../atomic'
 import { updateLocalToken } from '../../utils/apollo'
+import { SharedGroupPreferencesKey } from '../../constants/config'
+import { widgetAppWidgetType } from '../../hooks/auth'
+import { Platform, SafeAreaView } from 'react-native'
+import Page from '../../components/page'
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
 
-type SettingsPageProps = {
+type SettingsPageProps = NativeStackScreenProps<RouteParamList, 'empty'>
+
+type AppWidgetType = 'public' | 'own'
+
+function useAppWidgetType() {
+  const [widgetType, setWidgetType] = useState<AppWidgetType>('public')
+
+  useEffect(() => {
+    (async function () {
+      const t = (await WidgetKitGetItem(widgetAppWidgetType, SharedGroupPreferencesKey) as AppWidgetType) ?? 'public'
+      setWidgetType(t);
+    })()
+  }, [])
+
+  const toggleWidgetType = useCallback(async (v: AppWidgetType) => {
+    setWidgetType(v);
+    await WidgetKitSetItem(widgetAppWidgetType, v, SharedGroupPreferencesKey)
+    WidgetKitReloadAllTimelines()
+  }, [setWidgetType])
+
+  return {
+    widgetType,
+    toggleWidgetType
+  }
 }
 
 function SettingsPage(props: SettingsPageProps) {
@@ -19,6 +48,7 @@ function SettingsPage(props: SettingsPageProps) {
 
   const [count, setCount] = useState(0)
   const timer = useRef<number | null>(null)
+  const { widgetType, toggleWidgetType } = useAppWidgetType()
 
   const onDebugClick = useCallback(() => {
     if (!timer.current) {
@@ -41,6 +71,9 @@ function SettingsPage(props: SettingsPageProps) {
     Toast.show({
       title: 'logged out'
     })
+    if (props.navigation.canGoBack()) {
+      props.navigation.goBack()
+    }
   }, [client])
 
   useEffect(() => {
@@ -53,27 +86,46 @@ function SettingsPage(props: SettingsPageProps) {
   }, [count])
 
   return (
-    <View paddingTop={hh} paddingBottom={bh + 20} flex={1} bg='gray.100' _dark={{ bg: 'gray.900' }}>
-      <VStack
-        paddingLeft={4}
-        paddingRight={4}
-        marginTop={8}
-        paddingTop={4}
-        paddingBottom={4}
-        background='amber.100'
-        _dark={{
-          background: 'amber.900'
-        }}
-      >
-        <Pressable onPress={onDebugClick}>
-          <Text color='gray.900' _dark={{ color: 'amber.100' }}>created by @AnnatarHe</Text>
-        </Pressable>
-      </VStack>
-      <View flex={1} />
-      <Button bg='red.500' mx={4} onPress={onLogout}>
-        <Text color='white'>Logout</Text>
-      </Button>
-    </View>
+    <Page>
+      <SafeAreaView>
+        <View height='100%' paddingBottom={bh}>
+          <VStack
+            paddingLeft={4}
+            paddingRight={4}
+            marginTop={8}
+            paddingTop={4}
+            paddingBottom={4}
+            background='amber.100'
+            _dark={{
+              background: 'amber.900'
+            }}
+          >
+            <Pressable onPress={onDebugClick}>
+              <Text color='gray.900' _dark={{ color: 'amber.100' }}>created by @AnnatarHe</Text>
+            </Pressable>
+
+            {Platform.OS === 'ios' ? (
+              <>
+                <Divider my={6} />
+                <View justifyContent='space-between' width='100%' flexDir='row'>
+                  <Text color='gray.900' _dark={{ color: 'amber.100' }}>
+                    iOS Widget Type: {widgetType}
+                  </Text>
+                  <Switch
+                    value={widgetType === 'own'}
+                    onChange={() => { toggleWidgetType(widgetType === 'own' ? 'public' : 'own') }}
+                  />
+                </View>
+              </>
+            ) : null}
+          </VStack>
+          <View flex={1} />
+          <Button bg='red.500' mx={4} onPress={onLogout}>
+            <Text color='white'>Logout</Text>
+          </Button>
+        </View>
+      </SafeAreaView>
+    </Page>
   )
 }
 

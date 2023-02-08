@@ -9,9 +9,10 @@ import { setItem as WidgetKitSetItem, reloadAllTimelines as WidgetKitReloadAllTi
 import { Platform } from "react-native"
 import { useApolloClient } from "@apollo/client"
 import { Toast } from "native-base"
-const widgetAppIDKey = "app:my:id"
-const widgetAppTokenKey = "app:token"
-const widgetAppWidgetType = "app:widgetType"
+import { StackActions } from '@react-navigation/native'
+export const widgetAppIDKey = "app:my:id"
+export const widgetAppTokenKey = "app:token"
+export const widgetAppWidgetType = "app:widgetType"
 
 export function usePostAuth() {
   const setToken = useSetAtom(tokenAtom)
@@ -26,9 +27,11 @@ export function usePostAuth() {
     if (Platform.OS === 'ios') {
       // await SharedGroupPreferences.setItem(widgetAppIDKey, uid, SharedGroupPreferencesKey)
       // await SharedGroupPreferences.setItem(widgetAppTokenKey, token, SharedGroupPreferencesKey)
-      WidgetKitSetItem(widgetAppIDKey, uid.toString(), SharedGroupPreferencesKey)
-      WidgetKitSetItem(widgetAppTokenKey, token, SharedGroupPreferencesKey)
-      WidgetKitSetItem(widgetAppWidgetType, "public", SharedGroupPreferencesKey)
+      await Promise.all([
+        WidgetKitSetItem(widgetAppIDKey, uid.toString(), SharedGroupPreferencesKey),
+        WidgetKitSetItem(widgetAppTokenKey, token, SharedGroupPreferencesKey),
+        WidgetKitSetItem(widgetAppWidgetType, "public", SharedGroupPreferencesKey),
+      ])
       WidgetKitReloadAllTimelines()
     }
 
@@ -36,8 +39,6 @@ export function usePostAuth() {
       title: 'Logged in'
     })
     await client.resetStore()
-    while(nav.canGoBack()) {
-      nav.goBack()
-    }
+    nav.dispatch(StackActions.popToTop())
   }, [setToken, setUid, nav])
 }

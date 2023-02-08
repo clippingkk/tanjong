@@ -30,6 +30,15 @@ function AuthV3Page(props: AuthV3PageProps) {
         payload: data
       }
     })
+    if (authResp.error) {
+      toast.show({
+        title: authResp.error.message
+      })
+      toast.show({
+        title: JSON.stringify(authResp.error)
+      })
+      return
+    }
     if (!authResp.data) {
       toast.show({
         title: 'no data info'

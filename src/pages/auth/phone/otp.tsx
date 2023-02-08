@@ -68,7 +68,7 @@ function AuthPhoneOTPPage(props: AuthPhoneOTPPageProps) {
               code={code}
               onCodeChanged={setCode}
             />
-            <Button onPress={() => setCode('')}>
+            <Button onPress={() => setCode('')} isLoading={doBindResult.loading}>
               Clean
             </Button>
           </View>

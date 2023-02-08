@@ -1,5 +1,6 @@
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
 import { Link, useNavigation } from '@react-navigation/native'
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { FlashList } from '@shopify/flash-list'
 import { useAtomValue } from 'jotai'
 import { Text, View } from 'native-base'
@@ -13,23 +14,12 @@ import ErrorBox from '../../components/errorbox/errorbox'
 import LoadingBox from '../../components/loading/loading'
 import BasicBoard from '../../components/profile/basic-board'
 import { useClippingCellAvgHeight } from '../../hooks/clipping'
-import { RouteKeys } from '../../routes'
+import { RouteKeys, RouteParamList } from '../../routes'
 import { Clipping, useProfileQuery } from '../../schema/generated'
 
-type ProfilePageProps = {
-}
+type ProfilePageProps = NativeStackScreenProps<RouteParamList, 'empty'>
 
 function ProfilePage(props: ProfilePageProps) {
-  const nav = useNavigation()
-  useEffect(() => {
-    nav.setOptions({
-      headerRight: () => (
-        <Link to={{ screen: RouteKeys.ProfileSettings }}>
-          ⚙️
-        </Link>
-      )
-    })
-  }, [])
   const uid = useAtomValue(uidAtom)
 
   const p = useProfileQuery({
@@ -44,6 +34,16 @@ function ProfilePage(props: ProfilePageProps) {
     },
     skip: !uid
   })
+  useEffect(() => {
+    props.navigation.setOptions({
+      title: p.data?.me.name ?? 'Profile',
+      headerRight: () => (
+        <Link to={{ screen: RouteKeys.ProfileSettings }}>
+          ⚙️
+        </Link>
+      )
+    })
+  }, [props.navigation, p.data?.me.name])
 
   const itemSizeCellHeight = useClippingCellAvgHeight(p.data?.me.recents ?? [])
   const bh = useBottomTabBarHeight()

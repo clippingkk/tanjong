@@ -5,7 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import PhoneInput from "react-native-phone-number-input"
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { RouteKeys, RouteParamList } from '../../../routes'
-import { Platform } from 'react-native'
+import { ActivityIndicator, Platform } from 'react-native'
 import * as Sentry from "@sentry/react-native";
 import { useLinkTo } from '@react-navigation/native'
 
@@ -16,6 +16,7 @@ function AuthApplePhoneBind(props: AuthApplePhoneBindProps) {
   const [pn, setPn] = useState('')
   const [capture, setCapture] = useState<AV.Captcha | null>(null)
   const [verifyCode, setVerifyCode] = useState('')
+  const [loading, setLoading] = useState(false)
 
   const toast = useToast()
 
@@ -26,6 +27,7 @@ function AuthApplePhoneBind(props: AuthApplePhoneBindProps) {
       })
       return
     }
+    setLoading(true)
     try {
       const res = await AV.Captcha.request({
         width: 100,
@@ -41,6 +43,8 @@ function AuthApplePhoneBind(props: AuthApplePhoneBindProps) {
       toast.show({
         title: err.toString()
       })
+    } finally {
+      setLoading(false)
     }
   }, [pn])
   const linkTo = useLinkTo<RouteParamList>()
@@ -59,6 +63,7 @@ function AuthApplePhoneBind(props: AuthApplePhoneBindProps) {
       return
     }
 
+    setLoading(true)
     try {
       const vt = await capture.verify(verifyCode)
       await AV.Cloud.requestSmsCode({
@@ -80,6 +85,8 @@ function AuthApplePhoneBind(props: AuthApplePhoneBindProps) {
       toast.show({
         title: err.toString()
       })
+    } finally {
+      setLoading(false)
     }
   }, [verifyCode, capture])
 
@@ -106,7 +113,7 @@ function AuthApplePhoneBind(props: AuthApplePhoneBindProps) {
                 withShadow
                 autoFocus
               />
-              <Button onPress={onPhoneNumberConfirm}>
+              <Button onPress={onPhoneNumberConfirm} isLoading={loading}>
                 <Text>Confirm</Text>
               </Button>
             </View>
@@ -133,7 +140,7 @@ function AuthApplePhoneBind(props: AuthApplePhoneBindProps) {
                     onChangeText={setVerifyCode}
                   />
                 </View>
-                <Button onPress={onSMSSendPress} mt={5}>
+                <Button onPress={onSMSSendPress} mt={5} isLoading={loading}>
                   Send SMS
                 </Button>
               </View>

@@ -17,6 +17,7 @@ export enum RouteKeys {
 }
 
 export type RouteParamList = {
+  empty: object
   Book: {
     book: WenquBook
   }

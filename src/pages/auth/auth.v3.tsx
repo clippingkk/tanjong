@@ -8,17 +8,16 @@ import SigninWithApple from '../../components/signinWithApple/signinWithApple';
 import { AndroidSigninResponse, AppleRequestResponse } from '@invertase/react-native-apple-authentication';
 import { Link, useLinkTo } from '@react-navigation/native';
 import { RouteKeys, RouteParamList } from '../../routes';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-type AuthV3PageProps = {
-}
+type AuthV3PageProps = NativeStackScreenProps<RouteParamList, 'empty'>
 
 function AuthV3Page(props: AuthV3PageProps) {
-  const { control, handleSubmit, formState: { errors } } = useForm({
-    defaultValues: {
-      email: '',
-      password: ''
-    }
-  });
+  useEffect(() => {
+    props.navigation.setOptions({
+      title: 'Account'
+    })
+  }, [props])
 
   const [doAppleAuth, appleAuthResp] = useLoginByAppleLazyQuery()
   const toast = useToast()
@@ -53,7 +52,6 @@ function AuthV3Page(props: AuthV3PageProps) {
     return onPostAuth(token, user.id)
   }, [])
   const signinWithAppleOnError = useCallback((err: any) => {
-    console.log('err', err)
     toast.show({
       title: err.toString()
     })
@@ -71,7 +69,7 @@ function AuthV3Page(props: AuthV3PageProps) {
           <Divider my={8} />
           <Button>
             <Link to={{ screen: RouteKeys.AuthQRCode }}>
-              Login by Scan qrcode
+              Login by Scan QRcode
             </Link>
           </Button>
         </View>

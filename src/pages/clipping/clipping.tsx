@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { Divider, ScrollView, Text, View } from 'native-base'
 import React, { useEffect, useMemo, useState } from 'react'
-import { useColorScheme } from 'react-native'
+import { ActivityIndicator, RefreshControl, SafeAreaView, useColorScheme } from 'react-native'
 import ImageColors from 'react-native-image-colors'
 import { useSingleBook } from '../../hooks/wenqu'
 import { RouteParamList } from '../../routes'
@@ -56,42 +56,71 @@ function ClippingPage(props: ClippingPageProps) {
   }, [books.data?.books])
 
   return (
-    <ScrollView backgroundColor='gray.100' _dark={{ backgroundColor: 'gray.900' }}>
-      <View paddingLeft={4} paddingRight={4} paddingTop={hh + 8}>
-        <View>
-          <Text
-            fontFamily={FontLXGW}
-            fontSize='lg'
+    <SafeAreaView>
+      <ScrollView
+        backgroundColor='gray.100'
+        _dark={{ backgroundColor: 'gray.900' }}
+        height='100%'
+        refreshControl={(
+          <RefreshControl
+            refreshing={clippingResult.loading}
+            onRefresh={() => clippingResult.refetch({ id: id! })}
+          />
+        )}
+      >
+        {!content ? (
+          <View
+            position='absolute'
+            top={0}
+            left={0}
+            right={0}
+            bottom={0}
+            background='red.500'
+            alignItems='center'
+            justifyContent='center'
           >
-            {content}
-          </Text>
-        </View>
-
-        <Divider marginTop={4} />
-
-        {book ? (
-          <View flexDirection='row'>
-            <CachedImage
-              source={book.image}
-              style={[{
-                height: 200,
-                width: 100
-              }, basicStyles.shadow]}
-            />
-            <View paddingLeft={4} paddingTop={8}>
-              <Text
-                fontFamily={FontLXGW}
-              >{book.title}</Text>
-              <Text
-                fontFamily={FontLXGW}
-                fontSize='sm'
-              >{book.author}</Text>
-            </View>
+            <ActivityIndicator size={'large'} />
           </View>
         ) : null}
+        <View paddingLeft={4} paddingRight={4} height='100%'>
+          <View pt={8}>
+            <Text
+              fontFamily={FontLXGW}
+              fontSize='lg'
+              selectable
+            >
+              {content}
+            </Text>
+          </View>
 
-      </View>
-    </ScrollView>
+          <Divider marginTop={4} />
+
+          {book ? (
+            <View flexDirection='row'>
+              <CachedImage
+                source={book.image}
+                style={[{
+                  height: 200,
+                  width: 100
+                }, basicStyles.shadow]}
+              />
+              <View paddingLeft={4} paddingTop={8}>
+                <Text
+                  fontFamily={FontLXGW}
+                  selectable
+                >{book.title}</Text>
+                <Text
+                  fontFamily={FontLXGW}
+                  fontSize='sm'
+                  selectable
+                >{book.author}</Text>
+              </View>
+            </View>
+          ) : null}
+
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   )
 }
 

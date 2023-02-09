@@ -19,6 +19,7 @@
   "dependencies": {
     "@apollo/client": "^3.7.3",
     "@georstat/react-native-image-cache": "^2.3.0",
+    "@gorhom/bottom-sheet": "^4",
     "@invertase/react-native-apple-authentication": "^2.2.2",
     "@leancloud/platform-adapters-react-native": "^0.7.0",
     "@react-native-community/async-storage": "1",

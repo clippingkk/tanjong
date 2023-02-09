@@ -26,66 +26,68 @@ function BookHead(props: BookHeadProps) {
     return loadedImage.width / loadedImage.height
   }, [loadedImage?.height, loadedImage?.width])
   return (
-      <View marginBottom={-31}>
-        <View height={300 + hh}>
+    <View marginBottom={-31}>
+      <View height={300 + hh}>
+        <CachedImage
+          source={book.image}
+          resizeMode='cover'
+          style={basicStyles.absolute}
+        />
+        <BlurView
+          style={basicStyles.absolute}
+          blurType={cs!}
+          blurAmount={30}
+          reducedTransparencyFallbackColor="white"
+        />
+        <View
+          alignItems='flex-start'
+          justifyContent='space-around'
+          flexDirection='row'
+          marginLeft={2}
+          marginRight={2}
+          marginTop={hh + 50}
+        >
           <CachedImage
             source={book.image}
+            onLoad={e => {
+              setLoadedImage(e.nativeEvent.source)
+            }}
+            loadingImageComponent={() => (
+              <Center>
+                <ActivityIndicator />
+              </Center>
+            )}
+            style={[{
+              aspectRatio: ratio,
+              height: 150,
+              borderRadius: 8,
+              // overflow: 'hidden'
+            }, basicStyles.shadow]}
             resizeMode='cover'
-            style={basicStyles.absolute}
           />
-          <BlurView
-            style={basicStyles.absolute}
-            blurType={cs!}
-            blurAmount={30}
-            reducedTransparencyFallbackColor="white"
-          />
-          <View
-            alignItems='flex-start'
-            justifyContent='space-around'
-            flexDirection='row'
-            marginLeft={2}
-            marginRight={2}
-            marginTop={hh + 50}
-          >
-            <CachedImage
-              source={book.image}
-              onLoad={e => {
-                setLoadedImage(e.nativeEvent.source)
-              }}
-              loadingImageComponent={() => (
-                <Center>
-                  <ActivityIndicator />
-                </Center>
-              )}
-              style={[{
-                aspectRatio: ratio,
-                height: 150,
-                borderRadius: 8,
-                // overflow: 'hidden'
-              }, basicStyles.shadow]}
-              resizeMode='cover'
-            />
-            <View maxWidth={240}>
-              <Text
-                fontFamily={FontLXGW}
-                fontSize='xl'
-              >{book.title}</Text>
-              <Text
-                fontFamily={FontLXGW}
-                fontSize='sm'
-              >{book.author}</Text>
-              <Divider marginTop={2} marginBottom={2} />
-              <Text
-                fontFamily={FontLXGW}
-                fontSize='sm'
-                numberOfLines={4}
-              >
-                {book.summary}
-              </Text>
-            </View>
+          <View maxWidth={240}>
+            <Text
+              fontFamily={FontLXGW}
+              fontSize='xl'
+              selectable
+            >{book.title}</Text>
+            <Text
+              fontFamily={FontLXGW}
+              fontSize='sm'
+              selectable
+            >{book.author}</Text>
+            <Divider marginTop={2} marginBottom={2} />
+            <Text
+              fontFamily={FontLXGW}
+              fontSize='sm'
+              numberOfLines={4}
+            >
+              {book.summary}
+            </Text>
           </View>
         </View>
       </View>
+    </View>
   )
 }
 

@@ -43,7 +43,6 @@ function useAppWidgetType() {
 
 function SettingsPage(props: SettingsPageProps) {
   const hh = useHeaderHeight()
-  const bh = useBottomTabBarHeight()
   const linkTo = useLinkTo()
 
   const [count, setCount] = useState(0)
@@ -88,7 +87,7 @@ function SettingsPage(props: SettingsPageProps) {
   return (
     <Page>
       <SafeAreaView>
-        <View height='100%' paddingBottom={bh}>
+        <View height='100%'>
           <VStack
             paddingLeft={4}
             paddingRight={4}

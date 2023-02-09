@@ -21,18 +21,21 @@ import {
 } from 'react-native'
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import ProfileRoutePage from './pages/profile/route';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useOnInit } from './hooks/init';
 import { RouteKeys } from './routes';
 import { BlurView } from '@react-native-community/blur';
 import AuthQRCodePage from './pages/auth/qrcode.page';
-import HomeRoutePage from './pages/home/route';
 import ClippingPage from './pages/clipping/clipping';
 import { useTextColor } from './hooks/color';
 import AuthV3Page from './pages/auth/auth.v3';
 import AuthApplePhoneBind from './pages/auth/phone/phone';
 import AuthPhoneOTPPage from './pages/auth/phone/otp';
+import HomePage from './pages/home/home.page';
+import BookPage from './pages/book/book.page';
+import DebugPage from './pages/settings/debug.page';
+import SettingsPage from './pages/settings/settings.page';
+import ProfilePage from './pages/profile/profile.page';
 
 const RootRouteStack = createNativeStackNavigator()
 const TabStack = createBottomTabNavigator()
@@ -42,20 +45,20 @@ type HomeTabPagesProps = {
 
 function HomeTabPages(props: HomeTabPagesProps) {
   const c = useColorScheme()
-  const textColor = useTextColor()
 
   return (
     <TabStack.Navigator
       screenOptions={{
-        headerShown: false,
+        headerTransparent: true,
+        headerShown: true,
+        headerTitleStyle: {
+          color: c === 'dark' ? '#ffffff' : '#000000'
+        },
         tabBarStyle: {
           position: 'absolute',
           bottom: 0,
           left: 0,
           right: 0,
-        },
-        headerTitleStyle: {
-          color: textColor
         },
         tabBarBackground: () => (
           <BlurView
@@ -75,7 +78,7 @@ function HomeTabPages(props: HomeTabPagesProps) {
     >
       <TabStack.Screen
         name={RouteKeys.TabHome}
-        component={HomeRoutePage}
+        component={HomePage}
         options={{
           tabBarLabel: 'Books',
           tabBarIcon: ({ color, size }) => (
@@ -85,7 +88,7 @@ function HomeTabPages(props: HomeTabPagesProps) {
       />
       <TabStack.Screen
         name={RouteKeys.TabProfile}
-        component={ProfileRoutePage}
+        component={ProfilePage}
         options={{
           tabBarLabel: 'Profile',
           tabBarIcon: ({ color, size }) => (
@@ -101,19 +104,11 @@ const App = () => {
   useOnInit()
   const c = useColorScheme()
   const textColor = useTextColor()
-  // const isDarkMode = useColorScheme() === 'dark';
-
-  // const backgroundStyle = {
-  //   backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  // };
-
-  // <SafeAreaView style={backgroundStyle}>
-  //   <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-  // </SafeAreaView>
   return (
     <RootRouteStack.Navigator
       screenOptions={{
-        headerShown: false,
+        headerTransparent: true,
+        headerShown: true,
         headerBlurEffect: c === 'dark' ? 'dark' : 'light',
         headerTitleStyle: {
           color: textColor
@@ -157,17 +152,39 @@ const App = () => {
         component={AuthPhoneOTPPage}
       />
       <RootRouteStack.Screen
+        name={RouteKeys.BookDetail}
+        options={{
+          headerTransparent: true,
+          headerShown: true
+        }}
+        component={BookPage}
+      />
+      <RootRouteStack.Screen
+        name={RouteKeys.ProfileSettings}
+        options={{
+          headerTransparent: true,
+          headerTitle: 'Settings',
+          headerShown: true
+        }}
+        component={SettingsPage}
+      />
+      <RootRouteStack.Screen
+        name={RouteKeys.ProfileDebug}
+        options={{
+          headerTransparent: true,
+          headerTitle: 'Debug',
+          headerShown: true
+        }}
+        component={DebugPage}
+      />
+      <RootRouteStack.Screen
         name={RouteKeys.Clipping}
         options={{
+          headerTransparent: true,
           headerShown: true
         }}
         component={ClippingPage}
       />
-
-      {/* <RootRouteStack.Screen
-        name={RouteKeys.Auth}
-        component={AuthV2Page}
-      /> */}
     </RootRouteStack.Navigator>
   );
 };

@@ -25,7 +25,14 @@ export const KonzertThemeMap = {
   }
 }
 
-export function getUTPLink(service: UTPService, params: Object): string {
+type UTPLinkParams = {
+    cid?: number,
+    bid: number,
+    uid: number,
+    theme: number
+}
+
+export function getUTPLink(service: UTPService, params: UTPLinkParams): string {
   const d = new URLSearchParams(params as any)
   const distUrl = encodeURIComponent(`https://konzert.annatarhe.cn/${service.toString()}.html?${d.toString()}`)
 

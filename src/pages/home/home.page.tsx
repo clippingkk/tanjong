@@ -4,6 +4,7 @@ import { MasonryFlashList } from '@shopify/flash-list'
 import { useAtomValue } from 'jotai'
 import { View } from 'native-base'
 import React, { useCallback, useMemo, useState } from 'react'
+import { SafeAreaView } from 'react-native'
 import { uidAtom } from '../../atomic'
 import AuthGuard from '../../components/auth-guard/auth-guard'
 import BookCell from '../../components/book/cell'
@@ -123,27 +124,31 @@ function HomePage(props: HomePageProps) {
       width='100%'
       height='100%'
     >
-      <MasonryFlashList
-        ListHeaderComponent={() => (
-          <BookHero bookDoubanID={theReadingBook} />
-        )}
-        onRefresh={() => bs.refetch()}
-        refreshing={bs.loading}
-        numColumns={2}
-        data={listedBook}
-        renderItem={({ item }) => {
-          return <BookCell bookDoubanID={item.doubanId} />
-        }}
-        estimatedItemSize={250}
-        onEndReached={onReachedEnd}
-        onEndReachedThreshold={1}
-        ListFooterComponent={(
-          <View width='100%' height={bh} />
-        )}
-        ItemSeparatorComponent={() => (
-          <View height={4} />
-        )}
-      />
+      <SafeAreaView
+        height='100%'
+      >
+        <MasonryFlashList
+          ListHeaderComponent={() => (
+            <BookHero bookDoubanID={theReadingBook} />
+          )}
+          onRefresh={() => bs.refetch()}
+          refreshing={bs.loading}
+          numColumns={2}
+          data={listedBook}
+          renderItem={({ item }) => {
+            return <BookCell bookDoubanID={item.doubanId} />
+          }}
+          estimatedItemSize={250}
+          onEndReached={onReachedEnd}
+          onEndReachedThreshold={1}
+          ListFooterComponent={(
+            <View width='100%' height={bh} />
+          )}
+          ItemSeparatorComponent={() => (
+            <View height={4} />
+          )}
+        />
+      </SafeAreaView>
     </View>
   )
 }

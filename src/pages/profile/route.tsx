@@ -26,27 +26,6 @@ function ProfileRoutePage(props: ProfileRoutePageProps) {
         }
       }}
     >
-      <ProfileStack.Screen
-        name={RouteKeys.Profile}
-        options={({ route }: any) => ({
-          headerTitle: 'Profile',
-        })}
-        component={ProfilePage}
-      />
-      <ProfileStack.Screen
-        name={RouteKeys.ProfileSettings}
-        options={{
-          headerTitle: 'Settings'
-        }}
-        component={SettingsPage}
-      />
-      <ProfileStack.Screen
-        name={RouteKeys.ProfileDebug}
-        options={{
-          headerTitle: 'Debug'
-        }}
-        component={DebugPage}
-      />
     </ProfileStack.Navigator>
   )
 }

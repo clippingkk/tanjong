@@ -60,7 +60,6 @@ function BookPage(props: BookPageProps) {
       }
     }
   })
-  const bh = useBottomTabBarHeight()
   // const primaryColor = useImagePrimaryColor(book.image)
   const [atEnd, setAtEnd] = useState(false)
 
@@ -117,7 +116,7 @@ function BookPage(props: BookPageProps) {
           onEndReached={onReachedEnd}
           onEndReachedThreshold={1}
           ListFooterComponent={(
-            <View width='100%' height={bh} />
+            <View width='100%' height={0} />
           )}
           ItemSeparatorComponent={() => (
             <View height={4} />
@@ -131,6 +130,7 @@ function BookPage(props: BookPageProps) {
       >
         <BookShareView
           bookID={book.id}
+          bookDBID={book.doubanId}
           uid={uid}
         />
       </BottomSheetModal>

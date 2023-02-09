@@ -42,7 +42,7 @@ function BookHero(props: BookHeroProps) {
   }
 
   return (
-    <Center height={250} marginTop={hh} shadow='6'>
+    <Center height={250} marginTop={5} shadow='6'>
       <Link
         to={{
           screen: RouteKeys.BookDetail,

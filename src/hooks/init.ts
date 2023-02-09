@@ -7,6 +7,7 @@ import { Linking } from "react-native"
 import { useLinkTo } from "@react-navigation/native"
 import { RouteKeys } from "../routes"
 import * as Sentry from "@sentry/react-native";
+import RNBootSplash from "react-native-bootsplash"
 
 import AV from 'leancloud-storage/core';
 import * as adapters from '@leancloud/platform-adapters-react-native';
@@ -18,7 +19,6 @@ AV.init({
   appKey: LEANCLOUD.APP_KEY,
   serverURL: LEANCLOUD.SERVER_URL
 })
-// import SplashScreen from 'react-native-splash-screen'
 
 export function useOnInit() {
   const setProfile = useSetAtom(profileAtom)
@@ -47,7 +47,7 @@ export function useOnInit() {
   useDeeplinkHandler()
 
   useEffect(() => {
-    // SplashScreen.hide()
+    RNBootSplash.hide({ fade: true })
   }, [])
 }
 

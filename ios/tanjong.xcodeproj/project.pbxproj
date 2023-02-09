@@ -12,6 +12,7 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		2B095B8A29954FCB006CCF0C /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B095B8929954FCB006CCF0C /* BootSplash.storyboard */; };
 		2B3700B1297453E7002D1AFF /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B3700B0297453E6002D1AFF /* WidgetKit.framework */; };
 		2B3700B3297453E7002D1AFF /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B3700B2297453E7002D1AFF /* SwiftUI.framework */; };
 		2B3700B6297453E7002D1AFF /* clippingkk_widgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3700B5297453E7002D1AFF /* clippingkk_widgetBundle.swift */; };
@@ -78,6 +79,7 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = tanjong/main.m; sourceTree = "<group>"; };
 		19C31A02128743359AA18ED2 /* LXGWWenKai-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "LXGWWenKai-Bold.ttf"; path = "../assets/fonts/LXGWWenKai-Bold.ttf"; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-tanjong-tanjongTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-tanjong-tanjongTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B095B8929954FCB006CCF0C /* BootSplash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = BootSplash.storyboard; path = tanjong/BootSplash.storyboard; sourceTree = "<group>"; };
 		2B3700AF297453E6002D1AFF /* clippingkk.widgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = clippingkk.widgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B3700B0297453E6002D1AFF /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		2B3700B2297453E7002D1AFF /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -158,6 +160,7 @@
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
+				2B095B8929954FCB006CCF0C /* BootSplash.storyboard */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
@@ -371,6 +374,7 @@
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				E9DE66C9B35C4D36BC8DFBD7 /* LXGWWenKai-Bold.ttf in Resources */,
+				2B095B8A29954FCB006CCF0C /* BootSplash.storyboard in Resources */,
 				3D1E73B27CCB447B94A753E9 /* LXGWWenKai-Light.ttf in Resources */,
 				426A1308707C4108B9A06C30 /* LXGWWenKai-Regular.ttf in Resources */,
 			);

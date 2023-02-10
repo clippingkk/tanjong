@@ -13,14 +13,11 @@ import { uidAtom } from '../../atomic'
 import BookHead from '../../components/book/head'
 import ClippingCell from '../../components/clipping/cell'
 import Page from '../../components/page'
-import BookShareView from '../../components/shares/book.share'
+import UTPShareView from '../../components/shares/utp.share'
 import { useClippingCellAvgHeight } from '../../hooks/clipping'
-import { useImagePrimaryColor } from '../../hooks/image'
 import { RouteParamList } from '../../routes'
 import { useBookQuery } from '../../schema/generated'
-import { basicStyles } from '../../styles/basic'
-import { FontLXGW } from '../../styles/font'
-import BookPageRightButton from './bookpage-right-buttons'
+import { UTPService } from '../../service/utp'
 
 type BookPageProps = NativeStackScreenProps<RouteParamList, 'Book'>
 
@@ -128,7 +125,8 @@ function BookPage(props: BookPageProps) {
         index={1}
         snapPoints={snapPoints}
       >
-        <BookShareView
+        <UTPShareView
+          kind={UTPService.book}
           bookID={book.id}
           bookDBID={book.doubanId}
           uid={uid}

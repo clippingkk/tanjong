@@ -32,4 +32,5 @@ export type RouteParamList = {
     phone: string
     idToken: string
   }
+  AuthQRCode: object
 }

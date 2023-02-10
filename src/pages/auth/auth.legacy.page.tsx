@@ -7,7 +7,7 @@ import { usePostAuth } from '../../hooks/auth';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RouteParamList } from '../../routes';
 
-type AuthLegacyPageProps= NativeStackScreenProps<RouteParamList, 'empty'>
+type AuthLegacyPageProps= NativeStackScreenProps<RouteParamList, 'empty' | 'AuthQRCode'>
 
 function AuthLegacyPage(props: AuthLegacyPageProps) {
   const { control, handleSubmit, formState: { errors } } = useForm({

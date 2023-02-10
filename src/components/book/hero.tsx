@@ -65,6 +65,8 @@ function BookHero(props: BookHeroProps) {
             style={{
               aspectRatio: ratio,
               height: 200,
+              borderRadius: 4,
+              overflow: 'hidden'
               // width: 100
             }}
             resizeMode='cover'

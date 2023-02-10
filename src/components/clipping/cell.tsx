@@ -1,6 +1,7 @@
 import { Link } from '@react-navigation/native'
 import { Text, View } from 'native-base'
-import React from 'react'
+import React, { useMemo } from 'react'
+import { Dimensions } from 'react-native'
 import { RouteKeys } from '../../routes'
 import { Clipping } from '../../schema/generated'
 import { FontLXGW } from '../../styles/font'
@@ -10,23 +11,30 @@ type ClippingCellProps = {
 }
 
 function ClippingCell(props: ClippingCellProps) {
+  const width = useMemo(() => {
+    return Dimensions.get('screen').width - 8 * 2
+  }, [])
   return (
     <View
-      marginLeft={2}
-      marginRight={2}
+      paddingX={2}
     >
       <Link to={{
         screen: RouteKeys.Clipping,
         params: {
           clipping: props.clipping
         }
-      }}>
+      }}
+        style={{
+          width: '100%'
+        }}
+      >
         <View
           backgroundColor={'amber.300'}
           _dark={{ backgroundColor: 'amber.900' }}
-          borderRadius={3}
-          shadow='4'
-          padding='4'
+          borderRadius={2}
+          shadow={4}
+          padding={4}
+          width={width}
         >
           <Text
             fontFamily={FontLXGW}

@@ -1,4 +1,5 @@
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
+import { useHeaderHeight } from '@react-navigation/elements'
 import { Link, useNavigation } from '@react-navigation/native'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { FlashList } from '@shopify/flash-list'
@@ -21,6 +22,7 @@ type ProfilePageProps = NativeStackScreenProps<RouteParamList, 'empty'>
 
 function ProfilePage(props: ProfilePageProps) {
   const uid = useAtomValue(uidAtom)
+  const hh = useHeaderHeight()
 
   const p = useProfileQuery({
     variables: {
@@ -133,7 +135,11 @@ function ProfilePage(props: ProfilePageProps) {
       <FlashList
         onRefresh={p.refetch}
         refreshing={p.loading}
-        ListHeaderComponent={(<BasicBoard profile={p.data?.me} />)}
+        ListHeaderComponent={(
+          <View paddingTop={hh}>
+        <BasicBoard profile={p.data?.me} />
+        </View>
+        )}
         data={p.data?.me.recents ?? []}
         renderItem={({ item }) => <ClippingCell clipping={item} />}
         ItemSeparatorComponent={() => (

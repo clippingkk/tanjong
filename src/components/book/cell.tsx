@@ -61,7 +61,8 @@ function BookCell(props: BookCellProps) {
             style={{
               aspectRatio: ratio,
               height: 200,
-              // width: 100
+              borderRadius: 4,
+              overflow: 'hidden'
             }}
             resizeMode='cover'
           />

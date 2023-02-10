@@ -11,7 +11,7 @@ import { RouteParamList } from '../../routes'
 import { JwtPayload } from '../../service/jwt'
 import AuthLegacyPage from './auth.legacy.page'
 
-type AuthQRCodePageProps = NativeStackScreenProps<RouteParamList, 'empty'>
+type AuthQRCodePageProps = NativeStackScreenProps<RouteParamList, 'AuthQRCode'>
 
 function AuthQRCodePage(props: AuthQRCodePageProps) {
   useEffect(() => {

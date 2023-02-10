@@ -36,6 +36,7 @@ import BookPage from './pages/book/book.page';
 import DebugPage from './pages/settings/debug.page';
 import SettingsPage from './pages/settings/settings.page';
 import ProfilePage from './pages/profile/profile.page';
+import { RouteProp, ParamListBase, getFocusedRouteNameFromRoute } from '@react-navigation/native';
 
 const RootRouteStack = createNativeStackNavigator()
 const TabStack = createBottomTabNavigator()
@@ -45,6 +46,7 @@ type HomeTabPagesProps = {
 
 function HomeTabPages(props: HomeTabPagesProps) {
   const c = useColorScheme()
+  const textColor = useTextColor()
 
   return (
     <TabStack.Navigator
@@ -80,6 +82,8 @@ function HomeTabPages(props: HomeTabPagesProps) {
         name={RouteKeys.TabHome}
         component={HomePage}
         options={{
+          title: 'Books',
+          headerTitle: 'Books',
           tabBarLabel: 'Books',
           tabBarIcon: ({ color, size }) => (
             <Text>📚</Text>
@@ -90,6 +94,7 @@ function HomeTabPages(props: HomeTabPagesProps) {
         name={RouteKeys.TabProfile}
         component={ProfilePage}
         options={{
+          title: 'Profile',
           tabBarLabel: 'Profile',
           tabBarIcon: ({ color, size }) => (
             <Text>🏠</Text>
@@ -98,6 +103,17 @@ function HomeTabPages(props: HomeTabPagesProps) {
       />
     </TabStack.Navigator>
   )
+}
+
+function getRootPageTitle(route: RouteProp<ParamListBase, "root">) {
+  const routeName = (getFocusedRouteNameFromRoute(route) as RouteKeys) ?? RouteKeys.TabHome;
+  switch (routeName) {
+    case RouteKeys.TabHome:
+      return 'Books'
+    case RouteKeys.TabProfile:
+      return 'Me'
+  }
+  return 'ClippingKK'
 }
 
 const App = () => {
@@ -117,6 +133,9 @@ const App = () => {
     >
       <RootRouteStack.Screen
         name='root'
+        options={(ps) => ({
+          headerTitle: getRootPageTitle(ps.route)
+        })}
         component={HomeTabPages}
       />
       <RootRouteStack.Screen

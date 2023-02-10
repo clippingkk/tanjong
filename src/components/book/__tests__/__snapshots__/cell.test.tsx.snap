@@ -53,7 +53,9 @@ exports[`book cell will rendered correctly 1`] = `
               },
               {
                 "aspectRatio": 1.7777777777777777,
+                "borderRadius": 4,
                 "height": 200,
+                "overflow": "hidden",
               },
             ]
           }

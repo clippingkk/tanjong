@@ -2,10 +2,11 @@ import { CachedImage } from '@georstat/react-native-image-cache'
 import { useHeaderHeight } from '@react-navigation/elements'
 import { useNavigation } from '@react-navigation/native'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
-import { Divider, ScrollView, Text, View } from 'native-base'
+import { Divider, ScrollView, Text, useSafeArea, View } from 'native-base'
 import React, { useEffect, useMemo, useState } from 'react'
 import { ActivityIndicator, RefreshControl, SafeAreaView, useColorScheme } from 'react-native'
 import ImageColors from 'react-native-image-colors'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { useSingleBook } from '../../hooks/wenqu'
 import { RouteParamList } from '../../routes'
 import { Clipping, useFetchClippingQuery } from '../../schema/generated'
@@ -56,33 +57,33 @@ function ClippingPage(props: ClippingPageProps) {
   }, [books.data?.books])
 
   return (
-    <SafeAreaView>
-      <ScrollView
-        backgroundColor='gray.100'
-        _dark={{ backgroundColor: 'gray.900' }}
-        height='100%'
-        refreshControl={(
-          <RefreshControl
-            refreshing={clippingResult.loading}
-            onRefresh={() => clippingResult.refetch({ id: id! })}
-          />
-        )}
-      >
-        {!content ? (
-          <View
-            position='absolute'
-            top={0}
-            left={0}
-            right={0}
-            bottom={0}
-            background='red.500'
-            alignItems='center'
-            justifyContent='center'
-          >
-            <ActivityIndicator size={'large'} />
-          </View>
-        ) : null}
-        <View paddingLeft={4} paddingRight={4} height='100%'>
+    <ScrollView
+      backgroundColor='gray.100'
+      _dark={{ backgroundColor: 'gray.900' }}
+      height='100%'
+      refreshControl={(
+        <RefreshControl
+          refreshing={clippingResult.loading}
+          onRefresh={() => clippingResult.refetch({ id: id! })}
+        />
+      )}
+    >
+      {!content ? (
+        <View
+          position='absolute'
+          top={0}
+          left={0}
+          right={0}
+          bottom={0}
+          background='red.500'
+          alignItems='center'
+          justifyContent='center'
+        >
+          <ActivityIndicator size={'large'} />
+        </View>
+      ) : null}
+      <View paddingLeft={4} paddingRight={4} height='100%'>
+        <SafeAreaView>
           <View pt={8}>
             <Text
               fontFamily={FontLXGW}
@@ -92,35 +93,35 @@ function ClippingPage(props: ClippingPageProps) {
               {content}
             </Text>
           </View>
+        </SafeAreaView>
 
-          <Divider marginTop={4} />
+        <Divider marginTop={4} />
 
-          {book ? (
-            <View flexDirection='row'>
-              <CachedImage
-                source={book.image}
-                style={[{
-                  height: 200,
-                  width: 100
-                }, basicStyles.shadow]}
-              />
-              <View paddingLeft={4} paddingTop={8}>
-                <Text
-                  fontFamily={FontLXGW}
-                  selectable
-                >{book.title}</Text>
-                <Text
-                  fontFamily={FontLXGW}
-                  fontSize='sm'
-                  selectable
-                >{book.author}</Text>
-              </View>
+        {book ? (
+          <View flexDirection='row'>
+            <CachedImage
+              source={book.image}
+              style={[{
+                height: 200,
+                width: 100
+              }, basicStyles.shadow]}
+            />
+            <View paddingLeft={4} paddingTop={8}>
+              <Text
+                fontFamily={FontLXGW}
+                selectable
+              >{book.title}</Text>
+              <Text
+                fontFamily={FontLXGW}
+                fontSize='sm'
+                selectable
+              >{book.author}</Text>
             </View>
-          ) : null}
+          </View>
+        ) : null}
 
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+      </View>
+    </ScrollView>
   )
 }
 

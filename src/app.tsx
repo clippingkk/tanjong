@@ -21,7 +21,7 @@ import {
 } from 'react-native'
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createNativeStackNavigator, NativeStackNavigationOptions } from '@react-navigation/native-stack';
 import { useOnInit } from './hooks/init';
 import { RouteKeys } from './routes';
 import { BlurView } from '@react-native-community/blur';
@@ -36,7 +36,7 @@ import BookPage from './pages/book/book.page';
 import DebugPage from './pages/settings/debug.page';
 import SettingsPage from './pages/settings/settings.page';
 import ProfilePage from './pages/profile/profile.page';
-import { RouteProp, ParamListBase, getFocusedRouteNameFromRoute } from '@react-navigation/native';
+import { RouteProp, ParamListBase, getFocusedRouteNameFromRoute, Link } from '@react-navigation/native';
 
 const RootRouteStack = createNativeStackNavigator()
 const TabStack = createBottomTabNavigator()
@@ -105,15 +105,31 @@ function HomeTabPages(props: HomeTabPagesProps) {
   )
 }
 
-function getRootPageTitle(route: RouteProp<ParamListBase, "root">) {
-  const routeName = (getFocusedRouteNameFromRoute(route) as RouteKeys) ?? RouteKeys.TabHome;
+function getRootPageOptions(props: {
+  route: RouteProp<ParamListBase, "root">;
+  navigation: any;
+}): NativeStackNavigationOptions {
+  let headerTitle = ''
+  const routeName = (getFocusedRouteNameFromRoute(props.route) as RouteKeys) ?? RouteKeys.TabHome;
   switch (routeName) {
     case RouteKeys.TabHome:
-      return 'Books'
+      headerTitle = 'Books'
+      break
     case RouteKeys.TabProfile:
-      return 'Me'
+      headerTitle = 'Me'
+      break
+    default:
+      headerTitle = 'ClippingKK'
   }
-  return 'ClippingKK'
+
+  return {
+    headerTitle,
+    headerRight: routeName === RouteKeys.TabProfile ? () => (
+      <Link to={{ screen: RouteKeys.ProfileSettings }}>
+        ⚙️
+      </Link>
+    ) : undefined
+  }
 }
 
 const App = () => {
@@ -133,9 +149,7 @@ const App = () => {
     >
       <RootRouteStack.Screen
         name='root'
-        options={(ps) => ({
-          headerTitle: getRootPageTitle(ps.route)
-        })}
+        options={getRootPageOptions}
         component={HomeTabPages}
       />
       <RootRouteStack.Screen

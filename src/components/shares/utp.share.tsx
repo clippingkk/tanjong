@@ -69,6 +69,14 @@ function UTPShareView(props: BookShareViewProps) {
     }
   }, [loadedImage])
 
+  const onShareLinkClick = useCallback(() => {
+    const prefix = `https://clippingkk.annatarhe.com`
+    const distUrl = props.kind === UTPService.book ? `/dash/${props.uid}/book/${props.bookDBID}` : `/dash/${props.uid}/clippings/${props.cid}`
+    Share.share({
+      url: prefix + distUrl
+    })
+  }, [props.kind, props.uid, props.bookDBID, props.cid])
+
   if (!props.uid) {
     return (
       <Center>
@@ -110,11 +118,7 @@ function UTPShareView(props: BookShareViewProps) {
               <Text>Save Image</Text>
             </Button>
             <Button
-              onPress={() => {
-                Share.share({
-                  url: `https://clippingkk.annatarhe.com/dash/${props.uid}/book/${props.bookDBID}`
-                })
-              }}>
+              onPress={onShareLinkClick}>
               <Text>Share Link</Text>
             </Button>
           </View>

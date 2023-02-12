@@ -809,7 +809,7 @@ exports[`home page renders with permission block 1`] = `
                       }
                     }
                   >
-                    Click me to synchronize your personal data with your account
+                    app.auth.loginFullTip
                   </Text>
                 </Text>
               </View>

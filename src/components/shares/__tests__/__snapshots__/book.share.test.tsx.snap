@@ -592,7 +592,7 @@ exports[`book share should be work 1`] = `
                       }
                     }
                   >
-                    Save Image
+                    app.clipping.save
                   </Text>
                 </View>
               </View>
@@ -674,7 +674,7 @@ exports[`book share should be work 1`] = `
                       }
                     }
                   >
-                    Share Link
+                    app.clipping.shares
                   </Text>
                 </View>
               </View>

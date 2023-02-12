@@ -1,26 +1,29 @@
-import { useAtom, useAtomValue, useSetAtom } from "jotai"
+import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
-import { updateLocalToken } from "../utils/apollo"
-import { profileAtom, tokenAtom, uidAtom } from "../atomic"
+import { profileAtom, uidAtom } from "../atomic"
 import { useProfileQuery } from "../schema/generated"
 import { Linking } from "react-native"
 import { useLinkTo } from "@react-navigation/native"
 import { RouteKeys } from "../routes"
-import * as Sentry from "@sentry/react-native";
+import * as Sentry from "@sentry/react-native"
 import RNBootSplash from "react-native-bootsplash"
 
-import AV from 'leancloud-storage/core';
-import * as adapters from '@leancloud/platform-adapters-react-native';
+import AV from 'leancloud-storage/core'
+import * as adapters from '@leancloud/platform-adapters-react-native'
 import { LEANCLOUD } from "../constants/config"
-AV.setAdapters(adapters);
-
-AV.init({
-  appId: LEANCLOUD.APP_ID,
-  appKey: LEANCLOUD.APP_KEY,
-  serverURL: LEANCLOUD.SERVER_URL
-})
+AV.setAdapters(adapters as any)
 
 export function useOnInit() {
+
+  // only run once
+  useEffect(() => {
+    AV.init({
+      appId: LEANCLOUD.APP_ID,
+      appKey: LEANCLOUD.APP_KEY,
+      serverURL: LEANCLOUD.SERVER_URL
+    })
+  }, [])
+
   const setProfile = useSetAtom(profileAtom)
   const uid = useAtomValue(uidAtom)
 

@@ -8,16 +8,10 @@
  * @format
  */
 
-import React, { useEffect, type PropsWithChildren } from 'react';
-// import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import React from 'react';
 import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
   Text,
   useColorScheme,
-  View,
 } from 'react-native'
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
@@ -37,6 +31,7 @@ import DebugPage from './pages/settings/debug.page';
 import SettingsPage from './pages/settings/settings.page';
 import ProfilePage from './pages/profile/profile.page';
 import { RouteProp, ParamListBase, getFocusedRouteNameFromRoute, Link } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
 
 const RootRouteStack = createNativeStackNavigator()
 const TabStack = createBottomTabNavigator()
@@ -110,10 +105,12 @@ function getRootPageOptions(props: {
   navigation: any;
 }): NativeStackNavigationOptions {
   let headerTitle = ''
+  const { t } = useTranslation()
+
   const routeName = (getFocusedRouteNameFromRoute(props.route) as RouteKeys) ?? RouteKeys.TabHome;
   switch (routeName) {
     case RouteKeys.TabHome:
-      headerTitle = 'Books'
+      headerTitle = t('app.home.title')
       break
     case RouteKeys.TabProfile:
       headerTitle = 'Me'
@@ -136,6 +133,7 @@ const App = () => {
   useOnInit()
   const c = useColorScheme()
   const textColor = useTextColor()
+  const { t } = useTranslation()
   return (
     <RootRouteStack.Navigator
       screenOptions={{
@@ -149,7 +147,7 @@ const App = () => {
     >
       <RootRouteStack.Screen
         name='root'
-        options={getRootPageOptions}
+        options={ps => getRootPageOptions({ ...ps })}
         component={HomeTabPages}
       />
       <RootRouteStack.Screen
@@ -196,7 +194,7 @@ const App = () => {
         name={RouteKeys.ProfileSettings}
         options={{
           headerTransparent: true,
-          headerTitle: 'Settings',
+          headerTitle: t('app.menu.settings') ?? 'settings',
           headerShown: true
         }}
         component={SettingsPage}

@@ -9,6 +9,7 @@ import { AndroidSigninResponse, AppleRequestResponse } from '@invertase/react-na
 import { Link, useLinkTo } from '@react-navigation/native';
 import { RouteKeys, RouteParamList } from '../../routes';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { useTranslation } from 'react-i18next';
 
 type AuthV3PageProps = NativeStackScreenProps<RouteParamList, 'empty'>
 
@@ -66,6 +67,8 @@ function AuthV3Page(props: AuthV3PageProps) {
     })
   }, [])
 
+  const { t } = useTranslation()
+
   return (
     <View bgColor='gray.100' _dark={{ bgColor: 'gray.900' }}>
       <SafeAreaView>
@@ -78,7 +81,7 @@ function AuthV3Page(props: AuthV3PageProps) {
           <Divider my={8} />
           <Button>
             <Link to={{ screen: RouteKeys.AuthQRCode }}>
-              Login by Scan QRcode
+              {t('app.auth.loginByScanQRCode')}
             </Link>
           </Button>
         </View>

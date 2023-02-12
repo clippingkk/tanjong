@@ -3,6 +3,7 @@ import { useNavigation } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { Button, Pressable, Text, Toast } from 'native-base'
 import React, { useCallback, useMemo } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Platform } from 'react-native'
 import { usePostAuth } from '../../../hooks/auth'
 import { RouteParamList } from '../../../routes'
@@ -11,6 +12,7 @@ import { AppleLoginPlatforms, useBindAppleUniqueMutation } from '../../../schema
 type SignupSkipButtonProps = HeaderButtonProps & { idToken: string, navigation: NativeStackNavigationProp<RouteParamList, any, undefined> }
 
 function SignupSkipButton(props: SignupSkipButtonProps) {
+  const { t } = useTranslation()
   const requestPayload = useMemo(() => {
     return {
       code: '',
@@ -47,7 +49,7 @@ function SignupSkipButton(props: SignupSkipButtonProps) {
       isLoading={doBindResult.loading}
       onPress={onSkip}
     >
-      <Text>Skip</Text>
+      <Text>{t('app.common.skip')}</Text>
     </Button>
   )
 }

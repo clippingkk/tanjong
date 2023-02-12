@@ -1,6 +1,7 @@
 import { Link } from '@react-navigation/native'
 import { Center, Text, View } from 'native-base'
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { RouteKeys } from '../../routes'
 import Page from '../page'
 
@@ -8,6 +9,7 @@ type AuthGuardProps = {
 }
 
 function AuthGuard(props: AuthGuardProps) {
+  const { t } = useTranslation()
   return (
     <Page containerProps={{ flex: 1, justifyContent: 'center', justifyItems: 'center' }}>
       <View flex={1} alignItems='center' justifyContent='center' width='100%'>
@@ -23,7 +25,7 @@ function AuthGuard(props: AuthGuardProps) {
           }}
         >
           <Text color='gray.900' _dark={{ color: 'gray.100' }}>
-            Click me to synchronize your personal data with your account
+            {t('app.auth.loginFullTip')}
           </Text>
         </Link>
       </View>

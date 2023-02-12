@@ -10,7 +10,10 @@
       "done": "마치다",
       "delete": "삭제",
       "bind": "묶다",
-      "bound": "경계"
+      "bound": "경계",
+      "confirm": "확인하다",
+      "skip": "건너뛰다",
+      "retry": "다시 해 보다"
     },
     "slogan": "조직하고, 검토하고, 설교하고, 인간답게",
     "go": "지금 시도하십시오!",
@@ -43,7 +46,9 @@
       "readingDuration_plural": "이 책을 {{ count }} 일 동안 읽으십시오"
     },
     "auth": {
+      "loginFullTip": "데이터를 동기화할 계정에 로그인하려면 클릭하세요.",
       "loginByScanQRCode": "스캔 QRCode로 로그인",
+      "loginByScanQRCodeTip": "https://clippingkk.annatarhe.com/ 으로 이동하여 로그인\n그런 다음 오른쪽 상단 모서리에 있는 아이콘을 스캔하세요 📱\n약간의 인내심이 필요할 수 있습니다",
       "signin": "로그인",
       "signup": "등기",
       "phone": "전화 번호",
@@ -86,7 +91,8 @@
       "title": "내 책들",
       "unchecked": "분류되지 않은 책",
       "notfound": "뭐! 아직 메모를 읽지 않았습니까?",
-      "uploadTip": "还不快点我上传"
+      "uploadTip": "업로드하려면 나를 클릭하세요.",
+      "emptyFullTip": "죄송합니다. 데이터가 없습니다. 스크랩한 내용을 웹사이트에 업로드하고 나중에 시도하세요."
     },
     "clipping": {
       "update": "책 업데이트",

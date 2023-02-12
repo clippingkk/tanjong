@@ -6,6 +6,7 @@ import { useAuthLazyQuery, useAuthQuery } from '../../schema/generated';
 import { usePostAuth } from '../../hooks/auth';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RouteParamList } from '../../routes';
+import { useTranslation } from 'react-i18next';
 
 type AuthLegacyPageProps= NativeStackScreenProps<RouteParamList, 'empty' | 'AuthQRCode'>
 
@@ -17,6 +18,7 @@ function AuthLegacyPage(props: AuthLegacyPageProps) {
     }
   });
 
+  const { t } = useTranslation()
   const [doAuth, authResp] = useAuthLazyQuery()
   const toast = useToast()
   const onPostAuth = usePostAuth(props.navigation)
@@ -27,7 +29,8 @@ function AuthLegacyPage(props: AuthLegacyPageProps) {
         variables: {
           email: data.email,
           password: data.password,
-          cfTurnstileToken: 'ksldfjalsd'
+          // FIXME: need fix...
+          cfTurnstileToken: ''
         }
       })
       if (resp.error) {
@@ -67,7 +70,7 @@ function AuthLegacyPage(props: AuthLegacyPageProps) {
       <Center paddingTop={12} bgColor='gray.100' _dark={{ bgColor: 'gray.900' }}>
         <VStack width="80%" space={4}>
           <FormControl isRequired isInvalid={'email' in errors}>
-            <FormControl.Label>Email</FormControl.Label>
+            <FormControl.Label>{t('app.auth.email')}</FormControl.Label>
             <Controller
               control={control}
               render={(f) => (
@@ -91,7 +94,7 @@ function AuthLegacyPage(props: AuthLegacyPageProps) {
             </FormControl.ErrorMessage>
           </FormControl>
           <FormControl isInvalid={'password' in errors}>
-            <FormControl.Label>Password</FormControl.Label>
+            <FormControl.Label>{t('app.auth.pwd')}</FormControl.Label>
             <Controller
               control={control}
               render={f => (
@@ -116,7 +119,7 @@ function AuthLegacyPage(props: AuthLegacyPageProps) {
             onPress={handleSubmit(onSubmit)}
             colorScheme="pink"
           >
-            Submit
+            {t('app.auth.submit')}
           </Button>
         </VStack>
       </Center>

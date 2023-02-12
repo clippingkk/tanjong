@@ -10,7 +10,10 @@
       "done": "Done",
       "delete": "Delete",
       "bind": "Bind",
-      "bound": "bound"
+      "bound": "bound",
+      "confirm": "Confirm",
+      "skip": "Skip",
+      "retry": "Retry"
     },
     "slogan": "Organize, Review, Preach, Be the Peoples",
     "go": "Go!",
@@ -43,7 +46,9 @@
       "readingDuration_plural": "Read for {{ count }} days"
     },
     "auth": {
+      "loginFullTip": "Click me to synchronize your personal data with your account",
       "loginByScanQRCode": "Login by scan QRCode",
+      "loginByScanQRCodeTip": "Go to https://clippingkk.annatarhe.com/ and login\nThen scan the icon at top right cornner 📱\nMay need some patience",
       "signin": "Sign in",
       "signup": "Sign up",
       "phone": "phone",
@@ -86,7 +91,8 @@
       "title": "My books",
       "unchecked": "Not matched books",
       "notfound": "What! No clippings for now?",
-      "uploadTip": "click me and upload"
+      "uploadTip": "click me and upload",
+      "emptyFullTip": "Sorry, you haven't had any data, please upload your clippings on website, and try me later"
     },
     "clipping": {
       "update": "Change book info",

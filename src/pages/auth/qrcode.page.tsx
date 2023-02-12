@@ -2,6 +2,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import jwtDecode from 'jwt-decode'
 import { View, Text, Toast } from 'native-base'
 import React, {  useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Linking, SafeAreaView, StyleSheet } from 'react-native'
 import { Camera, useCameraDevices } from 'react-native-vision-camera'
 import { useScanBarcodes, BarcodeFormat } from 'vision-camera-code-scanner'
@@ -14,6 +15,7 @@ import AuthLegacyPage from './auth.legacy.page'
 type AuthQRCodePageProps = NativeStackScreenProps<RouteParamList, 'AuthQRCode'>
 
 function AuthQRCodePage(props: AuthQRCodePageProps) {
+  const { t } = useTranslation()
   useEffect(() => {
     Camera.getCameraPermissionStatus().then(p => {
       if (p === 'denied' || p === 'restricted') {
@@ -77,13 +79,11 @@ function AuthQRCodePage(props: AuthQRCodePageProps) {
       <SafeAreaView style={{ flex: 1 }}>
         <View flex={1} alignItems='center' justifyContent='space-between'>
           <View alignItems='center'>
-            <Text>Go to https://clippingkk.annatarhe.com/ and login</Text>
-            <Text>Then scan the icon at top right cornner 📱 </Text>
-            <Text>May need some patience</Text>
+            <Text>{t('app.auth.loginByScanQRCodeTip')}</Text>
           </View>
           <View w='sm' h='sm' borderColor='green.400' borderWidth={3} />
           <View>
-            <Text>Find the QRCode to login</Text>
+            <Text>{t('app.auth.loginByScanQRCode')}</Text>
           </View>
         </View>
       </SafeAreaView>

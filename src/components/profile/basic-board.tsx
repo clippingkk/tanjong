@@ -97,7 +97,6 @@ function BasicBoard(props: BasicBoardProps) {
               }}
             >{props.profile.bio}</Text>
           </View>
-
         </View>
       </View>
     </View>

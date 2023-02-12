@@ -1,17 +1,19 @@
 import { Text, View } from 'native-base'
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 
 type EmptyBoxProps = {
 }
 
 function EmptyBox(props: EmptyBoxProps) {
+  const { t } = useTranslation()
   return (
     <View flex={1} justifyContent='center' bg='gray.200' _dark={{ bg: 'gray.800' }}>
       <Text textAlign='center' fontSize='6xl'>
         😔
       </Text>
       <Text textAlign='center' p={2}>
-        Sorry, you havn't had any data, please upload your clippings in website, and try me later
+        {t('app.home.emptyFullTip')}
       </Text>
     </View>
 

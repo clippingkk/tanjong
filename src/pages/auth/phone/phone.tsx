@@ -9,10 +9,12 @@ import { ActivityIndicator, Keyboard, Platform, TouchableWithoutFeedback } from 
 import * as Sentry from "@sentry/react-native";
 import { useLinkTo } from '@react-navigation/native'
 import SignupSkipButton from './signup-skip-button'
+import { useTranslation } from 'react-i18next'
 
 type AuthApplePhoneBindProps = NativeStackScreenProps<RouteParamList, 'AuthAppleBind'>
 
 function AuthApplePhoneBind(props: AuthApplePhoneBindProps) {
+  const { t } = useTranslation()
   const phoneInput = useRef<PhoneInput>(null)
   const [pn, setPn] = useState('')
   const [capture, setCapture] = useState<AV.Captcha | null>(null)
@@ -32,7 +34,7 @@ function AuthApplePhoneBind(props: AuthApplePhoneBindProps) {
   const onPhoneNumberConfirm = useCallback(async () => {
     if (!phoneInput.current?.isValidNumber(pn)) {
       toast.show({
-        title: 'Error. Phone number is invalid'
+        title: t('app.auth.errors.pnLen')
       })
       return
     }
@@ -67,7 +69,7 @@ function AuthApplePhoneBind(props: AuthApplePhoneBindProps) {
     }
     if (verifyCode.length !== 4) {
       toast.show({
-        title: 'verify code invalid'
+        title: t('app.auth.errors.verifyCodeLen')
       })
       return
     }
@@ -81,7 +83,7 @@ function AuthApplePhoneBind(props: AuthApplePhoneBindProps) {
         validateToken: vt
       })
       toast.show({
-        title: 'SMS sent'
+        title: t('app.auth.info.smsSent')
       })
       linkTo({
         screen: RouteKeys.AuthPhoneOTP,
@@ -127,7 +129,7 @@ function AuthApplePhoneBind(props: AuthApplePhoneBindProps) {
                   autoFocus
                 />
                 <Button onPress={onPhoneNumberConfirm} isLoading={loading}>
-                  <Text>Confirm</Text>
+                  <Text>{t('app.common.confirm')}</Text>
                 </Button>
               </View>
               <Divider my={4} />
@@ -154,7 +156,7 @@ function AuthApplePhoneBind(props: AuthApplePhoneBindProps) {
                     />
                   </View>
                   <Button onPress={onSMSSendPress} mt={5} isLoading={loading}>
-                    Send SMS
+                    {t('app.common.confirm')}
                   </Button>
                 </View>
               ) : null}

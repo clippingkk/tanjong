@@ -7,10 +7,12 @@ import { Keyboard, Platform, TouchableWithoutFeedback } from 'react-native'
 import OTPInputView from '@twotalltotems/react-native-otp-input'
 import { AppleLoginPlatforms, useBindAppleUniqueMutation } from '../../../schema/generated'
 import { usePostAuth } from '../../../hooks/auth'
+import { useTranslation } from 'react-i18next'
 
 type AuthPhoneOTPPageProps = NativeStackScreenProps<RouteParamList, 'AuthPhoneOTP'>
 
 function AuthPhoneOTPPage(props: AuthPhoneOTPPageProps) {
+  const { t } = useTranslation()
   const [code, setCode] = useState('')
   const toast = useToast()
 
@@ -63,7 +65,7 @@ function AuthPhoneOTPPage(props: AuthPhoneOTPPageProps) {
           <SafeAreaView>
             <View alignItems='center' justifyContent='center' height='100%'>
               <View>
-                <Text>Please type the SMS code below</Text>
+                <Text>{t('app.auth.code.placeholder')}</Text>
               </View>
               <OTPInputView
                 style={{ width: '80%', height: 200 }}
@@ -73,7 +75,7 @@ function AuthPhoneOTPPage(props: AuthPhoneOTPPageProps) {
                 onCodeChanged={setCode}
               />
               <Button onPress={() => setCode('')} isLoading={doBindResult.loading}>
-                Clean
+                {t('app.common.cancel')}
               </Button>
             </View>
           </SafeAreaView>

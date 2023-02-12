@@ -5,6 +5,7 @@ import { CameraRoll } from "@react-native-camera-roll/camera-roll";
 import { ImageLoadEventData, ActivityIndicator, Share, PermissionsAndroid, Platform } from 'react-native'
 import { getUTPLink, KonzertThemeMap, UTPService } from '../../service/utp'
 import Page from '../page'
+import { useTranslation } from 'react-i18next';
 
 type BookShareViewProps = {
   kind: UTPService
@@ -27,6 +28,7 @@ async function hasAndroidPermission() {
 }
 
 function UTPShareView(props: BookShareViewProps) {
+  const { t } = useTranslation()
   const [currentTheme, setCurrentTheme] = useState(KonzertThemeMap.light.id)
 
   const shareImageUrl = useMemo(() => {
@@ -115,11 +117,11 @@ function UTPShareView(props: BookShareViewProps) {
             <Button
               my={4}
               onPress={onSaveImage}>
-              <Text>Save Image</Text>
+              <Text>{t('app.clipping.save')}</Text>
             </Button>
             <Button
               onPress={onShareLinkClick}>
-              <Text>Share Link</Text>
+              <Text>{t('app.clipping.shares')}</Text>
             </Button>
           </View>
 

@@ -137,8 +137,8 @@ function ProfilePage(props: ProfilePageProps) {
         refreshing={p.loading}
         ListHeaderComponent={(
           <View paddingTop={hh}>
-        <BasicBoard profile={p.data?.me} />
-        </View>
+            <BasicBoard profile={p.data?.me} />
+          </View>
         )}
         data={p.data?.me.recents ?? []}
         renderItem={({ item }) => <ClippingCell clipping={item} />}
@@ -148,7 +148,7 @@ function ProfilePage(props: ProfilePageProps) {
         ListEmptyComponent={(
           <View>
             <Text>empty</Text>
-            </View>
+          </View>
         )}
         ListFooterComponent={(
           <View width='100%' height={bh + 16} />

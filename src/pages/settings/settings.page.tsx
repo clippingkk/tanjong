@@ -1,4 +1,4 @@
-import { Button, Center, Divider, Pressable, Switch, Text, Toast, View, VStack } from 'native-base'
+import { Button, Center, CheckIcon, Divider, Pressable, Select, Switch, Text, Toast, View, VStack } from 'native-base'
 import { useHeaderHeight } from '@react-navigation/elements'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { useLinkTo } from '@react-navigation/native'
@@ -14,6 +14,7 @@ import { widgetAppWidgetType } from '../../hooks/auth'
 import { Platform, SafeAreaView } from 'react-native'
 import Page from '../../components/page'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
+import { useTranslation } from 'react-i18next'
 
 type SettingsPageProps = NativeStackScreenProps<RouteParamList, 'empty'>
 
@@ -84,6 +85,8 @@ function SettingsPage(props: SettingsPageProps) {
     linkTo('/' + RouteKeys.ProfileDebug)
   }, [count])
 
+  const { t, i18n } = useTranslation()
+
   return (
     <Page>
       <SafeAreaView>
@@ -106,7 +109,7 @@ function SettingsPage(props: SettingsPageProps) {
             {Platform.OS === 'ios' ? (
               <>
                 <Divider my={6} />
-                <View justifyContent='space-between' width='100%' flexDir='row'>
+                <View justifyContent='space-between' alignItems='center' width='100%' flexDir='row'>
                   <Text color='gray.900' _dark={{ color: 'amber.100' }}>
                     iOS Widget Type: {widgetType}
                   </Text>
@@ -117,10 +120,30 @@ function SettingsPage(props: SettingsPageProps) {
                 </View>
               </>
             ) : null}
+            <Divider my={6} />
+            <View justifyContent='space-between' alignItems='center' width='100%' flexDir='row'>
+              <Text color='gray.900' _dark={{ color: 'amber.100' }}>
+                Language:
+              </Text>
+              <Select
+                selectedValue={i18n.language ?? 'en'}
+                minWidth="200"
+                _selectedItem={{
+                  bg: "teal.600",
+                  endIcon: <CheckIcon size="5" />
+                }}
+                mt={1}
+                onValueChange={itemValue => i18n.changeLanguage(itemValue)}
+              >
+                <Select.Item label="English" value="en" />
+                <Select.Item label="中文" value="zh" />
+                <Select.Item label="한국인" value="ko" />
+              </Select>
+            </View>
           </VStack>
           <View flex={1} />
           <Button bg='red.500' mx={4} onPress={onLogout}>
-            <Text color='white'>Logout</Text>
+            <Text color='white'>{t('app.menu.logout')}</Text>
           </Button>
         </View>
       </SafeAreaView>

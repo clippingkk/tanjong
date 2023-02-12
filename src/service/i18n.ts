@@ -5,6 +5,7 @@ import * as RNLocalize from "react-native-localize"
 
 import en from '../l10n/en.json'
 import zh from '../l10n/zhCN.json'
+import ko from '../l10n/ko.json'
 import { storage } from '../utils/storage';
 
 const languageDetector: any = {
@@ -25,7 +26,6 @@ const languageDetector: any = {
     return Promise.resolve(l)
   },
   cacheUserLanguage: async (lng: string) => {
-    console.log('on set val', lng)
     storage.set('lng', lng)
   }
 }
@@ -34,7 +34,6 @@ i18n
   .use(languageDetector)
   .use(initReactI18next)
   .init<any>({
-    debug: true,
     compatibilityJSON: 'v3',
     fallbackLng: 'en',
     resources: {
@@ -43,6 +42,9 @@ i18n
       },
       zh: {
         translation: zh
+      },
+      ko: {
+        translation: ko
       },
     },
     ns: ['translation'],

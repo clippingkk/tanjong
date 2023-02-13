@@ -67,6 +67,10 @@
 		<string>LXGWWenKai-Light.ttf</string>
 		<string>LXGWWenKai-Regular.ttf</string>
 	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>BootSplash.storyboard</string>
 	<key>UIRequiredDeviceCapabilities</key>

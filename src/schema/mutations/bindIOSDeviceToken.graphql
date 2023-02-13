@@ -1,0 +1,7 @@
+mutation bindIOSDeviceToken($deviceToken: String!) {
+  bindDeviceToken(
+    iosDeviceToken: $deviceToken
+  ) {
+	id
+  }
+}

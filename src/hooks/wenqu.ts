@@ -1,9 +1,13 @@
-import { useEffect, useMemo, useRef, useState } from "react"
-import useSWR from 'swr'
-import { WenquBook, wenquRequest, WenquSearchResponse } from "../service/wenqu"
+import { useQuery } from "@tanstack/react-query"
+import { useEffect, useState } from "react"
+import { wenquRequest, WenquSearchResponse } from "../service/wenqu"
 
 export function useSingleBook(doubanId?: string | null, skip?: boolean) {
-  return useSWR<WenquSearchResponse>(doubanId && `/books/search?dbId=${doubanId}`)
+  return useQuery({
+    queryKey: ['wenqu', 'books', 'dbId', doubanId],
+    queryFn: () => wenquRequest<WenquSearchResponse>(`/books/search?dbId=${doubanId}`),
+    enabled: !skip && (doubanId?.length ?? 0) > 3
+  })
 }
 
 export function useBookSearch(query: string, offset: number) {

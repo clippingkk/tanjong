@@ -2,8 +2,8 @@
 //   'http://127.0.0.1:19654' :
 //   'https://clippingkk-api.annatarhe.com'
 export const API_HOST = __DEV__ ?
-//   'http://127.0.0.1:19654' :
-  'https://clippingkk-api.annatarhe.com' :
+  'http://127.0.0.1:19654' :
+  // 'https://clippingkk-api.annatarhe.com' :
   'https://clippingkk-api.annatarhe.com'
 
 // export const API_HOST = 'https://d446-42-60-205-243.ap.ngrok.io'
@@ -35,3 +35,9 @@ export const APP_URL_ORIGIN = __DEV__ ? 'http://localhost:3000' : 'https://clipp
 export const CF_TURNSTILE_SITE_KEY = '0x4AAAAAAAA361EJRDzUhf_b'
 
 export const SharedGroupPreferencesKey = 'group.com.annatarhe.clippingkk'
+
+export const StripeConfigs = {
+  publishableKey: 'pk_test_51ILfvoBkj5y79CYsxX63uo8VGmfGGVPmHv7HutLJQsAVXlIO8OfFZjQ4UJyjyY9VTipOY7BNHmih49LOn1oTdK1p00LSSTtVqv',
+  urlScheme: 'clippingkk',
+  merchantIdentifier: 'merchant.com.annatarhe.clippingkk',
+}

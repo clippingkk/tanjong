@@ -13,7 +13,8 @@ export enum RouteKeys {
   Clipping = 'Clipping',
   BookDetail = 'BookDetail',
   ProfileSettings = 'ProfileSettings',
-  ProfileDebug = 'ProfileDebug'
+  ProfileDebug = 'ProfileDebug',
+  Payment = 'Payment'
 }
 
 export type RouteParamList = {
@@ -33,4 +34,5 @@ export type RouteParamList = {
     idToken: string
   }
   AuthQRCode: object
+  Payment: object
 }

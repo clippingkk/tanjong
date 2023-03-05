@@ -1,5 +1,5 @@
 import { useAtomValue, useSetAtom } from "jotai"
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { profileAtom, uidAtom } from "../atomic"
 import { useBindIosDeviceTokenMutation, useProfileQuery } from "../schema/generated"
 import { Linking, Platform } from "react-native"
@@ -13,6 +13,7 @@ import * as adapters from '@leancloud/platform-adapters-react-native'
 import { LEANCLOUD } from "../constants/config"
 import PushNotificationIOS, { PushNotification } from "@react-native-community/push-notification-ios"
 import { Toast } from "native-base"
+import { useStripe } from "@stripe/stripe-react-native"
 AV.setAdapters(adapters as any)
 
 function useSetupIOSNotification() {
@@ -116,30 +117,42 @@ function getInfoFromDeeplinkUrl(url: string): { uid: number, cid: number } | nul
 
 export function useDeeplinkHandler() {
   const lt = useLinkTo<any>()
-  useEffect(() => {
-    Linking.getInitialURL().then(res => {
-      if (!res) {
+
+  const { handleURLCallback } = useStripe();
+  const handleDeepLink = useCallback(
+    async (url: string | null) => {
+      if (!url) {
         return
       }
-      const urlInfo = getInfoFromDeeplinkUrl(res)
+      const stripeHandled = await handleURLCallback(url);
+      if (stripeHandled) {
+        // This was a Stripe URL - you can return or add extra handling here as you see fit
+        return
+      }
+
+      const urlInfo = getInfoFromDeeplinkUrl(url)
       lt({
         screen: RouteKeys.Clipping,
         params: {
           clippingID: urlInfo?.cid
         }
       })
-    })
+    },
+    [handleURLCallback]
+  );
+  useEffect(() => {
+    (async function () {
+      const initialUrl = await Linking.getInitialURL()
+      if (!initialUrl) {
+        return
+      }
+      handleDeepLink(initialUrl)
+    })()
   }, [])
 
   useEffect(() => {
     function onUrlChange(event: { url: string }) {
-      const urlInfo = getInfoFromDeeplinkUrl(event.url)
-      lt({
-        screen: RouteKeys.Clipping,
-        params: {
-          clippingID: urlInfo?.cid
-        }
-      })
+      handleDeepLink(event.url)
     }
     const listener = Linking.addEventListener('url', onUrlChange)
     return () => {

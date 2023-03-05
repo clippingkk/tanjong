@@ -5,10 +5,30 @@ import { API_HOST, WENQU_API_HOST, WENQU_SIMPLE_TOKEN } from '../constants/confi
 import { offsetLimitPagination } from '@apollo/client/utilities'
 import { storage } from './storage'
 
-export interface IBaseResponseData {
-  status: Number
+export type IBaseResponseData = {
+  status: number
   msg: string
   data: any
+} | {
+  code: number,
+  error: string // json string
+}
+
+export type CKNetworkError = {
+  name: string
+  response: any
+  statusCode: number
+  result?: {
+    data: null,
+    errors: {
+      extensions: {
+        code: number
+        message: string
+      }
+      message: string
+      path: string[]
+    }[]
+  }
 }
 
 let token = getLocalToken()
@@ -28,7 +48,6 @@ export function updateLocalToken(nt: string | null) {
 }
 
 export async function request<T>(url: string, options: RequestInit = {}): Promise<T> {
-  console.log('will request ...', token)
   if (token) {
     options.headers = {
       ...(options.headers || {}),
@@ -39,15 +58,18 @@ export async function request<T>(url: string, options: RequestInit = {}): Promis
   options.mode = 'cors'
 
   try {
-    const response: IBaseResponseData = await fetch(API_HOST + '/api' + url, options).then(res => res.json())
+    const response = await fetch(API_HOST + '/api' + url, options)
+    const jsonData = (await response.json()) satisfies IBaseResponseData
     if (response.status >= 400) {
-      throw new Error(response.msg)
+      throw new Error(jsonData.msg ?? jsonData.error)
     }
-
-    return response.data as T
+    if (jsonData.code && jsonData.code >= 400) {
+      throw new Error(jsonData.error)
+    }
+    return jsonData.data as T
   } catch (e) {
     // toast.error('请求挂了... 一会儿再试试')
-    return Promise.reject(e)
+    throw e
   }
 }
 
@@ -147,7 +169,7 @@ export const client = new ApolloClient({
   link: errorLink.concat(authLink.concat(httpLink)),
 })
 
-function simpleDistArrayMerge(existings: {__ref: string}[] = [], incoming: {__ref: string}[] = []) {
+function simpleDistArrayMerge(existings: { __ref: string }[] = [], incoming: { __ref: string }[] = []) {
   return [...existings, ...incoming].reduce((acc, x) => {
     if (acc.findIndex((z: any) => z.__ref === x.__ref) === -1) {
       acc.push(x)

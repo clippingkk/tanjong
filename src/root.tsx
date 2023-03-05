@@ -12,20 +12,18 @@ import "fast-text-encoding"
 import './utils/init'
 import i18nInstance from './service/i18n'
 import { Provider } from 'jotai'
-import { SWRConfig } from 'swr';
-import { wenquRequest, WenquSWRCache } from './service/wenqu';
 import { I18nextProvider } from 'react-i18next';
+import { StripeProvider } from '@stripe/stripe-react-native';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { StripeConfigs } from './constants/config';
+
+const qc = new QueryClient()
 
 function Root() {
   return (
-    <I18nextProvider i18n={i18nInstance}>
-      <ApolloProvider client={client}>
-        <SWRConfig
-          value={{
-            fetcher: wenquRequest,
-            provider: () => new WenquSWRCache(),
-          }}
-        >
+    <QueryClientProvider client={qc}>
+      <I18nextProvider i18n={i18nInstance}>
+        <ApolloProvider client={client}>
           <Provider>
             <NativeBaseProvider
               theme={extendTheme({
@@ -49,15 +47,21 @@ function Root() {
               })}
             >
               <TailwindProvider utilities={utilities}>
-                <NavigationContainer>
-                  <App />
-                </NavigationContainer>
+                <StripeProvider
+                  publishableKey={StripeConfigs.publishableKey}
+                  urlScheme={StripeConfigs.urlScheme}
+                  merchantIdentifier={StripeConfigs.merchantIdentifier}
+                >
+                  <NavigationContainer>
+                    <App />
+                  </NavigationContainer>
+                </StripeProvider>
               </TailwindProvider>
             </NativeBaseProvider>
           </Provider>
-        </SWRConfig>
-      </ApolloProvider>
-    </I18nextProvider>
+        </ApolloProvider>
+      </I18nextProvider>
+    </QueryClientProvider>
   )
 }
 

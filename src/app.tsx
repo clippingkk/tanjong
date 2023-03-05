@@ -15,7 +15,7 @@ import {
 } from 'react-native'
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { createNativeStackNavigator, NativeStackNavigationOptions } from '@react-navigation/native-stack';
+import { createNativeStackNavigator, NativeStackHeaderProps, NativeStackNavigationOptions } from '@react-navigation/native-stack';
 import { useOnInit } from './hooks/init';
 import { RouteKeys } from './routes';
 import { BlurView } from '@react-native-community/blur';
@@ -32,6 +32,7 @@ import SettingsPage from './pages/settings/settings.page';
 import ProfilePage from './pages/profile/profile.page';
 import { RouteProp, ParamListBase, getFocusedRouteNameFromRoute, Link } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
+import PaymentPage from './pages/payment/payment';
 
 const RootRouteStack = createNativeStackNavigator()
 const TabStack = createBottomTabNavigator()
@@ -105,15 +106,26 @@ function getRootPageOptions(props: {
   navigation: any;
 }): NativeStackNavigationOptions {
   let headerTitle = ''
+  let headerRight: NativeStackHeaderProps['options']['headerRight'] = undefined;
   const { t } = useTranslation()
 
   const routeName = (getFocusedRouteNameFromRoute(props.route) as RouteKeys) ?? RouteKeys.TabHome;
   switch (routeName) {
     case RouteKeys.TabHome:
       headerTitle = t('app.home.title')
+      // headerRight = () => (
+      //   <Link to={{ screen: RouteKeys.Payment }}>
+      //     🤑
+      //   </Link>
+      // )
       break
     case RouteKeys.TabProfile:
       headerTitle = 'Me'
+      headerRight = () => (
+        <Link to={{ screen: RouteKeys.ProfileSettings }}>
+          ⚙️
+        </Link>
+      )
       break
     default:
       headerTitle = 'ClippingKK'
@@ -121,11 +133,7 @@ function getRootPageOptions(props: {
 
   return {
     headerTitle,
-    headerRight: routeName === RouteKeys.TabProfile ? () => (
-      <Link to={{ screen: RouteKeys.ProfileSettings }}>
-        ⚙️
-      </Link>
-    ) : undefined
+    headerRight,
   }
 }
 
@@ -214,7 +222,15 @@ const App = () => {
           headerTransparent: true,
           headerShown: true
         }}
-        component={ClippingPage}
+        component={ClippingPage as React.Component}
+      />
+      <RootRouteStack.Screen
+        name={RouteKeys.Payment}
+        options={{
+          headerTransparent: true,
+          headerShown: true
+        }}
+        component={PaymentPage}
       />
     </RootRouteStack.Navigator>
   );

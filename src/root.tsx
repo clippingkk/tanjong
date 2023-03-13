@@ -16,12 +16,21 @@ import { I18nextProvider } from 'react-i18next';
 import { StripeProvider } from '@stripe/stripe-react-native';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { StripeConfigs } from './constants/config';
+import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client';
+import { mmkvStoragePersister } from './utils/storage';
+import { duration3Days } from './utils/time';
 
-const qc = new QueryClient()
+const qc = new QueryClient({
+  defaultOptions: {
+    queries: {
+      cacheTime: duration3Days
+    }
+  }
+})
 
 function Root() {
   return (
-    <QueryClientProvider client={qc}>
+    <PersistQueryClientProvider client={qc} persistOptions={{ persister: mmkvStoragePersister }}>
       <I18nextProvider i18n={i18nInstance}>
         <ApolloProvider client={client}>
           <Provider>
@@ -61,7 +70,7 @@ function Root() {
           </Provider>
         </ApolloProvider>
       </I18nextProvider>
-    </QueryClientProvider>
+    </PersistQueryClientProvider>
   )
 }
 

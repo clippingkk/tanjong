@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [19.x]
+        node-version: [17.x]
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -20,9 +20,6 @@ jobs:
           cache: 'yarn'
       - run: yarn install
       - run: yarn run codegen
-      - name: Run unit tests
-        env:
-          NODE_OPTIONS: --no-experiemental-fetch
-        run: yarn test:coverage
+      - run: yarn test:coverage
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1

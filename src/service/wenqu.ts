@@ -15,7 +15,9 @@ export async function wenquRequest<T extends object>(url: string, options: Reque
   options.mode = 'cors'
 
   try {
+    // console.log('sdflkjsdkfjsdlfjsdklfjsdlfjsdklfjsdlfj ------', WENQU_API_HOST + url)
     const response: T | WenquErrorResponse = await fetch(WENQU_API_HOST + url, options).then(res => res.json())
+    // console.log('sdflkjsdkfjsdlfjsdklfjsdlfjsdklfjsdlfj ------', response)
     if ('error' in response) {
       throw new Error(response.error)
     }

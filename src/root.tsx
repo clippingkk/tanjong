@@ -18,15 +18,8 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { StripeConfigs } from './constants/config';
 import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client';
 import { mmkvStoragePersister } from './utils/storage';
-import { duration3Days } from './utils/time';
 
-const qc = new QueryClient({
-  defaultOptions: {
-    queries: {
-      cacheTime: duration3Days
-    }
-  }
-})
+const qc = new QueryClient({})
 
 function Root() {
   return (

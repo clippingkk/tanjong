@@ -2,8 +2,8 @@
 //   'http://127.0.0.1:19654' :
 //   'https://clippingkk-api.annatarhe.com'
 export const API_HOST = __DEV__ ?
-  'http://127.0.0.1:19654' :
-  // 'https://clippingkk-api.annatarhe.com' :
+  // 'http://127.0.0.1:19654' :
+  'https://clippingkk-api.annatarhe.com' :
   'https://clippingkk-api.annatarhe.com'
 
 // export const API_HOST = 'https://d446-42-60-205-243.ap.ngrok.io'

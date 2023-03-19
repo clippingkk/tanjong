@@ -15,6 +15,7 @@ import { Platform, SafeAreaView } from 'react-native'
 import Page from '../../components/page'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { useTranslation } from 'react-i18next'
+import { CacheManager } from '@georstat/react-native-image-cache'
 
 type SettingsPageProps = NativeStackScreenProps<RouteParamList, 'empty'>
 
@@ -86,6 +87,14 @@ function SettingsPage(props: SettingsPageProps) {
   }, [count])
 
   const { t, i18n } = useTranslation()
+
+  const [cacheSize, setCacheSize] = useState(0)
+  useEffect(() => {
+    CacheManager.getCacheSize().then(res => {
+      console.log(res)
+      setCacheSize(res)
+    })
+  }, [])
 
   return (
     <Page>

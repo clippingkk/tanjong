@@ -10080,6 +10080,11 @@ react-is@^17.0.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.2.tgz#e691d4a8e9c789365655539ab372762b0efb54f0"
   integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
 
+react-native-blurhash@^1.1.10:
+  version "1.1.10"
+  resolved "https://registry.yarnpkg.com/react-native-blurhash/-/react-native-blurhash-1.1.10.tgz#3969af24ebab098976cba90d100ba157760d3132"
+  integrity sha512-ScLdguCk+g9er2ccdwArNet1BOMoU7MClHV2MiNheHwn6HFr9vDkFPnUG011B5ddzCJlqj9JazFBNnxwhSWZhg==
+
 react-native-bootsplash@^4.4.2:
   version "4.4.2"
   resolved "https://registry.yarnpkg.com/react-native-bootsplash/-/react-native-bootsplash-4.4.2.tgz#85186daeb78dcac8c5d3ee0b72fee0a312adf841"
@@ -10138,6 +10143,11 @@ react-native-image-colors@^1.5.1:
   integrity sha512-1vMl6BIWssKGEPNgLIujzBxStdgNXIGAz3EDxuFk/bmnnB4x4YQjVzxOtJp+eoKMBl9DNkcul+72IUAw1IFJQw==
   dependencies:
     node-vibrant "3.1.6"
+
+react-native-linear-gradient@^2.6.2:
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/react-native-linear-gradient/-/react-native-linear-gradient-2.6.2.tgz#56598a76832724b2afa7889747635b5c80948f38"
+  integrity sha512-Z8Xxvupsex+9BBFoSYS87bilNPWcRfRsGC0cpJk72Nxb5p2nEkGSBv73xZbEHnW2mUFvP+huYxrVvjZkr/gRjQ==
 
 react-native-localize@^2.2.4:
   version "2.2.4"

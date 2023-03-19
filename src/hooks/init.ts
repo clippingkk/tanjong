@@ -12,7 +12,6 @@ import AV from 'leancloud-storage/core'
 import * as adapters from '@leancloud/platform-adapters-react-native'
 import { LEANCLOUD } from "../constants/config"
 import PushNotificationIOS, { PushNotification } from "@react-native-community/push-notification-ios"
-import { Toast } from "native-base"
 import { useStripe } from "@stripe/stripe-react-native"
 AV.setAdapters(adapters as any)
 

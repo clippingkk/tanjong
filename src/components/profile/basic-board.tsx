@@ -1,26 +1,36 @@
 import { CachedImage } from '@georstat/react-native-image-cache'
 import { BlurView } from '@react-native-community/blur'
 import { useHeaderHeight } from '@react-navigation/elements'
-import { Avatar, Text, View } from 'native-base'
+import { Avatar, Badge, Text, View } from 'native-base'
 import { baseFontSize } from 'native-base/lib/typescript/theme/tools'
-import React from 'react'
+import {} from 'react-native-linear-gradient'
+import React, { useMemo } from 'react'
 import { StyleSheet, useColorScheme } from 'react-native'
 import { User } from '../../schema/generated'
 import { basicStyles } from '../../styles/basic'
 import { getValidImageUrl } from '../../utils/image'
+import PremiumBadge from './premium-badge'
 
 type BasicBoardProps = {
-  profile?: Pick<User, 'id' | 'name' | 'avatar' | 'bio'>
+  profile?: Pick<User, 'id' | 'name' | 'avatar' | 'bio' | 'premiumEndAt'>
 }
 
 function BasicBoard(props: BasicBoardProps) {
   const hh = useHeaderHeight()
   const cs = useColorScheme()
+  const avatar = getValidImageUrl(props.profile?.avatar)
+
+  const isPremium = useMemo(() => {
+    const premiumEndAt = props.profile?.premiumEndAt
+    if (!premiumEndAt) {
+      return false
+    }
+    return new Date(premiumEndAt) > new Date()
+  }, [props.profile?.premiumEndAt])
 
   if (!props.profile) {
     return null
   }
-  const avatar = getValidImageUrl(props.profile?.avatar)
   return (
     <View
       paddingTop={hh}
@@ -78,7 +88,7 @@ function BasicBoard(props: BasicBoardProps) {
                 }}
               />
             </View>
-            <View justifyContent='center' alignItems='center'>
+            <View justifyContent='center' alignItems='center' flexDir='row'>
               <Text
                 fontSize='xs'
                 color='gray.900'
@@ -86,6 +96,9 @@ function BasicBoard(props: BasicBoardProps) {
                   color: 'gray.100'
                 }}
               >{props.profile.name}</Text>
+              {isPremium && (
+                <PremiumBadge style={{ marginLeft: 2 }} />
+              )}
             </View>
           </View>
           <View paddingLeft={4}>

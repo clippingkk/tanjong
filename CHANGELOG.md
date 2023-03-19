@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.4](https://github.com/clippingkk/tanjong/compare/v3.0.3...v3.0.4) (2023-03-19)
+
+
+### Features
+
+* **api:** add cache for book query ([a294c78](https://github.com/clippingkk/tanjong/commit/a294c78b4d50208ff97c1c63ea9f8a307280dc32))
+* **apple:** add apple device token to server ([76007f2](https://github.com/clippingkk/tanjong/commit/76007f2b2f54f9adeb43796c8962a1ac7ec20ebd))
+* **pay:** integrated with stripe for payment ([67079de](https://github.com/clippingkk/tanjong/commit/67079de599eb8a85385a50abce9d83c4b9184091))
+* **profile:** add premium badge at profile page ([4a2dbd9](https://github.com/clippingkk/tanjong/commit/4a2dbd97d18d2ffd88faf6dcccd14974be6fa716))
+
 ## 3.0.0 (2023-01-22)
 
 

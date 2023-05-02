@@ -16,7 +16,8 @@ type BookShareViewProps = {
 }
 
 async function hasAndroidPermission() {
-  const permission = Platform.Version >= 33 ? PermissionsAndroid.PERMISSIONS.READ_MEDIA_IMAGES : PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE
+  const v = typeof Platform.Version === 'string' ? parseInt(Platform.Version, 10) : Platform.Version
+  const permission = v >= 33 ? PermissionsAndroid.PERMISSIONS.READ_MEDIA_IMAGES : PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE
 
   const hasPermission = await PermissionsAndroid.check(permission)
   if (hasPermission) {

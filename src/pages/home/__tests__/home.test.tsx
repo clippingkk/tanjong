@@ -101,7 +101,7 @@ test('home page renders with list', async () => {
         frame: { x: 0, y: 0, width: 0, height: 0 },
         insets: { top: 0, left: 0, right: 0, bottom: 0 },
       }}>
-        <Provider initialValues={[[uidAtom, 1]]}>
+        <Provider>
           <NavigationContainer>
             <TabStack.Navigator initialRouteName={RouteKeys.TabHome}>
               <TabStack.Screen

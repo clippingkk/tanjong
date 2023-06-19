@@ -6,7 +6,7 @@ import { useHeaderHeight } from '@react-navigation/elements'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { FlashList } from '@shopify/flash-list'
 import { useAtomValue } from 'jotai'
-import { Button, Center, Divider, ScrollView, Text, View } from 'native-base'
+import { Button, Center, Divider, ScrollView, Text, View, useColorModeValue } from 'native-base'
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { ActivityIndicator, ImageLoadEventData, useColorScheme } from 'react-native'
 import { uidAtom } from '../../atomic'
@@ -84,6 +84,7 @@ function BookPage(props: BookPageProps) {
 
   const itemSizeCellHeight = useClippingCellAvgHeight(bs.data?.book.clippings ?? [])
 
+  const bg = useColorModeValue('#ECEFF1', '#263238')
 
   if ((bs.data?.book.clippingsCount ?? 0) === 0) {
     return <Page><View /></Page>
@@ -124,6 +125,17 @@ function BookPage(props: BookPageProps) {
         ref={bsr}
         index={1}
         snapPoints={snapPoints}
+        backgroundStyle={{ backgroundColor: bg }}
+        style={{
+          shadowColor: "#000",
+          shadowOffset: {
+            width: 0,
+            height: 12,
+          },
+          shadowOpacity: 0.58,
+          shadowRadius: 16.00,
+          elevation: 24,
+        }}
       >
         <UTPShareView
           kind={UTPService.book}

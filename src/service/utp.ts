@@ -32,10 +32,14 @@ type UTPLinkParams = {
     theme: number
 }
 
-export function getUTPLink(service: UTPService, params: UTPLinkParams): string {
+export function getKonzertLink(service: UTPService, params: UTPLinkParams): string {
   const d = new URLSearchParams(params as any)
-  const distUrl = encodeURIComponent(`https://konzert.annatarhe.cn/${service.toString()}.html?${d.toString()}`)
+  const distUrl = `https://konzert.annatarhe.cn/${service.toString()}.html?${d.toString()}`
+  return distUrl
+}
 
+export function getUTPLink(service: UTPService, params: UTPLinkParams): string {
+  const distUrl = encodeURIComponent(getKonzertLink(service, params))
   const screenWidth = 375
   const dpi = 3
 

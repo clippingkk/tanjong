@@ -6,6 +6,7 @@ import React, { useEffect } from 'react'
 import { tokenAtom, uidAtom } from '../../atomic'
 import { RouteKeys } from '../../routes'
 import { updateLocalToken } from '../../utils/apollo'
+import { useApolloClient } from '@apollo/client'
 
 type DebugPageProps = {
 }
@@ -16,8 +17,13 @@ function DebugPage(props: DebugPageProps) {
   const hh = useHeaderHeight()
   const nav = useNavigation()
 
+  const ac = useApolloClient()
+
   useEffect(() => {
     updateLocalToken(token)
+    setTimeout(() => {
+      ac.resetStore()
+    }, 100)
   }, [token])
 
   return (

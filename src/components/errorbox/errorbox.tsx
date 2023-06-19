@@ -15,7 +15,7 @@ function ErrorBox(props: ErrorBoxProps) {
 
   const errMsg = useMemo(() => {
     const ne = err.networkError as CKNetworkError
-    if ((ne.result?.errors.length ?? 0) > 0) {
+    if ((ne.result?.errors?.length ?? 0) > 0) {
       return ne.result?.errors[0].message
     }
 

@@ -1,11 +1,12 @@
 import { CachedImage } from '@georstat/react-native-image-cache'
-import { Button, Center, ScrollView, Text, Toast, View } from 'native-base'
+import { Button, Center, ScrollView, Text, Toast, View, Image } from 'native-base'
 import React, { useCallback, useMemo, useState } from 'react'
 import { CameraRoll } from "@react-native-camera-roll/camera-roll";
-import { ImageLoadEventData, ActivityIndicator, Share, PermissionsAndroid, Platform } from 'react-native'
-import { getUTPLink, KonzertThemeMap, UTPService } from '../../service/utp'
+import { ImageLoadEventData, ActivityIndicator, Share, PermissionsAndroid, Platform, Image as NativeImage } from 'react-native'
+import { getKonzertLink, getUTPLink, KonzertThemeMap, UTPService } from '../../service/utp'
 import Page from '../page'
 import { useTranslation } from 'react-i18next';
+import UTPWebview from './utp-webview';
 
 type BookShareViewProps = {
   kind: UTPService
@@ -32,6 +33,20 @@ function UTPShareView(props: BookShareViewProps) {
   const { t } = useTranslation()
   const [currentTheme, setCurrentTheme] = useState(KonzertThemeMap.light.id)
 
+  const konzertUrl = useMemo(() => {
+    if (!props.uid) {
+      return
+    }
+    return getKonzertLink(
+      props.kind,
+      {
+        uid: props.uid,
+        bid: props.bookID,
+        cid: props.cid,
+        theme: currentTheme
+      })
+  }, [props.uid, props.kind, props.bookID, currentTheme])
+
   const shareImageUrl = useMemo(() => {
     if (!props.uid) {
       return
@@ -47,6 +62,10 @@ function UTPShareView(props: BookShareViewProps) {
   }, [props.uid, props.kind, props.bookID, currentTheme])
 
   const [loadedImage, setLoadedImage] = useState<ImageLoadEventData['source'] | null>(null)
+  // const [loadedImage, setLoadedImage] = useState<ImageLoadEventData['source'] | null>({
+  //   uri: '/Users/bytedance/Library/Developer/CoreSimulator/Devices/88A39455-E66B-40BF-84F7-6163B5FCB022/data/Containers/Data/Application/4D934F46-8B6B-4F17-8657-4D67AFAE68BE/tmp/ReactNative/C62AACB9-1404-4EBE-9DB2-9B063F2BF266.png',
+  //   width: 1089, height: 4500
+  // })
 
   const ratio = useMemo(() => {
     if (!loadedImage) {
@@ -126,24 +145,38 @@ function UTPShareView(props: BookShareViewProps) {
             </Button>
           </View>
 
-          <CachedImage
-            source={shareImageUrl}
-            onLoad={e => {
-              setLoadedImage(e.nativeEvent.source)
-            }}
-            loadingImageComponent={() => (
-              <Center>
-                <ActivityIndicator />
-              </Center>
-            )}
-            style={{
-              borderRadius: 4,
-              overflow: 'hidden',
-              aspectRatio: ratio,
-              width: '80%',
-            }}
-            resizeMode='cover'
-          />
+          {loadedImage ? (
+            <View
+              width={'100%'}
+              // height={20}
+            >
+              <NativeImage
+                source={loadedImage}
+                alt={t('app.clipping.share') ?? ''}
+                style={{
+                  borderRadius: 4,
+                  overflow: 'hidden',
+                  // TODO: calc
+                  // aspectRatio: ratio,
+                  width: 320,
+                  height: 300,
+                }}
+                resizeMode='cover'
+              />
+            </View>
+          ) : (
+            <View flex={1} background={'red.300'}>
+              <UTPWebview
+                url={konzertUrl!}
+                onGetImage={(file) => {
+                  NativeImage.getSize(file, (width, height) => {
+                    setLoadedImage({ uri: file, width, height })
+                  })
+                }}
+              />
+            </View>
+          )}
+
         </Center>
       </ScrollView>
     </Page>

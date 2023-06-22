@@ -19,7 +19,7 @@ import { createNativeStackNavigator, NativeStackHeaderProps, NativeStackNavigati
 import { useOnInit } from './hooks/init';
 import { RouteKeys } from './routes';
 import { BlurView } from '@react-native-community/blur';
-import AuthQRCodePage from './pages/auth/qrcode.page';
+import AuthQRCodePage from './pages/auth/qrcode.page.mock';
 import ClippingPage from './pages/clipping/clipping';
 import { useTextColor } from './hooks/color';
 import AuthV3Page from './pages/auth/auth.v3';

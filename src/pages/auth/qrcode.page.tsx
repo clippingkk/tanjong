@@ -4,7 +4,7 @@ import { View, Text, Toast } from 'native-base'
 import React, {  useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Linking, SafeAreaView, StyleSheet } from 'react-native'
-import { Camera, useCameraDevices } from 'react-native-vision-camera'
+// import { Camera, useCameraDevices } from 'react-native-vision-camera'
 import { useScanBarcodes, BarcodeFormat } from 'vision-camera-code-scanner'
 import Page from '../../components/page'
 import { usePostAuth } from '../../hooks/auth'
@@ -17,19 +17,20 @@ type AuthQRCodePageProps = NativeStackScreenProps<RouteParamList, 'AuthQRCode'>
 function AuthQRCodePage(props: AuthQRCodePageProps) {
   const { t } = useTranslation()
   useEffect(() => {
-    Camera.getCameraPermissionStatus().then(p => {
-      if (p === 'denied' || p === 'restricted') {
-        Linking.openSettings()
-      }
-    })
+    // Camera.getCameraPermissionStatus().then(p => {
+    //   if (p === 'denied' || p === 'restricted') {
+    //     Linking.openSettings()
+    //   }
+    // })
   }, [])
 
   const [frameProcessor, barcodes] = useScanBarcodes([BarcodeFormat.ALL_FORMATS], {
     checkInverted: true,
   });
 
-  const devices = useCameraDevices()
-  const device = devices.back
+  // const devices = useCameraDevices()
+  // const device = devices.back
+  const device = null
 
   const onPostAuth = usePostAuth(props.navigation)
 
@@ -69,13 +70,13 @@ function AuthQRCodePage(props: AuthQRCodePageProps) {
 
   return (
     <>
-      <Camera
+      {/* <Camera
         style={StyleSheet.absoluteFill}
         device={device}
         isActive={true}
         frameProcessor={frameProcessor}
         frameProcessorFps={5}
-      />
+      /> */}
       <SafeAreaView style={{ flex: 1 }}>
         <View flex={1} alignItems='center' justifyContent='space-between'>
           <View alignItems='center'>

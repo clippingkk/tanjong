@@ -48,7 +48,7 @@ function SettingsPage(props: SettingsPageProps) {
   const linkTo = useLinkTo()
 
   const [count, setCount] = useState(0)
-  const timer = useRef<number | null>(null)
+  const timer = useRef<NodeJS.Timeout | null>(null)
   const { widgetType, toggleWidgetType } = useAppWidgetType()
 
   const onDebugClick = useCallback(() => {

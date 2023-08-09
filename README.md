@@ -4,6 +4,8 @@ It's the [ClippingKK](https://clippingkk.annatarhe.com)'s mobile version that re
 
 still in progress.
 
+you have to use `bundle exec pod install` to install in m1 mac
+
 ## run
 
 please change the udid to your device id

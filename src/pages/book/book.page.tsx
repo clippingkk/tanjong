@@ -1,14 +1,9 @@
-import { CachedImage } from '@georstat/react-native-image-cache'
-import { BottomSheetModal, BottomSheetModalProvider } from '@gorhom/bottom-sheet'
-import { BlurView } from '@react-native-community/blur'
-import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
-import { useHeaderHeight } from '@react-navigation/elements'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { FlashList } from '@shopify/flash-list'
 import { useAtomValue } from 'jotai'
-import { Button, Center, Divider, ScrollView, Text, View, useColorModeValue } from 'native-base'
+import { Button, Center, Divider, Text, View, useColorModeValue } from 'native-base'
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { ActivityIndicator, ImageLoadEventData, useColorScheme } from 'react-native'
+import { ScrollView, useColorScheme } from 'react-native'
 import { uidAtom } from '../../atomic'
 import BookHead from '../../components/book/head'
 import ClippingCell from '../../components/clipping/cell'
@@ -18,6 +13,7 @@ import { useClippingCellAvgHeight } from '../../hooks/clipping'
 import { RouteParamList } from '../../routes'
 import { useBookQuery } from '../../schema/generated'
 import { UTPService } from '../../service/utp'
+import ActionSheet, { ActionSheetRef, useScrollHandlers } from 'react-native-actions-sheet'
 
 type BookPageProps = NativeStackScreenProps<RouteParamList, 'Book'>
 
@@ -26,8 +22,10 @@ function BookPage(props: BookPageProps) {
   const book = props.route.params.book
   const uid = useAtomValue(uidAtom)
 
-  const bsr = useRef<BottomSheetModal>(null)
   const snapPoints = useMemo(() => ['50%', '70%'], []);
+
+  const actionSheetRef = useRef<ActionSheetRef>(null);
+
   useEffect(() => {
     props.navigation.setOptions({
       title: book.title,
@@ -39,7 +37,8 @@ function BookPage(props: BookPageProps) {
             variant='ghost'
             size='xs'
             onPress={() => {
-              bsr.current?.present()
+              // bsr.current?.present()
+              actionSheetRef.current?.show()
             }}
           >
             <Text> 🌐 </Text>
@@ -85,14 +84,17 @@ function BookPage(props: BookPageProps) {
   const itemSizeCellHeight = useClippingCellAvgHeight(bs.data?.book.clippings ?? [])
 
   const bg = useColorModeValue('#ECEFF1', '#263238')
+  const scrollHandlers = useScrollHandlers<ScrollView>({
+    refreshControlBoundary: 0,
+  });
 
   if ((bs.data?.book.clippingsCount ?? 0) === 0) {
     return <Page><View /></Page>
   }
 
   return (
-    <BottomSheetModalProvider>
-      <Page>
+    <Page>
+      <>
         <FlashList
           ListHeaderComponent={() => (
             <BookHead book={book} />
@@ -120,31 +122,31 @@ function BookPage(props: BookPageProps) {
             <View height={4} />
           )}
         />
-      </Page>
-      <BottomSheetModal
-        ref={bsr}
-        index={1}
-        snapPoints={snapPoints}
-        backgroundStyle={{ backgroundColor: bg }}
-        style={{
-          shadowColor: "#000",
-          shadowOffset: {
-            width: 0,
-            height: 12,
-          },
-          shadowOpacity: 0.58,
-          shadowRadius: 16.00,
-          elevation: 24,
-        }}
-      >
-        <UTPShareView
-          kind={UTPService.book}
-          bookID={book.id}
-          bookDBID={book.doubanId}
-          uid={uid}
-        />
-      </BottomSheetModal>
-    </BottomSheetModalProvider>
+        <ActionSheet
+          ref={actionSheetRef}
+          snapPoints={[80, 90]}
+        // backgroundStyle={{ backgroundColor: bg }}
+        // style={{
+        //   shadowColor: "#000",
+        //   shadowOffset: {
+        //     width: 0,
+        //     height: 12,
+        //   },
+        //   shadowOpacity: 0.58,
+        //   shadowRadius: 16.00,
+        //   elevation: 24,
+        // }}
+        >
+          <UTPShareView
+            kind={UTPService.book}
+            bookID={book.id}
+            bookDBID={book.doubanId}
+            uid={uid}
+            scrollHandler={scrollHandlers}
+          />
+        </ActionSheet>
+      </>
+    </Page>
   )
 }
 

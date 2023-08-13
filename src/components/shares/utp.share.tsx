@@ -1,12 +1,13 @@
 import { CachedImage } from '@georstat/react-native-image-cache'
-import { Button, Center, ScrollView, Text, Toast, View, Image } from 'native-base'
+import { Button, Center, Text, Toast, View, ScrollView } from 'native-base'
 import React, { useCallback, useMemo, useState } from 'react'
 import { CameraRoll } from "@react-native-camera-roll/camera-roll";
-import { ImageLoadEventData, ActivityIndicator, Share, PermissionsAndroid, Platform, Image as NativeImage } from 'react-native'
+import { ImageLoadEventData, ActivityIndicator, Share, PermissionsAndroid, Platform, Image as NativeImage, ScrollView as RNScrollView } from 'react-native'
 import { getKonzertLink, getUTPLink, KonzertThemeMap, UTPService } from '../../service/utp'
 import Page from '../page'
 import { useTranslation } from 'react-i18next';
 import UTPWebview from './utp-webview';
+import { useScrollHandlers } from 'react-native-actions-sheet';
 
 type BookShareViewProps = {
   kind: UTPService
@@ -14,6 +15,7 @@ type BookShareViewProps = {
   cid?: number
   bookDBID: number
   uid: number | null
+  scrollHandler: ReturnType<typeof useScrollHandlers<RNScrollView>>
 }
 
 async function hasAndroidPermission() {
@@ -30,6 +32,7 @@ async function hasAndroidPermission() {
 }
 
 function UTPShareView(props: BookShareViewProps) {
+  const { kind, bookID, cid, bookDBID, uid, scrollHandler } = props
   const { t } = useTranslation()
   const [currentTheme, setCurrentTheme] = useState(KonzertThemeMap.light.id)
 
@@ -116,70 +119,73 @@ function UTPShareView(props: BookShareViewProps) {
   }
 
   return (
-    <Page>
-      <ScrollView
-        pt={4}
-      >
-        <Center>
-          <View pb={4}>
-            <Button.Group>
-              {Object.values(KonzertThemeMap).map(v => (
-                <Button
-                  key={v.id}
-                  variant={v.id === currentTheme ? 'solid' : 'outline'}
-                  onPress={() => setCurrentTheme(v.id)}>
-                  <Text>
-                    {v.name}
-                  </Text>
-                </Button>
-              ))}
-            </Button.Group>
-            <Button
-              my={4}
-              onPress={onSaveImage}>
-              <Text>{t('app.clipping.save')}</Text>
-            </Button>
-            <Button
-              onPress={onShareLinkClick}>
-              <Text>{t('app.clipping.shares')}</Text>
-            </Button>
+    <ScrollView
+      backgroundColor='gray.100'
+      _dark={{ backgroundColor: 'gray.900' }}
+      pt={4}
+      {...scrollHandler}
+    >
+      <Center>
+        <View pb={4}>
+          <Button.Group>
+            {Object.values(KonzertThemeMap).map(v => (
+              <Button
+                key={v.id}
+                variant={v.id === currentTheme ? 'solid' : 'outline'}
+                onPress={() => setCurrentTheme(v.id)}>
+                <Text>
+                  {v.name}
+                </Text>
+              </Button>
+            ))}
+          </Button.Group>
+          <Button
+            my={4}
+            onPress={onSaveImage}>
+            <Text>{t('app.clipping.save')}</Text>
+          </Button>
+          <Button
+            onPress={onShareLinkClick}>
+            <Text>{t('app.clipping.shares')}</Text>
+          </Button>
+        </View>
+
+        {loadedImage ? (
+          <View
+            width={'100%'}
+            justifyContent={'center'}
+            alignItems={'center'}
+            paddingBottom={4}
+          >
+            <NativeImage
+              source={loadedImage}
+              alt={t('app.clipping.share') ?? ''}
+              style={{
+                borderRadius: 4,
+                overflow: 'hidden',
+                // TODO: calc
+                aspectRatio: loadedImage.width / loadedImage.height,
+                width: 320,
+                height: loadedImage.height * 320 / loadedImage.width,
+              }}
+              resizeMode='cover'
+            />
           </View>
+        ) : (
+          <View flex={1} background={'red.300'}>
+            <UTPWebview
+              url={konzertUrl!}
+              onGetImage={(file) => {
+                NativeImage.getSize(file, (width, height) => {
+                  setLoadedImage({ uri: file, width, height })
+                })
+              }}
+            />
+          </View>
+        )}
 
-          {loadedImage ? (
-            <View
-              width={'100%'}
-              // height={20}
-            >
-              <NativeImage
-                source={loadedImage}
-                alt={t('app.clipping.share') ?? ''}
-                style={{
-                  borderRadius: 4,
-                  overflow: 'hidden',
-                  // TODO: calc
-                  // aspectRatio: ratio,
-                  width: 320,
-                  height: 300,
-                }}
-                resizeMode='cover'
-              />
-            </View>
-          ) : (
-            <View flex={1} background={'red.300'}>
-              <UTPWebview
-                url={konzertUrl!}
-                onGetImage={(file) => {
-                  NativeImage.getSize(file, (width, height) => {
-                    setLoadedImage({ uri: file, width, height })
-                  })
-                }}
-              />
-            </View>
-          )}
-
-        </Center>
-      </ScrollView>
-    </Page>
+      </Center>
+    </ScrollView>
   )
 }
 

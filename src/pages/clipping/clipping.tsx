@@ -1,12 +1,9 @@
 import { CachedImage } from '@georstat/react-native-image-cache'
-import { BottomSheetModal, BottomSheetModalProvider } from '@gorhom/bottom-sheet'
-import { useHeaderHeight } from '@react-navigation/elements'
-import { useNavigation } from '@react-navigation/native'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { useAtomValue } from 'jotai'
 import { Button, Divider, ScrollView, Text, useSafeArea, View } from 'native-base'
 import React, { useEffect, useMemo, useRef, useState } from 'react'
-import { ActivityIndicator, RefreshControl, SafeAreaView, useColorScheme } from 'react-native'
+import { ActivityIndicator, RefreshControl, SafeAreaView, ScrollView as RNScrollView, useColorScheme } from 'react-native'
 import ImageColors from 'react-native-image-colors'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { uidAtom } from '../../atomic'
@@ -17,6 +14,7 @@ import { Clipping, useFetchClippingQuery } from '../../schema/generated'
 import { UTPService } from '../../service/utp'
 import { basicStyles } from '../../styles/basic'
 import { FontLXGW } from '../../styles/font'
+import ActionSheet, { ActionSheetRef, useScrollHandlers } from 'react-native-actions-sheet'
 
 type ClippingPageProps = NativeStackScreenProps<RouteParamList, 'Clipping'>
 
@@ -27,7 +25,7 @@ function ClippingPage(props: ClippingPageProps) {
 
   const id = paramClipping?.id ?? cid
 
-  const bsr = useRef<BottomSheetModal>(null)
+  const bsr = useRef<ActionSheetRef>(null);
   const snapPoints = useMemo(() => ['50%', '70%'], []);
 
   const uid = useAtomValue(uidAtom)
@@ -43,6 +41,9 @@ function ClippingPage(props: ClippingPageProps) {
   const bookID = paramClipping?.bookID ?? remoteClipping?.bookID
   const content = paramClipping?.content ?? remoteClipping?.content
   const title = paramClipping?.title ?? remoteClipping?.title
+  const scrollHandlers = useScrollHandlers<RNScrollView>({
+    refreshControlBoundary: 0,
+  });
 
   useEffect(() => {
     if (!title) {
@@ -58,7 +59,7 @@ function ClippingPage(props: ClippingPageProps) {
             variant='ghost'
             size='xs'
             onPress={() => {
-              bsr.current?.present()
+              bsr.current?.show()
             }}
           >
             <Text> 🌐 </Text>
@@ -79,7 +80,7 @@ function ClippingPage(props: ClippingPageProps) {
   }, [books.data?.books])
 
   return (
-    <BottomSheetModalProvider>
+    <>
       <ScrollView
         backgroundColor='gray.100'
         _dark={{ backgroundColor: 'gray.900' }}
@@ -145,10 +146,11 @@ function ClippingPage(props: ClippingPageProps) {
 
         </View>
       </ScrollView>
-      <BottomSheetModal
+      <ActionSheet
         ref={bsr}
-        index={1}
-        snapPoints={snapPoints}
+          snapPoints={[80, 90]}
+        // index={1}
+        // snapPoints={snapPoints}
       >
         {book ? (
           <UTPShareView
@@ -157,10 +159,11 @@ function ClippingPage(props: ClippingPageProps) {
             bookDBID={book.doubanId}
             cid={id}
             uid={uid}
+            scrollHandler={scrollHandlers}
           />
         ) : null}
-      </BottomSheetModal>
-    </BottomSheetModalProvider>
+      </ActionSheet>
+    </>
   )
 }
 

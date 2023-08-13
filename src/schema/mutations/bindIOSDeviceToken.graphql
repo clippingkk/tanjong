@@ -1,6 +1,18 @@
-mutation bindIOSDeviceToken($deviceToken: String!) {
+mutation bindIOSDeviceToken(
+    $deviceId: String!
+    $deviceName: String!
+    $appVersion: String!
+    $iosDeviceToken: String!
+    $os: String!
+    $osVersion: String!
+) {
   bindDeviceToken(
-    iosDeviceToken: $deviceToken
+	deviceId: $deviceId
+	deviceName: $deviceName
+	appVersion: $appVersion
+	iosDeviceToken: $iosDeviceToken
+	os: $os
+	osVersion: $osVersion
   ) {
 	id
   }

@@ -13,6 +13,9 @@ import * as adapters from '@leancloud/platform-adapters-react-native'
 import { LEANCLOUD } from "../constants/config"
 import PushNotificationIOS, { PushNotification } from "@react-native-community/push-notification-ios"
 import { useStripe } from "@stripe/stripe-react-native"
+import { Toast } from "native-base"
+import DeviceInfo from 'react-native-device-info';
+
 AV.setAdapters(adapters as any)
 
 function useSetupIOSNotification() {
@@ -37,27 +40,43 @@ function useSetupIOSNotification() {
       }
     }
 
-    async function onRemoteNotificationRegisted(deviceToken: string) {
+    async function onRemoteNotificationRegister(deviceToken: string) {
       try {
+        const [deviceId, deviceName, systemVersion, version] = await Promise.all([
+          DeviceInfo.getUniqueId(),
+          DeviceInfo.getDeviceId(),
+          DeviceInfo.getSystemVersion(),
+          DeviceInfo.getVersion()
+        ])
         await doBindIOSDeviceToken({
           variables: {
-            deviceToken
+            deviceId,
+            deviceName,
+            os: Platform.OS.toLowerCase(),
+            osVersion: systemVersion,
+            appVersion: version,
+            iosDeviceToken: deviceToken,
           }
         })
-        console.log('notification registed')
+        console.log('notification registed', deviceToken)
       } catch (err: any) {
         console.log('notification registed error', err)
+        Toast.show({
+          title: err.message
+        })
       }
     }
 
     PushNotificationIOS.addEventListener('notification', onRemoteNotification)
-    PushNotificationIOS.addEventListener('register', onRemoteNotificationRegisted)
+    PushNotificationIOS.addEventListener('register', onRemoteNotificationRegister)
+    if (Platform.OS === 'ios') {
+      PushNotificationIOS.requestPermissions()
+    }
     return () => {
       PushNotificationIOS.removeEventListener('notification')
       PushNotificationIOS.removeEventListener('register')
     }
   }, []);
-
 }
 
 export function useOnInit() {

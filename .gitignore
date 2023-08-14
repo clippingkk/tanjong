@@ -71,3 +71,4 @@ src/schema/generated.tsx
 .jest/
 coverage/
 sentry.properties
+src/gql/

@@ -1,4 +1,3 @@
-overwrite: true
 schema: src/schema/schema.json
 # schema:
 #   - "http://127.0.0.1:19654/api/v2/graphql":
@@ -6,6 +5,8 @@ schema: src/schema/schema.json
 #         Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJleHAiOjE3MDc0Njc5OTEsImlhdCI6MTY5MTkxNTk5MSwiaXNzIjoiY2stc2VydmVyQCJ9.JtRKIFk7neNfIQwDnM0OQCV_IQCK_6uHZgTrPjX-d0Y"
 documents: "src/schema/**/*.graphql"
 generates:
+  src/gql/:
+    preset: 'client'
   src/schema/generated.tsx:
     plugins:
       - "typescript"

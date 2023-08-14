@@ -37,15 +37,15 @@ function UTPShareView(props: BookShareViewProps) {
   const [currentTheme, setCurrentTheme] = useState(KonzertThemeMap.light.id)
 
   const konzertUrl = useMemo(() => {
-    if (!props.uid) {
+    if (!uid) {
       return
     }
     return getKonzertLink(
-      props.kind,
+      kind,
       {
-        uid: props.uid,
-        bid: props.bookID,
-        cid: props.cid,
+        uid,
+        bid: bookID,
+        cid: cid,
         theme: currentTheme
       })
   }, [props.uid, props.kind, props.bookID, currentTheme])
@@ -55,27 +55,18 @@ function UTPShareView(props: BookShareViewProps) {
       return
     }
     return getUTPLink(
-      props.kind,
+      kind,
       {
-        uid: props.uid,
-        bid: props.bookID,
-        cid: props.cid,
+        uid: uid || -1,
+        bid: bookID,
+        cid: cid,
         theme: currentTheme
       })
   }, [props.uid, props.kind, props.bookID, currentTheme])
 
   const [loadedImage, setLoadedImage] = useState<ImageLoadEventData['source'] | null>(null)
-  // const [loadedImage, setLoadedImage] = useState<ImageLoadEventData['source'] | null>({
-  //   uri: '/Users/bytedance/Library/Developer/CoreSimulator/Devices/88A39455-E66B-40BF-84F7-6163B5FCB022/data/Containers/Data/Application/4D934F46-8B6B-4F17-8657-4D67AFAE68BE/tmp/ReactNative/C62AACB9-1404-4EBE-9DB2-9B063F2BF266.png',
-  //   width: 1089, height: 4500
-  // })
 
-  const ratio = useMemo(() => {
-    if (!loadedImage) {
-      return 16 / 9
-    }
-    return loadedImage.width / loadedImage.height
-  }, [loadedImage?.height, loadedImage?.width])
+  const [loading, setLoading] = useState(false)
 
   const onSaveImage = useCallback(async () => {
     if (!loadedImage?.uri) {
@@ -85,22 +76,25 @@ function UTPShareView(props: BookShareViewProps) {
       return
     }
     try {
+      setLoading(true)
       await CameraRoll.save(loadedImage.uri)
       Toast.show({
         title: 'Saved to album'
       })
     } catch (err: any) {
       Toast.show({ title: err.toString() })
+    } finally {
+      setLoading(false)
     }
   }, [loadedImage])
 
   const onShareLinkClick = useCallback(() => {
     const prefix = `https://clippingkk.annatarhe.com`
-    const distUrl = props.kind === UTPService.book ? `/dash/${props.uid}/book/${props.bookDBID}` : `/dash/${props.uid}/clippings/${props.cid}`
+    const distUrl = props.kind === UTPService.book ? `/dash/${uid}/book/${bookDBID}` : `/dash/${uid}/clippings/${cid}`
     Share.share({
       url: prefix + distUrl
     })
-  }, [props.kind, props.uid, props.bookDBID, props.cid])
+  }, [kind, uid, bookDBID, cid])
 
   if (!props.uid) {
     return (
@@ -141,6 +135,7 @@ function UTPShareView(props: BookShareViewProps) {
           </Button.Group>
           <Button
             my={4}
+            isLoading={loading}
             onPress={onSaveImage}>
             <Text>{t('app.clipping.save')}</Text>
           </Button>

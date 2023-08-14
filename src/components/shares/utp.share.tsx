@@ -178,7 +178,6 @@ function UTPShareView(props: BookShareViewProps) {
             />
           </View>
         )}
-
       </Center>
     </ScrollView>
   )

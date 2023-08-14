@@ -10,7 +10,6 @@ export type PageLoadedEvent = {
 
 
 export function useWebViewMessageHandler(handler: (ev: PageLoadedEvent) => void) {
-
   const toast = useToast()
   return useCallback((ev: WebViewMessageEvent) => {
     const data = ev.nativeEvent.data

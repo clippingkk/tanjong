@@ -19,7 +19,7 @@ function UTPWebview(props: UTPWebviewProps) {
   const onPageLoaded = useCallback( async (ev: PageLoadedEvent) => {
     setSize({ width: ev.width, height: ev.height })
     // wait for webview resize
-    await sleep(500)
+    await sleep(200)
     const st = await captureRef(ref, {
       format: "png",
       quality: 0.9,

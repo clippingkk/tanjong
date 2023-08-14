@@ -222,7 +222,7 @@ const App = () => {
           headerTransparent: true,
           headerShown: true
         }}
-        component={ClippingPage as React.Component}
+        component={ClippingPage}
       />
       <RootRouteStack.Screen
         name={RouteKeys.Payment}

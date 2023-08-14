@@ -4,8 +4,6 @@ import { useAtomValue } from 'jotai'
 import { Button, Divider, ScrollView, Text, useSafeArea, View } from 'native-base'
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { ActivityIndicator, RefreshControl, SafeAreaView, ScrollView as RNScrollView, useColorScheme } from 'react-native'
-import ImageColors from 'react-native-image-colors'
-import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { uidAtom } from '../../atomic'
 import UTPShareView from '../../components/shares/utp.share'
 import { useSingleBook } from '../../hooks/wenqu'
@@ -26,10 +24,8 @@ function ClippingPage(props: ClippingPageProps) {
   const id = paramClipping?.id ?? cid
 
   const bsr = useRef<ActionSheetRef>(null);
-  const snapPoints = useMemo(() => ['50%', '70%'], []);
 
   const uid = useAtomValue(uidAtom)
-
   const clippingResult = useFetchClippingQuery({
     variables: {
       id: id!

@@ -106,10 +106,6 @@ function SettingsPage(props: SettingsPageProps) {
             marginTop={8}
             paddingTop={4}
             paddingBottom={4}
-            background='amber.100'
-            _dark={{
-              background: 'amber.900'
-            }}
           >
             <Pressable onPress={onDebugClick}>
               <Text color='gray.900' _dark={{ color: 'amber.100' }}>created by @AnnatarHe</Text>
@@ -124,7 +120,9 @@ function SettingsPage(props: SettingsPageProps) {
                   </Text>
                   <Switch
                     value={widgetType === 'own'}
-                    onChange={() => { toggleWidgetType(widgetType === 'own' ? 'public' : 'own') }}
+                    onChange={() => {
+                      toggleWidgetType(widgetType === 'own' ? 'public' : 'own')
+                    }}
                   />
                 </View>
               </>

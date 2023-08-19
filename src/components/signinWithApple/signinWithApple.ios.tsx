@@ -50,7 +50,7 @@ function SigninWithApple(props: SigninWithAppleProps) {
       <AppleButton
         style={{
           height: 45,
-          width: 160
+          width: 180
         }}
         buttonStyle={AppleButton.Style.BLACK}
         buttonType={AppleButton.Type.SIGN_IN}

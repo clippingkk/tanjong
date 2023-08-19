@@ -28,7 +28,7 @@ function WalletConnectLoginButton(props: WalletConnectLoginButtonProps) {
     return open()
   }
 
-  const [doAuth] = useAuthByWeb3LazyQuery({
+  const [doAuth, { loading }] = useAuthByWeb3LazyQuery({
     onCompleted(data) {
       onLoggedIn(data.loginByWeb3.token, data.loginByWeb3.user.id)
     },
@@ -66,11 +66,28 @@ function WalletConnectLoginButton(props: WalletConnectLoginButtonProps) {
 
   return (
     <View>
-      <Button onPress={handleButtonPress}>
-        <MetamaskLogo width={20} height={20} />
-        <Text>
-          Login
-        </Text>
+      <Button
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          width: 180,
+          marginTop: 10,
+          marginBottom: 10,
+        }}
+        backgroundColor={'rgb(168, 85, 247)'}
+        onPress={handleButtonPress}
+        isLoading={loading}
+      >
+        <View
+          style={{
+            display: 'flex', flexDirection: 'row',
+          }}
+        >
+          <MetamaskLogo width={20} height={20} />
+          <Text style={{ marginLeft: 10 }}>
+            Web3 login
+          </Text>
+        </View>
       </Button>
       <WalletConnectModal
         projectId={projectId}

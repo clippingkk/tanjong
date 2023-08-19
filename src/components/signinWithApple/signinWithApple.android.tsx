@@ -46,6 +46,10 @@ function SigninWithApple(props: SigninWithAppleProps) {
         buttonStyle={AppleButton.Style.BLACK}
         buttonType={AppleButton.Type.SIGN_IN}
         onPress={onAppleButtonPress}
+        style={{
+          height: 45,
+          width: 180
+        }}
       />
       {props.loading ? (
         <View position='absolute' top={0} left={0} bottom={0} right={0} justifyContent='center' alignItems='center' background='rgba(255,255,255, 0.8)'>

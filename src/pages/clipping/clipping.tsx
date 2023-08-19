@@ -79,7 +79,7 @@ function ClippingPage(props: ClippingPageProps) {
     <>
       <ScrollView
         backgroundColor='gray.100'
-        _dark={{ backgroundColor: 'gray.900' }}
+        _dark={{ backgroundColor: 'gray.700' }}
         height='100%'
         refreshControl={(
           <RefreshControl
@@ -95,11 +95,13 @@ function ClippingPage(props: ClippingPageProps) {
             left={0}
             right={0}
             bottom={0}
-            background='red.500'
+            paddingTop={20}
+            background='dark.500'
             alignItems='center'
             justifyContent='center'
           >
             <ActivityIndicator size={'large'} />
+            <Text>Loading</Text>
           </View>
         ) : null}
         <View paddingLeft={4} paddingRight={4} height='100%'>
@@ -124,6 +126,7 @@ function ClippingPage(props: ClippingPageProps) {
                 style={[{
                   height: 200,
                   width: 100,
+                  borderRadius: 8,
                 }, basicStyles.shadow]}
               />
               <View paddingLeft={4} paddingTop={8}>
@@ -139,14 +142,12 @@ function ClippingPage(props: ClippingPageProps) {
               </View>
             </View>
           ) : null}
-
         </View>
       </ScrollView>
+      {/* TODO: add more actions like goto douban, descriptions */}
       <ActionSheet
         ref={bsr}
-          snapPoints={[80, 90]}
-        // index={1}
-        // snapPoints={snapPoints}
+        snapPoints={[80, 90]}
       >
         {book ? (
           <UTPShareView

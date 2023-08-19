@@ -1,16 +1,15 @@
-import { Button, Center, Divider, FormControl, Input, KeyboardAvoidingView, Text, useToast, View, VStack } from 'native-base'
-import { useForm, Controller } from "react-hook-form";
+import { Button, Divider, Image, Text, useToast, View, VStack } from 'native-base'
 import React, { useCallback, useEffect } from 'react'
 import { Platform, SafeAreaView } from 'react-native';
 import { AppleVerifyPayload, useAuthLazyQuery, useAuthQuery, useLoginByAppleLazyQuery } from '../../schema/generated';
 import { usePostAuth } from '../../hooks/auth';
 import SigninWithApple from '../../components/signinWithApple/signinWithApple';
-import { AndroidSigninResponse, AppleRequestResponse } from '@invertase/react-native-apple-authentication';
 import { Link, useLinkTo } from '@react-navigation/native';
 import { RouteKeys, RouteParamList } from '../../routes';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
 import WalletConnectLoginButton from './walletconnect';
+import { FontLXGW } from '../../styles/font';
 
 type AuthV3PageProps = NativeStackScreenProps<RouteParamList, 'empty'>
 
@@ -74,18 +73,61 @@ function AuthV3Page(props: AuthV3PageProps) {
     <View bgColor='gray.100' _dark={{ bgColor: 'gray.900' }}>
       <SafeAreaView>
         <View alignItems='center' justifyContent='center' height='100%'>
+          <Image
+            source={require('../../assets/logo.png')}
+            alt='logo'
+            width={70}
+            height={70}
+            style={{
+              borderRadius: 8,
+              shadowOffset: {
+                width: 4,
+                height: 4,
+              }
+            }}
+          />
+          <View
+            my={4}
+          >
+            <Text
+              style={{
+                textAlign: 'center',
+                fontSize: 20,
+                fontWeight: 'bold',
+                padding: 6,
+              }}
+            >ClippingKK</Text>
+            <Text
+              width={280}
+              style={{
+                textAlign: 'center',
+                fontFamily: FontLXGW,
+                fontSize: 14,
+              }}
+            >{t('app.slogan')}</Text>
+          </View>
+
+          <Divider width={'90%'} my={8} />
+
           <SigninWithApple
             loading={appleAuthResp.loading}
             onSuccess={signinWithAppleOnSuccess}
             onError={signinWithAppleOnError}
           />
-          <Divider my={8} />
           <WalletConnectLoginButton
             onLoggedIn={(token, userId) => onPostAuth(token, userId)}
           />
-          <Divider my={8} />
-          <Button>
-            <Link to={{ screen: RouteKeys.AuthQRCode }}>
+          <Button
+            height={45}
+            bgColor={'blue.500'}
+            width={180}
+            color='gray.900'
+            _dark={{
+              color: 'gray.100'
+            }}
+          >
+            <Link
+              to={{ screen: RouteKeys.AuthQRCode }}>
               {t('app.auth.loginByScanQRCode')}
             </Link>
           </Button>

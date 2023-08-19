@@ -29,16 +29,18 @@ function ClippingCell(props: ClippingCellProps) {
         }}
       >
         <View
-          backgroundColor={'amber.300'}
-          _dark={{ backgroundColor: 'amber.900' }}
-          borderRadius={2}
+          backgroundColor={'blue.300'}
+          _dark={{ backgroundColor: 'blue.900' }}
+          borderRadius={8}
           shadow={4}
           padding={4}
           width={width}
         >
           <Text
             fontFamily={FontLXGW}
-          >{props.clipping.content}</Text>
+          >
+            {props.clipping.content}
+          </Text>
         </View>
       </Link>
     </View>

@@ -19,15 +19,15 @@ import DeviceInfo from 'react-native-device-info';
 AV.setAdapters(adapters as any)
 
 function useSetupIOSNotification() {
+  const [doBindIOSDeviceToken, bindIOSDeviceTokenResult] = useBindIosDeviceTokenMutation()
+
   useEffect(() => {
     if (Platform.OS !== 'ios' && Platform.OS !== 'macos') {
       return
     }
-  }, [])
-
-  const [doBindIOSDeviceToken, bindIOSDeviceTokenResult] = useBindIosDeviceTokenMutation()
-
-  useEffect(() => {
+    if (__DEV__) {
+      return
+    }
     function onRemoteNotification(notification: PushNotification) {
       const isClicked = notification.getData().userInteraction === 1;
 
@@ -58,9 +58,7 @@ function useSetupIOSNotification() {
             iosDeviceToken: deviceToken,
           }
         })
-        console.log('notification registed', deviceToken)
       } catch (err: any) {
-        console.log('notification registed error', err)
         Toast.show({
           title: err.message
         })
@@ -69,9 +67,7 @@ function useSetupIOSNotification() {
 
     PushNotificationIOS.addEventListener('notification', onRemoteNotification)
     PushNotificationIOS.addEventListener('register', onRemoteNotificationRegister)
-    if (Platform.OS === 'ios') {
-      PushNotificationIOS.requestPermissions()
-    }
+    PushNotificationIOS.requestPermissions()
     return () => {
       PushNotificationIOS.removeEventListener('notification')
       PushNotificationIOS.removeEventListener('register')

@@ -10,6 +10,7 @@ import { Link, useLinkTo } from '@react-navigation/native';
 import { RouteKeys, RouteParamList } from '../../routes';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
+import WalletConnectLoginButton from './walletconnect';
 
 type AuthV3PageProps = NativeStackScreenProps<RouteParamList, 'empty'>
 
@@ -77,6 +78,10 @@ function AuthV3Page(props: AuthV3PageProps) {
             loading={appleAuthResp.loading}
             onSuccess={signinWithAppleOnSuccess}
             onError={signinWithAppleOnError}
+          />
+          <Divider my={8} />
+          <WalletConnectLoginButton
+            onLoggedIn={(token, userId) => onPostAuth(token, userId)}
           />
           <Divider my={8} />
           <Button>

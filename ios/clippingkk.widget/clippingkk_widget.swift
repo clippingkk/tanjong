@@ -27,6 +27,11 @@ fileprivate let emptyBook = WenquBook.init(
   id: -1, rating: 0, author: "widget example author", pubdate: "", translator: "", producer: "", totalPages: 1, series: "", originTitle: "", image: "", doubanID: 0, title: NSLocalizedString("widget example title", comment: ""), url: "", press: "", isbn: "", tags: [], authorIntro: "", summary: "", createdAt: "", updatedAt: "", catalog: ""
 )
 
+
+fileprivate let chineseAmongOthersBook = WenquBook.init(
+  id: 260101, rating: 9, author: "[美] 孔飞力", pubdate: "", translator: "", producer: "", totalPages: 1, series: "", originTitle: "他者中的华人", image: "https://ck-cdn.annatarhe.cn/clippingkk/book/s29009238.jpg", doubanID: 0, title: "他者中的华人", url: "", press: "", isbn: "", tags: [], authorIntro: "", summary: "", createdAt: "", updatedAt: "", catalog: ""
+)
+
 struct Provider: TimelineProvider {
   func getSnapshot(in context: Context, completion: @escaping (AwesomeClippingEntry) -> Void) {
     
@@ -255,7 +260,7 @@ struct clippingkkEntryView : View {
         return Color.black.opacity(0.7)
       }
       
-      return Color.white.opacity(0.5)
+      return Color.white.opacity(0.6)
     }
   }
   
@@ -275,7 +280,7 @@ struct clippingkkEntryView : View {
       Image(uiImage: UIImage(data: entry.bgImage)!)
         .resizable()
         .aspectRatio(contentMode: .fill)
-        .blur(radius: 5)
+        .blur(radius: 15)
         .overlay(
           baseOverlayColor
         )
@@ -317,13 +322,14 @@ struct ClippingKKNext_Clipping_Previews: PreviewProvider {
     clippingkkEntryView(
       entry: AwesomeClippingEntry(
         date: Date(),
-        clipping: CKClippingItem(id: -1, content: "背景对故事的反讽表现在：世界越大，作者的知识便越被稀释，其创作选择也就越少，故事便越发充满陈词滥调。世界越小，作者的知识便越完善，其创作选择也就越多。结果是一个完全新颖的故事，以及对陈词滥调作战的胜利", bookID: "111111", title: "故事：材质、结构、风格和银幕剧作的原理", createdAt: "", pageAt: "", creator: CKClippingCreator(id: -1, name: "", avatar: "")),
-        book: emptyBook,
+        clipping: CKClippingItem(id: -1, content: "背景对故事的反讽表现在：世界越大，作者的知识便越被稀释，其创作选择也就越少，故事便越发充满陈词滥调。世界越小，作者的知识便越完善，其创作选择也就越多。结果是一个完全新颖的故事，以及对陈词滥调作战的胜利", bookID: "26736805", title: "故事：材质、结构、风格和银幕剧作的原理", createdAt: "", pageAt: "", creator: CKClippingCreator(id: -1, name: "", avatar: "")),
+        book: chineseAmongOthersBook,
         bgImage: try! Data(
           contentsOf: URL(string: placeholderImage)!
         )
       )
     )
     .previewContext(WidgetPreviewContext(family: .systemLarge))
+    .preferredColorScheme(.light)
   }
 }

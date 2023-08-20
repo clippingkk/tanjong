@@ -5,12 +5,12 @@ import React, {  useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Linking, SafeAreaView, StyleSheet } from 'react-native'
 // import { Camera, useCameraDevices } from 'react-native-vision-camera'
-import { useScanBarcodes, BarcodeFormat } from 'vision-camera-code-scanner'
+// import { useScanBarcodes, BarcodeFormat } from 'vision-camera-code-scanner'
 import Page from '../../components/page'
 import { usePostAuth } from '../../hooks/auth'
 import { RouteParamList } from '../../routes'
 import { JwtPayload } from '../../service/jwt'
-import AuthLegacyPage from './auth.legacy.page'
+import AuthClassicPage from './auth.classic.page'
 
 type AuthQRCodePageProps = NativeStackScreenProps<RouteParamList, 'AuthQRCode'>
 
@@ -24,9 +24,9 @@ function AuthQRCodePage(props: AuthQRCodePageProps) {
     // })
   }, [])
 
-  const [frameProcessor, barcodes] = useScanBarcodes([BarcodeFormat.ALL_FORMATS], {
-    checkInverted: true,
-  });
+  // const [frameProcessor, barcodes] = useScanBarcodes([BarcodeFormat.ALL_FORMATS], {
+  //   checkInverted: true,
+  // });
 
   // const devices = useCameraDevices()
   // const device = devices.back
@@ -34,35 +34,35 @@ function AuthQRCodePage(props: AuthQRCodePageProps) {
 
   const onPostAuth = usePostAuth(props.navigation)
 
-  useEffect(() => {
-    if (!barcodes || barcodes.length === 0) {
-      return
-    }
+  // useEffect(() => {
+  //   if (!barcodes || barcodes.length === 0) {
+  //     return
+  //   }
 
-    const barcode = barcodes[0]
-    if (!barcode.rawValue) {
-      return
-    }
-    try {
-      const decodedValue = jwtDecode<JwtPayload>(barcode.rawValue)
-      if (!decodedValue.id) {
-        return
-      }
-      onPostAuth(barcode.rawValue, ~~decodedValue.id)
-        .catch(err => {
-          console.error(err)
-        })
-    } catch (e) {
-      // do nothing....
-      console.error(e)
-    }
-  }, [barcodes, onPostAuth])
+  //   const barcode = barcodes[0]
+  //   if (!barcode.rawValue) {
+  //     return
+  //   }
+  //   try {
+  //     const decodedValue = jwtDecode<JwtPayload>(barcode.rawValue)
+  //     if (!decodedValue.id) {
+  //       return
+  //     }
+  //     onPostAuth(barcode.rawValue, ~~decodedValue.id)
+  //       .catch(err => {
+  //         console.error(err)
+  //       })
+  //   } catch (e) {
+  //     // do nothing....
+  //     console.error(e)
+  //   }
+  // }, [barcodes, onPostAuth])
 
   if (device == null) {
     return (
       <Page>
         <SafeAreaView>
-          <AuthLegacyPage navigation={props.navigation} route={props.route} />
+          {/* <AuthClassicPage navigation={props.navigation} route={props.route} /> */}
         </SafeAreaView>
       </Page>
     )

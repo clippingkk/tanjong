@@ -1,4 +1,4 @@
-import { Button, Divider, Image, Text, useToast, View, VStack } from 'native-base'
+import { Button, Divider, Image, KeyboardAvoidingView, Text, useToast, View, VStack } from 'native-base'
 import React, { useCallback, useEffect } from 'react'
 import { Platform, SafeAreaView } from 'react-native';
 import { AppleVerifyPayload, useAuthLazyQuery, useAuthQuery, useLoginByAppleLazyQuery } from '../../schema/generated';
@@ -10,6 +10,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
 import WalletConnectLoginButton from './walletconnect';
 import { FontLXGW } from '../../styles/font';
+import AuthClassicPage from './auth.classic.page';
 
 type AuthV3PageProps = NativeStackScreenProps<RouteParamList, 'empty'>
 
@@ -70,54 +71,59 @@ function AuthV3Page(props: AuthV3PageProps) {
   const { t } = useTranslation()
 
   return (
-    <View bgColor='gray.100' _dark={{ bgColor: 'gray.900' }}>
-      <SafeAreaView>
-        <View alignItems='center' justifyContent='center' height='100%'>
-          <Image
-            source={require('../../assets/logo.png')}
-            alt='logo'
-            width={70}
-            height={70}
-            style={{
-              borderRadius: 8,
-              shadowOffset: {
-                width: 4,
-                height: 4,
-              }
-            }}
-          />
-          <View
-            my={4}
-          >
-            <Text
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+    >
+      <View bgColor='gray.100' _dark={{ bgColor: 'gray.900' }}>
+        <SafeAreaView>
+          <View alignItems='center' justifyContent='center' height='100%'>
+            <Image
+              source={require('../../assets/logo.png')}
+              alt='logo'
+              width={70}
+              height={70}
               style={{
-                textAlign: 'center',
-                fontSize: 20,
-                fontWeight: 'bold',
-                padding: 6,
+                borderRadius: 8,
+                shadowOffset: {
+                  width: 4,
+                  height: 4,
+                }
               }}
-            >ClippingKK</Text>
-            <Text
-              width={280}
-              style={{
-                textAlign: 'center',
-                fontFamily: FontLXGW,
-                fontSize: 14,
-              }}
-            >{t('app.slogan')}</Text>
-          </View>
+            />
+            <View my={4}>
+              <Text
+                style={{
+                  textAlign: 'center',
+                  fontSize: 20,
+                  fontWeight: 'bold',
+                  padding: 6,
+                }}
+              >ClippingKK</Text>
+              <Text
+                width={280}
+                style={{
+                  textAlign: 'center',
+                  fontFamily: FontLXGW,
+                  fontSize: 14,
+                }}
+              >{t('app.slogan')}</Text>
+            </View>
 
-          <Divider width={'90%'} my={8} />
+            <Divider width={'90%'} my={8} />
 
-          <SigninWithApple
-            loading={appleAuthResp.loading}
-            onSuccess={signinWithAppleOnSuccess}
-            onError={signinWithAppleOnError}
-          />
-          <WalletConnectLoginButton
-            onLoggedIn={(token, userId) => onPostAuth(token, userId)}
-          />
-          <Button
+            <AuthClassicPage onPostAuth={onPostAuth} />
+
+            <Divider width={'90%'} my={8} />
+
+            <SigninWithApple
+              loading={appleAuthResp.loading}
+              onSuccess={signinWithAppleOnSuccess}
+              onError={signinWithAppleOnError}
+            />
+            <WalletConnectLoginButton
+              onLoggedIn={(token, userId) => onPostAuth(token, userId)}
+            />
+            {/* <Button
             height={45}
             bgColor={'blue.500'}
             width={180}
@@ -130,10 +136,11 @@ function AuthV3Page(props: AuthV3PageProps) {
               to={{ screen: RouteKeys.AuthQRCode }}>
               {t('app.auth.loginByScanQRCode')}
             </Link>
-          </Button>
-        </View>
-      </SafeAreaView>
-    </View>
+          </Button> */}
+          </View>
+        </SafeAreaView>
+      </View>
+    </KeyboardAvoidingView>
   )
 }
 

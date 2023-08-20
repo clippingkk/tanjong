@@ -20,6 +20,7 @@
     "@apollo/client": "^3.8.1",
     "@formatjs/intl-pluralrules": "^5.2.4",
     "@georstat/react-native-image-cache": "^2.9.0",
+    "@hookform/resolvers": "^3.2.0",
     "@invertase/react-native-apple-authentication": "^2.2.2",
     "@leancloud/platform-adapters-react-native": "^0.7.0",
     "@react-native-async-storage/async-storage": "^1.19.2",
@@ -74,7 +75,8 @@
     "react-native-view-shot": "^3.7.0",
     "react-native-webview": "^13.3.1",
     "react-native-widgetkit": "^1.0.9",
-    "tailwind-rn": "^4.2.0"
+    "tailwind-rn": "^4.2.0",
+    "zod": "^3.22.2"
   },
   "devDependencies": {
     "@babel/core": "^7.22.10",

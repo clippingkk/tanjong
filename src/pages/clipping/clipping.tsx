@@ -13,6 +13,7 @@ import { UTPService } from '../../service/utp'
 import { basicStyles } from '../../styles/basic'
 import { FontLXGW } from '../../styles/font'
 import ActionSheet, { ActionSheetRef, useScrollHandlers } from 'react-native-actions-sheet'
+import Actions from './actions'
 
 type ClippingPageProps = NativeStackScreenProps<RouteParamList, 'Clipping'>
 
@@ -117,18 +118,27 @@ function ClippingPage(props: ClippingPageProps) {
             </View>
           </SafeAreaView>
 
+          <Actions clipping={clippingResult.data?.clipping} />
+
           <Divider marginTop={4} />
 
           {book ? (
             <View flexDirection='row'>
-              <CachedImage
-                source={book.image}
-                style={[{
-                  height: 200,
-                  width: 100,
-                  borderRadius: 8,
-                }, basicStyles.shadow]}
-              />
+              <View style={{
+                shadowColor: 'black',
+                shadowOffset: { width: 0, height: 0 },
+                shadowRadius: 4,
+                borderRadius:100,
+              }}>
+                <CachedImage
+                  source={book.image}
+                  style={[{
+                    height: 200,
+                    width: 100,
+                    borderRadius: 800,
+                  }, basicStyles.shadow]}
+                />
+              </View>
               <View paddingLeft={4} paddingTop={8}>
                 <Text
                   fontFamily={FontLXGW}

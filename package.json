@@ -20,6 +20,8 @@
     "@apollo/client": "^3.8.4",
     "@formatjs/intl-pluralrules": "^5.2.6",
     "@georstat/react-native-image-cache": "^3.1.0",
+    "@gluestack-style/react": "^1.0.3",
+    "@gluestack-ui/themed": "^1.0.4",
     "@hookform/resolvers": "^3.3.1",
     "@invertase/react-native-apple-authentication": "^2.2.2",
     "@leancloud/platform-adapters-react-native": "^0.7.0",

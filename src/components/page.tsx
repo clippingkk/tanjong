@@ -1,19 +1,24 @@
-import { View } from 'native-base'
-import { InterfaceViewProps } from 'native-base/lib/typescript/components/basic/View/types'
+import { View } from '@gluestack-ui/themed'
 import React from 'react'
+import { useWindowDimensions } from 'react-native'
+
 
 type PageProps = {
   children: React.ReactElement
-  containerProps?: InterfaceViewProps
+  containerProps?: any
 }
 
 function Page(props: PageProps) {
+  const { height } = useWindowDimensions()
   return (
     <View
-      backgroundColor='gray.100'
-      _dark={{ backgroundColor: 'gray.900' }}
-      width='100%'
-      height='100%'
+      backgroundColor='$blueGray100'
+      sx={{
+        _dark: {
+          backgroundColor: '$blueGray900'
+        }
+      }}
+      minHeight={height}
       {...(props.containerProps ?? {})}
     >
       {props.children}

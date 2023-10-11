@@ -1,4 +1,6 @@
-import { Button, Center, CheckIcon, Divider, Pressable, Select, Switch, Text, Toast, View, VStack } from 'native-base'
+// import { Button, Center, CheckIcon, Divider, Pressable, Select, Switch, Text, Toast, View, VStack } from 'native-base'
+import { Toast } from 'native-base'
+import { Button, Center, CheckIcon, ChevronDownIcon, Divider, HStack, Icon, Pressable, Select, SelectBackdrop, SelectContent, SelectDragIndicator, SelectDragIndicatorWrapper, SelectIcon, SelectInput, SelectItem, SelectPortal, SelectTrigger, Switch, Text, View, VStack } from '@gluestack-ui/themed'
 import { useHeaderHeight } from '@react-navigation/elements'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { useLinkTo } from '@react-navigation/native'
@@ -20,6 +22,21 @@ import { CacheManager } from '@georstat/react-native-image-cache'
 type SettingsPageProps = NativeStackScreenProps<RouteParamList, 'empty'>
 
 type AppWidgetType = 'public' | 'own'
+
+const languages: Record<string, { name: string, icon: string }> = {
+  en: {
+    name: 'English',
+    icon: '🇬🇧'
+  },
+  zh: {
+    name: '中文',
+    icon: '🇨🇳'
+  },
+  ko: {
+    name: '한국',
+    icon: '🇰🇷'
+  }
+}
 
 function useAppWidgetType() {
   const [widgetType, setWidgetType] = useState<AppWidgetType>('public')
@@ -91,7 +108,6 @@ function SettingsPage(props: SettingsPageProps) {
   const [cacheSize, setCacheSize] = useState(0)
   useEffect(() => {
     CacheManager.getCacheSize().then(res => {
-      console.log(res)
       setCacheSize(res)
     })
   }, [])
@@ -101,21 +117,18 @@ function SettingsPage(props: SettingsPageProps) {
       <SafeAreaView>
         <View height='100%'>
           <VStack
-            paddingLeft={4}
-            paddingRight={4}
-            marginTop={8}
-            paddingTop={4}
-            paddingBottom={4}
+            marginTop={'$4'}
+            padding={'$2'}
           >
             <Pressable onPress={onDebugClick}>
-              <Text color='gray.900' _dark={{ color: 'amber.100' }}>created by @AnnatarHe</Text>
+              <Text color='$blueGray900' sx={{ _dark: { color: '$amber100' } }}>created by @AnnatarHe</Text>
             </Pressable>
 
             {Platform.OS === 'ios' ? (
               <>
-                <Divider my={6} />
-                <View justifyContent='space-between' alignItems='center' width='100%' flexDir='row'>
-                  <Text color='gray.900' _dark={{ color: 'amber.100' }}>
+                <Divider my={'$6'} />
+                <HStack justifyContent='space-between' alignItems='center' width='100%'>
+                  <Text color='$blueGray900' sx={{ _dark: { color: '$amber100' } }}>
                     iOS Widget Type: {widgetType}
                   </Text>
                   <Switch
@@ -124,33 +137,55 @@ function SettingsPage(props: SettingsPageProps) {
                       toggleWidgetType(widgetType === 'own' ? 'public' : 'own')
                     }}
                   />
-                </View>
+                </HStack>
               </>
             ) : null}
-            <Divider my={6} />
-            <View justifyContent='space-between' alignItems='center' width='100%' flexDir='row'>
-              <Text color='gray.900' _dark={{ color: 'amber.100' }}>
+            <Divider my={'$6'} />
+            <HStack justifyContent='space-between' alignItems='center' width='100%'>  
+              <Text color='$blueGray900' sx={{ _dark: { color: '$amber100' } }}>
+                Cache:
+              </Text>
+              <Text color='$blueGray900' sx={{ _dark: { color: '$amber100' } }}>
+                {cacheSize} B
+              </Text>
+            </HStack>
+            <Divider my={'$6'} />
+            <HStack justifyContent='space-between' alignItems='center' width='100%'>
+              <Text color='$blueGray900' sx={{ _dark: { color: '$amber100' } }}>
                 Language:
               </Text>
               <Select
                 selectedValue={i18n.language ?? 'en'}
-                minWidth="200"
-                _selectedItem={{
-                  bg: "teal.600",
-                  endIcon: <CheckIcon size="5" />
-                }}
-                mt={1}
+                selectedLabel={languages[i18n.language ?? 'en'].name}
+                mt={'$1'}
                 onValueChange={itemValue => i18n.changeLanguage(itemValue)}
               >
-                <Select.Item label="English" value="en" />
-                <Select.Item label="中文" value="zh" />
-                <Select.Item label="한국인" value="ko" />
+                <SelectTrigger variant="outline" size="md">
+                  {/* <SelectInput placeholder="Select option" value={(i18n.language ?? 'en')} color='$red400' width={'$48'} /> */}
+                  <Text mx='$4'>
+                    {languages[i18n.language ?? 'en'].name}
+                  </Text>
+                  <SelectIcon mr="$3">
+                    <Icon as={ChevronDownIcon} />
+                  </SelectIcon>
+                </SelectTrigger>
+                <SelectPortal>
+                  <SelectBackdrop />
+                  <SelectContent paddingBottom={'$8'}>
+                    <SelectDragIndicatorWrapper>
+                      <SelectDragIndicator />
+                    </SelectDragIndicatorWrapper>
+                    {Object.keys(languages).map(key => (
+                      <SelectItem key={key} label={(languages as any)[key].name} value={key} />
+                    ))}
+                  </SelectContent>
+                </SelectPortal>
               </Select>
-            </View>
+            </HStack>
           </VStack>
           <View flex={1} />
-          <Button bg='red.500' mx={4} onPress={onLogout}>
-            <Text color='white'>{t('app.menu.logout')}</Text>
+          <Button bg='$red400' mx='$4' onPress={onLogout}>
+            <Text color='$white'>{t('app.menu.logout')}</Text>
           </Button>
         </View>
       </SafeAreaView>

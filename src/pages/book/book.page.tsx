@@ -1,9 +1,10 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { FlashList } from '@shopify/flash-list'
 import { useAtomValue } from 'jotai'
-import { Button, Center, Divider, Text, View, useColorModeValue } from 'native-base'
+import { Spinner, Text } from '@gluestack-ui/themed'
+import { Button, View, useColorModeValue } from 'native-base'
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { ScrollView, useColorScheme } from 'react-native'
+import { ActivityIndicator, ScrollView, useColorScheme } from 'react-native'
 import { uidAtom } from '../../atomic'
 import BookHead from '../../components/book/head'
 import ClippingCell from '../../components/clipping/cell'
@@ -14,6 +15,7 @@ import { RouteParamList } from '../../routes'
 import { useBookQuery } from '../../schema/generated'
 import { UTPService } from '../../service/utp'
 import ActionSheet, { ActionSheetRef, useScrollHandlers } from 'react-native-actions-sheet'
+import { VStack } from '@gluestack-ui/themed'
 
 type BookPageProps = NativeStackScreenProps<RouteParamList, 'Book'>
 
@@ -89,7 +91,13 @@ function BookPage(props: BookPageProps) {
   });
 
   if ((bs.data?.book.clippingsCount ?? 0) === 0) {
-    return <Page><View /></Page>
+    return (
+      <Page>
+        <VStack alignItems='center' mt={'$40'} height={'100%'}>
+          <Spinner />
+        </VStack>
+      </Page>
+    )
   }
 
   return (
@@ -101,7 +109,7 @@ function BookPage(props: BookPageProps) {
           )}
           onRefresh={() => bs.refetch()}
           refreshing={bs.loading}
-          data={bs.data?.book.clippings ?? []}
+          data={bs.data?.book.clippings}
           renderItem={({ item }) => {
             return <ClippingCell clipping={item} />
           }}

@@ -277,28 +277,29 @@ struct clippingkkEntryView : View {
     let clipping = entry.clipping
     let bookTitle = entry.book.title
     ZStack {
-      Image(uiImage: UIImage(data: entry.bgImage)!)
-        .resizable()
-        .aspectRatio(contentMode: .fill)
-        .blur(radius: 15)
-        .overlay(
-          baseOverlayColor
-        )
       VStack {
         Text(clipping.content)
-          .padding(.all, 10)
+          .padding(.all, 2)
           .font(.custom("LXGWWenKai-Regular", size: CGFloat(self.fontSzie)))
           .lineSpacing(12 * 1.1)
           .foregroundColor(textColor)
           .lineLimit(self.lineLimit)
         Text(bookTitle)
           .foregroundColor(textColor)
-          .font(.custom("LXGWWenKai-Regular", size: 12))
+          .font(.custom("LXGWWenKai-Bold", size: 12))
           .frame(maxWidth: .infinity, alignment: .trailing)
-          .padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 10))
+          .padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 2))
           .lineLimit(1)
       }
     }
+    .containerBackground(for: .widget, content: {
+            Image(uiImage: UIImage(data: entry.bgImage)!)
+              .resizable()
+              .aspectRatio(contentMode: .fill)
+              .overlay{
+                baseOverlayColor
+              }
+    })
     .widgetURL(URL(string: "clippingkk:///dash/\(clipping.creator.id)/clippings/\(clipping.id)"))
   }
 }
@@ -311,6 +312,7 @@ struct clippingkk_widget: Widget {
       clippingkkEntryView(entry: entry)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
+    .containerBackgroundRemovable(false)
     .configurationDisplayName("widget title")
     .description("widget desc")
     .supportedFamilies([.systemMedium, .systemLarge, .systemExtraLarge])

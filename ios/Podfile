@@ -60,7 +60,20 @@ target 'tanjong' do
       config[:reactNativePath],
       :mac_catalyst_enabled => false
     )
-    # __apply_Xcode_12_5_M1_post_install_workaround(installer)
+	__apply_Xcode_12_5_M1_post_install_workaround(installer)
+	
+
+	# workaround for podfile
+	# https://github.com/CocoaPods/CocoaPods/issues/12012
+	# installer.pods_project.targets.each do |target|
+		# target.build_configurations.each do |config|
+			# xcconfig_path = config.base_configuration_reference.real_path
+			# xcconfig = File.read(xcconfig_path)
+			# xcconfig_mod = xcconfig.gsub(/DT_TOOLCHAIN_DIR/, "TOOLCHAIN_DIR")
+			# File.open(xcconfig_path, "w") { |file| file << xcconfig_mod }
+		# end
+	# end
+	# end of workaround
 	
 	# https://github.com/mrousavy/react-native-vision-camera/issues/914#issuecomment-1330753830
 	# vision camera workaround start
@@ -77,7 +90,7 @@ target 'tanjong' do
 			  config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
 		  end
 		end
-	  end
+	end
 	# vision camera workaround end
 
   end

@@ -1,9 +1,10 @@
-import React, { useCallback, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { ScrollView } from 'react-native'
 import { captureRef } from "react-native-view-shot"
 import WebView from 'react-native-webview'
 import { sleep } from '../../utils/time';
 import { PageLoadedEvent, useWebViewMessageHandler } from '../../hooks/webview';
+import { useQuery } from '@tanstack/react-query';
 
 type UTPWebviewProps = {
   url: string
@@ -16,17 +17,32 @@ function UTPWebview(props: UTPWebviewProps) {
 
   const [size, setSize] = useState({ width: 375 - 30, height: 2000 })
 
-  const onPageLoaded = useCallback( async (ev: PageLoadedEvent) => {
+  const { data, refetch } = useQuery({
+    queryKey: ['webview', 'download', url],
+    enabled: false,
+    queryFn: async () => {
+      // wait for webview resize
+      // but why so long?
+      await sleep(5000)
+      return captureRef(ref, {
+        format: "png",
+        quality: 0.9,
+        result: 'tmpfile'
+      })
+    }
+  })
+  useEffect(() => {
+    if (!data) {
+      return
+    }
+    onGetImage(data)
+  }, [data])
+
+  const onPageLoaded = useCallback(async (ev: PageLoadedEvent) => {
     setSize({ width: ev.width, height: ev.height })
-    // wait for webview resize
-    await sleep(200)
-    const st = await captureRef(ref, {
-      format: "png",
-      quality: 0.9,
-      result: 'tmpfile'
-    })
-    onGetImage(st)
-  }, [ref, onGetImage])
+    refetch()
+    return
+  }, [ref, refetch])
 
   const onWebViewMessage = useWebViewMessageHandler(onPageLoaded)
 

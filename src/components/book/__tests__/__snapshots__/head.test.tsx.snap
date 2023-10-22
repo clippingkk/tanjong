@@ -4,12 +4,9 @@ exports[`head book will correctly rendering 1`] = `
 <RNCSafeAreaProvider
   onInsetsChange={[Function]}
   style={
-    [
-      {
-        "flex": 1,
-      },
-      undefined,
-    ]
+    {
+      "flex": 1,
+    }
   }
 >
   <View
@@ -31,7 +28,6 @@ exports[`head book will correctly rendering 1`] = `
     >
       <RNSScreen
         collapsable={false}
-        forwardedRef={[Function]}
         gestureResponseDistance={
           {
             "bottom": -1,
@@ -44,11 +40,17 @@ exports[`head book will correctly rendering 1`] = `
         onAppear={[Function]}
         onDisappear={[Function]}
         onDismissed={[Function]}
+        onGestureCancel={[Function]}
         onHeaderBackButtonClicked={[Function]}
         onNativeDismissCancelled={[Function]}
         onTransitionProgress={[Function]}
         onWillDisappear={[Function]}
         replaceAnimation="push"
+        sheetAllowedDetents="large"
+        sheetCornerRadius={-1}
+        sheetExpandsWhenScrolledToEdge={true}
+        sheetGrabberVisible={false}
+        sheetLargestUndimmedDetent="all"
         stackPresentation="push"
         style={
           {
@@ -61,20 +63,6 @@ exports[`head book will correctly rendering 1`] = `
         }
         swipeDirection="horizontal"
       >
-        <RNSScreenStackHeaderConfig
-          backButtonInCustomView={false}
-          backgroundColor="rgb(255, 255, 255)"
-          color="rgb(0, 122, 255)"
-          direction="ltr"
-          disableBackButtonMenu={false}
-          hidden={false}
-          hideBackButton={false}
-          largeTitleHideShadow={false}
-          title="/h"
-          titleColor="rgb(28, 28, 30)"
-          topInsetEnabled={false}
-          translucent={false}
-        />
         <View
           accessibilityElementsHidden={false}
           importantForAccessibility="auto"
@@ -86,6 +74,7 @@ exports[`head book will correctly rendering 1`] = `
           }
         >
           <View
+            collapsable={false}
             style={
               [
                 {
@@ -130,42 +119,33 @@ exports[`head book will correctly rendering 1`] = `
                     ]
                   }
                 >
-                  <View
+                  <Image
+                    accessibilityRole="image"
+                    accessible={true}
+                    onError={[Function]}
+                    onLoad={[Function]}
+                    resizeMode="cover"
+                    source={
+                      {
+                        "uri": "x",
+                      }
+                    }
                     style={
                       [
                         {
-                          "alignItems": "center",
-                          "alignSelf": "center",
                           "bottom": 0,
-                          "justifyContent": "center",
                           "left": 0,
                           "position": "absolute",
                           "right": 0,
                           "top": 0,
                         },
+                        {
+                          "opacity": 0,
+                        },
+                        undefined,
                       ]
                     }
-                  >
-                    <Image
-                      accessibilityRole="image"
-                      accessible={true}
-                      resizeMode="cover"
-                      style={
-                        [
-                          {
-                            "opacity": 1,
-                          },
-                          {
-                            "bottom": 0,
-                            "left": 0,
-                            "position": "absolute",
-                            "right": 0,
-                            "top": 0,
-                          },
-                        ]
-                      }
-                    />
-                  </View>
+                  />
                 </View>
                 <BlurView
                   blurAmount={30}
@@ -223,38 +203,33 @@ exports[`head book will correctly rendering 1`] = `
                       ]
                     }
                   >
-                    <View
+                    <Image
+                      accessibilityRole="image"
+                      accessible={true}
+                      onError={[Function]}
+                      onLoad={[Function]}
+                      resizeMode="cover"
+                      source={
+                        {
+                          "uri": "x",
+                        }
+                      }
                       style={
                         [
                           {
-                            "alignItems": "center",
-                            "alignSelf": "center",
                             "bottom": 0,
-                            "justifyContent": "center",
                             "left": 0,
                             "position": "absolute",
                             "right": 0,
                             "top": 0,
                           },
                           {
-                            "opacity": 1,
+                            "opacity": 0,
                           },
+                          undefined,
                         ]
                       }
-                    >
-                      <View
-                        dataSet={{}}
-                        style={
-                          {
-                            "alignItems": "center",
-                            "display": "flex",
-                            "justifyContent": "center",
-                          }
-                        }
-                      >
-                        <ActivityIndicator />
-                      </View>
-                    </View>
+                    />
                   </View>
                   <View
                     dataSet={{}}
@@ -341,6 +316,21 @@ exports[`head book will correctly rendering 1`] = `
             </View>
           </View>
         </View>
+        <RNSScreenStackHeaderConfig
+          backButtonInCustomView={false}
+          backTitleVisible={true}
+          backgroundColor="rgb(255, 255, 255)"
+          color="rgb(0, 122, 255)"
+          direction="ltr"
+          disableBackButtonMenu={false}
+          hidden={false}
+          hideBackButton={false}
+          largeTitleHideShadow={false}
+          title="/h"
+          titleColor="rgb(28, 28, 30)"
+          topInsetEnabled={false}
+          translucent={false}
+        />
       </RNSScreen>
     </RNSScreenStack>
   </View>

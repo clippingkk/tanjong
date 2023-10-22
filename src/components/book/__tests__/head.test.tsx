@@ -7,6 +7,8 @@ import { Provider } from 'jotai'
 import { uidAtom } from '../../../atomic'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import BookHead from '../head'
+import { GluestackUIProvider } from '@gluestack-ui/themed'
+import { config } from '@gluestack-ui/config'
 
 test('head book will correctly rendering', async () => {
   const now = new Date()
@@ -36,21 +38,25 @@ test('head book will correctly rendering', async () => {
       />
     )
   }
+  //ScreenComponentType
+  // initialValues={[[uidAtom, 1]]}
   render(
     <NativeBaseProvider initialWindowMetrics={{
       frame: { x: 0, y: 0, width: 0, height: 0 },
       insets: { top: 0, left: 0, right: 0, bottom: 0 },
     }}>
-      <Provider initialValues={[[uidAtom, 1]]}>
-        <NavigationContainer>
-          <st.Navigator>
-            <st.Screen
-              component={BH}
-              name='/h'
-            />
-          </st.Navigator>
-        </NavigationContainer>
-      </Provider>
+      <GluestackUIProvider config={config}>
+        <Provider >
+          <NavigationContainer>
+            <st.Navigator>
+              <st.Screen
+                component={BH}
+                name='/h'
+              />
+            </st.Navigator>
+          </NavigationContainer>
+        </Provider>
+      </GluestackUIProvider>
     </NativeBaseProvider>
   )
   // make sure every thing rendered

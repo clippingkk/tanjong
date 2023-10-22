@@ -185,14 +185,15 @@ export default {
   // A map from regular expressions to paths to transformers
   // transform: {
   //   "^.+\\.(js)$": "<rootDir>/node_modules/babel-jest",
-  //   "\\.(ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+  //   // "\\.(ts|tsx)$": "<rootDir>/node_modules/ts-jest"
+  //   "\\.(ts|tsx)$": "ts-jest"
   // },
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
   transformIgnorePatterns: [
     "\\.snap$",
     // "<rootDir>/node_modules/",
-    "node_modules/(?!(@react-native|react-native-reanimated|react-native)/)"
+    "node_modules/(?!(@react-native|react-native-reanimated|react-native|@gluestack-ui|@react-native-camera-roll|@expo\/html-elements|@legendapp|react-native-view-shot|react-native-webview|react-native-actions-sheet)/)"
   ],
 
   // An array of regexp pattern strings that are matched against all modules before the module loader will automatically return a mock for them

@@ -9,6 +9,8 @@ import BookCell from '../cell'
 import nock from 'nock'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { useSingleBook } from '../../../hooks/wenqu'
+import { GluestackUIProvider } from '@gluestack-ui/themed'
+import { config } from '@gluestack-ui/config'
 
 test.only('book cell will rendered correctly', async () => {
   const qc = new QueryClient({
@@ -33,15 +35,17 @@ test.only('book cell will rendered correctly', async () => {
         insets: { top: 0, left: 0, right: 0, bottom: 0 },
       }}>
         <Provider initialValues={[[uidAtom, 1]]}>
-          <NavigationContainer>
-            {children}
-            <BookCell bookDoubanID='1111' />
-          </NavigationContainer>
+          <GluestackUIProvider config={config}>
+            <NavigationContainer>
+              {children}
+              <BookCell bookDoubanID='1111' />
+            </NavigationContainer>
+          </GluestackUIProvider>
         </Provider>
       </NativeBaseProvider>
-    </QueryClientProvider>
+    </QueryClientProvider >
   )
-  const { result } = renderHook(() => useSingleBook('11111'), {
+  const { result } = renderHook(() => useSingleBook('1111'), {
     wrapper
   })
   await waitFor(() => {

@@ -11,6 +11,8 @@ import { NativeBaseProvider, Text } from 'native-base'
 import { MockedProvider } from "@apollo/client/testing"
 import { NavigationContainer } from '@react-navigation/native'
 import { Provider } from 'jotai'
+import { GluestackUIProvider } from '@gluestack-ui/themed'
+import { config } from '@gluestack-ui/config'
 import { uidAtom } from '../../../atomic'
 import { BooksDocument, BooksQuery } from '../../../schema/generated'
 import { WenquSearchResponse } from '../../../service/wenqu'
@@ -24,18 +26,20 @@ test('home page renders with permission block', async () => {
         insets: { top: 0, left: 0, right: 0, bottom: 0 },
       }}>
         <NavigationContainer>
-          <TabStack.Navigator initialRouteName={RouteKeys.TabHome}>
-            <TabStack.Screen
-              name={RouteKeys.TabHome}
-              component={HomePage}
-              options={{
-                tabBarLabel: 'Books',
-                tabBarIcon: ({ color, size }) => (
-                  <Text>📚</Text>
-                ),
-              }}
-            />
-          </TabStack.Navigator>
+          <GluestackUIProvider config={config}>
+            <TabStack.Navigator initialRouteName={RouteKeys.TabHome}>
+              <TabStack.Screen
+                name={RouteKeys.TabHome}
+                component={HomePage}
+                options={{
+                  tabBarLabel: 'Books',
+                  tabBarIcon: ({ color, size }) => (
+                    <Text>📚</Text>
+                  ),
+                }}
+              />
+            </TabStack.Navigator>
+          </GluestackUIProvider>
         </NavigationContainer>
       </NativeBaseProvider>
     </ApolloProvider>
@@ -103,24 +107,26 @@ test('home page renders with list', async () => {
       }}>
         <Provider>
           <NavigationContainer>
-            <TabStack.Navigator initialRouteName={RouteKeys.TabHome}>
-              <TabStack.Screen
-                name={RouteKeys.TabHome}
-                component={HomePage}
-                options={{
-                  tabBarLabel: 'Books',
-                  tabBarIcon: ({ color, size }) => (
-                    <Text>📚</Text>
-                  ),
-                }}
-              />
-            </TabStack.Navigator>
+            <GluestackUIProvider config={config}>
+              <TabStack.Navigator initialRouteName={RouteKeys.TabHome}>
+                <TabStack.Screen
+                  name={RouteKeys.TabHome}
+                  component={HomePage}
+                  options={{
+                    tabBarLabel: 'Books',
+                    tabBarIcon: ({ color, size }) => (
+                      <Text>📚</Text>
+                    ),
+                  }}
+                />
+              </TabStack.Navigator>
+            </GluestackUIProvider>
           </NavigationContainer>
         </Provider>
       </NativeBaseProvider>
     </MockedProvider>
   )
   // make sure every thing rendered
-  await act(() => {})
+  await act(() => { })
   expect(screen).toMatchSnapshot()
 })

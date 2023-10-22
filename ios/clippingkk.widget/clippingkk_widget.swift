@@ -9,12 +9,12 @@ import WidgetKit
 import SwiftUI
 
 let bgs: [String] = [ "https://ck-cdn.annatarhe.cn/lrYm87HbNXn7rU1vBdh4iC7dXUGB8St2/DSCF1642.jpg",
-    "https://ck-cdn.annatarhe.cn/k0eLe3mUbrMrYqJw9HPFDmSWIBqmnLpX/DSCF1611.jpg",
-    "https://ck-cdn.annatarhe.cn/UmzmeThtEhYvVewG5TkBmS8IEGiAGSwI/DSCF1609.jpg",
-    "https://ck-cdn.annatarhe.cn/nwTvnaDfnzGR4axGYCMQ9my0Sq2MGk0c/DSCF1575.jpg",
-    "https://ck-cdn.annatarhe.cn/aRHhsYQI9hg6aqDhFvAEiqyi1gJzJnca/DSCF1310.jpg",
-    "https://ck-cdn.annatarhe.cn/41me0rLT3nU4pdv9PdSMSNPR2acAvbQ4/DSCF1109.jpg",
-    "https://ck-cdn.annatarhe.cn/RhcWMEhdl9h6hJD7kO9UNN8mzIFDKRva/DSCF1069-HDR.jpg"
+                      "https://ck-cdn.annatarhe.cn/k0eLe3mUbrMrYqJw9HPFDmSWIBqmnLpX/DSCF1611.jpg",
+                      "https://ck-cdn.annatarhe.cn/UmzmeThtEhYvVewG5TkBmS8IEGiAGSwI/DSCF1609.jpg",
+                      "https://ck-cdn.annatarhe.cn/nwTvnaDfnzGR4axGYCMQ9my0Sq2MGk0c/DSCF1575.jpg",
+                      "https://ck-cdn.annatarhe.cn/aRHhsYQI9hg6aqDhFvAEiqyi1gJzJnca/DSCF1310.jpg",
+                      "https://ck-cdn.annatarhe.cn/41me0rLT3nU4pdv9PdSMSNPR2acAvbQ4/DSCF1109.jpg",
+                      "https://ck-cdn.annatarhe.cn/RhcWMEhdl9h6hJD7kO9UNN8mzIFDKRva/DSCF1069-HDR.jpg"
 ]
 
 let placeholderImage = "https://picsum.photos/400/500"
@@ -293,12 +293,13 @@ struct clippingkkEntryView : View {
       }
     }
     .containerBackground(for: .widget, content: {
-            Image(uiImage: UIImage(data: entry.bgImage)!)
-              .resizable()
-              .aspectRatio(contentMode: .fill)
-              .overlay{
-                baseOverlayColor
-              }
+      Image(uiImage: UIImage(data: entry.bgImage)!)
+        .resizable()
+        .aspectRatio(contentMode: .fill)
+        .blur(radius: 10)
+        .overlay{
+          baseOverlayColor
+        }
     })
     .widgetURL(URL(string: "clippingkk:///dash/\(clipping.creator.id)/clippings/\(clipping.id)"))
   }
@@ -315,7 +316,7 @@ struct clippingkk_widget: Widget {
     .containerBackgroundRemovable(false)
     .configurationDisplayName("widget title")
     .description("widget desc")
-    .supportedFamilies([.systemMedium, .systemLarge, .systemExtraLarge])
+    .supportedFamilies([.systemSmall, .systemMedium, .systemLarge, .systemExtraLarge])
   }
 }
 

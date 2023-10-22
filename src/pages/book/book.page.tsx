@@ -85,7 +85,6 @@ function BookPage(props: BookPageProps) {
 
   const itemSizeCellHeight = useClippingCellAvgHeight(bs.data?.book.clippings ?? [])
 
-  const bg = useColorModeValue('#ECEFF1', '#263238')
   const scrollHandlers = useScrollHandlers<ScrollView>({
     refreshControlBoundary: 0,
   });

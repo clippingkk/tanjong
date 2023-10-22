@@ -1,5 +1,5 @@
 import { Link } from '@react-navigation/native'
-import { Center, Text, View } from 'native-base'
+import { Text, View } from '@gluestack-ui/themed'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { RouteKeys } from '../../routes'
@@ -24,12 +24,15 @@ function AuthGuard(props: AuthGuardProps) {
             width: '100%', textAlign: 'center'
           }}
         >
-          <Text color='gray.900' _dark={{ color: 'gray.100' }}>
+          <Text
+            color='$blueGray900'
+            sx={{ _dark: { color: '$blueGray100' } }}
+          >
             {t('app.auth.loginFullTip')}
           </Text>
         </Link>
       </View>
-    </Page>
+    </Page >
   )
 }
 

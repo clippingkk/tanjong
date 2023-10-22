@@ -8,7 +8,7 @@ export function useSingleBook(doubanId?: string | null, skip?: boolean) {
     queryKey: ['wenqu', 'books', 'dbId', doubanId],
     queryFn: () => wenquRequest<WenquSearchResponse>(`/books/search?dbId=${doubanId}`),
     enabled: !skip && (doubanId?.length ?? 0) > 3,
-    cacheTime: duration3Days,
+    gcTime: duration3Days,
     staleTime: duration3Days,
   })
 }

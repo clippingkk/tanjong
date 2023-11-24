@@ -17,6 +17,9 @@ import BasicBoard from '../../components/profile/basic-board'
 import { useClippingCellAvgHeight } from '../../hooks/clipping'
 import { RouteKeys, RouteParamList } from '../../routes'
 import { Clipping, useProfileQuery } from '../../schema/generated'
+import { SafeAreaView } from 'react-native'
+import { Center, VStack } from '@gluestack-ui/themed'
+import PulseBox from '../../components/pulse-box/pulse-box'
 
 type ProfilePageProps = NativeStackScreenProps<RouteParamList, 'empty'>
 
@@ -105,17 +108,21 @@ function ProfilePage(props: ProfilePageProps) {
 
   if (p.loading) {
     return (
-      <LoadingBox
-        retry={() => p.refetch({
-          id: uid!,
-          pagination: {
-            recents: {
-              lastId: 1 << 30,
-              limit: 10
-            }
-          }
-        })}
-      />
+      <SafeAreaView>
+        <VStack mt={20}>
+          <Center mb={8}>
+            <PulseBox height={160} width={320} radius={4} />
+          </Center>
+          <Center>
+            <VStack rowGap={8}>
+              <PulseBox height={180} width={346} radius={4} />
+              <PulseBox height={180} width={346} radius={4} />
+              <PulseBox height={180} width={346} radius={4} />
+              <PulseBox height={180} width={346} radius={4} />
+            </VStack>
+          </Center>
+        </VStack>
+      </SafeAreaView>
     )
   }
 

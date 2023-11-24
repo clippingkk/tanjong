@@ -1,7 +1,7 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { FlashList } from '@shopify/flash-list'
 import { useAtomValue } from 'jotai'
-import { Spinner, Text } from '@gluestack-ui/themed'
+import { Center, Spinner, Text } from '@gluestack-ui/themed'
 import { Button, View, useColorModeValue } from 'native-base'
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { ActivityIndicator, ScrollView, useColorScheme } from 'react-native'
@@ -16,6 +16,8 @@ import { useBookQuery } from '../../schema/generated'
 import { UTPService } from '../../service/utp'
 import ActionSheet, { ActionSheetRef, useScrollHandlers } from 'react-native-actions-sheet'
 import { VStack } from '@gluestack-ui/themed'
+import { SafeAreaView } from 'react-native'
+import PulseBox from '../../components/pulse-box/pulse-box'
 
 type BookPageProps = NativeStackScreenProps<RouteParamList, 'Book'>
 
@@ -88,6 +90,26 @@ function BookPage(props: BookPageProps) {
   const scrollHandlers = useScrollHandlers<ScrollView>({
     refreshControlBoundary: 0,
   });
+
+  if (bs.loading) {
+    return (
+      <SafeAreaView>
+        <VStack mt={20}>
+          <Center mb={8}>
+            <PulseBox height={310} width={400} radius={4} />
+          </Center>
+          <Center>
+            <VStack rowGap={8}>
+              <PulseBox height={180} width={346} radius={4} />
+              <PulseBox height={180} width={346} radius={4} />
+              <PulseBox height={180} width={346} radius={4} />
+              <PulseBox height={180} width={346} radius={4} />
+            </VStack>
+          </Center>
+        </VStack>
+      </SafeAreaView>
+    )
+  }
 
   if ((bs.data?.book.clippingsCount ?? 0) === 0) {
     return (

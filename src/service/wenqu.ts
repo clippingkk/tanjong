@@ -26,6 +26,18 @@ export async function wenquRequest<T extends object>(url: string, options: Reque
   }
 }
 
+export interface WenquBookCoverImageInfo {
+  id: number;
+  blurHashValue: string;
+  height: number;
+  width: number;
+  ratio: number;
+  edges?: any;
+}
+
+export interface WenquBookEdge {
+  imageInfo?: WenquBookCoverImageInfo;
+}
 export interface WenquBook {
   id: number
   rating: number
@@ -44,6 +56,7 @@ export interface WenquBook {
   summary: string
   createdAt: string
   updatedAt: string
+  edges?: WenquBookEdge
 }
 
 export interface WenquSearchResponse {

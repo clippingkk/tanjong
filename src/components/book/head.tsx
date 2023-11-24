@@ -7,6 +7,7 @@ import { ImageLoadEventData, ActivityIndicator, useColorScheme } from 'react-nat
 import { WenquBook } from '../../service/wenqu'
 import { basicStyles } from '../../styles/basic'
 import { FontLXGW } from '../../styles/font'
+import { Blurhash } from 'react-native-blurhash'
 
 type BookHeadProps = {
   book: WenquBook
@@ -54,7 +55,10 @@ function BookHead(props: BookHeadProps) {
             }}
             loadingImageComponent={() => (
               <Center>
-                <ActivityIndicator />
+                <Blurhash
+                  blurhash={book.edges?.imageInfo?.blurHashValue || 'LGFFaXYk^6#M@-5c,1J5@[or[Q6.'}
+                  style={{ height: 200, aspectRatio: ratio, borderRadius: 4 }}
+                />
               </Center>
             )}
             style={[{

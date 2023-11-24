@@ -145,9 +145,24 @@ function SettingsPage(props: SettingsPageProps) {
               <Text color='$blueGray900' sx={{ _dark: { color: '$amber100' } }}>
                 Cache:
               </Text>
+              <HStack alignItems='center' gap={'$2'}>
               <Text color='$blueGray900' sx={{ _dark: { color: '$amber100' } }}>
                 {cacheSize} B
               </Text>
+              <Button
+                bgColor='$red400'
+                onPress={() => {
+                  CacheManager.clearCache()
+                  Toast.show({
+                    title: 'cache cleared'
+                  })
+                }}
+              >
+                <Text>
+                Clear
+                </Text>
+              </Button>
+              </HStack>
             </HStack>
             <Divider my={'$6'} />
             <HStack justifyContent='space-between' alignItems='center' width='100%'>

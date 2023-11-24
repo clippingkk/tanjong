@@ -3,11 +3,12 @@ import { useHeaderHeight } from '@react-navigation/elements'
 import { Link } from '@react-navigation/native'
 import { Center, Divider, Text, View } from 'native-base'
 import React, { useMemo, useState } from 'react'
-import { ActivityIndicator, ImageLoadEventData } from 'react-native'
+import { ImageLoadEventData } from 'react-native'
 import { useSingleBook } from '../../hooks/wenqu'
 import { RouteKeys } from '../../routes'
-import { WenquBook } from '../../service/wenqu'
+import { Blurhash } from 'react-native-blurhash';
 import { FontLXGW } from '../../styles/font'
+import PulseBox from '../pulse-box/pulse-box'
 
 type BookHeroProps = {
   bookDoubanID: string | null
@@ -19,6 +20,10 @@ function BookHero(props: BookHeroProps) {
   const { data: books, isLoading } = useSingleBook(props.bookDoubanID)
 
   const ratio = useMemo(() => {
+    const realRatio = book?.edges?.imageInfo?.ratio
+    if (realRatio) {
+      return realRatio
+    }
     if (!loadedImage) {
       return 16 / 9
     }
@@ -29,16 +34,12 @@ function BookHero(props: BookHeroProps) {
 
   const hh = useHeaderHeight()
 
-  if (isLoading) {
+  if (!book) {
     return (
-      <Center height={250}>
-        <ActivityIndicator />
+      <Center style={{ marginVertical: hh }}>
+        <PulseBox height={250} width={200} radius={4} />
       </Center>
     )
-  }
-
-  if (!book) {
-    return <View height={hh + 200} bg='amber.300' />
   }
 
   return (
@@ -59,7 +60,10 @@ function BookHero(props: BookHeroProps) {
             }}
             loadingImageComponent={() => (
               <Center>
-                <ActivityIndicator />
+                <Blurhash
+                  blurhash={book.edges?.imageInfo?.blurHashValue || 'LGFFaXYk^6#M@-5c,1J5@[or[Q6.'}
+                  style={{ height: 200, aspectRatio: ratio, borderRadius: 4 }}
+                />
               </Center>
             )}
             style={{

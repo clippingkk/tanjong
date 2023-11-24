@@ -2,7 +2,7 @@ import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
 import { useHeaderHeight } from '@react-navigation/elements'
 import { MasonryFlashList } from '@shopify/flash-list'
 import { useAtomValue } from 'jotai'
-import { View } from 'native-base'
+import { VStack, HStack, View, Center } from '@gluestack-ui/themed'
 import React, { useCallback, useMemo, useState } from 'react'
 import { SafeAreaView } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
@@ -14,6 +14,7 @@ import EmptyBox from '../../components/empty/empty'
 import ErrorBox from '../../components/errorbox/errorbox'
 import LoadingBox from '../../components/loading/loading'
 import { useBooksQuery } from '../../schema/generated'
+import PulseBox from '../../components/pulse-box/pulse-box'
 
 type HomePageProps = {
 }
@@ -100,15 +101,25 @@ function HomePage(props: HomePageProps) {
 
   if (bs.loading) {
     return (
-      <LoadingBox
-        retry={() => bs.refetch({
-          id: uid,
-          pagination: {
-            limit: 10,
-            offset: 0
-          }
-        })}
-      />
+      <SafeAreaView>
+        <VStack mt={20}>
+          <Center>
+            <PulseBox height={200} width={150} radius={4} />
+          </Center>
+          <HStack mt={8} p={8} justifyContent='space-around'>
+            <PulseBox height={150} width={100} radius={4} />
+            <PulseBox height={150} width={100} radius={4} />
+          </HStack>
+          <HStack mt={8} p={8} justifyContent='space-around'>
+            <PulseBox height={150} width={100} radius={4} />
+            <PulseBox height={150} width={100} radius={4} />
+          </HStack>
+          <HStack mt={8} p={8} justifyContent='space-around'>
+            <PulseBox height={150} width={100} radius={4} />
+            <PulseBox height={150} width={100} radius={4} />
+          </HStack>
+        </VStack>
+      </SafeAreaView>
     )
   }
 
@@ -119,36 +130,42 @@ function HomePage(props: HomePageProps) {
   }
 
   return (
-    <View
-      backgroundColor='gray.100'
-      _dark={{ backgroundColor: 'gray.900' }}
-      width='100%'
-      height='100%'
-    >
-      <MasonryFlashList
-        ListHeaderComponent={() => (
-          <View marginTop={hh + 40 + 'px'} >
-            <BookHero bookDoubanID={theReadingBook} />
-          </View>
-        )}
-        onRefresh={() => bs.refetch()}
-        refreshing={bs.loading}
-        numColumns={2}
-        data={listedBook}
-        renderItem={({ item }) => {
-          return <BookCell bookDoubanID={item.doubanId} />
+    <SafeAreaView>
+      <View
+        backgroundColor='gray.100'
+        sx={{
+          _dark: {
+            backgroundColor: 'gray.800'
+          }
         }}
-        estimatedItemSize={250}
-        onEndReached={onReachedEnd}
-        onEndReachedThreshold={1}
-        ListFooterComponent={(
-          <View width='100%' height={bh} />
-        )}
-        ItemSeparatorComponent={() => (
-          <View height={4} />
-        )}
-      />
-    </View>
+        width='100%'
+        height='100%'
+      >
+        <MasonryFlashList
+          ListHeaderComponent={() => (
+            <View marginTop={hh + 40 + 'px'} >
+              <BookHero bookDoubanID={theReadingBook} />
+            </View>
+          )}
+          onRefresh={() => bs.refetch()}
+          refreshing={bs.loading}
+          numColumns={2}
+          data={listedBook}
+          renderItem={({ item }) => {
+            return <BookCell bookDoubanID={item.doubanId} />
+          }}
+          estimatedItemSize={250}
+          onEndReached={onReachedEnd}
+          onEndReachedThreshold={1}
+          ListFooterComponent={(
+            <View width='100%' height={bh} />
+          )}
+          ItemSeparatorComponent={() => (
+            <View height={4} />
+          )}
+        />
+      </View>
+    </SafeAreaView>
   )
 }
 

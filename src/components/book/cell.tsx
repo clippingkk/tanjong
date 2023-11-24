@@ -7,6 +7,7 @@ import { useSingleBook } from '../../hooks/wenqu'
 import { RouteKeys } from '../../routes'
 import { WenquBook } from '../../service/wenqu'
 import { FontLXGW } from '../../styles/font'
+import { Blurhash } from 'react-native-blurhash'
 
 type BookCellProps = {
   bookDoubanID: string
@@ -55,7 +56,10 @@ function BookCell(props: BookCellProps) {
             }}
             loadingImageComponent={() => (
               <Center>
-                <ActivityIndicator />
+                <Blurhash
+                  blurhash={book.edges?.imageInfo?.blurHashValue || 'LGFFaXYk^6#M@-5c,1J5@[or[Q6.'}
+                  style={{ height: 200, aspectRatio: ratio, borderRadius: 4 }}
+                />
               </Center>
             )}
             style={{

@@ -132,8 +132,10 @@ function HomePage(props: HomePageProps) {
   return (
     <SafeAreaView>
       <View
-        backgroundColor='gray.100'
         sx={{
+          _light: {
+            backgroundColor: 'gray.100'
+          },
           _dark: {
             backgroundColor: 'gray.800'
           }
@@ -143,7 +145,7 @@ function HomePage(props: HomePageProps) {
       >
         <MasonryFlashList
           ListHeaderComponent={() => (
-            <View marginTop={hh + 40 + 'px'} >
+            <View sx={{ _dark: { backgroundColor: 'gray.800' } }}>
               <BookHero bookDoubanID={theReadingBook} />
             </View>
           )}

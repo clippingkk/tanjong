@@ -4,21 +4,18 @@ import { Link, useNavigation } from '@react-navigation/native'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { FlashList } from '@shopify/flash-list'
 import { useAtomValue } from 'jotai'
-import { Text, View } from 'native-base'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
-import { Dimensions } from 'react-native'
 import { uidAtom } from '../../atomic'
 import AuthGuard from '../../components/auth-guard/auth-guard'
 import ClippingCell from '../../components/clipping/cell'
 import EmptyBox from '../../components/empty/empty'
 import ErrorBox from '../../components/errorbox/errorbox'
-import LoadingBox from '../../components/loading/loading'
 import BasicBoard from '../../components/profile/basic-board'
 import { useClippingCellAvgHeight } from '../../hooks/clipping'
 import { RouteKeys, RouteParamList } from '../../routes'
-import { Clipping, useProfileQuery } from '../../schema/generated'
+import { useProfileQuery } from '../../schema/generated'
 import { SafeAreaView } from 'react-native'
-import { Center, VStack } from '@gluestack-ui/themed'
+import { Center, VStack, View, Text } from '@gluestack-ui/themed'
 import PulseBox from '../../components/pulse-box/pulse-box'
 
 type ProfilePageProps = NativeStackScreenProps<RouteParamList, 'empty'>
@@ -108,21 +105,25 @@ function ProfilePage(props: ProfilePageProps) {
 
   if (p.loading) {
     return (
-      <SafeAreaView>
-        <VStack mt={20}>
-          <Center mb={8}>
-            <PulseBox height={160} width={320} radius={4} />
-          </Center>
-          <Center>
-            <VStack rowGap={8}>
-              <PulseBox height={180} width={346} radius={4} />
-              <PulseBox height={180} width={346} radius={4} />
-              <PulseBox height={180} width={346} radius={4} />
-              <PulseBox height={180} width={346} radius={4} />
-            </VStack>
-          </Center>
-        </VStack>
-      </SafeAreaView>
+      <View
+        sx={{ _dark: { backgroundColor: '$coolGray900' } }}
+      >
+        <SafeAreaView>
+          <VStack mt={20}>
+            <Center mb={8}>
+              <PulseBox height={160} width={320} radius={4} />
+            </Center>
+            <Center>
+              <VStack rowGap={8}>
+                <PulseBox height={180} width={346} radius={4} />
+                <PulseBox height={180} width={346} radius={4} />
+                <PulseBox height={180} width={346} radius={4} />
+                <PulseBox height={180} width={346} radius={4} />
+              </VStack>
+            </Center>
+          </VStack>
+        </SafeAreaView>
+      </View>
     )
   }
 
@@ -135,7 +136,11 @@ function ProfilePage(props: ProfilePageProps) {
   return (
     <View
       backgroundColor='gray.100'
-      _dark={{ backgroundColor: 'gray.900' }}
+      sx={{
+        _dark: {
+          backgroundColor: 'gray.900'
+        }
+      }}
       width='100%'
       height='100%'
     >
@@ -150,7 +155,12 @@ function ProfilePage(props: ProfilePageProps) {
         data={p.data?.me.recents ?? []}
         renderItem={({ item }) => <ClippingCell clipping={item} />}
         ItemSeparatorComponent={() => (
-          <View paddingTop={1} paddingBottom={1} width='100%' height={1} />
+          <View
+            paddingTop={'$1'}
+            paddingBottom={'$1'}
+            width='100%'
+            height={'$1'}
+          />
         )}
         ListEmptyComponent={(
           <View>

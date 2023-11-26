@@ -20,16 +20,21 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { StripeConfigs } from './constants/config';
 import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client';
 import { mmkvStoragePersister } from './utils/storage';
+import { useColorScheme } from 'react-native';
 
 const qc = new QueryClient({})
 
 function Root() {
+  const c = useColorScheme()
   return (
     <PersistQueryClientProvider client={qc} persistOptions={{ persister: mmkvStoragePersister }}>
       <I18nextProvider i18n={i18nInstance}>
         <ApolloProvider client={client}>
           <Provider>
-            <GluestackUIProvider config={config}>
+            <GluestackUIProvider
+              colorMode={c === 'dark' ? 'dark' : 'light'}
+              config={config}
+            >
               <NativeBaseProvider
                 theme={extendTheme({
                   config: {

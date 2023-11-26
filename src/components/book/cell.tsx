@@ -8,6 +8,7 @@ import { RouteKeys } from '../../routes'
 import { WenquBook } from '../../service/wenqu'
 import { FontLXGW } from '../../styles/font'
 import { Blurhash } from 'react-native-blurhash'
+import PulseBox from '../pulse-box/pulse-box'
 
 type BookCellProps = {
   bookDoubanID: string
@@ -26,8 +27,8 @@ function BookCell(props: BookCellProps) {
 
   if (isLoading) {
     return (
-      <Center height={250}>
-        <ActivityIndicator />
+      <Center>
+        <PulseBox height={250} width={200} radius={4} />
       </Center>
     )
   }

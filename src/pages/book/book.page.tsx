@@ -2,9 +2,8 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { FlashList } from '@shopify/flash-list'
 import { useAtomValue } from 'jotai'
 import { Center, Spinner, Text } from '@gluestack-ui/themed'
-import { Button, View, useColorModeValue } from 'native-base'
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { ActivityIndicator, ScrollView, useColorScheme } from 'react-native'
+import { ScrollView, useColorScheme } from 'react-native'
 import { uidAtom } from '../../atomic'
 import BookHead from '../../components/book/head'
 import ClippingCell from '../../components/clipping/cell'
@@ -15,7 +14,7 @@ import { RouteParamList } from '../../routes'
 import { useBookQuery } from '../../schema/generated'
 import { UTPService } from '../../service/utp'
 import ActionSheet, { ActionSheetRef, useScrollHandlers } from 'react-native-actions-sheet'
-import { VStack } from '@gluestack-ui/themed'
+import { VStack, View, Button } from '@gluestack-ui/themed'
 import { SafeAreaView } from 'react-native'
 import PulseBox from '../../components/pulse-box/pulse-box'
 
@@ -38,7 +37,7 @@ function BookPage(props: BookPageProps) {
       headerRight(props) {
         return (
           <Button
-            variant='ghost'
+            variant='link'
             size='xs'
             onPress={() => {
               // bsr.current?.present()
@@ -93,21 +92,27 @@ function BookPage(props: BookPageProps) {
 
   if (bs.loading) {
     return (
-      <SafeAreaView>
-        <VStack mt={20}>
-          <Center mb={8}>
-            <PulseBox height={310} width={400} radius={4} />
-          </Center>
-          <Center>
-            <VStack rowGap={8}>
-              <PulseBox height={180} width={346} radius={4} />
-              <PulseBox height={180} width={346} radius={4} />
-              <PulseBox height={180} width={346} radius={4} />
-              <PulseBox height={180} width={346} radius={4} />
-            </VStack>
-          </Center>
-        </VStack>
-      </SafeAreaView>
+      <View
+        sx={{ _dark: { backgroundColor: '$coolGray900' } }}
+      >
+        <SafeAreaView>
+          <VStack
+            mt={20}
+          >
+            <Center mb={8}>
+              <PulseBox height={310} width={400} radius={4} />
+            </Center>
+            <Center>
+              <VStack rowGap={8}>
+                <PulseBox height={180} width={346} radius={4} />
+                <PulseBox height={180} width={346} radius={4} />
+                <PulseBox height={180} width={346} radius={4} />
+                <PulseBox height={180} width={346} radius={4} />
+              </VStack>
+            </Center>
+          </VStack>
+        </SafeAreaView>
+      </View>
     )
   }
 

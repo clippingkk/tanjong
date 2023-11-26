@@ -2,7 +2,7 @@ import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
 import { useHeaderHeight } from '@react-navigation/elements'
 import { MasonryFlashList } from '@shopify/flash-list'
 import { useAtomValue } from 'jotai'
-import { VStack, HStack, View, Center } from '@gluestack-ui/themed'
+import { VStack, HStack, View, Center, useColorMode } from '@gluestack-ui/themed'
 import React, { useCallback, useMemo, useState } from 'react'
 import { SafeAreaView } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
@@ -12,7 +12,6 @@ import BookCell from '../../components/book/cell'
 import BookHero from '../../components/book/hero'
 import EmptyBox from '../../components/empty/empty'
 import ErrorBox from '../../components/errorbox/errorbox'
-import LoadingBox from '../../components/loading/loading'
 import { useBooksQuery } from '../../schema/generated'
 import PulseBox from '../../components/pulse-box/pulse-box'
 
@@ -101,25 +100,29 @@ function HomePage(props: HomePageProps) {
 
   if (bs.loading) {
     return (
-      <SafeAreaView>
-        <VStack mt={20}>
-          <Center>
-            <PulseBox height={200} width={150} radius={4} />
-          </Center>
-          <HStack mt={8} p={8} justifyContent='space-around'>
-            <PulseBox height={150} width={100} radius={4} />
-            <PulseBox height={150} width={100} radius={4} />
-          </HStack>
-          <HStack mt={8} p={8} justifyContent='space-around'>
-            <PulseBox height={150} width={100} radius={4} />
-            <PulseBox height={150} width={100} radius={4} />
-          </HStack>
-          <HStack mt={8} p={8} justifyContent='space-around'>
-            <PulseBox height={150} width={100} radius={4} />
-            <PulseBox height={150} width={100} radius={4} />
-          </HStack>
-        </VStack>
-      </SafeAreaView>
+      <View
+        sx={{ _dark: { backgroundColor: '$coolGray900' } }}
+      >
+        <SafeAreaView>
+          <VStack marginTop={20}>
+            <Center>
+              <PulseBox height={200} width={150} radius={4} />
+            </Center>
+            <HStack marginTop={8} padding={8} justifyContent='space-around'>
+              <PulseBox height={150} width={100} radius={4} />
+              <PulseBox height={150} width={100} radius={4} />
+            </HStack>
+            <HStack marginTop={8} padding={8} justifyContent='space-around'>
+              <PulseBox height={150} width={100} radius={4} />
+              <PulseBox height={150} width={100} radius={4} />
+            </HStack>
+            <HStack marginTop={8} padding={8} justifyContent='space-around'>
+              <PulseBox height={150} width={100} radius={4} />
+              <PulseBox height={150} width={100} radius={4} />
+            </HStack>
+          </VStack>
+        </SafeAreaView>
+      </View>
     )
   }
 
@@ -134,10 +137,10 @@ function HomePage(props: HomePageProps) {
       <View
         sx={{
           _light: {
-            backgroundColor: 'gray.100'
+            backgroundColor: '$coolGray100'
           },
           _dark: {
-            backgroundColor: 'gray.800'
+            backgroundColor: '$coolGray900'
           }
         }}
         width='100%'
@@ -145,7 +148,7 @@ function HomePage(props: HomePageProps) {
       >
         <MasonryFlashList
           ListHeaderComponent={() => (
-            <View sx={{ _dark: { backgroundColor: 'gray.800' } }}>
+            <View sx={{ _dark: { backgroundColor: '$coolGray900' } }}>
               <BookHero bookDoubanID={theReadingBook} />
             </View>
           )}

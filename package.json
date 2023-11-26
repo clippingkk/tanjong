@@ -21,6 +21,7 @@
     "@formatjs/intl-pluralrules": "^5.2.7",
     "@georstat/react-native-image-cache": "^3.1.0",
     "@gluestack-style/react": "^1.0.17",
+    "@gluestack-ui/config": "^1.0.3",
     "@gluestack-ui/themed": "^1.0.17",
     "@hookform/resolvers": "^3.3.2",
     "@invertase/react-native-apple-authentication": "^2.2.2",

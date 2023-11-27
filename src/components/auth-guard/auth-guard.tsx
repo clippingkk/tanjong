@@ -12,26 +12,26 @@ function AuthGuard(props: AuthGuardProps) {
   const { t } = useTranslation()
   return (
     <Page containerProps={{ flex: 1, justifyContent: 'center', justifyItems: 'center' }}>
-      <View flex={1} alignItems='center' justifyContent='center' width='100%'>
-        <Text textAlign='center' width='100%' fontSize={48}>
-          ⛔
-        </Text>
-        <Link
-          to={{
-            screen: RouteKeys.AuthV3
-          }}
-          style={{
-            width: '100%', textAlign: 'center'
-          }}
-        >
-          <Text
-            color='$blueGray900'
-            sx={{ _dark: { color: '$blueGray100' } }}
-          >
-            {t('app.auth.loginFullTip')}
+      <Link
+        to={{
+          screen: RouteKeys.AuthV3
+        }}
+      >
+        <View flex={1} alignItems='center' height={'100%'} justifyContent={'center'}>
+          <Text textAlign='center' width='100%' fontSize={'$7xl'} lineHeight={'$7xl'}>
+            ⛔
           </Text>
-        </Link>
-      </View>
+          <View padding={'$4'}>
+            <Text
+              color='$blueGray900'
+              textAlign='center'
+              sx={{ _dark: { color: '$blueGray100' } }}
+            >
+              {t('app.auth.loginFullTip')}
+            </Text>
+          </View>
+        </View>
+      </Link>
     </Page >
   )
 }

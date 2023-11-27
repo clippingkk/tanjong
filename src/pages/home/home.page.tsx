@@ -38,6 +38,9 @@ function HomePage(props: HomePageProps) {
     if (atEnd) {
       return
     }
+    if (!uid) {
+      return
+    }
     const allLength = bs.data?.books.length ?? 0
     return bs.fetchMore({
       variables: {

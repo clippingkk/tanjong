@@ -10,7 +10,7 @@ import ClippingCell from '../../components/clipping/cell'
 import Page from '../../components/page'
 import UTPShareView from '../../components/shares/utp.share'
 import { useClippingCellAvgHeight } from '../../hooks/clipping'
-import { RouteParamList } from '../../routes'
+import { RouteKeys, RouteParamList } from '../../routes'
 import { useBookQuery } from '../../schema/generated'
 import { UTPService } from '../../service/utp'
 import ActionSheet, { ActionSheetRef, useScrollHandlers } from 'react-native-actions-sheet'
@@ -18,7 +18,7 @@ import { VStack, View, Button } from '@gluestack-ui/themed'
 import { SafeAreaView } from 'react-native'
 import PulseBox from '../../components/pulse-box/pulse-box'
 
-type BookPageProps = NativeStackScreenProps<RouteParamList, 'Book'>
+type BookPageProps = NativeStackScreenProps<RouteParamList, RouteKeys.BookDetail>
 
 function BookPage(props: BookPageProps) {
   const cs = useColorScheme()

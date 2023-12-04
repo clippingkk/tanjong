@@ -19,7 +19,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { useTranslation } from 'react-i18next'
 import { CacheManager } from '@georstat/react-native-image-cache'
 
-type SettingsPageProps = NativeStackScreenProps<RouteParamList, 'empty'>
+type SettingsPageProps = NativeStackScreenProps<RouteParamList, RouteKeys.ProfileSettings>
 
 type AppWidgetType = 'public' | 'own'
 

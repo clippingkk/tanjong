@@ -7,10 +7,10 @@ import React, { useCallback, useEffect, useRef } from 'react'
 import { Alert, SafeAreaView } from 'react-native'
 import { uidAtom } from '../../atomic'
 import Page from '../../components/page'
-import { RouteParamList } from '../../routes'
+import { RouteKeys, RouteParamList } from '../../routes'
 import { getPaymentSheet, StripeError } from '../../service/payment'
 
-type PaymentPageProps = NativeStackScreenProps<RouteParamList, 'Payment'>
+type PaymentPageProps = NativeStackScreenProps<RouteParamList, RouteKeys.Payment>
 
 type DoPaymentParamsResponse = Awaited<ReturnType<typeof getPaymentSheet>>
 

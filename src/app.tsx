@@ -17,7 +17,7 @@ import {
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { createNativeStackNavigator, NativeStackHeaderProps, NativeStackNavigationOptions } from '@react-navigation/native-stack';
 import { useOnInit } from './hooks/init';
-import { RouteKeys } from './routes';
+import { RouteKeys, RouteParamList, TabRouteParamList } from './routes';
 import { BlurView } from '@react-native-community/blur';
 import AuthQRCodePage from './pages/auth/qrcode.page.mock';
 import ClippingPage from './pages/clipping/clipping';
@@ -34,8 +34,8 @@ import { RouteProp, ParamListBase, getFocusedRouteNameFromRoute, Link } from '@r
 import { useTranslation } from 'react-i18next';
 import PaymentPage from './pages/payment/payment';
 
-const RootRouteStack = createNativeStackNavigator()
-const TabStack = createBottomTabNavigator()
+const RootRouteStack = createNativeStackNavigator<RouteParamList>()
+const TabStack = createBottomTabNavigator<TabRouteParamList>()
 
 type HomeTabPagesProps = {
 }

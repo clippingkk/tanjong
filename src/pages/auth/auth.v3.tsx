@@ -12,7 +12,7 @@ import WalletConnectLoginButton from './walletconnect';
 import { FontLXGW } from '../../styles/font';
 import AuthClassicPage from './auth.classic.page';
 
-type AuthV3PageProps = NativeStackScreenProps<RouteParamList, 'empty'>
+type AuthV3PageProps = NativeStackScreenProps<RouteParamList, RouteKeys.AuthV3>
 
 function AuthV3Page(props: AuthV3PageProps) {
   useEffect(() => {

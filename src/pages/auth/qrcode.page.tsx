@@ -8,11 +8,11 @@ import { Linking, SafeAreaView, StyleSheet } from 'react-native'
 // import { useScanBarcodes, BarcodeFormat } from 'vision-camera-code-scanner'
 import Page from '../../components/page'
 import { usePostAuth } from '../../hooks/auth'
-import { RouteParamList } from '../../routes'
+import { RouteKeys, RouteParamList } from '../../routes'
 import { JwtPayload } from '../../service/jwt'
 import AuthClassicPage from './auth.classic.page'
 
-type AuthQRCodePageProps = NativeStackScreenProps<RouteParamList, 'AuthQRCode'>
+type AuthQRCodePageProps = NativeStackScreenProps<RouteParamList, RouteKeys.AuthQRCode>
 
 function AuthQRCodePage(props: AuthQRCodePageProps) {
   const { t } = useTranslation()

@@ -2,9 +2,9 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import jwtDecode from 'jwt-decode'
 import { Text } from 'native-base'
 import React from 'react'
-import { RouteParamList } from '../../routes'
+import { RouteKeys, RouteParamList } from '../../routes'
 
-type AuthQRCodePageProps = NativeStackScreenProps<RouteParamList, 'AuthQRCode'>
+type AuthQRCodePageProps = NativeStackScreenProps<RouteParamList, RouteKeys.AuthQRCode>
 
 function AuthQRCodePage(props: AuthQRCodePageProps) {
   return (

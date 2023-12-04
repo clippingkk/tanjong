@@ -5,10 +5,8 @@ import { ApolloProvider } from '@apollo/client';
 import App from './app'
 import { client } from './utils/apollo'
 import { NativeBaseProvider, Box, extendTheme } from "native-base";
-import { TailwindProvider } from 'tailwind-rn';
 import { GluestackUIProvider, Text } from "@gluestack-ui/themed"
 import { config } from "@gluestack-ui/config"
-import utilities from '../tailwind.json';
 
 import "fast-text-encoding"
 import './utils/init'
@@ -16,7 +14,7 @@ import i18nInstance from './service/i18n'
 import { Provider } from 'jotai'
 import { I18nextProvider } from 'react-i18next';
 import { StripeProvider } from '@stripe/stripe-react-native';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { QueryClient } from '@tanstack/react-query';
 import { StripeConfigs } from './constants/config';
 import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client';
 import { mmkvStoragePersister } from './utils/storage';
@@ -56,17 +54,15 @@ function Root() {
                   }
                 })}
               >
-                <TailwindProvider utilities={utilities}>
-                  <StripeProvider
-                    publishableKey={StripeConfigs.publishableKey}
-                    urlScheme={StripeConfigs.urlScheme}
-                    merchantIdentifier={StripeConfigs.merchantIdentifier}
-                  >
-                    <NavigationContainer>
-                      <App />
-                    </NavigationContainer>
-                  </StripeProvider>
-                </TailwindProvider>
+                <StripeProvider
+                  publishableKey={StripeConfigs.publishableKey}
+                  urlScheme={StripeConfigs.urlScheme}
+                  merchantIdentifier={StripeConfigs.merchantIdentifier}
+                >
+                  <NavigationContainer>
+                    <App />
+                  </NavigationContainer>
+                </StripeProvider>
               </NativeBaseProvider>
             </GluestackUIProvider>
           </Provider>

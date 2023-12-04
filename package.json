@@ -10,8 +10,6 @@
     "test:coverage": "jest --watchAll=false --coverage",
     "codegen": "graphql-codegen --config codegen.yml",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "build:tailwind": "tailwindcss --input input.css --output tailwind.css --no-autoprefixer && tailwind-rn",
-    "dev:tailwind": "concurrently \"tailwindcss --input input.css --output tailwind.css --no-autoprefixer --watch\" \"tailwind-rn --watch\"",
     "release:base": "standard-version --commit-all",
     "release": "npm run release:base --",
     "release:pre": "npm run release:base -- --prerelease alpha"
@@ -78,7 +76,6 @@
     "react-native-view-shot": "^3.8.0",
     "react-native-webview": "^13.6.2",
     "react-native-widgetkit": "^1.0.9",
-    "tailwind-rn": "^4.2.0",
     "zod": "^3.22.4"
   },
   "devDependencies": {

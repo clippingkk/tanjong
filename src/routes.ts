@@ -33,6 +33,19 @@ export type RouteParamList = {
     phone: string
     idToken: string
   }
-  AuthQRCode: object
-  Payment: object
+  [RouteKeys.AuthQRCode]: object
+  [RouteKeys.Payment]: object
+  [RouteKeys.AuthV3]: object
+  [RouteKeys.BookDetail]: {
+    book: WenquBook
+  }
+  [RouteKeys.ProfileSettings]: object
+  [RouteKeys.ProfileDebug]: object
+
+  root: object
+}
+
+export type TabRouteParamList = {
+  [RouteKeys.TabHome]: object
+  [RouteKeys.TabProfile]: {}
 }

@@ -28,23 +28,25 @@ test.only('book cell will rendered correctly', async () => {
       count: 2
     })
 
-  const wrapper = ({ children }: { children: React.ReactNode }) => (
-    <QueryClientProvider client={qc}>
-      <NativeBaseProvider initialWindowMetrics={{
-        frame: { x: 0, y: 0, width: 0, height: 0 },
-        insets: { top: 0, left: 0, right: 0, bottom: 0 },
-      }}>
-        <Provider initialValues={[[uidAtom, 1]]}>
-          <GluestackUIProvider config={config}>
-            <NavigationContainer>
-              {children}
-              <BookCell bookDoubanID='1111' />
-            </NavigationContainer>
-          </GluestackUIProvider>
-        </Provider>
-      </NativeBaseProvider>
-    </QueryClientProvider >
-  )
+  const wrapper = ({ children }: { children: React.ReactNode }) => {
+    return (
+      <QueryClientProvider client={qc}>
+        <NativeBaseProvider initialWindowMetrics={{
+          frame: { x: 0, y: 0, width: 0, height: 0 },
+          insets: { top: 0, left: 0, right: 0, bottom: 0 },
+        }}>
+          <Provider initialValues={[[uidAtom, 1]]}>
+            <GluestackUIProvider config={config}>
+              <NavigationContainer>
+                {children}
+                <BookCell bookDoubanID='1111' />
+              </NavigationContainer>
+            </GluestackUIProvider>
+          </Provider>
+        </NativeBaseProvider>
+      </QueryClientProvider >
+    )
+  }
   const { result } = renderHook(() => useSingleBook('1111'), {
     wrapper
   })

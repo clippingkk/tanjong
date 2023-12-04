@@ -1,4 +1,4 @@
-import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
+import { BottomTabScreenProps, useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
 import { useHeaderHeight } from '@react-navigation/elements'
 import { Link, useNavigation } from '@react-navigation/native'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
@@ -12,13 +12,13 @@ import EmptyBox from '../../components/empty/empty'
 import ErrorBox from '../../components/errorbox/errorbox'
 import BasicBoard from '../../components/profile/basic-board'
 import { useClippingCellAvgHeight } from '../../hooks/clipping'
-import { RouteKeys, RouteParamList } from '../../routes'
+import { RouteKeys, RouteParamList, TabRouteParamList } from '../../routes'
 import { useProfileQuery } from '../../schema/generated'
 import { SafeAreaView } from 'react-native'
 import { Center, VStack, View, Text } from '@gluestack-ui/themed'
 import PulseBox from '../../components/pulse-box/pulse-box'
 
-type ProfilePageProps = NativeStackScreenProps<RouteParamList, 'empty'>
+type ProfilePageProps = BottomTabScreenProps<TabRouteParamList, RouteKeys.TabProfile>;
 
 function ProfilePage(props: ProfilePageProps) {
   const uid = useAtomValue(uidAtom)

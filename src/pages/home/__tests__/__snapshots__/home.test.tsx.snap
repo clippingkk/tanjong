@@ -112,77 +112,32 @@ exports[`home page renders with list 1`] = `
                 }
               }
             >
-              <View
-                data-style=""
-                dataSet={
-                  {
-                    "style": "",
-                  }
-                }
-                style={
-                  [
-                    undefined,
-                    {},
-                    {},
-                    undefined,
-                    {
-                      "alignItems": "center",
-                      "flex": 1,
-                      "justifyContent": "center",
-                      "width": "100%",
-                    },
-                    undefined,
-                  ]
-                }
+              <Text
+                accessibilityRole="link"
+                href="/AuthV3"
+                onPress={[Function]}
               >
-                <Text
+                <View
                   data-style=""
                   dataSet={
                     {
                       "style": "",
                     }
                   }
-                  size="md"
                   style={
                     [
                       undefined,
                       {},
-                      {
-                        "color": "#525252",
-                        "fontFamily": undefined,
-                        "fontStyle": "normal",
-                        "fontWeight": "400",
-                        "letterSpacing": 0,
-                      },
+                      {},
                       undefined,
                       {
-                        "fontSize": 16,
-                        "lineHeight": 22,
-                      },
-                      {
-                        "fontSize": 16,
-                        "lineHeight": 22,
-                      },
-                      {
-                        "fontSize": 48,
-                        "textAlign": "center",
-                        "width": "100%",
+                        "alignItems": "center",
+                        "flex": 1,
+                        "height": "100%",
+                        "justifyContent": "center",
                       },
                       undefined,
                     ]
-                  }
-                >
-                  ⛔
-                </Text>
-                <Text
-                  accessibilityRole="link"
-                  href="/AuthV3"
-                  onPress={[Function]}
-                  style={
-                    {
-                      "textAlign": "center",
-                      "width": "100%",
-                    }
                   }
                 >
                   <Text
@@ -214,23 +169,85 @@ exports[`home page renders with list 1`] = `
                           "lineHeight": 22,
                         },
                         {
-                          "color": "#0f172a",
+                          "fontSize": 72,
+                          "lineHeight": 90,
+                          "textAlign": "center",
+                          "width": "100%",
                         },
                         undefined,
                       ]
                     }
-                    sx={
+                  >
+                    ⛔
+                  </Text>
+                  <View
+                    data-style=""
+                    dataSet={
                       {
-                        "_dark": {
-                          "color": "$blueGray100",
-                        },
+                        "style": "",
                       }
                     }
+                    style={
+                      [
+                        undefined,
+                        {},
+                        {},
+                        undefined,
+                        {
+                          "padding": 16,
+                        },
+                        undefined,
+                      ]
+                    }
                   >
-                    app.auth.loginFullTip
-                  </Text>
-                </Text>
-              </View>
+                    <Text
+                      data-style=""
+                      dataSet={
+                        {
+                          "style": "",
+                        }
+                      }
+                      size="md"
+                      style={
+                        [
+                          undefined,
+                          {},
+                          {
+                            "color": "#525252",
+                            "fontFamily": undefined,
+                            "fontStyle": "normal",
+                            "fontWeight": "400",
+                            "letterSpacing": 0,
+                          },
+                          undefined,
+                          {
+                            "fontSize": 16,
+                            "lineHeight": 22,
+                          },
+                          {
+                            "fontSize": 16,
+                            "lineHeight": 22,
+                          },
+                          {
+                            "color": "#0f172a",
+                            "textAlign": "center",
+                          },
+                          undefined,
+                        ]
+                      }
+                      sx={
+                        {
+                          "_dark": {
+                            "color": "$blueGray100",
+                          },
+                        }
+                      }
+                    >
+                      app.auth.loginFullTip
+                    </Text>
+                  </View>
+                </View>
+              </Text>
             </View>
           </View>
           <View
@@ -683,77 +700,32 @@ exports[`home page renders with permission block 1`] = `
                 }
               }
             >
-              <View
-                data-style=""
-                dataSet={
-                  {
-                    "style": "",
-                  }
-                }
-                style={
-                  [
-                    undefined,
-                    {},
-                    {},
-                    {},
-                    {
-                      "alignItems": "center",
-                      "flex": 1,
-                      "justifyContent": "center",
-                      "width": "100%",
-                    },
-                    undefined,
-                  ]
-                }
+              <Text
+                accessibilityRole="link"
+                href="/AuthV3"
+                onPress={[Function]}
               >
-                <Text
+                <View
                   data-style=""
                   dataSet={
                     {
                       "style": "",
                     }
                   }
-                  size="md"
                   style={
                     [
                       undefined,
                       {},
-                      {
-                        "color": "#525252",
-                        "fontFamily": undefined,
-                        "fontStyle": "normal",
-                        "fontWeight": "400",
-                        "letterSpacing": 0,
-                      },
+                      {},
                       {},
                       {
-                        "fontSize": 16,
-                        "lineHeight": 22,
-                      },
-                      {
-                        "fontSize": 16,
-                        "lineHeight": 22,
-                      },
-                      {
-                        "fontSize": 48,
-                        "textAlign": "center",
-                        "width": "100%",
+                        "alignItems": "center",
+                        "flex": 1,
+                        "height": "100%",
+                        "justifyContent": "center",
                       },
                       undefined,
                     ]
-                  }
-                >
-                  ⛔
-                </Text>
-                <Text
-                  accessibilityRole="link"
-                  href="/AuthV3"
-                  onPress={[Function]}
-                  style={
-                    {
-                      "textAlign": "center",
-                      "width": "100%",
-                    }
                   }
                 >
                   <Text
@@ -785,23 +757,85 @@ exports[`home page renders with permission block 1`] = `
                           "lineHeight": 22,
                         },
                         {
-                          "color": "#0f172a",
+                          "fontSize": 72,
+                          "lineHeight": 90,
+                          "textAlign": "center",
+                          "width": "100%",
                         },
                         undefined,
                       ]
                     }
-                    sx={
+                  >
+                    ⛔
+                  </Text>
+                  <View
+                    data-style=""
+                    dataSet={
                       {
-                        "_dark": {
-                          "color": "$blueGray100",
-                        },
+                        "style": "",
                       }
                     }
+                    style={
+                      [
+                        undefined,
+                        {},
+                        {},
+                        {},
+                        {
+                          "padding": 16,
+                        },
+                        undefined,
+                      ]
+                    }
                   >
-                    app.auth.loginFullTip
-                  </Text>
-                </Text>
-              </View>
+                    <Text
+                      data-style=""
+                      dataSet={
+                        {
+                          "style": "",
+                        }
+                      }
+                      size="md"
+                      style={
+                        [
+                          undefined,
+                          {},
+                          {
+                            "color": "#525252",
+                            "fontFamily": undefined,
+                            "fontStyle": "normal",
+                            "fontWeight": "400",
+                            "letterSpacing": 0,
+                          },
+                          {},
+                          {
+                            "fontSize": 16,
+                            "lineHeight": 22,
+                          },
+                          {
+                            "fontSize": 16,
+                            "lineHeight": 22,
+                          },
+                          {
+                            "color": "#0f172a",
+                            "textAlign": "center",
+                          },
+                          undefined,
+                        ]
+                      }
+                      sx={
+                        {
+                          "_dark": {
+                            "color": "$blueGray100",
+                          },
+                        }
+                      }
+                    >
+                      app.auth.loginFullTip
+                    </Text>
+                  </View>
+                </View>
+              </Text>
             </View>
           </View>
           <View

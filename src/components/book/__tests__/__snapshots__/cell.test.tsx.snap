@@ -4,12 +4,9 @@ exports[`book cell will rendered correctly 1`] = `
 <RNCSafeAreaProvider
   onInsetsChange={[Function]}
   style={
-    [
-      {
-        "flex": 1,
-      },
-      undefined,
-    ]
+    {
+      "flex": 1,
+    }
   }
 >
   <View
@@ -60,38 +57,33 @@ exports[`book cell will rendered correctly 1`] = `
             ]
           }
         >
-          <View
+          <Image
+            accessibilityRole="image"
+            accessible={true}
+            onError={[Function]}
+            onLoad={[Function]}
+            resizeMode="cover"
+            source={
+              {
+                "uri": "hello",
+              }
+            }
             style={
               [
                 {
-                  "alignItems": "center",
-                  "alignSelf": "center",
                   "bottom": 0,
-                  "justifyContent": "center",
                   "left": 0,
                   "position": "absolute",
                   "right": 0,
                   "top": 0,
                 },
                 {
-                  "opacity": 1,
+                  "opacity": 0,
                 },
+                undefined,
               ]
             }
-          >
-            <View
-              dataSet={{}}
-              style={
-                {
-                  "alignItems": "center",
-                  "display": "flex",
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <ActivityIndicator />
-            </View>
-          </View>
+          />
         </View>
         <Text
           dataSet={{}}

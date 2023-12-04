@@ -9,12 +9,7 @@ import BookCell from '../cell'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { GluestackUIProvider } from '@gluestack-ui/themed'
 import { config } from '@gluestack-ui/config'
-import { useHydrateAtoms } from 'jotai/utils'
-
-const HydrateAtoms = ({ initialValues, children }: any) => {
-  useHydrateAtoms(initialValues)
-  return children
-}
+import { HydrateAtoms } from '../../../../mocks/HydrateAtoms'
 
 jest.mock('../../../service/wenqu', () => {
   return {

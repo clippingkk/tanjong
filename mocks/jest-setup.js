@@ -21,5 +21,9 @@ jest.mock('react-native-view-shot', () => {
   const { View } = require('react-native');
   return () => <View />;
 });
+jest.mock('react-native-linear-gradient', () => {
+  const { View } = require('react-native');
+  return View
+});
 jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');
 

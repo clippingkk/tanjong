@@ -16,6 +16,7 @@ import { config } from '@gluestack-ui/config'
 import { uidAtom } from '../../../atomic'
 import { BooksDocument, BooksQuery } from '../../../schema/generated'
 import { WenquSearchResponse } from '../../../service/wenqu'
+import { HydrateAtoms } from '../../../../mocks/HydrateAtoms'
 
 test('home page renders with permission block', async () => {
   const TabStack = createBottomTabNavigator()
@@ -48,22 +49,27 @@ test('home page renders with permission block', async () => {
   expect(screen).toMatchSnapshot()
 })
 
+jest.mock('../../../service/wenqu', () => {
+  return {
+    __esModule: true,
+    wenquRequest: jest.fn(() => {
+      return {
+        count: 1,
+        books: [{
+          doubanId: 1111,
+          title: 'hhhhhhhh'
+        }, {
+          doubanId: 2222,
+          title: '2222',
+        }]
+      }
+    })
+  }
+})
+
 test('home page renders with list', async () => {
   const TabStack = createBottomTabNavigator()
-  nock('https://wenqu.annatarhe.cn')
-    .get('/books/search?dbId=11')
-    .reply(200, {
-      count: 1,
-      books: [{
-        doubanId: 11,
-        title: 'hhhhhhhh'
-      }, {
-        doubanId: 22,
-        title: '2222',
-      }]
-    } as WenquSearchResponse)
-
-  const d = render(
+  const canvas = render(
     <MockedProvider mocks={[
       {
         request: {
@@ -79,9 +85,9 @@ test('home page renders with list', async () => {
         result: {
           data: {
             books: [{
-              doubanId: '11',
+              doubanId: '1111',
             }, {
-              doubanId: '22'
+              doubanId: '2222'
             }],
             me: {
               id: 1,
@@ -106,27 +112,29 @@ test('home page renders with list', async () => {
         insets: { top: 0, left: 0, right: 0, bottom: 0 },
       }}>
         <Provider>
-          <NavigationContainer>
-            <GluestackUIProvider config={config}>
-              <TabStack.Navigator initialRouteName={RouteKeys.TabHome}>
-                <TabStack.Screen
-                  name={RouteKeys.TabHome}
-                  component={HomePage}
-                  options={{
-                    tabBarLabel: 'Books',
-                    tabBarIcon: ({ color, size }) => (
-                      <Text>📚</Text>
-                    ),
-                  }}
-                />
-              </TabStack.Navigator>
-            </GluestackUIProvider>
-          </NavigationContainer>
+          <HydrateAtoms initialValues={[[uidAtom, 1]]}>
+            <NavigationContainer>
+              <GluestackUIProvider config={config}>
+                <TabStack.Navigator initialRouteName={RouteKeys.TabHome}>
+                  <TabStack.Screen
+                    name={RouteKeys.TabHome}
+                    component={HomePage}
+                    options={{
+                      tabBarLabel: 'Books',
+                      tabBarIcon: ({ color, size }) => (
+                        <Text>📚</Text>
+                      ),
+                    }}
+                  />
+                </TabStack.Navigator>
+              </GluestackUIProvider>
+            </NavigationContainer>
+          </HydrateAtoms>
         </Provider>
       </NativeBaseProvider>
     </MockedProvider>
   )
   // make sure every thing rendered
   await act(() => { })
-  expect(screen).toMatchSnapshot()
+  expect(canvas).toMatchSnapshot()
 })

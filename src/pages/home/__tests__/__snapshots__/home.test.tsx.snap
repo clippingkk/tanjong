@@ -81,174 +81,273 @@ exports[`home page renders with list 1`] = `
               }
             }
           >
-            <View
-              data-style=""
-              dataSet={
-                {
-                  "style": "",
-                }
-              }
-              justifyItems="center"
-              style={
-                [
-                  undefined,
-                  {},
-                  {},
-                  undefined,
+            <RCTSafeAreaView>
+              <View
+                data-style=""
+                dataSet={
                   {
-                    "backgroundColor": "#f1f5f9",
-                    "flex": 1,
-                    "justifyContent": "center",
-                    "minHeight": 1334,
-                  },
-                  undefined,
-                ]
-              }
-              sx={
-                {
-                  "_dark": {
-                    "backgroundColor": "$blueGray900",
-                  },
+                    "style": "",
+                  }
                 }
-              }
-            >
-              <Text
-                accessibilityRole="link"
-                href="/AuthV3"
-                onPress={[Function]}
+                style={
+                  [
+                    undefined,
+                    {},
+                    {},
+                    {},
+                    {
+                      "height": "100%",
+                      "width": "100%",
+                    },
+                    {
+                      "backgroundColor": "#f3f4f6",
+                    },
+                    undefined,
+                  ]
+                }
+                sx={
+                  {
+                    "_dark": {
+                      "backgroundColor": "$coolGray900",
+                    },
+                    "_light": {
+                      "backgroundColor": "$coolGray100",
+                    },
+                  }
+                }
               >
                 <View
-                  data-style=""
-                  dataSet={
-                    {
-                      "style": "",
-                    }
-                  }
                   style={
-                    [
-                      undefined,
-                      {},
-                      {},
-                      undefined,
-                      {
-                        "alignItems": "center",
-                        "flex": 1,
-                        "height": "100%",
-                        "justifyContent": "center",
-                      },
-                      undefined,
-                    ]
+                    {
+                      "flex": 1,
+                      "overflow": "hidden",
+                    }
                   }
                 >
-                  <Text
-                    data-style=""
-                    dataSet={
+                  <RCTScrollView
+                    ListFooterComponent={
+                      <StyledView
+                        height={49}
+                        width="100%"
+                      />
+                    }
+                    ListHeaderComponent={[Function]}
+                    applyWindowCorrection={[Function]}
+                    canChangeSize={true}
+                    contentContainerStyle={
                       {
-                        "style": "",
+                        "backgroundColor": undefined,
+                        "minHeight": 1,
+                        "minWidth": 1,
+                        "paddingLeft": 0,
+                        "paddingRight": 0,
                       }
                     }
-                    size="md"
-                    style={
+                    contentHeight={0}
+                    contentWidth={0}
+                    data={
                       [
-                        undefined,
-                        {},
-                        {
-                          "color": "#525252",
-                          "fontFamily": undefined,
-                          "fontStyle": "normal",
-                          "fontWeight": "400",
-                          "letterSpacing": 0,
-                        },
-                        undefined,
-                        {
-                          "fontSize": 16,
-                          "lineHeight": 22,
-                        },
-                        {
-                          "fontSize": 16,
-                          "lineHeight": 22,
-                        },
-                        {
-                          "fontSize": 72,
-                          "lineHeight": 90,
-                          "textAlign": "center",
-                          "width": "100%",
-                        },
-                        undefined,
-                      ]
-                    }
-                  >
-                    ⛔
-                  </Text>
-                  <View
-                    data-style=""
-                    dataSet={
-                      {
-                        "style": "",
-                      }
-                    }
-                    style={
-                      [
-                        undefined,
-                        {},
-                        {},
-                        undefined,
-                        {
-                          "padding": 16,
-                        },
-                        undefined,
-                      ]
-                    }
-                  >
-                    <Text
-                      data-style=""
-                      dataSet={
-                        {
-                          "style": "",
-                        }
-                      }
-                      size="md"
-                      style={
                         [
-                          undefined,
-                          {},
                           {
-                            "color": "#525252",
-                            "fontFamily": undefined,
-                            "fontStyle": "normal",
-                            "fontWeight": "400",
-                            "letterSpacing": 0,
+                            "originalIndex": 0,
+                            "originalItem": {
+                              "doubanId": "2222",
+                            },
                           },
-                          undefined,
-                          {
-                            "fontSize": 16,
-                            "lineHeight": 22,
-                          },
-                          {
-                            "fontSize": 16,
-                            "lineHeight": 22,
-                          },
-                          {
-                            "color": "#0f172a",
-                            "textAlign": "center",
-                          },
-                          undefined,
-                        ]
+                        ],
+                        [],
+                      ]
+                    }
+                    dataProvider={
+                      DataProvider {
+                        "_data": [
+                          [
+                            {
+                              "originalIndex": 0,
+                              "originalItem": {
+                                "doubanId": "2222",
+                              },
+                            },
+                          ],
+                          [],
+                        ],
+                        "_firstIndexToProcess": 0,
+                        "_hasStableIds": false,
+                        "_requiresDataChangeHandling": false,
+                        "_size": 2,
+                        "getStableId": [Function],
+                        "rowHasChanged": [Function],
                       }
-                      sx={
-                        {
-                          "_dark": {
-                            "color": "$blueGray100",
-                          },
+                    }
+                    disableRecycling={false}
+                    estimatedItemSize={250}
+                    extendedState={{}}
+                    externalScrollView={[Function]}
+                    finalRenderAheadOffset={250}
+                    forceNonDeterministicRendering={true}
+                    horizontal={false}
+                    initialOffset={0}
+                    initialRenderIndex={0}
+                    isHorizontal={false}
+                    layoutProvider={
+                      GridLayoutProviderWithProps {
+                        "_acceptableRelayoutDelta": 1,
+                        "_getHeightOrWidth": [Function],
+                        "_getLayoutTypeForIndex": [Function],
+                        "_getSpan": [Function],
+                        "_hasExpired": false,
+                        "_maxSpan": 2,
+                        "_setLayoutForType": [Function],
+                        "_tempDim": {
+                          "height": 0,
+                          "width": 0,
+                        },
+                        "averageWindow": AverageWindow {
+                          "currentAverage": 250,
+                          "currentCount": 1,
+                          "inputValues": [
+                            250,
+                          ],
+                          "nextIndex": 1,
+                        },
+                        "defaultEstimatedItemSize": 100,
+                        "layoutObject": {
+                          "size": undefined,
+                          "span": undefined,
+                        },
+                        "props": {
+                          "ListFooterComponent": <StyledView
+                            height={49}
+                            width="100%"
+                          />,
+                          "ListHeaderComponent": [Function],
+                          "data": [
+                            [
+                              {
+                                "originalIndex": 0,
+                                "originalItem": {
+                                  "doubanId": "2222",
+                                },
+                              },
+                            ],
+                            [],
+                          ],
+                          "estimatedItemSize": 250,
+                          "horizontal": false,
+                          "numColumns": 2,
+                          "onEndReached": [Function],
+                          "onEndReachedThreshold": 1,
+                          "onRefresh": [Function],
+                          "onScroll": [Function],
+                          "overrideItemLayout": undefined,
+                          "refreshing": false,
+                          "renderItem": [Function],
+                        },
+                        "renderWindowInsets": {
+                          "height": 0,
+                          "width": 0,
+                        },
+                        "shouldRefreshWithAnchoring": true,
+                      }
+                    }
+                    maxRenderAhead={750}
+                    numColumns={2}
+                    onEndReached={[Function]}
+                    onEndReachedThreshold={0}
+                    onEndReachedThresholdRelative={1}
+                    onItemLayout={[Function]}
+                    onLayout={[Function]}
+                    onRefresh={[Function]}
+                    onScroll={[Function]}
+                    onScrollBeginDrag={[Function]}
+                    onSizeChanged={[Function]}
+                    onVisibleIndicesChanged={[Function]}
+                    refreshControl={
+                      <RefreshControlMock
+                        onRefresh={[Function]}
+                        refreshing={false}
+                      />
+                    }
+                    refreshing={false}
+                    removeClippedSubviews={false}
+                    renderAheadOffset={0}
+                    renderAheadStep={250}
+                    renderContentContainer={[Function]}
+                    renderItem={[Function]}
+                    renderItemContainer={[Function]}
+                    rowRenderer={[Function]}
+                    scrollEventThrottle={16}
+                    scrollThrottle={16}
+                    scrollViewProps={
+                      {
+                        "contentContainerStyle": {
+                          "backgroundColor": undefined,
+                          "minHeight": 1,
+                          "minWidth": 1,
+                          "paddingLeft": 0,
+                          "paddingRight": 0,
+                        },
+                        "onLayout": [Function],
+                        "onScrollBeginDrag": [Function],
+                        "refreshControl": <RefreshControlMock
+                          onRefresh={[Function]}
+                          refreshing={false}
+                        />,
+                        "style": {
+                          "minHeight": 1,
+                          "minWidth": 1,
+                        },
+                      }
+                    }
+                    style={
+                      {
+                        "minHeight": 1,
+                        "minWidth": 1,
+                      }
+                    }
+                    suppressBoundedSizeException={true}
+                    windowCorrectionConfig={
+                      {
+                        "applyToInitialOffset": true,
+                        "applyToItemScroll": true,
+                        "value": {
+                          "endCorrection": 0,
+                          "startCorrection": 0,
+                          "windowShift": -1,
+                        },
+                      }
+                    }
+                  >
+                    <RCTRefreshControl />
+                    <View>
+                      <View
+                        style={
+                          {
+                            "flexDirection": "column",
+                          }
                         }
-                      }
-                    >
-                      app.auth.loginFullTip
-                    </Text>
-                  </View>
+                      >
+                        <AutoLayoutView
+                          enableInstrumentation={false}
+                          horizontal={false}
+                          onBlankAreaEvent={[Function]}
+                          onLayout={[Function]}
+                          renderAheadOffset={0}
+                          scrollOffset={0}
+                          style={
+                            {
+                              "height": 0,
+                              "width": 0,
+                            }
+                          }
+                          windowSize={0}
+                        />
+                      </View>
+                    </View>
+                  </RCTScrollView>
                 </View>
-              </Text>
-            </View>
+              </View>
+            </RCTSafeAreaView>
           </View>
           <View
             onLayout={[Function]}

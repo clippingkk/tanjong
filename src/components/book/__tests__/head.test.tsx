@@ -46,7 +46,7 @@ test('head book will correctly rendering', async () => {
       insets: { top: 0, left: 0, right: 0, bottom: 0 },
     }}>
       <GluestackUIProvider config={config}>
-        <Provider >
+        <Provider>
           <NavigationContainer>
             <st.Navigator>
               <st.Screen

@@ -1,0 +1,2064 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`profile page renders with list 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      [
+        {
+          "flex": 1,
+        },
+        undefined,
+      ]
+    }
+  >
+    <RNSScreenNavigationContainer
+      style={
+        {
+          "flex": 1,
+          "overflow": "hidden",
+        }
+      }
+    >
+      <RNSScreen
+        activityState={2}
+        collapsable={false}
+        gestureResponseDistance={
+          {
+            "bottom": -1,
+            "end": -1,
+            "start": -1,
+            "top": -1,
+          }
+        }
+        onGestureCancel={[Function]}
+        sheetAllowedDetents="large"
+        sheetCornerRadius={-1}
+        sheetExpandsWhenScrolledToEdge={true}
+        sheetGrabberVisible={false}
+        sheetLargestUndimmedDetent="all"
+        style={
+          {
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+            "zIndex": 0,
+          }
+        }
+      >
+        <View
+          accessibilityElementsHidden={false}
+          importantForAccessibility="auto"
+          style={
+            [
+              {
+                "backgroundColor": "rgb(242, 242, 242)",
+                "flex": 1,
+              },
+              [
+                {
+                  "flex": 1,
+                  "flexDirection": "column-reverse",
+                },
+                undefined,
+              ],
+            ]
+          }
+        >
+          <View
+            style={
+              {
+                "flex": 1,
+              }
+            }
+          >
+            <View
+              data-style=""
+              dataSet={
+                {
+                  "style": "",
+                }
+              }
+              style={
+                [
+                  undefined,
+                  {},
+                  {},
+                  {},
+                  {
+                    "backgroundColor": "gray.100",
+                    "height": "100%",
+                    "width": "100%",
+                  },
+                  undefined,
+                ]
+              }
+              sx={
+                {
+                  "_dark": {
+                    "backgroundColor": "gray.900",
+                  },
+                }
+              }
+            >
+              <View
+                style={
+                  {
+                    "flex": 1,
+                    "overflow": "hidden",
+                  }
+                }
+              >
+                <RCTScrollView
+                  ItemSeparatorComponent={[Function]}
+                  ListEmptyComponent={
+                    <StyledView>
+                      <StyledText>
+                        empty
+                      </StyledText>
+                    </StyledView>
+                  }
+                  ListFooterComponent={
+                    <StyledView
+                      height={65}
+                      width="100%"
+                    />
+                  }
+                  ListHeaderComponent={
+                    <StyledView
+                      paddingTop={44}
+                    >
+                      <BasicBoard
+                        profile={
+                          {
+                            "analysis": {
+                              "daily": [],
+                              "monthly": [],
+                            },
+                            "avatar": "https://avatar.com.example/annatarhe.com",
+                            "bio": "bio",
+                            "checked": true,
+                            "clippingsCount": 99,
+                            "comments": [],
+                            "createdAt": "",
+                            "domain": "111",
+                            "email": "1@1.com",
+                            "followers": [],
+                            "id": 1,
+                            "isFan": false,
+                            "name": "namename",
+                            "password": "",
+                            "phone": "123",
+                            "premiumEndAt": "2099-10-10 11:11:11",
+                            "recents": [
+                              {
+                                "bookID": "1111",
+                                "content": "lll",
+                                "createdAt": "2011-10-10 11:11:11",
+                                "id": 1,
+                                "pageAt": "8888",
+                                "title": "hello",
+                              },
+                              {
+                                "bookID": "2222",
+                                "content": "rrr",
+                                "createdAt": "2011-10-10 11:11:11",
+                                "id": 2,
+                                "pageAt": "8888",
+                                "title": "world",
+                              },
+                            ],
+                            "updatedAt": "",
+                            "wechatOpenid": "",
+                          }
+                        }
+                      />
+                    </StyledView>
+                  }
+                  applyWindowCorrection={[Function]}
+                  canChangeSize={true}
+                  contentContainerStyle={
+                    {
+                      "backgroundColor": undefined,
+                      "minHeight": 1,
+                      "minWidth": 1,
+                      "paddingLeft": 0,
+                      "paddingRight": 0,
+                    }
+                  }
+                  contentHeight={66.0102564102564}
+                  contentWidth={400}
+                  data={
+                    [
+                      {
+                        "bookID": "1111",
+                        "content": "lll",
+                        "createdAt": "2011-10-10 11:11:11",
+                        "id": 1,
+                        "pageAt": "8888",
+                        "title": "hello",
+                      },
+                      {
+                        "bookID": "2222",
+                        "content": "rrr",
+                        "createdAt": "2011-10-10 11:11:11",
+                        "id": 2,
+                        "pageAt": "8888",
+                        "title": "world",
+                      },
+                    ]
+                  }
+                  dataProvider={
+                    DataProvider {
+                      "_data": [
+                        {
+                          "bookID": "1111",
+                          "content": "lll",
+                          "createdAt": "2011-10-10 11:11:11",
+                          "id": 1,
+                          "pageAt": "8888",
+                          "title": "hello",
+                        },
+                        {
+                          "bookID": "2222",
+                          "content": "rrr",
+                          "createdAt": "2011-10-10 11:11:11",
+                          "id": 2,
+                          "pageAt": "8888",
+                          "title": "world",
+                        },
+                      ],
+                      "_firstIndexToProcess": 0,
+                      "_hasStableIds": false,
+                      "_requiresDataChangeHandling": false,
+                      "_size": 2,
+                      "getStableId": [Function],
+                      "rowHasChanged": [Function],
+                    }
+                  }
+                  disableRecycling={false}
+                  estimatedItemSize={33.0051282051282}
+                  extendedState={{}}
+                  externalScrollView={[Function]}
+                  finalRenderAheadOffset={250}
+                  forceNonDeterministicRendering={true}
+                  horizontal={false}
+                  initialOffset={0}
+                  initialRenderIndex={0}
+                  isHorizontal={false}
+                  layoutProvider={
+                    GridLayoutProviderWithProps {
+                      "_acceptableRelayoutDelta": 1,
+                      "_getHeightOrWidth": [Function],
+                      "_getLayoutTypeForIndex": [Function],
+                      "_getSpan": [Function],
+                      "_hasExpired": false,
+                      "_isHorizontal": false,
+                      "_lastLayoutManager": GridLayoutManager {
+                        "_acceptableRelayoutDelta": 1,
+                        "_getSpan": [Function],
+                        "_isGridHorizontal": false,
+                        "_isHorizontal": false,
+                        "_layoutProvider": [Circular],
+                        "_layouts": [
+                          {
+                            "height": 33.0051282051282,
+                            "type": 0,
+                            "width": 400,
+                            "x": 0,
+                            "y": 0,
+                          },
+                          {
+                            "height": 33.0051282051282,
+                            "type": 0,
+                            "width": 400,
+                            "x": 0,
+                            "y": 33.0051282051282,
+                          },
+                        ],
+                        "_maxSpan": 1,
+                        "_renderWindowSize": {
+                          "height": 900,
+                          "width": 400,
+                        },
+                        "_totalHeight": 66.0102564102564,
+                        "_totalWidth": 400,
+                        "_window": {
+                          "height": 900,
+                          "width": 400,
+                        },
+                      },
+                      "_maxSpan": 1,
+                      "_renderWindowSize": {
+                        "height": 900,
+                        "width": 400,
+                      },
+                      "_setLayoutForType": [Function],
+                      "_tempDim": {
+                        "height": 0,
+                        "width": 0,
+                      },
+                      "averageWindow": AverageWindow {
+                        "currentAverage": 33.0051282051282,
+                        "currentCount": 1,
+                        "inputValues": [
+                          33.0051282051282,
+                          ,
+                          ,
+                          ,
+                          ,
+                          ,
+                          ,
+                          ,
+                          ,
+                          ,
+                          ,
+                          ,
+                          ,
+                          ,
+                          ,
+                          ,
+                          ,
+                          ,
+                          ,
+                          ,
+                          ,
+                          ,
+                          ,
+                          ,
+                          ,
+                          ,
+                          ,
+                          ,
+                          ,
+                          ,
+                          ,
+                          ,
+                          ,
+                          ,
+                          ,
+                          ,
+                          ,
+                          ,
+                          ,
+                          ,
+                          ,
+                          ,
+                          ,
+                          ,
+                          ,
+                          ,
+                          ,
+                          ,
+                          ,
+                          ,
+                          ,
+                          ,
+                          ,
+                          ,
+                        ],
+                        "nextIndex": 1,
+                      },
+                      "defaultEstimatedItemSize": 100,
+                      "layoutObject": {
+                        "size": undefined,
+                        "span": undefined,
+                      },
+                      "props": {
+                        "ItemSeparatorComponent": [Function],
+                        "ListEmptyComponent": <StyledView>
+                          <StyledText>
+                            empty
+                          </StyledText>
+                        </StyledView>,
+                        "ListFooterComponent": <StyledView
+                          height={65}
+                          width="100%"
+                        />,
+                        "ListHeaderComponent": <StyledView
+                          paddingTop={44}
+                        >
+                          <BasicBoard
+                            profile={
+                              {
+                                "analysis": {
+                                  "daily": [],
+                                  "monthly": [],
+                                },
+                                "avatar": "https://avatar.com.example/annatarhe.com",
+                                "bio": "bio",
+                                "checked": true,
+                                "clippingsCount": 99,
+                                "comments": [],
+                                "createdAt": "",
+                                "domain": "111",
+                                "email": "1@1.com",
+                                "followers": [],
+                                "id": 1,
+                                "isFan": false,
+                                "name": "namename",
+                                "password": "",
+                                "phone": "123",
+                                "premiumEndAt": "2099-10-10 11:11:11",
+                                "recents": [
+                                  {
+                                    "bookID": "1111",
+                                    "content": "lll",
+                                    "createdAt": "2011-10-10 11:11:11",
+                                    "id": 1,
+                                    "pageAt": "8888",
+                                    "title": "hello",
+                                  },
+                                  {
+                                    "bookID": "2222",
+                                    "content": "rrr",
+                                    "createdAt": "2011-10-10 11:11:11",
+                                    "id": 2,
+                                    "pageAt": "8888",
+                                    "title": "world",
+                                  },
+                                ],
+                                "updatedAt": "",
+                                "wechatOpenid": "",
+                              }
+                            }
+                          />
+                        </StyledView>,
+                        "data": [
+                          {
+                            "bookID": "1111",
+                            "content": "lll",
+                            "createdAt": "2011-10-10 11:11:11",
+                            "id": 1,
+                            "pageAt": "8888",
+                            "title": "hello",
+                          },
+                          {
+                            "bookID": "2222",
+                            "content": "rrr",
+                            "createdAt": "2011-10-10 11:11:11",
+                            "id": 2,
+                            "pageAt": "8888",
+                            "title": "world",
+                          },
+                        ],
+                        "estimatedItemSize": 33.0051282051282,
+                        "numColumns": 1,
+                        "onEndReached": [Function],
+                        "onEndReachedThreshold": 1,
+                        "onRefresh": [Function],
+                        "refreshing": false,
+                        "renderItem": [Function],
+                      },
+                      "renderWindowInsets": {
+                        "height": 0,
+                        "width": 0,
+                      },
+                      "shouldRefreshWithAnchoring": true,
+                    }
+                  }
+                  maxRenderAhead={750}
+                  numColumns={1}
+                  onEndReached={[Function]}
+                  onEndReachedThreshold={0}
+                  onEndReachedThresholdRelative={1}
+                  onItemLayout={[Function]}
+                  onLayout={[Function]}
+                  onRefresh={[Function]}
+                  onScroll={[Function]}
+                  onScrollBeginDrag={[Function]}
+                  onSizeChanged={[Function]}
+                  onVisibleIndicesChanged={[Function]}
+                  refreshControl={
+                    <RefreshControlMock
+                      onRefresh={[Function]}
+                      refreshing={false}
+                    />
+                  }
+                  refreshing={false}
+                  removeClippedSubviews={false}
+                  renderAheadOffset={0}
+                  renderAheadStep={250}
+                  renderContentContainer={[Function]}
+                  renderItem={[Function]}
+                  renderItemContainer={[Function]}
+                  rowRenderer={[Function]}
+                  scrollEventThrottle={16}
+                  scrollThrottle={16}
+                  scrollViewProps={
+                    {
+                      "contentContainerStyle": {
+                        "backgroundColor": undefined,
+                        "minHeight": 1,
+                        "minWidth": 1,
+                        "paddingLeft": 0,
+                        "paddingRight": 0,
+                      },
+                      "onLayout": [Function],
+                      "onScrollBeginDrag": [Function],
+                      "refreshControl": <RefreshControlMock
+                        onRefresh={[Function]}
+                        refreshing={false}
+                      />,
+                      "style": {
+                        "minHeight": 1,
+                        "minWidth": 1,
+                      },
+                    }
+                  }
+                  style={
+                    {
+                      "minHeight": 1,
+                      "minWidth": 1,
+                    }
+                  }
+                  suppressBoundedSizeException={true}
+                  windowCorrectionConfig={
+                    {
+                      "applyToInitialOffset": true,
+                      "applyToItemScroll": true,
+                      "value": {
+                        "endCorrection": 0,
+                        "startCorrection": 0,
+                        "windowShift": -1,
+                      },
+                    }
+                  }
+                >
+                  <RCTRefreshControl />
+                  <View>
+                    <View
+                      style={
+                        {
+                          "flexDirection": "column",
+                        }
+                      }
+                    >
+                      <View
+                        style={
+                          {
+                            "paddingLeft": 0,
+                            "paddingTop": 0,
+                          }
+                        }
+                      />
+                      <View
+                        style={
+                          [
+                            undefined,
+                            undefined,
+                          ]
+                        }
+                      >
+                        <View
+                          data-style=""
+                          dataSet={
+                            {
+                              "style": "",
+                            }
+                          }
+                          style={
+                            [
+                              undefined,
+                              {},
+                              {},
+                              {},
+                              {
+                                "paddingTop": 44,
+                              },
+                              undefined,
+                            ]
+                          }
+                        >
+                          <View
+                            dataSet={{}}
+                            style={
+                              {
+                                "marginBottom": 8,
+                                "paddingTop": 44,
+                              }
+                            }
+                          >
+                            <View
+                              style={
+                                [
+                                  {
+                                    "backgroundColor": "transparent",
+                                  },
+                                  {
+                                    "bottom": 0,
+                                    "left": 0,
+                                    "position": "absolute",
+                                    "right": 0,
+                                    "top": 0,
+                                  },
+                                ]
+                              }
+                            >
+                              <View
+                                style={
+                                  [
+                                    {
+                                      "alignItems": "center",
+                                      "alignSelf": "center",
+                                      "bottom": 0,
+                                      "justifyContent": "center",
+                                      "left": 0,
+                                      "position": "absolute",
+                                      "right": 0,
+                                      "top": 0,
+                                    },
+                                  ]
+                                }
+                              />
+                            </View>
+                            <BlurView
+                              blurAmount={30}
+                              blurType="light"
+                              reducedTransparencyFallbackColor="white"
+                              style={
+                                [
+                                  {
+                                    "backgroundColor": "transparent",
+                                  },
+                                  {
+                                    "bottom": 0,
+                                    "left": 0,
+                                    "position": "absolute",
+                                    "right": 0,
+                                    "top": 0,
+                                  },
+                                ]
+                              }
+                            />
+                            <View
+                              dataSet={{}}
+                              style={
+                                {
+                                  "height": 128,
+                                  "marginBottom": 32,
+                                  "marginLeft": 32,
+                                  "marginRight": 32,
+                                  "marginTop": 32,
+                                }
+                              }
+                            >
+                              <BlurView
+                                blurAmount={10}
+                                blurType="light"
+                                reducedTransparencyFallbackColor="white"
+                                style={
+                                  [
+                                    {
+                                      "backgroundColor": "transparent",
+                                    },
+                                    [
+                                      {
+                                        "bottom": 0,
+                                        "left": 0,
+                                        "position": "absolute",
+                                        "right": 0,
+                                        "top": 0,
+                                      },
+                                      {
+                                        "shadowColor": "#000",
+                                        "shadowOffset": {
+                                          "height": 2,
+                                          "width": 0,
+                                        },
+                                        "shadowRadius": 3.84,
+                                      },
+                                      {
+                                        "borderRadius": 8,
+                                      },
+                                    ],
+                                  ]
+                                }
+                              />
+                              <View
+                                dataSet={{}}
+                                style={
+                                  [
+                                    {},
+                                    {
+                                      "bottom": 0,
+                                      "left": 0,
+                                      "position": "absolute",
+                                      "right": 0,
+                                      "top": 0,
+                                    },
+                                  ]
+                                }
+                              >
+                                <View
+                                  dataSet={{}}
+                                  style={
+                                    {
+                                      "alignItems": "center",
+                                      "flexDirection": "row",
+                                      "justifyContent": "center",
+                                      "paddingBottom": 8,
+                                      "paddingTop": 8,
+                                    }
+                                  }
+                                >
+                                  <View
+                                    dataSet={{}}
+                                    style={
+                                      {
+                                        "alignItems": "center",
+                                        "justifyContent": "center",
+                                        "marginRight": 8,
+                                      }
+                                    }
+                                  >
+                                    <View
+                                      style={
+                                        [
+                                          {
+                                            "backgroundColor": "transparent",
+                                          },
+                                          {
+                                            "borderRadius": 50,
+                                            "height": 50,
+                                            "overflow": "hidden",
+                                            "width": 50,
+                                          },
+                                        ]
+                                      }
+                                    >
+                                      <View
+                                        style={
+                                          [
+                                            {
+                                              "alignItems": "center",
+                                              "alignSelf": "center",
+                                              "bottom": 0,
+                                              "justifyContent": "center",
+                                              "left": 0,
+                                              "position": "absolute",
+                                              "right": 0,
+                                              "top": 0,
+                                            },
+                                          ]
+                                        }
+                                      />
+                                    </View>
+                                  </View>
+                                  <View
+                                    dataSet={{}}
+                                    style={
+                                      {
+                                        "alignItems": "center",
+                                        "flexDirection": "row",
+                                        "justifyContent": "center",
+                                      }
+                                    }
+                                  >
+                                    <Text
+                                      dataSet={{}}
+                                      style={
+                                        {
+                                          "backgroundColor": undefined,
+                                          "color": "#18181b",
+                                          "fontFamily": undefined,
+                                          "fontSize": 12,
+                                          "fontStyle": "normal",
+                                          "fontWeight": "400",
+                                          "letterSpacing": 0,
+                                          "lineHeight": 18,
+                                          "textDecorationLine": undefined,
+                                        }
+                                      }
+                                    >
+                                      namename
+                                    </Text>
+                                    <View
+                                      colors={
+                                        [
+                                          "rgb(59, 91, 219)",
+                                          "rgb(12, 133, 153)",
+                                        ]
+                                      }
+                                      end={
+                                        {
+                                          "x": 1,
+                                          "y": 0,
+                                        }
+                                      }
+                                      start={
+                                        {
+                                          "x": 0,
+                                          "y": 0,
+                                        }
+                                      }
+                                      style={
+                                        [
+                                          {
+                                            "borderRadius": 4,
+                                            "paddingLeft": 8,
+                                            "paddingRight": 8,
+                                          },
+                                          {
+                                            "marginLeft": 2,
+                                          },
+                                        ]
+                                      }
+                                    >
+                                      <Text
+                                        dataSet={{}}
+                                        style={
+                                          {
+                                            "backgroundColor": undefined,
+                                            "color": "#171717",
+                                            "fontFamily": undefined,
+                                            "fontSize": 10,
+                                            "fontStyle": "normal",
+                                            "fontWeight": "400",
+                                            "letterSpacing": 0,
+                                            "lineHeight": 15,
+                                            "textDecorationLine": undefined,
+                                          }
+                                        }
+                                      >
+                                        PREMIUM
+                                      </Text>
+                                    </View>
+                                  </View>
+                                </View>
+                                <View
+                                  dataSet={{}}
+                                  style={
+                                    {
+                                      "paddingLeft": 16,
+                                    }
+                                  }
+                                >
+                                  <Text
+                                    dataSet={{}}
+                                    style={
+                                      {
+                                        "backgroundColor": undefined,
+                                        "color": "#18181b",
+                                        "fontFamily": undefined,
+                                        "fontSize": 12,
+                                        "fontStyle": "normal",
+                                        "fontWeight": "400",
+                                        "letterSpacing": 0,
+                                        "lineHeight": 18,
+                                        "textDecorationLine": undefined,
+                                      }
+                                    }
+                                  >
+                                    bio
+                                  </Text>
+                                </View>
+                              </View>
+                            </View>
+                          </View>
+                        </View>
+                      </View>
+                      <AutoLayoutView
+                        enableInstrumentation={false}
+                        horizontal={false}
+                        onBlankAreaEvent={[Function]}
+                        onLayout={[Function]}
+                        renderAheadOffset={0}
+                        scrollOffset={0}
+                        style={
+                          {
+                            "height": 66.0102564102564,
+                            "width": 400,
+                          }
+                        }
+                        windowSize={900}
+                      >
+                        <CellContainer
+                          index={0}
+                          onLayout={[Function]}
+                          style={
+                            {
+                              "alignItems": "stretch",
+                              "flexDirection": "column",
+                              "left": 0,
+                              "position": "absolute",
+                              "top": 0,
+                              "width": 400,
+                            }
+                          }
+                        >
+                          <View
+                            style={
+                              {
+                                "flexDirection": "column",
+                              }
+                            }
+                          >
+                            <View
+                              dataSet={{}}
+                              style={
+                                {
+                                  "paddingLeft": 8,
+                                  "paddingRight": 8,
+                                }
+                              }
+                            >
+                              <Text
+                                accessibilityRole="link"
+                                href="/Clipping?clipping=%5Bobject%20Object%5D"
+                                onPress={[Function]}
+                                style={
+                                  {
+                                    "width": "100%",
+                                  }
+                                }
+                              >
+                                <View
+                                  dataSet={{}}
+                                  style={
+                                    {
+                                      "backgroundColor": "#93c5fd",
+                                      "borderRadius": 8,
+                                      "elevation": 5,
+                                      "paddingBottom": 16,
+                                      "paddingLeft": 16,
+                                      "paddingRight": 16,
+                                      "paddingTop": 16,
+                                      "shadowColor": "#000000",
+                                      "shadowOffset": {
+                                        "height": 2,
+                                        "width": 0,
+                                      },
+                                      "shadowOpacity": 0.25,
+                                      "shadowRadius": 3.84,
+                                      "width": 734,
+                                    }
+                                  }
+                                >
+                                  <Text
+                                    dataSet={{}}
+                                    style={
+                                      {
+                                        "backgroundColor": undefined,
+                                        "color": "#171717",
+                                        "fontFamily": "LXGWWenKai-Regular",
+                                        "fontSize": 14,
+                                        "fontStyle": "normal",
+                                        "fontWeight": "400",
+                                        "letterSpacing": 0,
+                                        "lineHeight": 21,
+                                        "textDecorationLine": undefined,
+                                      }
+                                    }
+                                  >
+                                    lll
+                                  </Text>
+                                </View>
+                              </Text>
+                            </View>
+                          </View>
+                          <View
+                            data-style=""
+                            dataSet={
+                              {
+                                "style": "",
+                              }
+                            }
+                            style={
+                              [
+                                undefined,
+                                {},
+                                {},
+                                {},
+                                {
+                                  "height": 4,
+                                  "paddingBottom": 4,
+                                  "paddingTop": 4,
+                                  "width": "100%",
+                                },
+                                undefined,
+                              ]
+                            }
+                          />
+                        </CellContainer>
+                        <CellContainer
+                          index={1}
+                          onLayout={[Function]}
+                          style={
+                            {
+                              "alignItems": "stretch",
+                              "flexDirection": "column",
+                              "left": 0,
+                              "position": "absolute",
+                              "top": 33.0051282051282,
+                              "width": 400,
+                            }
+                          }
+                        >
+                          <View
+                            style={
+                              {
+                                "flexDirection": "column",
+                              }
+                            }
+                          >
+                            <View
+                              dataSet={{}}
+                              style={
+                                {
+                                  "paddingLeft": 8,
+                                  "paddingRight": 8,
+                                }
+                              }
+                            >
+                              <Text
+                                accessibilityRole="link"
+                                href="/Clipping?clipping=%5Bobject%20Object%5D"
+                                onPress={[Function]}
+                                style={
+                                  {
+                                    "width": "100%",
+                                  }
+                                }
+                              >
+                                <View
+                                  dataSet={{}}
+                                  style={
+                                    {
+                                      "backgroundColor": "#93c5fd",
+                                      "borderRadius": 8,
+                                      "elevation": 5,
+                                      "paddingBottom": 16,
+                                      "paddingLeft": 16,
+                                      "paddingRight": 16,
+                                      "paddingTop": 16,
+                                      "shadowColor": "#000000",
+                                      "shadowOffset": {
+                                        "height": 2,
+                                        "width": 0,
+                                      },
+                                      "shadowOpacity": 0.25,
+                                      "shadowRadius": 3.84,
+                                      "width": 734,
+                                    }
+                                  }
+                                >
+                                  <Text
+                                    dataSet={{}}
+                                    style={
+                                      {
+                                        "backgroundColor": undefined,
+                                        "color": "#171717",
+                                        "fontFamily": "LXGWWenKai-Regular",
+                                        "fontSize": 14,
+                                        "fontStyle": "normal",
+                                        "fontWeight": "400",
+                                        "letterSpacing": 0,
+                                        "lineHeight": 21,
+                                        "textDecorationLine": undefined,
+                                      }
+                                    }
+                                  >
+                                    rrr
+                                  </Text>
+                                </View>
+                              </Text>
+                            </View>
+                          </View>
+                        </CellContainer>
+                      </AutoLayoutView>
+                      <CellContainer
+                        index={-1}
+                        style={
+                          [
+                            undefined,
+                            undefined,
+                          ]
+                        }
+                      >
+                        <View
+                          data-style=""
+                          dataSet={
+                            {
+                              "style": "",
+                            }
+                          }
+                          style={
+                            [
+                              undefined,
+                              {},
+                              {},
+                              {},
+                              {
+                                "height": 65,
+                                "width": "100%",
+                              },
+                              undefined,
+                            ]
+                          }
+                        />
+                      </CellContainer>
+                      <View
+                        style={
+                          {
+                            "paddingBottom": 0,
+                            "paddingRight": 0,
+                          }
+                        }
+                      />
+                    </View>
+                  </View>
+                </RCTScrollView>
+              </View>
+            </View>
+          </View>
+          <View
+            onLayout={[Function]}
+            style={null}
+          >
+            <View
+              collapsable={false}
+              pointerEvents="box-none"
+              style={
+                {
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                  "zIndex": 0,
+                }
+              }
+            >
+              <View
+                collapsable={false}
+                style={
+                  {
+                    "backgroundColor": "rgb(255, 255, 255)",
+                    "borderBottomColor": "rgb(216, 216, 216)",
+                    "flex": 1,
+                    "shadowColor": "rgb(216, 216, 216)",
+                    "shadowOffset": {
+                      "height": 0.5,
+                      "width": 0,
+                    },
+                    "shadowOpacity": 0.85,
+                    "shadowRadius": 0,
+                  }
+                }
+              />
+            </View>
+            <View
+              collapsable={false}
+              pointerEvents="box-none"
+              style={
+                {
+                  "height": 44,
+                  "maxHeight": undefined,
+                  "minHeight": undefined,
+                  "opacity": undefined,
+                  "transform": undefined,
+                }
+              }
+            >
+              <View
+                pointerEvents="none"
+                style={
+                  {
+                    "height": 0,
+                  }
+                }
+              />
+              <View
+                pointerEvents="box-none"
+                style={
+                  {
+                    "alignItems": "stretch",
+                    "flex": 1,
+                    "flexDirection": "row",
+                  }
+                }
+              >
+                <View
+                  collapsable={false}
+                  pointerEvents="box-none"
+                  style={
+                    {
+                      "alignItems": "flex-start",
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                      "justifyContent": "center",
+                      "marginStart": 0,
+                    }
+                  }
+                />
+                <View
+                  collapsable={false}
+                  pointerEvents="box-none"
+                  style={
+                    {
+                      "justifyContent": "center",
+                      "marginHorizontal": 16,
+                      "maxWidth": 718,
+                    }
+                  }
+                >
+                  <Text
+                    accessibilityRole="header"
+                    aria-level="1"
+                    collapsable={false}
+                    numberOfLines={1}
+                    style={
+                      {
+                        "color": "rgb(28, 28, 30)",
+                        "fontSize": 17,
+                        "fontWeight": "600",
+                      }
+                    }
+                  >
+                    namename
+                  </Text>
+                </View>
+                <View
+                  collapsable={false}
+                  pointerEvents="box-none"
+                  style={
+                    {
+                      "alignItems": "flex-end",
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                      "justifyContent": "center",
+                      "marginEnd": 0,
+                    }
+                  }
+                >
+                  <Text
+                    accessibilityRole="link"
+                    href="/ProfileSettings"
+                    onPress={[Function]}
+                  >
+                    ⚙️
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+      </RNSScreen>
+    </RNSScreenNavigationContainer>
+    <View
+      collapsable={false}
+      onLayout={[Function]}
+      pointerEvents="auto"
+      style={
+        {
+          "backgroundColor": "rgb(255, 255, 255)",
+          "borderTopColor": "rgb(216, 216, 216)",
+          "borderTopWidth": 0.5,
+          "bottom": 0,
+          "elevation": 8,
+          "height": 49,
+          "left": 0,
+          "paddingBottom": 0,
+          "paddingHorizontal": 0,
+          "position": null,
+          "right": 0,
+          "transform": [
+            {
+              "translateY": 0,
+            },
+          ],
+        }
+      }
+    >
+      <View
+        pointerEvents="none"
+        style={
+          {
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          }
+        }
+      />
+      <View
+        accessibilityRole="tablist"
+        style={
+          {
+            "flex": 1,
+            "flexDirection": "row",
+          }
+        }
+      >
+        <View
+          accessibilityLabel="Books, tab, 1 of 1"
+          accessibilityRole="button"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": true,
+            }
+          }
+          accessibilityStates={
+            [
+              "selected",
+            ]
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            [
+              {
+                "alignItems": "center",
+                "flex": 1,
+              },
+              {
+                "backgroundColor": "transparent",
+              },
+              {
+                "flexDirection": "column",
+                "justifyContent": "flex-end",
+              },
+              undefined,
+            ]
+          }
+        >
+          <View
+            style={
+              [
+                {
+                  "flex": 1,
+                },
+                undefined,
+              ]
+            }
+          >
+            <View
+              style={
+                [
+                  {
+                    "alignItems": "center",
+                    "alignSelf": "center",
+                    "height": "100%",
+                    "justifyContent": "center",
+                    "minWidth": 25,
+                    "position": "absolute",
+                    "width": "100%",
+                  },
+                  {
+                    "opacity": 1,
+                  },
+                ]
+              }
+            >
+              <Text
+                dataSet={{}}
+                style={
+                  {
+                    "backgroundColor": undefined,
+                    "color": "#171717",
+                    "fontFamily": undefined,
+                    "fontSize": 14,
+                    "fontStyle": "normal",
+                    "fontWeight": "400",
+                    "letterSpacing": 0,
+                    "lineHeight": 21,
+                    "textDecorationLine": undefined,
+                  }
+                }
+              >
+                🏠
+              </Text>
+            </View>
+            <View
+              style={
+                [
+                  {
+                    "alignItems": "center",
+                    "alignSelf": "center",
+                    "height": "100%",
+                    "justifyContent": "center",
+                    "minWidth": 25,
+                    "position": "absolute",
+                    "width": "100%",
+                  },
+                  {
+                    "opacity": 0,
+                  },
+                ]
+              }
+            >
+              <Text
+                dataSet={{}}
+                style={
+                  {
+                    "backgroundColor": undefined,
+                    "color": "#171717",
+                    "fontFamily": undefined,
+                    "fontSize": 14,
+                    "fontStyle": "normal",
+                    "fontWeight": "400",
+                    "letterSpacing": 0,
+                    "lineHeight": 21,
+                    "textDecorationLine": undefined,
+                  }
+                }
+              >
+                🏠
+              </Text>
+            </View>
+          </View>
+          <Text
+            numberOfLines={1}
+            style={
+              [
+                {
+                  "backgroundColor": "transparent",
+                  "textAlign": "center",
+                },
+                {
+                  "color": "rgb(0, 122, 255)",
+                },
+                {
+                  "fontSize": 10,
+                },
+                undefined,
+              ]
+            }
+          >
+            Books
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+</RNCSafeAreaProvider>
+`;
+
+exports[`profile page renders with permission block 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      [
+        {
+          "flex": 1,
+        },
+        undefined,
+      ]
+    }
+  >
+    <RNSScreenNavigationContainer
+      style={
+        {
+          "flex": 1,
+          "overflow": "hidden",
+        }
+      }
+    >
+      <RNSScreen
+        activityState={2}
+        collapsable={false}
+        gestureResponseDistance={
+          {
+            "bottom": -1,
+            "end": -1,
+            "start": -1,
+            "top": -1,
+          }
+        }
+        onGestureCancel={[Function]}
+        sheetAllowedDetents="large"
+        sheetCornerRadius={-1}
+        sheetExpandsWhenScrolledToEdge={true}
+        sheetGrabberVisible={false}
+        sheetLargestUndimmedDetent="all"
+        style={
+          {
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+            "zIndex": 0,
+          }
+        }
+      >
+        <View
+          accessibilityElementsHidden={false}
+          importantForAccessibility="auto"
+          style={
+            [
+              {
+                "backgroundColor": "rgb(242, 242, 242)",
+                "flex": 1,
+              },
+              [
+                {
+                  "flex": 1,
+                  "flexDirection": "column-reverse",
+                },
+                undefined,
+              ],
+            ]
+          }
+        >
+          <View
+            style={
+              {
+                "flex": 1,
+              }
+            }
+          >
+            <View
+              data-style=""
+              dataSet={
+                {
+                  "style": "",
+                }
+              }
+              justifyItems="center"
+              style={
+                [
+                  undefined,
+                  {},
+                  {},
+                  {},
+                  {
+                    "backgroundColor": "#f1f5f9",
+                    "flex": 1,
+                    "justifyContent": "center",
+                    "minHeight": 1334,
+                  },
+                  undefined,
+                ]
+              }
+              sx={
+                {
+                  "_dark": {
+                    "backgroundColor": "$blueGray900",
+                  },
+                }
+              }
+            >
+              <Text
+                accessibilityRole="link"
+                href="/AuthV3"
+                onPress={[Function]}
+              >
+                <View
+                  data-style=""
+                  dataSet={
+                    {
+                      "style": "",
+                    }
+                  }
+                  style={
+                    [
+                      undefined,
+                      {},
+                      {},
+                      {},
+                      {
+                        "alignItems": "center",
+                        "flex": 1,
+                        "height": "100%",
+                        "justifyContent": "center",
+                      },
+                      undefined,
+                    ]
+                  }
+                >
+                  <Text
+                    data-style=""
+                    dataSet={
+                      {
+                        "style": "",
+                      }
+                    }
+                    size="md"
+                    style={
+                      [
+                        undefined,
+                        {},
+                        {
+                          "color": "#525252",
+                          "fontFamily": undefined,
+                          "fontStyle": "normal",
+                          "fontWeight": "400",
+                          "letterSpacing": 0,
+                        },
+                        {},
+                        {
+                          "fontSize": 16,
+                          "lineHeight": 22,
+                        },
+                        {
+                          "fontSize": 16,
+                          "lineHeight": 22,
+                        },
+                        {
+                          "fontSize": 72,
+                          "lineHeight": 90,
+                          "textAlign": "center",
+                          "width": "100%",
+                        },
+                        undefined,
+                      ]
+                    }
+                  >
+                    ⛔
+                  </Text>
+                  <View
+                    data-style=""
+                    dataSet={
+                      {
+                        "style": "",
+                      }
+                    }
+                    style={
+                      [
+                        undefined,
+                        {},
+                        {},
+                        {},
+                        {
+                          "padding": 16,
+                        },
+                        undefined,
+                      ]
+                    }
+                  >
+                    <Text
+                      data-style=""
+                      dataSet={
+                        {
+                          "style": "",
+                        }
+                      }
+                      size="md"
+                      style={
+                        [
+                          undefined,
+                          {},
+                          {
+                            "color": "#525252",
+                            "fontFamily": undefined,
+                            "fontStyle": "normal",
+                            "fontWeight": "400",
+                            "letterSpacing": 0,
+                          },
+                          {},
+                          {
+                            "fontSize": 16,
+                            "lineHeight": 22,
+                          },
+                          {
+                            "fontSize": 16,
+                            "lineHeight": 22,
+                          },
+                          {
+                            "color": "#0f172a",
+                            "textAlign": "center",
+                          },
+                          undefined,
+                        ]
+                      }
+                      sx={
+                        {
+                          "_dark": {
+                            "color": "$blueGray100",
+                          },
+                        }
+                      }
+                    >
+                      app.auth.loginFullTip
+                    </Text>
+                  </View>
+                </View>
+              </Text>
+            </View>
+          </View>
+          <View
+            onLayout={[Function]}
+            style={null}
+          >
+            <View
+              collapsable={false}
+              pointerEvents="box-none"
+              style={
+                {
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                  "zIndex": 0,
+                }
+              }
+            >
+              <View
+                collapsable={false}
+                style={
+                  {
+                    "backgroundColor": "rgb(255, 255, 255)",
+                    "borderBottomColor": "rgb(216, 216, 216)",
+                    "flex": 1,
+                    "shadowColor": "rgb(216, 216, 216)",
+                    "shadowOffset": {
+                      "height": 0.5,
+                      "width": 0,
+                    },
+                    "shadowOpacity": 0.85,
+                    "shadowRadius": 0,
+                  }
+                }
+              />
+            </View>
+            <View
+              collapsable={false}
+              pointerEvents="box-none"
+              style={
+                {
+                  "height": 44,
+                  "maxHeight": undefined,
+                  "minHeight": undefined,
+                  "opacity": undefined,
+                  "transform": undefined,
+                }
+              }
+            >
+              <View
+                pointerEvents="none"
+                style={
+                  {
+                    "height": 0,
+                  }
+                }
+              />
+              <View
+                pointerEvents="box-none"
+                style={
+                  {
+                    "alignItems": "stretch",
+                    "flex": 1,
+                    "flexDirection": "row",
+                  }
+                }
+              >
+                <View
+                  collapsable={false}
+                  pointerEvents="box-none"
+                  style={
+                    {
+                      "alignItems": "flex-start",
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                      "justifyContent": "center",
+                      "marginStart": 0,
+                    }
+                  }
+                />
+                <View
+                  collapsable={false}
+                  pointerEvents="box-none"
+                  style={
+                    {
+                      "justifyContent": "center",
+                      "marginHorizontal": 16,
+                      "maxWidth": 718,
+                    }
+                  }
+                >
+                  <Text
+                    accessibilityRole="header"
+                    aria-level="1"
+                    collapsable={false}
+                    numberOfLines={1}
+                    style={
+                      {
+                        "color": "rgb(28, 28, 30)",
+                        "fontSize": 17,
+                        "fontWeight": "600",
+                      }
+                    }
+                  >
+                    Profile
+                  </Text>
+                </View>
+                <View
+                  collapsable={false}
+                  pointerEvents="box-none"
+                  style={
+                    {
+                      "alignItems": "flex-end",
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                      "justifyContent": "center",
+                      "marginEnd": 0,
+                    }
+                  }
+                >
+                  <Text
+                    accessibilityRole="link"
+                    href="/ProfileSettings"
+                    onPress={[Function]}
+                  >
+                    ⚙️
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+      </RNSScreen>
+    </RNSScreenNavigationContainer>
+    <View
+      collapsable={false}
+      onLayout={[Function]}
+      pointerEvents="auto"
+      style={
+        {
+          "backgroundColor": "rgb(255, 255, 255)",
+          "borderTopColor": "rgb(216, 216, 216)",
+          "borderTopWidth": 0.5,
+          "bottom": 0,
+          "elevation": 8,
+          "height": 49,
+          "left": 0,
+          "paddingBottom": 0,
+          "paddingHorizontal": 0,
+          "position": null,
+          "right": 0,
+          "transform": [
+            {
+              "translateY": 0,
+            },
+          ],
+        }
+      }
+    >
+      <View
+        pointerEvents="none"
+        style={
+          {
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          }
+        }
+      />
+      <View
+        accessibilityRole="tablist"
+        style={
+          {
+            "flex": 1,
+            "flexDirection": "row",
+          }
+        }
+      >
+        <View
+          accessibilityLabel="Profile, tab, 1 of 1"
+          accessibilityRole="button"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": true,
+            }
+          }
+          accessibilityStates={
+            [
+              "selected",
+            ]
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            [
+              {
+                "alignItems": "center",
+                "flex": 1,
+              },
+              {
+                "backgroundColor": "transparent",
+              },
+              {
+                "flexDirection": "column",
+                "justifyContent": "flex-end",
+              },
+              undefined,
+            ]
+          }
+        >
+          <View
+            style={
+              [
+                {
+                  "flex": 1,
+                },
+                undefined,
+              ]
+            }
+          >
+            <View
+              style={
+                [
+                  {
+                    "alignItems": "center",
+                    "alignSelf": "center",
+                    "height": "100%",
+                    "justifyContent": "center",
+                    "minWidth": 25,
+                    "position": "absolute",
+                    "width": "100%",
+                  },
+                  {
+                    "opacity": 1,
+                  },
+                ]
+              }
+            >
+              <Text
+                dataSet={{}}
+                style={
+                  {
+                    "backgroundColor": undefined,
+                    "color": "#171717",
+                    "fontFamily": undefined,
+                    "fontSize": 14,
+                    "fontStyle": "normal",
+                    "fontWeight": "400",
+                    "letterSpacing": 0,
+                    "lineHeight": 21,
+                    "textDecorationLine": undefined,
+                  }
+                }
+              >
+                🏠
+              </Text>
+            </View>
+            <View
+              style={
+                [
+                  {
+                    "alignItems": "center",
+                    "alignSelf": "center",
+                    "height": "100%",
+                    "justifyContent": "center",
+                    "minWidth": 25,
+                    "position": "absolute",
+                    "width": "100%",
+                  },
+                  {
+                    "opacity": 0,
+                  },
+                ]
+              }
+            >
+              <Text
+                dataSet={{}}
+                style={
+                  {
+                    "backgroundColor": undefined,
+                    "color": "#171717",
+                    "fontFamily": undefined,
+                    "fontSize": 14,
+                    "fontStyle": "normal",
+                    "fontWeight": "400",
+                    "letterSpacing": 0,
+                    "lineHeight": 21,
+                    "textDecorationLine": undefined,
+                  }
+                }
+              >
+                🏠
+              </Text>
+            </View>
+          </View>
+          <Text
+            numberOfLines={1}
+            style={
+              [
+                {
+                  "backgroundColor": "transparent",
+                  "textAlign": "center",
+                },
+                {
+                  "color": "rgb(0, 122, 255)",
+                },
+                {
+                  "fontSize": 10,
+                },
+                undefined,
+              ]
+            }
+          >
+            Profile
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+</RNCSafeAreaProvider>
+`;

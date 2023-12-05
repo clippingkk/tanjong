@@ -1,20 +1,14 @@
-import 'react-native'
 import React from 'react'
-import { act, render, screen, waitFor } from '@testing-library/react-native'
-import { ApolloProvider } from '@apollo/client'
-import { client } from '../../../utils/apollo'
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { RouteKeys, RouteParamList, TabRouteParamList } from '../../../routes'
+import { render, screen, waitFor } from '@testing-library/react-native'
+import { RouteKeys, RouteParamList } from '../../../routes'
 import { NativeBaseProvider, Text } from 'native-base'
 import { MockedProvider } from "@apollo/client/testing"
 import { NavigationContainer } from '@react-navigation/native'
-import { Provider } from 'jotai'
 import { GluestackUIProvider } from '@gluestack-ui/themed'
 import { config } from '@gluestack-ui/config'
 import { uidAtom } from '../../../atomic'
-import { BookDocument, BookQuery, BooksDocument, BooksQuery, ProfileDocument, ProfileQuery } from '../../../schema/generated'
+import { BookDocument, BookQuery } from '../../../schema/generated'
 import { HydrateAtoms } from '../../../../mocks/HydrateAtoms'
-import { GraphQLError } from 'graphql'
 import { getMockedRouteNavigation, mockedBook } from '../../../../mocks/data'
 import BookPage from '../book.page'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
@@ -211,7 +205,5 @@ test('book page renders with permission block', async () => {
   await waitFor(() =>
     expect(screen.getByText('The desperation created by total war in Europe and the fear that it would spread to much of the rest of the globe was in the minds of all those who experienced it, regardless of where they experienced it.')).toBeOnTheScreen()
   )
-  // expect(canvas.getByText('2222')).toBeTruthy()
-  // expect(canvas.getByText('lorem')).toBeTruthy()
   expect(canvas).toMatchSnapshot()
 })

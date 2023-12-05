@@ -1,25 +1,19 @@
 import 'react-native'
 import React from 'react'
-import { act, render, screen, userEvent, waitFor } from '@testing-library/react-native'
-import { ApolloProvider } from '@apollo/client'
-import { client } from '../../../utils/apollo'
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { act, render, userEvent, waitFor } from '@testing-library/react-native'
 import { RouteKeys, RouteParamList, TabRouteParamList } from '../../../routes'
 import { NativeBaseProvider, Text } from 'native-base'
 import { MockedProvider } from "@apollo/client/testing"
 import { NavigationContainer } from '@react-navigation/native'
-import { Provider } from 'jotai'
 import { GluestackUIProvider } from '@gluestack-ui/themed'
 import { config } from '@gluestack-ui/config'
 import { uidAtom } from '../../../atomic'
-import { BookDocument, BookQuery, BooksDocument, BooksQuery, FetchClippingAiSummaryDocument, FetchClippingDocument, ProfileDocument, ProfileQuery } from '../../../schema/generated'
+import { FetchClippingAiSummaryDocument, FetchClippingDocument, } from '../../../schema/generated'
 import { HydrateAtoms } from '../../../../mocks/HydrateAtoms'
-import { GraphQLError } from 'graphql'
-import { getMockedRouteNavigation, mockedBook } from '../../../../mocks/data'
-import BookPage from '../book.page'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import ClippingPage from '../clipping'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { mockedBook } from '../../../../mocks/data'
 
 jest.mock('../../../service/wenqu', () => {
   return {

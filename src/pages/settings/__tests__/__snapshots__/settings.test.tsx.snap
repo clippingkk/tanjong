@@ -1,0 +1,1276 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`book page renders with permission block 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      [
+        {
+          "flex": 1,
+        },
+        undefined,
+      ]
+    }
+  >
+    <RNSScreenStack
+      style={
+        {
+          "flex": 1,
+        }
+      }
+    >
+      <RNSScreen
+        collapsable={false}
+        gestureResponseDistance={
+          {
+            "bottom": -1,
+            "end": -1,
+            "start": -1,
+            "top": -1,
+          }
+        }
+        nativeBackButtonDismissalEnabled={false}
+        onAppear={[Function]}
+        onDisappear={[Function]}
+        onDismissed={[Function]}
+        onGestureCancel={[Function]}
+        onHeaderBackButtonClicked={[Function]}
+        onNativeDismissCancelled={[Function]}
+        onTransitionProgress={[Function]}
+        onWillDisappear={[Function]}
+        replaceAnimation="push"
+        sheetAllowedDetents="large"
+        sheetCornerRadius={-1}
+        sheetExpandsWhenScrolledToEdge={true}
+        sheetGrabberVisible={false}
+        sheetLargestUndimmedDetent="all"
+        stackPresentation="push"
+        style={
+          {
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          }
+        }
+        swipeDirection="horizontal"
+      >
+        <View
+          accessibilityElementsHidden={false}
+          importantForAccessibility="auto"
+          style={
+            {
+              "flex": 1,
+              "flexDirection": "column-reverse",
+            }
+          }
+        >
+          <View
+            collapsable={false}
+            style={
+              [
+                {
+                  "flex": 1,
+                },
+                {
+                  "backgroundColor": "rgb(242, 242, 242)",
+                },
+                undefined,
+              ]
+            }
+          >
+            <View
+              data-style=""
+              dataSet={
+                {
+                  "style": "",
+                }
+              }
+              style={
+                [
+                  undefined,
+                  {},
+                  {},
+                  {},
+                  {
+                    "backgroundColor": "#f1f5f9",
+                    "minHeight": 1334,
+                  },
+                  undefined,
+                ]
+              }
+              sx={
+                {
+                  "_dark": {
+                    "backgroundColor": "$blueGray900",
+                  },
+                }
+              }
+            >
+              <RCTSafeAreaView>
+                <View
+                  data-style=""
+                  dataSet={
+                    {
+                      "style": "",
+                    }
+                  }
+                  style={
+                    [
+                      undefined,
+                      {},
+                      {},
+                      {},
+                      {
+                        "height": "100%",
+                      },
+                      undefined,
+                    ]
+                  }
+                >
+                  <View
+                    data-style=""
+                    dataSet={
+                      {
+                        "style": "",
+                      }
+                    }
+                    style={
+                      [
+                        undefined,
+                        {},
+                        {
+                          "flexDirection": "column",
+                        },
+                        {},
+                        {
+                          "marginTop": 16,
+                          "padding": 8,
+                        },
+                        undefined,
+                      ]
+                    }
+                  >
+                    <View
+                      accessibilityState={
+                        {
+                          "busy": undefined,
+                          "checked": undefined,
+                          "disabled": undefined,
+                          "expanded": undefined,
+                          "selected": undefined,
+                        }
+                      }
+                      accessibilityValue={
+                        {
+                          "max": undefined,
+                          "min": undefined,
+                          "now": undefined,
+                          "text": undefined,
+                        }
+                      }
+                      accessible={true}
+                      collapsable={false}
+                      data-style=""
+                      dataSet={
+                        {
+                          "style": "",
+                        }
+                      }
+                      focusable={true}
+                      onBlur={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onResponderGrant={[Function]}
+                      onResponderMove={[Function]}
+                      onResponderRelease={[Function]}
+                      onResponderTerminate={[Function]}
+                      onResponderTerminationRequest={[Function]}
+                      onStartShouldSetResponder={[Function]}
+                      states={
+                        {
+                          "active": false,
+                          "disabled": undefined,
+                          "focus": false,
+                          "focusVisible": false,
+                          "hover": false,
+                        }
+                      }
+                      style={
+                        [
+                          undefined,
+                          {},
+                          {},
+                          {},
+                          undefined,
+                        ]
+                      }
+                    >
+                      <Text
+                        data-style=""
+                        dataSet={
+                          {
+                            "style": "",
+                          }
+                        }
+                        size="md"
+                        style={
+                          [
+                            undefined,
+                            {},
+                            {
+                              "color": "#525252",
+                              "fontFamily": undefined,
+                              "fontStyle": "normal",
+                              "fontWeight": "400",
+                              "letterSpacing": 0,
+                            },
+                            {},
+                            {
+                              "fontSize": 16,
+                              "lineHeight": 22,
+                            },
+                            {
+                              "fontSize": 16,
+                              "lineHeight": 22,
+                            },
+                            {
+                              "color": "#0f172a",
+                            },
+                            undefined,
+                          ]
+                        }
+                        sx={
+                          {
+                            "_dark": {
+                              "color": "$amber100",
+                            },
+                          }
+                        }
+                      >
+                        created by @AnnatarHe
+                      </Text>
+                    </View>
+                    <View
+                      data-style=""
+                      dataSet={
+                        {
+                          "style": "",
+                        }
+                      }
+                      orientation="horizontal"
+                      style={
+                        [
+                          undefined,
+                          {},
+                          {
+                            "backgroundColor": "#DBDBDB",
+                          },
+                          {},
+                          {
+                            "height": 1,
+                            "width": "100%",
+                          },
+                          {
+                            "height": 1,
+                            "width": "100%",
+                          },
+                          {
+                            "marginVertical": 24,
+                          },
+                          undefined,
+                        ]
+                      }
+                    />
+                    <View
+                      data-style=""
+                      dataSet={
+                        {
+                          "style": "",
+                        }
+                      }
+                      style={
+                        [
+                          undefined,
+                          {},
+                          {
+                            "flexDirection": "row",
+                          },
+                          {},
+                          {
+                            "alignItems": "center",
+                            "justifyContent": "space-between",
+                            "width": "100%",
+                          },
+                          undefined,
+                        ]
+                      }
+                    >
+                      <Text
+                        data-style=""
+                        dataSet={
+                          {
+                            "style": "",
+                          }
+                        }
+                        size="md"
+                        style={
+                          [
+                            undefined,
+                            {},
+                            {
+                              "color": "#525252",
+                              "fontFamily": undefined,
+                              "fontStyle": "normal",
+                              "fontWeight": "400",
+                              "letterSpacing": 0,
+                            },
+                            {},
+                            {
+                              "fontSize": 16,
+                              "lineHeight": 22,
+                            },
+                            {
+                              "fontSize": 16,
+                              "lineHeight": 22,
+                            },
+                            {
+                              "color": "#0f172a",
+                            },
+                            undefined,
+                          ]
+                        }
+                        sx={
+                          {
+                            "_dark": {
+                              "color": "$amber100",
+                            },
+                          }
+                        }
+                      >
+                        iOS Widget Type: 
+                        public
+                      </Text>
+                      <RCTSwitch
+                        accessibilityRole="switch"
+                        activeThumbColor="#FCFCFC"
+                        data-style=""
+                        dataSet={
+                          {
+                            "style": "",
+                          }
+                        }
+                        onChange={[Function]}
+                        onResponderTerminationRequest={[Function]}
+                        onStartShouldSetResponder={[Function]}
+                        onTintColor="#005DB4"
+                        size="md"
+                        states={
+                          {
+                            "checked": false,
+                            "disabled": undefined,
+                            "hover": false,
+                            "invalid": undefined,
+                          }
+                        }
+                        style={
+                          [
+                            {
+                              "height": 31,
+                              "width": 51,
+                            },
+                            [
+                              [
+                                undefined,
+                                {},
+                                {
+                                  "borderRadius": 9999,
+                                },
+                                {},
+                                {},
+                                undefined,
+                              ],
+                              {
+                                "backgroundColor": "#D4D4D4",
+                                "borderRadius": 16,
+                              },
+                            ],
+                          ]
+                        }
+                        thumbTintColor="#FCFCFC"
+                        tintColor="#D4D4D4"
+                        value={false}
+                      />
+                    </View>
+                    <View
+                      data-style=""
+                      dataSet={
+                        {
+                          "style": "",
+                        }
+                      }
+                      orientation="horizontal"
+                      style={
+                        [
+                          undefined,
+                          {},
+                          {
+                            "backgroundColor": "#DBDBDB",
+                          },
+                          {},
+                          {
+                            "height": 1,
+                            "width": "100%",
+                          },
+                          {
+                            "height": 1,
+                            "width": "100%",
+                          },
+                          {
+                            "marginVertical": 24,
+                          },
+                          undefined,
+                        ]
+                      }
+                    />
+                    <View
+                      data-style=""
+                      dataSet={
+                        {
+                          "style": "",
+                        }
+                      }
+                      style={
+                        [
+                          undefined,
+                          {},
+                          {
+                            "flexDirection": "row",
+                          },
+                          {},
+                          {
+                            "alignItems": "center",
+                            "justifyContent": "space-between",
+                            "width": "100%",
+                          },
+                          undefined,
+                        ]
+                      }
+                    >
+                      <Text
+                        data-style=""
+                        dataSet={
+                          {
+                            "style": "",
+                          }
+                        }
+                        size="md"
+                        style={
+                          [
+                            undefined,
+                            {},
+                            {
+                              "color": "#525252",
+                              "fontFamily": undefined,
+                              "fontStyle": "normal",
+                              "fontWeight": "400",
+                              "letterSpacing": 0,
+                            },
+                            {},
+                            {
+                              "fontSize": 16,
+                              "lineHeight": 22,
+                            },
+                            {
+                              "fontSize": 16,
+                              "lineHeight": 22,
+                            },
+                            {
+                              "color": "#0f172a",
+                            },
+                            undefined,
+                          ]
+                        }
+                        sx={
+                          {
+                            "_dark": {
+                              "color": "$amber100",
+                            },
+                          }
+                        }
+                      >
+                        Cache:
+                      </Text>
+                      <View
+                        data-style=""
+                        dataSet={
+                          {
+                            "style": "",
+                          }
+                        }
+                        style={
+                          [
+                            undefined,
+                            {},
+                            {
+                              "flexDirection": "row",
+                            },
+                            {},
+                            {
+                              "alignItems": "center",
+                              "gap": 8,
+                            },
+                            undefined,
+                          ]
+                        }
+                      >
+                        <Text
+                          data-style=""
+                          dataSet={
+                            {
+                              "style": "",
+                            }
+                          }
+                          size="md"
+                          style={
+                            [
+                              undefined,
+                              {},
+                              {
+                                "color": "#525252",
+                                "fontFamily": undefined,
+                                "fontStyle": "normal",
+                                "fontWeight": "400",
+                                "letterSpacing": 0,
+                              },
+                              {},
+                              {
+                                "fontSize": 16,
+                                "lineHeight": 22,
+                              },
+                              {
+                                "fontSize": 16,
+                                "lineHeight": 22,
+                              },
+                              {
+                                "color": "#0f172a",
+                              },
+                              undefined,
+                            ]
+                          }
+                          sx={
+                            {
+                              "_dark": {
+                                "color": "$amber100",
+                              },
+                            }
+                          }
+                        >
+                          1111
+                           B
+                        </Text>
+                        <View
+                          accessibilityState={
+                            {
+                              "busy": undefined,
+                              "checked": undefined,
+                              "disabled": undefined,
+                              "expanded": undefined,
+                              "selected": undefined,
+                            }
+                          }
+                          accessibilityValue={
+                            {
+                              "max": undefined,
+                              "min": undefined,
+                              "now": undefined,
+                              "text": undefined,
+                            }
+                          }
+                          accessible={true}
+                          action="primary"
+                          collapsable={false}
+                          data-style=""
+                          dataSet={
+                            {
+                              "style": "",
+                            }
+                          }
+                          focusable={true}
+                          onBlur={[Function]}
+                          onClick={[Function]}
+                          onFocus={[Function]}
+                          onResponderGrant={[Function]}
+                          onResponderMove={[Function]}
+                          onResponderRelease={[Function]}
+                          onResponderTerminate={[Function]}
+                          onResponderTerminationRequest={[Function]}
+                          onStartShouldSetResponder={[Function]}
+                          role="button"
+                          size="md"
+                          states={
+                            {
+                              "active": false,
+                              "disabled": undefined,
+                              "focus": false,
+                              "focusVisible": false,
+                              "hover": false,
+                            }
+                          }
+                          style={
+                            [
+                              undefined,
+                              {},
+                              {
+                                "alignItems": "center",
+                                "backgroundColor": "#0077E6",
+                                "borderRadius": 4,
+                                "flexDirection": "row",
+                                "justifyContent": "center",
+                              },
+                              {},
+                              {
+                                "backgroundColor": "#0077E6",
+                                "borderColor": "#4AA9FF",
+                              },
+                              {},
+                              {
+                                "height": 40,
+                                "paddingHorizontal": 20,
+                              },
+                              {},
+                              {
+                                "backgroundColor": "#0077E6",
+                                "borderColor": "#4AA9FF",
+                              },
+                              {},
+                              {
+                                "height": 40,
+                                "paddingHorizontal": 20,
+                              },
+                              {},
+                              {
+                                "backgroundColor": "#f87171",
+                              },
+                              undefined,
+                            ]
+                          }
+                          variant="solid"
+                        >
+                          <Text
+                            data-style=""
+                            dataSet={
+                              {
+                                "style": "",
+                              }
+                            }
+                            size="md"
+                            style={
+                              [
+                                undefined,
+                                {},
+                                {
+                                  "color": "#525252",
+                                  "fontFamily": undefined,
+                                  "fontStyle": "normal",
+                                  "fontWeight": "400",
+                                  "letterSpacing": 0,
+                                },
+                                {},
+                                {
+                                  "fontSize": 16,
+                                  "lineHeight": 22,
+                                },
+                                undefined,
+                              ]
+                            }
+                          >
+                            Clear
+                          </Text>
+                        </View>
+                      </View>
+                    </View>
+                    <View
+                      data-style=""
+                      dataSet={
+                        {
+                          "style": "",
+                        }
+                      }
+                      orientation="horizontal"
+                      style={
+                        [
+                          undefined,
+                          {},
+                          {
+                            "backgroundColor": "#DBDBDB",
+                          },
+                          {},
+                          {
+                            "height": 1,
+                            "width": "100%",
+                          },
+                          {
+                            "height": 1,
+                            "width": "100%",
+                          },
+                          {
+                            "marginVertical": 24,
+                          },
+                          undefined,
+                        ]
+                      }
+                    />
+                    <View
+                      data-style=""
+                      dataSet={
+                        {
+                          "style": "",
+                        }
+                      }
+                      style={
+                        [
+                          undefined,
+                          {},
+                          {
+                            "flexDirection": "row",
+                          },
+                          {},
+                          {
+                            "alignItems": "center",
+                            "justifyContent": "space-between",
+                            "width": "100%",
+                          },
+                          undefined,
+                        ]
+                      }
+                    >
+                      <Text
+                        data-style=""
+                        dataSet={
+                          {
+                            "style": "",
+                          }
+                        }
+                        size="md"
+                        style={
+                          [
+                            undefined,
+                            {},
+                            {
+                              "color": "#525252",
+                              "fontFamily": undefined,
+                              "fontStyle": "normal",
+                              "fontWeight": "400",
+                              "letterSpacing": 0,
+                            },
+                            {},
+                            {
+                              "fontSize": 16,
+                              "lineHeight": 22,
+                            },
+                            {
+                              "fontSize": 16,
+                              "lineHeight": 22,
+                            },
+                            {
+                              "color": "#0f172a",
+                            },
+                            undefined,
+                          ]
+                        }
+                        sx={
+                          {
+                            "_dark": {
+                              "color": "$amber100",
+                            },
+                          }
+                        }
+                      >
+                        Language:
+                      </Text>
+                      <View
+                        data-style=""
+                        dataSet={
+                          {
+                            "style": "",
+                          }
+                        }
+                        style={
+                          [
+                            undefined,
+                            {},
+                            {},
+                            {},
+                            {
+                              "marginTop": 4,
+                            },
+                            undefined,
+                          ]
+                        }
+                        tabIndex={-1}
+                      >
+                        <View
+                          accessibilityState={
+                            {
+                              "busy": undefined,
+                              "checked": undefined,
+                              "disabled": undefined,
+                              "expanded": undefined,
+                              "selected": undefined,
+                            }
+                          }
+                          accessibilityValue={
+                            {
+                              "max": undefined,
+                              "min": undefined,
+                              "now": undefined,
+                              "text": undefined,
+                            }
+                          }
+                          accessible={true}
+                          collapsable={false}
+                          data-style=""
+                          dataSet={
+                            {
+                              "style": "",
+                            }
+                          }
+                          focusable={true}
+                          onBlur={[Function]}
+                          onClick={[Function]}
+                          onFocus={[Function]}
+                          onResponderGrant={[Function]}
+                          onResponderMove={[Function]}
+                          onResponderRelease={[Function]}
+                          onResponderTerminate={[Function]}
+                          onResponderTerminationRequest={[Function]}
+                          onStartShouldSetResponder={[Function]}
+                          role="button"
+                          size="md"
+                          states={
+                            {
+                              "disabled": undefined,
+                              "focus": undefined,
+                              "focusVisible": false,
+                              "hover": undefined,
+                              "invalid": undefined,
+                            }
+                          }
+                          style={
+                            [
+                              undefined,
+                              {},
+                              {
+                                "alignItems": "center",
+                                "borderColor": "#D4D4D4",
+                                "borderRadius": 4,
+                                "borderWidth": 1,
+                                "flexDirection": "row",
+                                "overflow": "hidden",
+                              },
+                              {},
+                              {
+                                "height": 40,
+                              },
+                              {},
+                              undefined,
+                            ]
+                          }
+                          tabIndex={-1}
+                          variant="outline"
+                        >
+                          <Text
+                            data-style=""
+                            dataSet={
+                              {
+                                "style": "",
+                              }
+                            }
+                            size="md"
+                            style={
+                              [
+                                undefined,
+                                {},
+                                {
+                                  "color": "#525252",
+                                  "fontFamily": undefined,
+                                  "fontStyle": "normal",
+                                  "fontWeight": "400",
+                                  "letterSpacing": 0,
+                                },
+                                {},
+                                {
+                                  "fontSize": 16,
+                                  "lineHeight": 22,
+                                },
+                                {
+                                  "fontSize": 16,
+                                  "lineHeight": 22,
+                                },
+                                {
+                                  "marginHorizontal": 16,
+                                },
+                                undefined,
+                              ]
+                            }
+                          >
+                            English
+                          </Text>
+                          <RNSVGSvgView
+                            bbHeight="16"
+                            bbWidth="16"
+                            data-style=""
+                            dataSet={
+                              {
+                                "style": "",
+                              }
+                            }
+                            focusable={false}
+                            size="md"
+                            style={
+                              [
+                                {
+                                  "backgroundColor": "transparent",
+                                  "borderWidth": 0,
+                                },
+                                [
+                                  undefined,
+                                  {},
+                                  {
+                                    "color": "#404040",
+                                  },
+                                  {},
+                                  {
+                                    "height": 18,
+                                    "width": 18,
+                                  },
+                                  undefined,
+                                  {},
+                                  {},
+                                  {},
+                                  {
+                                    "color": "#8C8C8C",
+                                  },
+                                  {
+                                    "height": 16,
+                                    "width": 16,
+                                  },
+                                  {
+                                    "marginRight": 12,
+                                  },
+                                  undefined,
+                                ],
+                                {
+                                  "flex": 0,
+                                  "height": 16,
+                                  "width": 16,
+                                },
+                              ]
+                            }
+                            tabIndex={-1}
+                            tintColor="#8C8C8C"
+                          >
+                            <RNSVGGroup
+                              fill={
+                                {
+                                  "payload": 4278190080,
+                                  "type": 0,
+                                }
+                              }
+                            >
+                              <RNSVGSvgView
+                                align="xMidYMid"
+                                bbHeight="18"
+                                bbWidth="18"
+                                data-style=""
+                                dataSet={
+                                  {
+                                    "style": "",
+                                  }
+                                }
+                                fill="none"
+                                focusable={false}
+                                meetOrSlice={0}
+                                minX={0}
+                                minY={0}
+                                role="img"
+                                size={18}
+                                style={
+                                  [
+                                    {
+                                      "backgroundColor": "transparent",
+                                      "borderWidth": 0,
+                                    },
+                                    [
+                                      undefined,
+                                      {},
+                                      {
+                                        "color": "#404040",
+                                      },
+                                      {},
+                                      undefined,
+                                      {},
+                                      {
+                                        "color": "#404040",
+                                      },
+                                      {},
+                                      undefined,
+                                      {},
+                                      {
+                                        "color": "#404040",
+                                      },
+                                      {},
+                                      {
+                                        "height": 18,
+                                        "width": 18,
+                                      },
+                                      undefined,
+                                      {},
+                                      {
+                                        "color": "#404040",
+                                      },
+                                      {},
+                                      undefined,
+                                    ],
+                                    {
+                                      "flex": 0,
+                                      "height": 18,
+                                      "width": 18,
+                                    },
+                                  ]
+                                }
+                                tintColor="#404040"
+                                vbHeight={24}
+                                vbWidth={24}
+                              >
+                                <RNSVGGroup
+                                  fill={null}
+                                  propList={
+                                    [
+                                      "fill",
+                                    ]
+                                  }
+                                >
+                                  <RNSVGGroup
+                                    fill={
+                                      {
+                                        "payload": 4278190080,
+                                        "type": 0,
+                                      }
+                                    }
+                                  >
+                                    <RNSVGPath
+                                      d="M6 9L12 15L18 9"
+                                      fill={
+                                        {
+                                          "payload": 4278190080,
+                                          "type": 0,
+                                        }
+                                      }
+                                      propList={
+                                        [
+                                          "stroke",
+                                          "strokeWidth",
+                                          "strokeLinecap",
+                                          "strokeLinejoin",
+                                        ]
+                                      }
+                                      stroke={
+                                        {
+                                          "type": 2,
+                                        }
+                                      }
+                                      strokeLinecap={1}
+                                      strokeLinejoin={1}
+                                      strokeWidth="2"
+                                    />
+                                  </RNSVGGroup>
+                                </RNSVGGroup>
+                              </RNSVGSvgView>
+                            </RNSVGGroup>
+                          </RNSVGSvgView>
+                        </View>
+                      </View>
+                    </View>
+                  </View>
+                  <View
+                    data-style=""
+                    dataSet={
+                      {
+                        "style": "",
+                      }
+                    }
+                    style={
+                      [
+                        undefined,
+                        {},
+                        {},
+                        {},
+                        {
+                          "flex": 1,
+                        },
+                        undefined,
+                      ]
+                    }
+                  />
+                  <View
+                    accessibilityState={
+                      {
+                        "busy": undefined,
+                        "checked": undefined,
+                        "disabled": undefined,
+                        "expanded": undefined,
+                        "selected": undefined,
+                      }
+                    }
+                    accessibilityValue={
+                      {
+                        "max": undefined,
+                        "min": undefined,
+                        "now": undefined,
+                        "text": undefined,
+                      }
+                    }
+                    accessible={true}
+                    action="primary"
+                    collapsable={false}
+                    data-style=""
+                    dataSet={
+                      {
+                        "style": "",
+                      }
+                    }
+                    focusable={true}
+                    onBlur={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    role="button"
+                    size="md"
+                    states={
+                      {
+                        "active": false,
+                        "disabled": undefined,
+                        "focus": false,
+                        "focusVisible": false,
+                        "hover": false,
+                      }
+                    }
+                    style={
+                      [
+                        undefined,
+                        {},
+                        {
+                          "alignItems": "center",
+                          "backgroundColor": "#0077E6",
+                          "borderRadius": 4,
+                          "flexDirection": "row",
+                          "justifyContent": "center",
+                        },
+                        {},
+                        {
+                          "backgroundColor": "#0077E6",
+                          "borderColor": "#4AA9FF",
+                        },
+                        {},
+                        {
+                          "height": 40,
+                          "paddingHorizontal": 20,
+                        },
+                        {},
+                        {
+                          "backgroundColor": "#0077E6",
+                          "borderColor": "#4AA9FF",
+                        },
+                        {},
+                        {
+                          "height": 40,
+                          "paddingHorizontal": 20,
+                        },
+                        {},
+                        {
+                          "backgroundColor": "#f87171",
+                          "marginHorizontal": 16,
+                        },
+                        undefined,
+                      ]
+                    }
+                    variant="solid"
+                  >
+                    <Text
+                      data-style=""
+                      dataSet={
+                        {
+                          "style": "",
+                        }
+                      }
+                      size="md"
+                      style={
+                        [
+                          undefined,
+                          {},
+                          {
+                            "color": "#525252",
+                            "fontFamily": undefined,
+                            "fontStyle": "normal",
+                            "fontWeight": "400",
+                            "letterSpacing": 0,
+                          },
+                          {},
+                          {
+                            "fontSize": 16,
+                            "lineHeight": 22,
+                          },
+                          {
+                            "fontSize": 16,
+                            "lineHeight": 22,
+                          },
+                          {
+                            "color": "#FFFFFF",
+                          },
+                          undefined,
+                        ]
+                      }
+                    >
+                      app.menu.logout
+                    </Text>
+                  </View>
+                </View>
+              </RCTSafeAreaView>
+            </View>
+          </View>
+        </View>
+        <RNSScreenStackHeaderConfig
+          backButtonInCustomView={false}
+          backTitleVisible={true}
+          backgroundColor="rgb(255, 255, 255)"
+          color="rgb(0, 122, 255)"
+          direction="ltr"
+          disableBackButtonMenu={false}
+          hidden={false}
+          hideBackButton={false}
+          largeTitleHideShadow={false}
+          title="ProfileSettings"
+          titleColor="rgb(28, 28, 30)"
+          topInsetEnabled={false}
+          translucent={false}
+        />
+      </RNSScreen>
+    </RNSScreenStack>
+  </View>
+</RNCSafeAreaProvider>
+`;

@@ -95,7 +95,7 @@
     "@react-native/metro-config": "^0.72.11",
     "@testing-library/jest-native": "^5.4.3",
     "@testing-library/react-native": "^12.4.1",
-    "@tsconfig/react-native": "^3.0.0",
+    "@tsconfig/react-native": "^3.0.2",
     "@types/jest": "^29.5.10",
     "@types/metro-config": "^0.76.3",
     "@types/react": "^18.2.23",

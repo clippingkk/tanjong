@@ -61,6 +61,6 @@ test('head book will correctly rendering', async () => {
   )
   // make sure every thing rendered
   await act(() => { })
-  await waitFor(() => expect(canvas.getByText('happy chinese year')).toBeDefined())
+  await waitFor(() => expect(canvas.getByText('happy chinese year')).toBeOnTheScreen())
   expect(canvas).toMatchSnapshot()
 })

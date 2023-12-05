@@ -22,7 +22,8 @@ type BookPageProps = NativeStackScreenProps<RouteParamList, RouteKeys.BookDetail
 
 function BookPage(props: BookPageProps) {
   const cs = useColorScheme()
-  const book = props.route.params.book
+  const { route, navigation } = props
+  const book = route.params.book
   const uid = useAtomValue(uidAtom)
 
   const snapPoints = useMemo(() => ['50%', '70%'], []);
@@ -30,7 +31,7 @@ function BookPage(props: BookPageProps) {
   const actionSheetRef = useRef<ActionSheetRef>(null);
 
   useEffect(() => {
-    props.navigation.setOptions({
+    navigation.setOptions({
       title: book.title,
       headerTransparent: true,
       headerBlurEffect: cs === 'dark' ? 'dark' : 'light',
@@ -49,7 +50,7 @@ function BookPage(props: BookPageProps) {
         )
       }
     })
-  }, [cs, props.navigation, book.id, uid])
+  }, [cs, navigation, book.id, uid])
   const bs = useBookQuery({
     variables: {
       id: book.doubanId,

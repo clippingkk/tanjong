@@ -1,3 +1,5 @@
+import '@testing-library/react-native/extend-expect';
+
 global.__reanimatedWorkletInit = () => { }
 import mockRNCameraRoll from '@react-native-camera-roll/camera-roll/src/__mocks__/nativeInterface'
 import 'react-native-gesture-handler/jestSetup';

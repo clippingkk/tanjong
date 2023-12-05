@@ -1,0 +1,503 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`book page renders with permission block 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      [
+        {
+          "flex": 1,
+        },
+        undefined,
+      ]
+    }
+  >
+    <RNSScreenStack
+      style={
+        {
+          "flex": 1,
+        }
+      }
+    >
+      <RNSScreen
+        collapsable={false}
+        gestureResponseDistance={
+          {
+            "bottom": -1,
+            "end": -1,
+            "start": -1,
+            "top": -1,
+          }
+        }
+        nativeBackButtonDismissalEnabled={false}
+        onAppear={[Function]}
+        onDisappear={[Function]}
+        onDismissed={[Function]}
+        onGestureCancel={[Function]}
+        onHeaderBackButtonClicked={[Function]}
+        onNativeDismissCancelled={[Function]}
+        onTransitionProgress={[Function]}
+        onWillDisappear={[Function]}
+        replaceAnimation="push"
+        sheetAllowedDetents="large"
+        sheetCornerRadius={-1}
+        sheetExpandsWhenScrolledToEdge={true}
+        sheetGrabberVisible={false}
+        sheetLargestUndimmedDetent="all"
+        stackPresentation="push"
+        style={
+          {
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          }
+        }
+        swipeDirection="horizontal"
+      >
+        <View
+          accessibilityElementsHidden={false}
+          importantForAccessibility="auto"
+          style={
+            {
+              "flex": 1,
+              "flexDirection": "column-reverse",
+            }
+          }
+        >
+          <View
+            collapsable={false}
+            style={
+              [
+                {
+                  "flex": 1,
+                },
+                {
+                  "backgroundColor": "rgb(242, 242, 242)",
+                },
+                undefined,
+              ]
+            }
+          >
+            <RCTScrollView
+              data-style=""
+              dataSet={
+                {
+                  "style": "",
+                }
+              }
+              refreshControl={
+                <RefreshControlMock
+                  onRefresh={[Function]}
+                  refreshing={false}
+                />
+              }
+              style={
+                [
+                  undefined,
+                  {},
+                  {},
+                  {},
+                  {
+                    "backgroundColor": "#f1f5f9",
+                    "height": "100%",
+                  },
+                  undefined,
+                ]
+              }
+              sx={
+                {
+                  "_dark": {
+                    "backgroundColor": "$blueGray700",
+                  },
+                }
+              }
+            >
+              <RCTRefreshControl />
+              <View>
+                <View
+                  data-style=""
+                  dataSet={
+                    {
+                      "style": "",
+                    }
+                  }
+                  style={
+                    [
+                      undefined,
+                      {},
+                      {},
+                      {},
+                      {
+                        "height": "100%",
+                        "paddingLeft": 16,
+                        "paddingRight": 16,
+                      },
+                      undefined,
+                    ]
+                  }
+                >
+                  <RCTSafeAreaView>
+                    <View
+                      data-style=""
+                      dataSet={
+                        {
+                          "style": "",
+                        }
+                      }
+                      style={
+                        [
+                          undefined,
+                          {},
+                          {},
+                          {},
+                          {
+                            "paddingTop": 32,
+                          },
+                          undefined,
+                        ]
+                      }
+                    >
+                      <Text
+                        data-style=""
+                        dataSet={
+                          {
+                            "style": "",
+                          }
+                        }
+                        selectable={true}
+                        size="md"
+                        style={
+                          [
+                            undefined,
+                            {},
+                            {
+                              "color": "#525252",
+                              "fontFamily": undefined,
+                              "fontStyle": "normal",
+                              "fontWeight": "400",
+                              "letterSpacing": 0,
+                            },
+                            {},
+                            {
+                              "fontSize": 16,
+                              "lineHeight": 22,
+                            },
+                            {
+                              "fontSize": 16,
+                              "lineHeight": 22,
+                            },
+                            {
+                              "fontFamily": "LXGWWenKai-Regular",
+                              "fontSize": 18,
+                            },
+                            undefined,
+                          ]
+                        }
+                      >
+                        The desperation created by total war in Europe and the fear that it would spread to much of the rest of the globe was in the minds of all those who experienced it, regardless of where they experienced it.
+                      </Text>
+                    </View>
+                  </RCTSafeAreaView>
+                  <View
+                    dataSet={{}}
+                    style={
+                      [
+                        {},
+                        {
+                          "marginTop": 10,
+                        },
+                      ]
+                    }
+                  >
+                    <View
+                      accessibilityRole="button"
+                      accessibilityState={
+                        {
+                          "busy": undefined,
+                          "checked": undefined,
+                          "disabled": undefined,
+                          "expanded": undefined,
+                          "selected": undefined,
+                        }
+                      }
+                      accessibilityValue={
+                        {
+                          "max": undefined,
+                          "min": undefined,
+                          "now": undefined,
+                          "text": undefined,
+                        }
+                      }
+                      accessible={true}
+                      collapsable={false}
+                      colorScheme="primary"
+                      dataSet={{}}
+                      focusable={true}
+                      onBlur={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onResponderGrant={[Function]}
+                      onResponderMove={[Function]}
+                      onResponderRelease={[Function]}
+                      onResponderTerminate={[Function]}
+                      onResponderTerminationRequest={[Function]}
+                      onStartShouldSetResponder={[Function]}
+                      style={
+                        {
+                          "alignItems": "center",
+                          "backgroundColor": "#0891b2",
+                          "borderRadius": 4,
+                          "flexDirection": "row",
+                          "justifyContent": "center",
+                          "paddingBottom": 10,
+                          "paddingLeft": 12,
+                          "paddingRight": 12,
+                          "paddingTop": 10,
+                        }
+                      }
+                    >
+                      <View
+                        dataSet={{}}
+                        style={
+                          {
+                            "alignItems": "center",
+                            "flexDirection": "row",
+                          }
+                        }
+                        test={true}
+                      >
+                        <View
+                          dataSet={{}}
+                          style={{}}
+                        >
+                          <Text
+                            dataSet={{}}
+                            style={
+                              {
+                                "backgroundColor": undefined,
+                                "color": "#fafafa",
+                                "fontFamily": undefined,
+                                "fontSize": 14,
+                                "fontStyle": "normal",
+                                "fontWeight": "400",
+                                "letterSpacing": 0,
+                                "lineHeight": 21,
+                                "textDecorationLine": undefined,
+                              }
+                            }
+                          >
+                            ✨ AI Description
+                          </Text>
+                        </View>
+                      </View>
+                    </View>
+                  </View>
+                  <View
+                    data-style=""
+                    dataSet={
+                      {
+                        "style": "",
+                      }
+                    }
+                    orientation="horizontal"
+                    style={
+                      [
+                        undefined,
+                        {},
+                        {
+                          "backgroundColor": "#DBDBDB",
+                        },
+                        {},
+                        {
+                          "height": 1,
+                          "width": "100%",
+                        },
+                        {
+                          "height": 1,
+                          "width": "100%",
+                        },
+                        {
+                          "marginTop": 16,
+                        },
+                        undefined,
+                      ]
+                    }
+                  />
+                </View>
+              </View>
+            </RCTScrollView>
+            <RCTSafeAreaView
+              collapsable={false}
+              onLayout={[Function]}
+              pointerEvents="none"
+              style={
+                {
+                  "backgroundColor": "transparent",
+                  "left": 0,
+                  "position": "absolute",
+                  "top": 0,
+                  "width": 1,
+                }
+              }
+            >
+              <View />
+            </RCTSafeAreaView>
+          </View>
+        </View>
+        <RNSScreenStackHeaderConfig
+          backButtonInCustomView={false}
+          backTitleVisible={true}
+          backgroundColor="transparent"
+          blurEffect="light"
+          color="rgb(0, 122, 255)"
+          direction="ltr"
+          disableBackButtonMenu={false}
+          hidden={false}
+          hideBackButton={false}
+          hideShadow={true}
+          largeTitleHideShadow={false}
+          title="Odd Arne Westad - The Cold War_ A World History-Basic Books"
+          titleColor="rgb(28, 28, 30)"
+          topInsetEnabled={false}
+          translucent={true}
+        >
+          <RNSScreenStackHeaderSubview
+            style={
+              {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "justifyContent": "center",
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              }
+            }
+            type="right"
+          >
+            <View
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessibilityValue={
+                {
+                  "max": undefined,
+                  "min": undefined,
+                  "now": undefined,
+                  "text": undefined,
+                }
+              }
+              accessible={true}
+              action="primary"
+              collapsable={false}
+              data-style=""
+              dataSet={
+                {
+                  "style": "",
+                }
+              }
+              focusable={true}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              role="button"
+              size="xs"
+              states={
+                {
+                  "active": false,
+                  "disabled": undefined,
+                  "focus": false,
+                  "focusVisible": false,
+                  "hover": false,
+                }
+              }
+              style={
+                [
+                  undefined,
+                  {},
+                  {
+                    "alignItems": "center",
+                    "backgroundColor": "#0077E6",
+                    "borderRadius": 4,
+                    "flexDirection": "row",
+                    "justifyContent": "center",
+                  },
+                  {},
+                  {
+                    "backgroundColor": "#0077E6",
+                    "borderColor": "#4AA9FF",
+                  },
+                  {
+                    "paddingHorizontal": 0,
+                  },
+                  {
+                    "height": 32,
+                    "paddingHorizontal": 14,
+                  },
+                  {
+                    "backgroundColor": "transparent",
+                    "paddingHorizontal": 0,
+                  },
+                  undefined,
+                ]
+              }
+              variant="link"
+            >
+              <Text
+                data-style=""
+                dataSet={
+                  {
+                    "style": "",
+                  }
+                }
+                size="md"
+                style={
+                  [
+                    undefined,
+                    {},
+                    {
+                      "color": "#525252",
+                      "fontFamily": undefined,
+                      "fontStyle": "normal",
+                      "fontWeight": "400",
+                      "letterSpacing": 0,
+                    },
+                    {},
+                    {
+                      "fontSize": 16,
+                      "lineHeight": 22,
+                    },
+                    undefined,
+                  ]
+                }
+              >
+                 🌐 
+              </Text>
+            </View>
+          </RNSScreenStackHeaderSubview>
+        </RNSScreenStackHeaderConfig>
+      </RNSScreen>
+    </RNSScreenStack>
+  </View>
+</RNCSafeAreaProvider>
+`;

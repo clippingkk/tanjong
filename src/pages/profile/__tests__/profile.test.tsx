@@ -2,7 +2,7 @@ import 'react-native'
 import React from 'react'
 import ProfilePage from '../profile.page'
 import nock from 'nock'
-import { act, render, screen } from '@testing-library/react-native'
+import { act, render, screen, waitFor } from '@testing-library/react-native'
 import { ApolloProvider } from '@apollo/client'
 import { client } from '../../../utils/apollo'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
@@ -16,6 +16,7 @@ import { config } from '@gluestack-ui/config'
 import { uidAtom } from '../../../atomic'
 import { BooksDocument, BooksQuery, ProfileDocument, ProfileQuery } from '../../../schema/generated'
 import { HydrateAtoms } from '../../../../mocks/HydrateAtoms'
+import { GraphQLError } from 'graphql'
 
 test('profile page renders with permission block', async () => {
   const TabStack = createBottomTabNavigator<TabRouteParamList>()
@@ -71,6 +72,7 @@ test('profile page renders with list', async () => {
   const canvas = render(
     <MockedProvider mocks={[
       {
+        delay: 30,
         request: {
           query: ProfileDocument,
           variables: { "id": 1, "pagination": { "recents": { "lastId": 1073741824, "limit": 10 } } }
@@ -184,9 +186,68 @@ test('profile page renders with list', async () => {
   )
   // make sure every thing rendered
   await act(() => { })
-  const nameDoms = canvas.getAllByText('namename')
+  await waitFor(async () => {
+    const nameDoms = canvas.getAllByText('namename')
+    await expect(nameDoms).toHaveLength(2)
+  })
   // in real world should be 1
-  expect(nameDoms).toHaveLength(2)
   expect(canvas.getByText('PREMIUM')).toBeTruthy()
+  expect(canvas).toMatchSnapshot()
+})
+
+test('profile page renders with error', async () => {
+  const TabStack = createBottomTabNavigator<TabRouteParamList>()
+  const canvas = render(
+    <MockedProvider mocks={[
+      {
+        delay: 30,
+        request: {
+          query: ProfileDocument,
+          variables: { "id": 1, "pagination": { "recents": { "lastId": 1073741824, "limit": 10 } } }
+        },
+        error: new Error("An error occurred"),
+      },
+      {
+        request: {
+          query: ProfileDocument,
+          variables: { "id": 1, "pagination": { "recents": { "lastId": 2, "limit": 10 } } },
+        },
+        result: {
+          errors: [new GraphQLError("Error!")],
+        },
+      }
+    ]}>
+      <NativeBaseProvider initialWindowMetrics={{
+        frame: { x: 0, y: 0, width: 0, height: 0 },
+        insets: { top: 0, left: 0, right: 0, bottom: 0 },
+      }}>
+        <Provider>
+          <HydrateAtoms initialValues={[[uidAtom, 1]]}>
+            <NavigationContainer>
+              <GluestackUIProvider config={config}>
+                <TabStack.Navigator initialRouteName={RouteKeys.TabProfile}>
+                  <TabStack.Screen
+                    name={RouteKeys.TabProfile}
+                    component={ProfilePage}
+                    options={{
+                      tabBarLabel: 'Books',
+                      tabBarIcon: ({ color, size }) => (
+                        <Text>🏠</Text>
+                      ),
+                    }}
+                  />
+                </TabStack.Navigator>
+              </GluestackUIProvider>
+            </NavigationContainer>
+          </HydrateAtoms>
+        </Provider>
+      </NativeBaseProvider>
+    </MockedProvider>
+  )
+  // make sure every thing rendered
+  await act(() => { })
+  await waitFor(() =>
+    expect(canvas.getByText('An error occurred')).toBeTruthy()
+  )
   expect(canvas).toMatchSnapshot()
 })

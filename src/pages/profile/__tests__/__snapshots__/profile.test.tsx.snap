@@ -1,5 +1,555 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`profile page renders with error 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      [
+        {
+          "flex": 1,
+        },
+        undefined,
+      ]
+    }
+  >
+    <RNSScreenNavigationContainer
+      style={
+        {
+          "flex": 1,
+          "overflow": "hidden",
+        }
+      }
+    >
+      <RNSScreen
+        activityState={2}
+        collapsable={false}
+        gestureResponseDistance={
+          {
+            "bottom": -1,
+            "end": -1,
+            "start": -1,
+            "top": -1,
+          }
+        }
+        onGestureCancel={[Function]}
+        sheetAllowedDetents="large"
+        sheetCornerRadius={-1}
+        sheetExpandsWhenScrolledToEdge={true}
+        sheetGrabberVisible={false}
+        sheetLargestUndimmedDetent="all"
+        style={
+          {
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+            "zIndex": 0,
+          }
+        }
+      >
+        <View
+          accessibilityElementsHidden={false}
+          importantForAccessibility="auto"
+          style={
+            [
+              {
+                "backgroundColor": "rgb(242, 242, 242)",
+                "flex": 1,
+              },
+              [
+                {
+                  "flex": 1,
+                  "flexDirection": "column-reverse",
+                },
+                undefined,
+              ],
+            ]
+          }
+        >
+          <View
+            style={
+              {
+                "flex": 1,
+              }
+            }
+          >
+            <View
+              dataSet={{}}
+              style={
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#e4e4e7",
+                  "flex": 1,
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <View
+                dataSet={{}}
+                style={
+                  {
+                    "height": 100,
+                  }
+                }
+              >
+                <Text
+                  dataSet={{}}
+                  style={
+                    {
+                      "backgroundColor": undefined,
+                      "color": "#171717",
+                      "fontFamily": undefined,
+                      "fontSize": 14,
+                      "fontStyle": "normal",
+                      "fontWeight": "400",
+                      "letterSpacing": 0,
+                      "lineHeight": 21,
+                      "textDecorationLine": undefined,
+                    }
+                  }
+                >
+                  An error occurred
+                </Text>
+                <View
+                  accessibilityRole="button"
+                  accessibilityState={
+                    {
+                      "busy": undefined,
+                      "checked": undefined,
+                      "disabled": undefined,
+                      "expanded": undefined,
+                      "selected": undefined,
+                    }
+                  }
+                  accessibilityValue={
+                    {
+                      "max": undefined,
+                      "min": undefined,
+                      "now": undefined,
+                      "text": undefined,
+                    }
+                  }
+                  accessible={true}
+                  collapsable={false}
+                  colorScheme="primary"
+                  dataSet={{}}
+                  focusable={true}
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    {
+                      "alignItems": "center",
+                      "backgroundColor": "#0891b2",
+                      "borderRadius": 4,
+                      "flexDirection": "row",
+                      "justifyContent": "center",
+                      "marginTop": 16,
+                      "paddingBottom": 10,
+                      "paddingLeft": 12,
+                      "paddingRight": 12,
+                      "paddingTop": 10,
+                    }
+                  }
+                >
+                  <View
+                    dataSet={{}}
+                    style={
+                      {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                      }
+                    }
+                    test={true}
+                  >
+                    <View
+                      dataSet={{}}
+                      style={{}}
+                    >
+                      <Text
+                        dataSet={{}}
+                        style={
+                          {
+                            "backgroundColor": undefined,
+                            "color": "#171717",
+                            "fontFamily": undefined,
+                            "fontSize": 14,
+                            "fontStyle": "normal",
+                            "fontWeight": "400",
+                            "letterSpacing": 0,
+                            "lineHeight": 21,
+                            "textDecorationLine": undefined,
+                          }
+                        }
+                      >
+                        app.common.retry
+                      </Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+          <View
+            onLayout={[Function]}
+            style={null}
+          >
+            <View
+              collapsable={false}
+              pointerEvents="box-none"
+              style={
+                {
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                  "zIndex": 0,
+                }
+              }
+            >
+              <View
+                collapsable={false}
+                style={
+                  {
+                    "backgroundColor": "rgb(255, 255, 255)",
+                    "borderBottomColor": "rgb(216, 216, 216)",
+                    "flex": 1,
+                    "shadowColor": "rgb(216, 216, 216)",
+                    "shadowOffset": {
+                      "height": 0.5,
+                      "width": 0,
+                    },
+                    "shadowOpacity": 0.85,
+                    "shadowRadius": 0,
+                  }
+                }
+              />
+            </View>
+            <View
+              collapsable={false}
+              pointerEvents="box-none"
+              style={
+                {
+                  "height": 44,
+                  "maxHeight": undefined,
+                  "minHeight": undefined,
+                  "opacity": undefined,
+                  "transform": undefined,
+                }
+              }
+            >
+              <View
+                pointerEvents="none"
+                style={
+                  {
+                    "height": 0,
+                  }
+                }
+              />
+              <View
+                pointerEvents="box-none"
+                style={
+                  {
+                    "alignItems": "stretch",
+                    "flex": 1,
+                    "flexDirection": "row",
+                  }
+                }
+              >
+                <View
+                  collapsable={false}
+                  pointerEvents="box-none"
+                  style={
+                    {
+                      "alignItems": "flex-start",
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                      "justifyContent": "center",
+                      "marginStart": 0,
+                    }
+                  }
+                />
+                <View
+                  collapsable={false}
+                  pointerEvents="box-none"
+                  style={
+                    {
+                      "justifyContent": "center",
+                      "marginHorizontal": 16,
+                      "maxWidth": 718,
+                    }
+                  }
+                >
+                  <Text
+                    accessibilityRole="header"
+                    aria-level="1"
+                    collapsable={false}
+                    numberOfLines={1}
+                    style={
+                      {
+                        "color": "rgb(28, 28, 30)",
+                        "fontSize": 17,
+                        "fontWeight": "600",
+                      }
+                    }
+                  >
+                    Profile
+                  </Text>
+                </View>
+                <View
+                  collapsable={false}
+                  pointerEvents="box-none"
+                  style={
+                    {
+                      "alignItems": "flex-end",
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                      "justifyContent": "center",
+                      "marginEnd": 0,
+                    }
+                  }
+                >
+                  <Text
+                    accessibilityRole="link"
+                    href="/ProfileSettings"
+                    onPress={[Function]}
+                  >
+                    ⚙️
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+      </RNSScreen>
+    </RNSScreenNavigationContainer>
+    <View
+      collapsable={false}
+      onLayout={[Function]}
+      pointerEvents="auto"
+      style={
+        {
+          "backgroundColor": "rgb(255, 255, 255)",
+          "borderTopColor": "rgb(216, 216, 216)",
+          "borderTopWidth": 0.5,
+          "bottom": 0,
+          "elevation": 8,
+          "height": 49,
+          "left": 0,
+          "paddingBottom": 0,
+          "paddingHorizontal": 0,
+          "position": null,
+          "right": 0,
+          "transform": [
+            {
+              "translateY": 0,
+            },
+          ],
+        }
+      }
+    >
+      <View
+        pointerEvents="none"
+        style={
+          {
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          }
+        }
+      />
+      <View
+        accessibilityRole="tablist"
+        style={
+          {
+            "flex": 1,
+            "flexDirection": "row",
+          }
+        }
+      >
+        <View
+          accessibilityLabel="Books, tab, 1 of 1"
+          accessibilityRole="button"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": true,
+            }
+          }
+          accessibilityStates={
+            [
+              "selected",
+            ]
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            [
+              {
+                "alignItems": "center",
+                "flex": 1,
+              },
+              {
+                "backgroundColor": "transparent",
+              },
+              {
+                "flexDirection": "column",
+                "justifyContent": "flex-end",
+              },
+              undefined,
+            ]
+          }
+        >
+          <View
+            style={
+              [
+                {
+                  "flex": 1,
+                },
+                undefined,
+              ]
+            }
+          >
+            <View
+              style={
+                [
+                  {
+                    "alignItems": "center",
+                    "alignSelf": "center",
+                    "height": "100%",
+                    "justifyContent": "center",
+                    "minWidth": 25,
+                    "position": "absolute",
+                    "width": "100%",
+                  },
+                  {
+                    "opacity": 1,
+                  },
+                ]
+              }
+            >
+              <Text
+                dataSet={{}}
+                style={
+                  {
+                    "backgroundColor": undefined,
+                    "color": "#171717",
+                    "fontFamily": undefined,
+                    "fontSize": 14,
+                    "fontStyle": "normal",
+                    "fontWeight": "400",
+                    "letterSpacing": 0,
+                    "lineHeight": 21,
+                    "textDecorationLine": undefined,
+                  }
+                }
+              >
+                🏠
+              </Text>
+            </View>
+            <View
+              style={
+                [
+                  {
+                    "alignItems": "center",
+                    "alignSelf": "center",
+                    "height": "100%",
+                    "justifyContent": "center",
+                    "minWidth": 25,
+                    "position": "absolute",
+                    "width": "100%",
+                  },
+                  {
+                    "opacity": 0,
+                  },
+                ]
+              }
+            >
+              <Text
+                dataSet={{}}
+                style={
+                  {
+                    "backgroundColor": undefined,
+                    "color": "#171717",
+                    "fontFamily": undefined,
+                    "fontSize": 14,
+                    "fontStyle": "normal",
+                    "fontWeight": "400",
+                    "letterSpacing": 0,
+                    "lineHeight": 21,
+                    "textDecorationLine": undefined,
+                  }
+                }
+              >
+                🏠
+              </Text>
+            </View>
+          </View>
+          <Text
+            numberOfLines={1}
+            style={
+              [
+                {
+                  "backgroundColor": "transparent",
+                  "textAlign": "center",
+                },
+                {
+                  "color": "rgb(0, 122, 255)",
+                },
+                {
+                  "fontSize": 10,
+                },
+                undefined,
+              ]
+            }
+          >
+            Books
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+</RNCSafeAreaProvider>
+`;
+
 exports[`profile page renders with list 1`] = `
 <RNCSafeAreaProvider
   onInsetsChange={[Function]}

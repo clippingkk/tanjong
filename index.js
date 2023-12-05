@@ -13,7 +13,7 @@ import { routingInstrumentation } from './src/utils/sentry'
 
 Sentry.init({
   dsn: "https://f06399ea901af86bbc522bf5ba514033@o108564.ingest.sentry.io/4506340814749696",
-  debug: true,
+  enabled: process.env.NODE_ENV === 'production',
   integrations: [
     new Sentry.ReactNativeTracing({
       routingInstrumentation

@@ -59,9 +59,7 @@ function Root() {
                   urlScheme={StripeConfigs.urlScheme}
                   merchantIdentifier={StripeConfigs.merchantIdentifier}
                 >
-                  <NavigationContainer>
-                    <App />
-                  </NavigationContainer>
+                  <App />
                 </StripeProvider>
               </NativeBaseProvider>
             </GluestackUIProvider>

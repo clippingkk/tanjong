@@ -34,6 +34,7 @@ import { RouteProp, NavigationContainer, ParamListBase, getFocusedRouteNameFromR
 import { useTranslation } from 'react-i18next';
 import PaymentPage from './pages/payment/payment';
 import { routingInstrumentation } from './utils/sentry';
+import SignupPage from './pages/signup/signup.page';
 
 const RootRouteStack = createNativeStackNavigator<RouteParamList>()
 const TabStack = createBottomTabNavigator<TabRouteParamList>()
@@ -174,6 +175,14 @@ const App = () => {
             headerShown: true
           }}
           component={AuthQRCodePage}
+        />
+        <RootRouteStack.Screen
+          name={RouteKeys.SignUp}
+          options={{
+            headerTransparent: true,
+            headerShown: true
+          }}
+          component={SignupPage}
         />
         <RootRouteStack.Screen
           name={RouteKeys.AuthV3}

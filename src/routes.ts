@@ -3,6 +3,7 @@ import { WenquBook } from "./service/wenqu"
 
 export enum RouteKeys {
   AuthV3 = 'AuthV3',
+  SignUp = 'Signup',
   AuthAppleBind = 'AuthAppleBind',
   AuthPhoneOTP = 'AuthPhoneOTP',
   AuthQRCode = 'AuthQRCode',
@@ -36,6 +37,7 @@ export type RouteParamList = {
   [RouteKeys.AuthQRCode]: object
   [RouteKeys.Payment]: object
   [RouteKeys.AuthV3]: object
+  [RouteKeys.SignUp]: object
   [RouteKeys.BookDetail]: {
     book: WenquBook
   }

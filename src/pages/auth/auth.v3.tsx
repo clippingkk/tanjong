@@ -11,6 +11,7 @@ import { useTranslation } from 'react-i18next';
 import WalletConnectLoginButton from './walletconnect';
 import { FontLXGW } from '../../styles/font';
 import AuthClassicPage from './auth.classic.page';
+import { featureFlags } from '../../service/feature-flags';
 
 type AuthV3PageProps = NativeStackScreenProps<RouteParamList, RouteKeys.AuthV3>
 
@@ -137,6 +138,12 @@ function AuthV3Page(props: AuthV3PageProps) {
               {t('app.auth.loginByScanQRCode')}
             </Link>
           </Button> */}
+            {featureFlags.enableSignUp && (
+              <Link
+                to={{ screen: RouteKeys.SignUp }}>
+                {t('app.auth.signup')}
+              </Link>
+            )}
           </View>
         </SafeAreaView>
       </View>

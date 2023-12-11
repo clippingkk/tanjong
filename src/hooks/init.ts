@@ -4,7 +4,7 @@ import { profileAtom, uidAtom } from "../atomic"
 import { useBindIosDeviceTokenMutation, useProfileQuery } from "../schema/generated"
 import { Linking, Platform } from "react-native"
 import { useLinkTo } from "@react-navigation/native"
-import { RouteKeys } from "../routes"
+import { RouteKeys, RouteParamList } from "../routes"
 import * as Sentry from "@sentry/react-native"
 import RNBootSplash from "react-native-bootsplash"
 
@@ -173,4 +173,20 @@ export function useDeeplinkHandler() {
       listener.remove()
     }
   })
+}
+
+export function useHomeLoad() {
+  // here are the debug code, just redirection
+  const linkTo = useLinkTo<RouteParamList>()
+  useEffect(() => {
+    if (process.env.NODE_ENV === 'production') {
+      return
+    }
+    setTimeout(() => {
+      linkTo({
+        screen: RouteKeys.SignUpEmail,
+        params: {}
+      })
+    }, 1000)
+  }, [linkTo])
 }

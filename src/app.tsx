@@ -34,7 +34,10 @@ import { RouteProp, NavigationContainer, ParamListBase, getFocusedRouteNameFromR
 import { useTranslation } from 'react-i18next';
 import PaymentPage from './pages/payment/payment';
 import { routingInstrumentation } from './utils/sentry';
-import SignupPage from './pages/signup/signup.page';
+import SignUpEmailPage from './pages/signup/signup.email';
+import SignUpPasswordPage from './pages/signup/signup.password';
+import SignUpOTPPage from './pages/signup/signup.otp';
+import SignUpSetNamePage from './pages/signup/signup.set.name';
 
 const RootRouteStack = createNativeStackNavigator<RouteParamList>()
 const TabStack = createBottomTabNavigator<TabRouteParamList>()
@@ -177,12 +180,37 @@ const App = () => {
           component={AuthQRCodePage}
         />
         <RootRouteStack.Screen
-          name={RouteKeys.SignUp}
+          name={RouteKeys.SignUpEmail}
+          options={{
+            headerTransparent: true,
+            title: 'Sign Up',
+            headerShown: true
+          }}
+          component={SignUpEmailPage}
+        />
+        <RootRouteStack.Screen
+          name={RouteKeys.SignUpPassword}
           options={{
             headerTransparent: true,
             headerShown: true
           }}
-          component={SignupPage}
+          component={SignUpPasswordPage}
+        />
+        <RootRouteStack.Screen
+          name={RouteKeys.SignUpOTP}
+          options={{
+            headerTransparent: true,
+            headerShown: true
+          }}
+          component={SignUpOTPPage}
+        />
+        <RootRouteStack.Screen
+          name={RouteKeys.SignUpSetName}
+          options={{
+            headerTransparent: true,
+            headerShown: true
+          }}
+          component={SignUpSetNamePage}
         />
         <RootRouteStack.Screen
           name={RouteKeys.AuthV3}

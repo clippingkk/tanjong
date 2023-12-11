@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { WalletConnectModal, useWalletConnectModal } from "@walletconnect/modal-react-native"
-import { Button, Text, View } from "native-base"
+import { Button, Text, View } from "@gluestack-ui/themed"
 import { useAuthByWeb3LazyQuery } from '../../schema/generated'
 import MetamaskLogo from '../../assets/metamask.svg'
 
@@ -76,14 +76,16 @@ function WalletConnectLoginButton(props: WalletConnectLoginButtonProps) {
         }}
         backgroundColor={'rgb(168, 85, 247)'}
         onPress={handleButtonPress}
-        isLoading={loading}
+        isDisabled={loading}
+      // isLoading={loading}
       >
         <View
           style={{
             display: 'flex', flexDirection: 'row',
           }}
         >
-          <MetamaskLogo width={20} height={20} />
+          {/* TODO: Add Metamask logo here */}
+          {/* <MetamaskLogo width={20} height={20} /> */}
           <Text style={{ marginLeft: 10 }}>
             Web3 login
           </Text>

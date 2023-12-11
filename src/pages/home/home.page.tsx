@@ -14,12 +14,14 @@ import EmptyBox from '../../components/empty/empty'
 import ErrorBox from '../../components/errorbox/errorbox'
 import { useBooksQuery } from '../../schema/generated'
 import PulseBox from '../../components/pulse-box/pulse-box'
+import { useHomeLoad } from '../../hooks/init'
 
 type HomePageProps = {
 }
 
 function HomePage(props: HomePageProps) {
   const uid = useAtomValue(uidAtom)
+  useHomeLoad()
 
   const bs = useBooksQuery({
     variables: {

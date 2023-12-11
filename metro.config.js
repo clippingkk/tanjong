@@ -1,4 +1,4 @@
-const {getDefaultConfig, mergeConfig} = require('@react-native/metro-config');
+const { getDefaultConfig, mergeConfig } = require('@react-native/metro-config');
 
 const {
   createSentryMetroSerializer
@@ -15,7 +15,15 @@ const { assetExts, sourceExts } = defaultConfig.resolver;
  */
 const config = {
   transformer: {
-    babelTransformerPath: require.resolve('react-native-svg-transformer'),
+    // FIXME: please fix this later!!!!
+    // work around: https://github.com/kristerkari/react-native-svg-transformer/issues/317
+
+    // please use svg-transformer and remove @react-native/metro-babel-transformer once it's fixed
+
+    // babelTransformerPath: require.resolve('react-native-svg-transformer'),
+    babelTransformerPath: require.resolve(
+      '@react-native/metro-babel-transformer',
+    ),
   },
 
   resolver: {

@@ -12,13 +12,35 @@ import WalletConnectLoginButton from './walletconnect';
 import { FontLXGW } from '../../styles/font';
 import AuthClassicPage from './auth.classic.page';
 import { featureFlags } from '../../service/feature-flags';
+import { useColorMode } from '@gluestack-style/react';
+import { ChevronRightIcon, Icon } from '@gluestack-ui/themed';
 
 type AuthV3PageProps = NativeStackScreenProps<RouteParamList, RouteKeys.AuthV3>
 
 function AuthV3Page(props: AuthV3PageProps) {
+  const cm = useColorMode()
   useEffect(() => {
     props.navigation.setOptions({
-      title: 'Account'
+      title: 'Account',
+      headerRight: () => (
+        <>
+          {featureFlags.enableSignUp && (
+            <Link
+              to={{ screen: RouteKeys.SignUpEmail }}
+              style={{
+                alignItems: 'center',
+                flexDirection: 'row',
+                color: cm === 'light' ? '#111111' : '#ffffff',
+              }}
+            >
+              <Text>
+                {t('app.auth.signup')}
+              </Text>
+              <Icon as={ChevronRightIcon} w={'$4'} h={'$4'} />
+            </Link>
+          )}
+        </>
+      )
     })
   }, [props])
 
@@ -138,12 +160,6 @@ function AuthV3Page(props: AuthV3PageProps) {
               {t('app.auth.loginByScanQRCode')}
             </Link>
           </Button> */}
-            {featureFlags.enableSignUp && (
-              <Link
-                to={{ screen: RouteKeys.SignUp }}>
-                {t('app.auth.signup')}
-              </Link>
-            )}
           </View>
         </SafeAreaView>
       </View>

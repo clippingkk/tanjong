@@ -3,7 +3,13 @@ import { WenquBook } from "./service/wenqu"
 
 export enum RouteKeys {
   AuthV3 = 'AuthV3',
-  SignUp = 'Signup',
+  SignUpEmail = 'SignUpEmail',
+  SignUpPassword = 'SignUpPassword',
+  SignUpOTP = 'SignUpOTP',
+
+  // created, update profile
+  SignUpSetName = 'SignUpSetName',
+
   AuthAppleBind = 'AuthAppleBind',
   AuthPhoneOTP = 'AuthPhoneOTP',
   AuthQRCode = 'AuthQRCode',
@@ -37,12 +43,21 @@ export type RouteParamList = {
   [RouteKeys.AuthQRCode]: object
   [RouteKeys.Payment]: object
   [RouteKeys.AuthV3]: object
-  [RouteKeys.SignUp]: object
   [RouteKeys.BookDetail]: {
     book: WenquBook
   }
   [RouteKeys.ProfileSettings]: object
   [RouteKeys.ProfileDebug]: object
+
+  [RouteKeys.SignUpEmail]: object
+  [RouteKeys.SignUpPassword]: { email: string }
+  [RouteKeys.SignUpOTP]: {
+    email: string
+    password: string
+  }
+  [RouteKeys.SignUpSetName]: {
+    data: any
+  }
 
   root: object
 }

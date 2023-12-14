@@ -6,6 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useTranslation } from 'react-i18next';
 import { z } from 'zod'
 import { CKNetworkError } from '../../utils/apollo';
+import { getTempCFToken } from '../../utils/cfToken';
 
 type AuthClassicPageProps = {
   onPostAuth: (token: string, userId: number) => Promise<void>
@@ -59,7 +60,7 @@ function AuthClassicPage(props: AuthClassicPageProps) {
   const toast = useToast()
 
   const onSubmit = (data: { email: string, password: string }) => {
-    const cfToken = `mob.bWlzc2luZ195b3UuRllK.${~~(Date.now() / 1000)}`
+    const cfToken = getTempCFToken()
     return doAuth({
       variables: {
         email: data.email,

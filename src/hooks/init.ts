@@ -184,8 +184,11 @@ export function useHomeLoad() {
     }
     setTimeout(() => {
       linkTo({
-        screen: RouteKeys.SignUpEmail,
-        params: {}
+        screen: RouteKeys.SignUpOTP,
+        params: {
+          email: 'annatar.he+ck@gmail.com',
+          password: '123456',
+        }
       })
     }, 1000)
   }, [linkTo])

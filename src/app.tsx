@@ -38,6 +38,7 @@ import SignUpEmailPage from './pages/signup/signup.email';
 import SignUpPasswordPage from './pages/signup/signup.password';
 import SignUpOTPPage from './pages/signup/signup.otp';
 import SignUpSetNamePage from './pages/signup/signup.set.name';
+import Notifications from './components/toast/notifications';
 
 const RootRouteStack = createNativeStackNavigator<RouteParamList>()
 const TabStack = createBottomTabNavigator<TabRouteParamList>()
@@ -149,137 +150,139 @@ const App = () => {
   const { t } = useTranslation()
   const navigation = useRef<NavigationContainerRef<RouteParamList>>(null)
   return (
-    <NavigationContainer
-      ref={navigation}
-      onReady={() => {
-        // Register the navigation container with the instrumentation
-        routingInstrumentation.registerNavigationContainer(navigation);
-      }}
-    >
-      <RootRouteStack.Navigator
-        screenOptions={{
-          headerTransparent: true,
-          headerShown: true,
-          headerBlurEffect: c === 'dark' ? 'dark' : 'light',
-          headerTitleStyle: {
-            color: textColor
-          },
+    <>
+      <NavigationContainer
+        ref={navigation}
+        onReady={() => {
+          // Register the navigation container with the instrumentation
+          routingInstrumentation.registerNavigationContainer(navigation);
         }}
       >
-        <RootRouteStack.Screen
-          name='root'
-          options={ps => getRootPageOptions({ ...ps })}
-          component={HomeTabPages}
-        />
-        <RootRouteStack.Screen
-          name={RouteKeys.AuthQRCode}
-          options={{
+        <RootRouteStack.Navigator
+          screenOptions={{
             headerTransparent: true,
-            headerShown: true
+            headerShown: true,
+            headerBlurEffect: c === 'dark' ? 'dark' : 'light',
+            headerTitleStyle: {
+              color: textColor
+            },
           }}
-          component={AuthQRCodePage}
-        />
-        <RootRouteStack.Screen
-          name={RouteKeys.SignUpEmail}
-          options={{
-            headerTransparent: true,
-            title: 'Sign Up',
-            headerShown: true
-          }}
-          component={SignUpEmailPage}
-        />
-        <RootRouteStack.Screen
-          name={RouteKeys.SignUpPassword}
-          options={{
-            headerTransparent: true,
-            headerShown: true
-          }}
-          component={SignUpPasswordPage}
-        />
-        <RootRouteStack.Screen
-          name={RouteKeys.SignUpOTP}
-          options={{
-            headerTransparent: true,
-            headerShown: true
-          }}
-          component={SignUpOTPPage}
-        />
-        <RootRouteStack.Screen
-          name={RouteKeys.SignUpSetName}
-          options={{
-            headerTransparent: true,
-            headerShown: true
-          }}
-          component={SignUpSetNamePage}
-        />
-        <RootRouteStack.Screen
-          name={RouteKeys.AuthV3}
-          options={{
-            headerTransparent: true,
-            headerShown: true
-          }}
-          component={AuthV3Page}
-        />
-        <RootRouteStack.Screen
-          name={RouteKeys.AuthAppleBind}
-          options={{
-            headerTransparent: true,
-            headerShown: true
-          }}
-          component={AuthApplePhoneBind}
-        />
-        <RootRouteStack.Screen
-          name={RouteKeys.AuthPhoneOTP}
-          options={{
-            headerTransparent: true,
-            headerShown: true
-          }}
-          component={AuthPhoneOTPPage}
-        />
-        <RootRouteStack.Screen
-          name={RouteKeys.BookDetail}
-          options={{
-            headerTransparent: true,
-            headerShown: true
-          }}
-          component={BookPage}
-        />
-        <RootRouteStack.Screen
-          name={RouteKeys.ProfileSettings}
-          options={{
-            headerTransparent: true,
-            headerTitle: t('app.menu.settings') ?? 'settings',
-            headerShown: true
-          }}
-          component={SettingsPage}
-        />
-        <RootRouteStack.Screen
-          name={RouteKeys.ProfileDebug}
-          options={{
-            headerTransparent: true,
-            headerTitle: 'Debug',
-            headerShown: true
-          }}
-          component={DebugPage}
-        />
-        <RootRouteStack.Screen
-          name={RouteKeys.Clipping}
-          options={{
-            headerTransparent: true,
-            headerShown: true
-          }}
-          component={ClippingPage}
-        />
-        <RootRouteStack.Screen
-          name={RouteKeys.Payment}
-          options={{
-            headerTransparent: true,
-            headerShown: true
-          }}
-          component={PaymentPage}
-        />
-      </RootRouteStack.Navigator>
-    </NavigationContainer>
+        >
+          <RootRouteStack.Screen
+            name='root'
+            options={ps => getRootPageOptions({ ...ps })}
+            component={HomeTabPages}
+          />
+          <RootRouteStack.Screen
+            name={RouteKeys.AuthQRCode}
+            options={{
+              headerTransparent: true,
+              headerShown: true
+            }}
+            component={AuthQRCodePage}
+          />
+          <RootRouteStack.Screen
+            name={RouteKeys.SignUpEmail}
+            options={{
+              headerTransparent: true,
+              title: 'Sign Up',
+              headerShown: true
+            }}
+            component={SignUpEmailPage}
+          />
+          <RootRouteStack.Screen
+            name={RouteKeys.SignUpPassword}
+            options={{
+              headerTransparent: true,
+              headerShown: true
+            }}
+            component={SignUpPasswordPage}
+          />
+          <RootRouteStack.Screen
+            name={RouteKeys.SignUpOTP}
+            options={{
+              headerTransparent: true,
+              headerShown: true
+            }}
+            component={SignUpOTPPage}
+          />
+          <RootRouteStack.Screen
+            name={RouteKeys.SignUpSetName}
+            options={{
+              headerTransparent: true,
+              headerShown: true
+            }}
+            component={SignUpSetNamePage}
+          />
+          <RootRouteStack.Screen
+            name={RouteKeys.AuthV3}
+            options={{
+              headerTransparent: true,
+              headerShown: true
+            }}
+            component={AuthV3Page}
+          />
+          <RootRouteStack.Screen
+            name={RouteKeys.AuthAppleBind}
+            options={{
+              headerTransparent: true,
+              headerShown: true
+            }}
+            component={AuthApplePhoneBind}
+          />
+          <RootRouteStack.Screen
+            name={RouteKeys.AuthPhoneOTP}
+            options={{
+              headerTransparent: true,
+              headerShown: true
+            }}
+            component={AuthPhoneOTPPage}
+          />
+          <RootRouteStack.Screen
+            name={RouteKeys.BookDetail}
+            options={{
+              headerTransparent: true,
+              headerShown: true
+            }}
+            component={BookPage}
+          />
+          <RootRouteStack.Screen
+            name={RouteKeys.ProfileSettings}
+            options={{
+              headerTransparent: true,
+              headerTitle: t('app.menu.settings') ?? 'settings',
+              headerShown: true
+            }}
+            component={SettingsPage}
+          />
+          <RootRouteStack.Screen
+            name={RouteKeys.ProfileDebug}
+            options={{
+              headerTransparent: true,
+              headerTitle: 'Debug',
+              headerShown: true
+            }}
+            component={DebugPage}
+          />
+          <RootRouteStack.Screen
+            name={RouteKeys.Clipping}
+            options={{
+              headerTransparent: true,
+              headerShown: true
+            }}
+            component={ClippingPage}
+          />
+          <RootRouteStack.Screen
+            name={RouteKeys.Payment}
+            options={{
+              headerTransparent: true,
+              headerShown: true
+            }}
+            component={PaymentPage}
+          />
+        </RootRouteStack.Navigator>
+      </NavigationContainer>
+    </>
   );
 };
 

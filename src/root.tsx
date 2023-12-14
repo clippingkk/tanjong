@@ -19,6 +19,7 @@ import { StripeConfigs } from './constants/config';
 import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client';
 import { mmkvStoragePersister } from './utils/storage';
 import { useColorScheme } from 'react-native';
+import Notifications from './components/toast/notifications';
 
 const qc = new QueryClient({})
 
@@ -60,6 +61,7 @@ function Root() {
                   merchantIdentifier={StripeConfigs.merchantIdentifier}
                 >
                   <App />
+                  <Notifications />
                 </StripeProvider>
               </NativeBaseProvider>
             </GluestackUIProvider>

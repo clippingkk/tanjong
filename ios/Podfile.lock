@@ -953,16 +953,20 @@ PODS:
     - React-Core
   - react-native-blurhash (1.1.11):
     - React-Core
-  - react-native-cameraroll (7.2.0):
+  - react-native-cameraroll (7.2.2):
     - React-Core
   - react-native-get-random-values (1.10.0):
+    - React-Core
+  - react-native-image-picker (7.1.0):
+    - glog
+    - RCT-Folly (= 2022.05.16.00)
     - React-Core
   - react-native-mmkv (2.11.0):
     - MMKV (>= 1.2.13)
     - React-Core
-  - react-native-netinfo (11.2.0):
+  - react-native-netinfo (11.2.1):
     - React-Core
-  - react-native-safe-area-context (4.7.4):
+  - react-native-safe-area-context (4.8.1):
     - React-Core
   - react-native-view-shot (3.8.0):
     - React-Core
@@ -1142,11 +1146,11 @@ PODS:
     - ZIPFoundation (= 0.9.11)
   - RNAppleAuthentication (2.3.0):
     - React-Core
-  - RNBootSplash (5.1.3):
+  - RNBootSplash (5.1.4):
     - React-Core
   - RNCAsyncStorage (1.21.0):
     - React-Core
-  - RNCClipboard (1.12.1):
+  - RNCClipboard (1.13.0):
     - React-Core
   - RNCPushNotificationIOS (1.11.0):
     - React-Core
@@ -1176,7 +1180,7 @@ PODS:
     - Sentry/HybridSDK (= 8.17.1)
   - RNSVG (14.1.0):
     - React-Core
-  - RNVectorIcons (10.0.2):
+  - RNVectorIcons (10.0.3):
     - glog
     - RCT-Folly (= 2022.05.16.00)
     - React-Core
@@ -1184,42 +1188,42 @@ PODS:
     - SentryPrivate (= 8.17.1)
   - SentryPrivate (8.17.1)
   - SocketRocket (0.6.1)
-  - Stripe (23.16.0):
-    - StripeApplePay (= 23.16.0)
-    - StripeCore (= 23.16.0)
-    - StripePayments (= 23.16.0)
-    - StripePaymentsUI (= 23.16.0)
-    - StripeUICore (= 23.16.0)
-  - stripe-react-native (0.33.0):
+  - Stripe (23.18.3):
+    - StripeApplePay (= 23.18.3)
+    - StripeCore (= 23.18.3)
+    - StripePayments (= 23.18.3)
+    - StripePaymentsUI (= 23.18.3)
+    - StripeUICore (= 23.18.3)
+  - stripe-react-native (0.35.0):
     - React-Core
-    - Stripe (~> 23.16.0)
-    - StripeApplePay (~> 23.16.0)
-    - StripeFinancialConnections (~> 23.16.0)
-    - StripePayments (~> 23.16.0)
-    - StripePaymentSheet (~> 23.16.0)
-    - StripePaymentsUI (~> 23.16.0)
-  - StripeApplePay (23.16.0):
-    - StripeCore (= 23.16.0)
-  - StripeCore (23.16.0)
-  - StripeFinancialConnections (23.16.0):
-    - StripeCore (= 23.16.0)
-    - StripeUICore (= 23.16.0)
-  - StripePayments (23.16.0):
-    - StripeCore (= 23.16.0)
-    - StripePayments/Stripe3DS2 (= 23.16.0)
-  - StripePayments/Stripe3DS2 (23.16.0):
-    - StripeCore (= 23.16.0)
-  - StripePaymentSheet (23.16.0):
-    - StripeApplePay (= 23.16.0)
-    - StripeCore (= 23.16.0)
-    - StripePayments (= 23.16.0)
-    - StripePaymentsUI (= 23.16.0)
-  - StripePaymentsUI (23.16.0):
-    - StripeCore (= 23.16.0)
-    - StripePayments (= 23.16.0)
-    - StripeUICore (= 23.16.0)
-  - StripeUICore (23.16.0):
-    - StripeCore (= 23.16.0)
+    - Stripe (~> 23.18.0)
+    - StripeApplePay (~> 23.18.0)
+    - StripeFinancialConnections (~> 23.18.0)
+    - StripePayments (~> 23.18.0)
+    - StripePaymentSheet (~> 23.18.0)
+    - StripePaymentsUI (~> 23.18.0)
+  - StripeApplePay (23.18.3):
+    - StripeCore (= 23.18.3)
+  - StripeCore (23.18.3)
+  - StripeFinancialConnections (23.18.3):
+    - StripeCore (= 23.18.3)
+    - StripeUICore (= 23.18.3)
+  - StripePayments (23.18.3):
+    - StripeCore (= 23.18.3)
+    - StripePayments/Stripe3DS2 (= 23.18.3)
+  - StripePayments/Stripe3DS2 (23.18.3):
+    - StripeCore (= 23.18.3)
+  - StripePaymentSheet (23.18.3):
+    - StripeApplePay (= 23.18.3)
+    - StripeCore (= 23.18.3)
+    - StripePayments (= 23.18.3)
+    - StripePaymentsUI (= 23.18.3)
+  - StripePaymentsUI (23.18.3):
+    - StripeCore (= 23.18.3)
+    - StripePayments (= 23.18.3)
+    - StripeUICore (= 23.18.3)
+  - StripeUICore (23.18.3):
+    - StripeCore (= 23.18.3)
   - Yoga (1.14.0)
   - ZIPFoundation (0.9.11)
 
@@ -1281,6 +1285,7 @@ DEPENDENCIES:
   - react-native-blurhash (from `../node_modules/react-native-blurhash`)
   - "react-native-cameraroll (from `../node_modules/@react-native-camera-roll/camera-roll`)"
   - react-native-get-random-values (from `../node_modules/react-native-get-random-values`)
+  - react-native-image-picker (from `../node_modules/react-native-image-picker`)
   - react-native-mmkv (from `../node_modules/react-native-mmkv`)
   - "react-native-netinfo (from `../node_modules/@react-native-community/netinfo`)"
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
@@ -1420,6 +1425,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-camera-roll/camera-roll"
   react-native-get-random-values:
     :path: "../node_modules/react-native-get-random-values"
+  react-native-image-picker:
+    :path: "../node_modules/react-native-image-picker"
   react-native-mmkv:
     :path: "../node_modules/react-native-mmkv"
   react-native-netinfo:
@@ -1552,11 +1559,12 @@ SPEC CHECKSUMS:
   React-Mapbuffer: 58fe558faf52ecde6705376700f848d0293d1cef
   react-native-blur: cfdad7b3c01d725ab62a8a729f42ea463998afa2
   react-native-blurhash: a59e6bf8117a0304488ed576abd440f4b0777a8c
-  react-native-cameraroll: 2a198b0eb86c7ccf3303fb57702b2465cc292c94
+  react-native-cameraroll: 8acc1cf2c31d38992222fd08c7041691fc98dce3
   react-native-get-random-values: 384787fd76976f5aec9465aff6fa9e9129af1e74
+  react-native-image-picker: 6c51359eca7a7df9f07e297218c25696eb9da976
   react-native-mmkv: e97c0c79403fb94577e5d902ab1ebd42b0715b43
-  react-native-netinfo: 25c87e28495d955b30aeca9c22594691668c907a
-  react-native-safe-area-context: 2cd91d532de12acdb0a9cbc8d43ac72a8e4c897c
+  react-native-netinfo: 8a7fd3f7130ef4ad2fb4276d5c9f8d3f28d2df3d
+  react-native-safe-area-context: cd1169d797a2ef722a00bfc5af10748d5b6c94f9
   react-native-view-shot: 6b7ed61d77d88580fed10954d45fad0eb2d47688
   react-native-webview: 88293a0f23eca8465c0433c023ec632930e644d0
   react-native-widgetkit: efb6680df237463bbe1be3a4d1a1578a1b0bb08f
@@ -1582,9 +1590,9 @@ SPEC CHECKSUMS:
   ReactCommon: 851280fb976399ca1aabc74cc2c3612069ea70a2
   ReactNativeFileAccess: 4530e3be4d5069454c6c6389096d8cb78c897f2c
   RNAppleAuthentication: e99eaf3c4c01ad8ecb6125dd6f0cfd98871685b5
-  RNBootSplash: 970faaa2ab1322758c6545c88d3b23f424b86a2f
+  RNBootSplash: 578bffadc64719c710d30780ec6ace905b0daf07
   RNCAsyncStorage: 618d03a5f52fbccb3d7010076bc54712844c18ef
-  RNCClipboard: d77213bfa269013bf4b857b7a9ca37ee062d8ef1
+  RNCClipboard: 204b94473a99932e314b730a81363e0bf795a60d
   RNCPushNotificationIOS: 64218f3c776c03d7408284a819b2abfda1834bc8
   RNDeviceInfo: db5c64a060e66e5db3102d041ebe3ef307a85120
   RNFlashList: 4b4b6b093afc0df60ae08f9cbf6ccd4c836c667a
@@ -1594,19 +1602,19 @@ SPEC CHECKSUMS:
   RNScreens: b582cb834dc4133307562e930e8fa914b8c04ef2
   RNSentry: a6202c19ca31b69969dface2ea0db093e36c97a3
   RNSVG: ba3e7232f45e34b7b47e74472386cf4e1a676d0a
-  RNVectorIcons: 8cabd5809519015ed2c1cdb4ec83d563296bd5cc
+  RNVectorIcons: 210f910e834e3485af40693ad4615c1ec22fc02b
   Sentry: d9f99f9cc13777c5d938650c1e1c85047bb4f0d1
   SentryPrivate: 839b1e58addf58624087a80b2628e543193fa8ef
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
-  Stripe: fcab417424a45d995aa1e62a39bc942233b61ba3
-  stripe-react-native: fb59ade94b226d967c0473346985ee04a976e078
-  StripeApplePay: 81de266a964b3ad02fb25e8b22fd8c235d2916a8
-  StripeCore: ac141047bca25f5ae945a1cbdd00a90b0d08c616
-  StripeFinancialConnections: d7a452e4bed1195d8978ee4f6c0ba2f82c89fdf4
-  StripePayments: 5804cb9b02cca488042e5cf8cf57a86a5080006b
-  StripePaymentSheet: 06ea6bbf49be869769c46bf31be4fbc3e23b5b19
-  StripePaymentsUI: 24a0349ae8c7e8c7402086703720fe06c52ddea0
-  StripeUICore: ce85e040a22bf0335061d14973d37757528b3d2d
+  Stripe: e046335ab6e3f25d39f1a55bd98620a85269cffa
+  stripe-react-native: 2e2dad1734c1c2b71564b66bae4395bfd8419af4
+  StripeApplePay: 1aa77f8ec7a6d9463fa8f49ae0672fe59dbf4c73
+  StripeCore: fe10c34fb3c9ae18b986913f7e4460e7c653ce93
+  StripeFinancialConnections: 6022426894046f26fe21d348da02d83d8a637fb0
+  StripePayments: 7084fed30c5f03f15ae23c5dce63715ba0b53e15
+  StripePaymentSheet: c8d25d4133476c6238d3cc932fb8219bb5ea49c0
+  StripePaymentsUI: c12de264eda974d91e43a769f53a6c6afc9a1715
+  StripeUICore: 090c4fe916d039616ce8f8de30392f4aeb33dd16
   Yoga: 20d6a900dcc8d61d5e3b799bbf627cc34474a8c4
   ZIPFoundation: b1f0de4eed33e74a676f76e12559ab6b75990197
 

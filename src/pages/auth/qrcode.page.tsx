@@ -1,7 +1,6 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
-import jwtDecode from 'jwt-decode'
 import { View, Text, Toast } from 'native-base'
-import React, {  useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Linking, SafeAreaView, StyleSheet } from 'react-native'
 // import { Camera, useCameraDevices } from 'react-native-vision-camera'

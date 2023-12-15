@@ -1,10 +1,11 @@
-import { AlertCircleIcon, FormControl, FormControlError, FormControlErrorIcon, FormControlErrorText, FormControlHelper, FormControlHelperText, FormControlLabel, FormControlLabelText, Input, InputField } from '@gluestack-ui/themed'
+import { AlertCircleIcon, FormControl, FormControlError, FormControlErrorIcon, FormControlErrorText, FormControlHelper, FormControlHelperText, FormControlLabel, FormControlLabelText, Input, InputField, Textarea, TextareaInput } from '@gluestack-ui/themed'
 import React from 'react'
 import { ControllerFieldState, FormState } from 'react-hook-form'
 
 type FormFieldProps = {
   formState: FormState<any>
   fieldState: ControllerFieldState
+  type?: 'text' | 'textarea'
   label: string
   value: any
   helperText?: string
@@ -13,7 +14,7 @@ type FormFieldProps = {
 }
 
 function FormField(props: FormFieldProps) {
-  const { formState, fieldState, label, value, onChange, helperText, errorMessage } = props
+  const { formState, fieldState, label, value, onChange, helperText, errorMessage, type = 'text' } = props
   return (
     <FormControl
       size="md"
@@ -25,14 +26,29 @@ function FormField(props: FormFieldProps) {
       <FormControlLabel mb="$1">
         <FormControlLabelText>{label}</FormControlLabelText>
       </FormControlLabel>
-      <Input>
-        <InputField
-          type='text'
-          value={value}
-          onChange={onChange}
-          placeholder='Your name'
-        />
-      </Input>
+      {type === 'text' && (
+
+        <Input>
+          <InputField
+            type='text'
+            value={value}
+            onChange={onChange}
+            placeholder={label}
+          />
+        </Input>
+      )}
+      {type === 'textarea' && (
+        <Textarea
+          size="md"
+          isReadOnly={false}
+          isDisabled={formState.disabled}
+          isInvalid={fieldState.invalid}
+          w="$full"
+        >
+          <TextareaInput placeholder={label} value={value} onChange={onChange} />
+        </Textarea>
+      )}
+
       <FormControlHelper>
         <FormControlHelperText>
           {helperText}

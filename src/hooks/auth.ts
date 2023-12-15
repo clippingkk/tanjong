@@ -1,4 +1,3 @@
-import { StackActions } from "@react-navigation/native"
 import { useSetAtom } from "jotai"
 import { useCallback } from "react"
 import { tokenAtom, uidAtom } from "../atomic"
@@ -8,10 +7,11 @@ import { SharedGroupPreferencesKey } from "../constants/config"
 import { setItem as WidgetKitSetItem, reloadAllTimelines as WidgetKitReloadAllTimelines } from 'react-native-widgetkit'
 import { Platform } from "react-native"
 import { useApolloClient } from "@apollo/client"
-import { Toast } from "native-base"
 import * as Sentry from '@sentry/react-native'
 import { NativeStackNavigationProp } from "@react-navigation/native-stack"
 import { RouteParamList } from "../routes"
+import toast from "react-hot-toast/headless"
+
 export const widgetAppIDKey = "app:my:id"
 export const widgetAppTokenKey = "app:token"
 export const widgetAppWidgetType = "app:widgetType"
@@ -39,10 +39,8 @@ export function usePostAuth(nav: NativeStackNavigationProp<RouteParamList, any, 
       WidgetKitReloadAllTimelines()
     }
 
-    Toast.show({
-      title: 'Logged in'
-    })
+    toast.success('Welcome!')
     await client.resetStore()
-    nav.dispatch(StackActions.popToTop())
+    nav.popToTop()
   }, [setToken, setUid, nav])
 }

@@ -1,4 +1,4 @@
-import { Clipping } from "./schema/generated"
+import { Clipping, SignupMutation } from "./schema/generated"
 import { WenquBook } from "./service/wenqu"
 
 export enum RouteKeys {
@@ -56,7 +56,7 @@ export type RouteParamList = {
     password: string
   }
   [RouteKeys.SignUpSetName]: {
-    data: any
+    data: SignupMutation['signup']
   }
 
   root: object

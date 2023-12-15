@@ -15,15 +15,7 @@ const { assetExts, sourceExts } = defaultConfig.resolver;
  */
 const config = {
   transformer: {
-    // FIXME: please fix this later!!!!
-    // work around: https://github.com/kristerkari/react-native-svg-transformer/issues/317
-
-    // please use svg-transformer and remove @react-native/metro-babel-transformer once it's fixed
-
-    // babelTransformerPath: require.resolve('react-native-svg-transformer'),
-    babelTransformerPath: require.resolve(
-      '@react-native/metro-babel-transformer',
-    ),
+    babelTransformerPath: require.resolve('react-native-svg-transformer'),
   },
 
   resolver: {

@@ -4,6 +4,7 @@ import { API_HOST, WENQU_API_HOST, WENQU_SIMPLE_TOKEN } from '../constants/confi
 // import profile from '../utils/profile'
 import { offsetLimitPagination } from '@apollo/client/utilities'
 import { storage } from './storage'
+import toast from 'react-hot-toast/headless'
 
 export type IBaseResponseData = {
   status: number
@@ -100,13 +101,10 @@ type GraphQLResponseError = {
 
 const errorLink = onError((errData) => {
   const { graphQLErrors, networkError } = errData
-  if (graphQLErrors) {
-    // swal({
-    //   icon: 'error',
-    //   title: graphQLErrors[0].message,
-    //   text: graphQLErrors[0].message,
-    // })
-    // toast.error(graphQLErrors[0].message)
+  if (graphQLErrors && graphQLErrors.length > 0) {
+    toast.error(
+      graphQLErrors[0].message,
+    )
   }
   let ne = networkError as GraphQLResponseError
 

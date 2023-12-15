@@ -1,13 +1,14 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Button, Text, Toast, View, useToast } from '@gluestack-ui/themed';
+import { Button, Text, View } from '@gluestack-ui/themed';
 import SignUpLayout from './layout';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { OtpInput } from "react-native-otp-entry";
 import { RouteParamList, RouteKeys } from '../../routes';
-import { Link } from '@react-navigation/native';
-import { OtpChannel, useSendOtpMutation } from '../../schema/generated';
+import { OtpChannel, useSendOtpMutation, useSignupMutation } from '../../schema/generated';
 import toast from 'react-hot-toast/headless';
 import { getTempCFToken } from '../../utils/cfToken';
+import { ActivityIndicator } from 'react-native';
+import { usePostAuth } from '../../hooks/auth';
 
 type SignUpOTPPageProps = NativeStackScreenProps<RouteParamList, RouteKeys.SignUpOTP>
 
@@ -19,10 +20,10 @@ function SignUpOTPPage(props: SignUpOTPPageProps) {
     })
   }, [])
 
+  const onPostAuth = usePostAuth(props.navigation)
   const [reminds, setReminds] = useState(0)
   const sendOtpTimer = useRef<NodeJS.Timeout | null>(null)
-
-  const [sendOtp] = useSendOtpMutation({
+  const [sendOtp, { loading: isOTPSending }] = useSendOtpMutation({
     variables: {
       channel: OtpChannel.Email,
       address: email,
@@ -31,8 +32,12 @@ function SignUpOTPPage(props: SignUpOTPPageProps) {
     onCompleted(data) {
       toast.success('OTP sent, please check your email')
     },
-    onError(err) {
-      toast.error(err.message)
+    onError() {
+      // reset the timer if there's an error
+      if (sendOtpTimer.current) {
+        clearInterval(sendOtpTimer.current as NodeJS.Timeout)
+        sendOtpTimer.current = null
+      }
     }
   })
 
@@ -56,9 +61,30 @@ function SignUpOTPPage(props: SignUpOTPPageProps) {
     }, 1000)
   }
 
-  const onSignUp = useCallback((text: string) => {
-
+  useEffect(() => {
+    // automatic send otp when the page is mounted
+    onResendOtp()
   }, [])
+
+  const [doSignUp, { loading: isSigningUp }] = useSignupMutation({
+    async onCompleted(data) {
+      await onPostAuth(data.signup.token, data.signup.user.id)
+      props.navigation.push(RouteKeys.SignUpSetName, {
+        data: data.signup
+      })
+    }
+  })
+  const onSignUp = useCallback((text: string) => {
+    doSignUp({
+      variables: {
+        payload: {
+          email,
+          password: pwd,
+          otp: text
+        }
+      }
+    })
+  }, [email, pwd])
 
   return (
     <SignUpLayout title='OTP'>
@@ -71,9 +97,12 @@ function SignUpOTPPage(props: SignUpOTPPageProps) {
         </View>
         <Button
           onPress={onResendOtp}
-          isDisabled={reminds > 0}
+          isDisabled={reminds > 0 || isOTPSending || isSigningUp}
         >
-          <Text>
+          {(isOTPSending || isSigningUp) && (
+            <ActivityIndicator style={{ marginRight: 4 }} />
+          )}
+          <Text color='$white' sx={{ color: '$black' }}>
             Resend
           </Text>
           {reminds > 0 && (

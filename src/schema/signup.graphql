@@ -1,19 +1,21 @@
 mutation signup($payload: SignupPayload!) {
-    signup(payload: $payload) {
-        user {
-            id
-            name
-            email
-            phone
-            password
-            avatar
-            checked
-            createdAt
-            updatedAt
-            bio
-            domain
-            wechatOpenid
-        }
-        token
-    }
+	signup(payload: $payload) {
+		user {
+			id
+			name
+			email
+			phone
+			password
+			avatar
+			checked
+			createdAt
+			updatedAt
+			bio
+			domain
+			wechatOpenid
+		}
+		token
+		noAccountFrom3rdPart
+		isNewUser
+	}
 }

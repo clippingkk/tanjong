@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect } from 'react'
 import SignUpLayout from './layout'
 import { AvatarImage, Button, Divider, Image, ScrollView, Text, View } from '@gluestack-ui/themed'
-import { launchImageLibrary } from 'react-native-image-picker'
+import { Asset, launchImageLibrary } from 'react-native-image-picker'
 import Animated, { FadeInUp } from 'react-native-reanimated'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { RouteKeys, RouteParamList } from '../../routes'
@@ -12,11 +12,14 @@ import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import Zod from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import FormField from '../../components/form/form-field'
+import { uploadImage } from '../../service/s3'
+import { useMutation } from '@tanstack/react-query'
+import { Platform } from 'react-native'
 
 type SignUpSetNamePageProps = NativeStackScreenProps<RouteParamList, RouteKeys.SignUpSetName>
 
 const formData = Zod.object({
-  avatar: Zod.string(),
+  avatar: Zod.object({}) as Zod.ZodType<Asset>,
   name: Zod.string().max(50).min(5),
   domain: Zod.string().regex(/^[a-z0-9\.]+$/).max(50).min(5),
   bio: Zod.string().max(255).default(''),
@@ -48,8 +51,32 @@ function SignUpSetNamePage(props: SignUpSetNamePageProps) {
     resolver: zodResolver(formData),
   })
 
-  const onFormSubmit: SubmitHandler<FormData> = (data) => {
-    console.log(data)
+  const { mutateAsync: doUploadImage } = useMutation({
+    mutationFn: (photo: Asset) => uploadImage({
+      name: photo.fileName,
+      type: photo.type,
+      uri: Platform.OS === 'ios' ? photo.uri?.replace('file://', '') : photo.uri,
+    } as any),
+  })
+
+  const onFormSubmit: SubmitHandler<FormData> = async (data) => {
+    let avatarUrl = ''
+    if (data.avatar) {
+      try {
+        const avatarResponse = await doUploadImage(data.avatar)
+        avatarUrl = avatarResponse.filePath
+      } catch (e: any) {
+        toast.error(e.toString())
+        throw e
+      }
+    }
+
+    return doUpdateProfile({
+      variables: {
+        ...data,
+        avatar: avatarUrl === '' ? null : avatarUrl,
+      }
+    })
   }
 
   return (
@@ -68,7 +95,7 @@ function SignUpSetNamePage(props: SignUpSetNamePageProps) {
                     justifyContent='center'
                     alignItems='center'
                   >
-                    <AvatarImage source={{ uri: value }} alt='avatar' height={120} width={120} />
+                    <AvatarImage source={{ uri: value.uri }} alt='avatar' height={120} width={120} />
                   </View>
                 )}
                 <Button
@@ -89,7 +116,7 @@ function SignUpSetNamePage(props: SignUpSetNamePageProps) {
                       return
                     }
                     const asset = result.assets[0]
-                    onChange(asset.uri)
+                    onChange(asset)
                   }}
                 >
                   <Text

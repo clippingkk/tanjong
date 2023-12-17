@@ -1,8 +1,7 @@
 import React, { useCallback, useEffect } from 'react'
 import SignUpLayout from './layout'
-import { AvatarImage, Button, Divider, Image, ScrollView, Text, View } from '@gluestack-ui/themed'
+import { Alert, AvatarImage, Button, Divider, Image, ScrollView, Text, View } from '@gluestack-ui/themed'
 import { Asset, launchImageLibrary } from 'react-native-image-picker'
-import Animated, { FadeInUp } from 'react-native-reanimated'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { RouteKeys, RouteParamList } from '../../routes'
 import { useUpdateProfileMutation } from '../../schema/generated'
@@ -14,13 +13,21 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import FormField from '../../components/form/form-field'
 import { uploadImage } from '../../service/s3'
 import { useMutation } from '@tanstack/react-query'
-import { Platform } from 'react-native'
+import { ActivityIndicator, Platform } from 'react-native'
 
 type SignUpSetNamePageProps = NativeStackScreenProps<RouteParamList, RouteKeys.SignUpSetName>
 
 const formData = Zod.object({
-  avatar: Zod.object({}) as Zod.ZodType<Asset>,
-  name: Zod.string().max(50).min(5),
+  avatar: Zod.object({
+    fileName: Zod.string().optional(),
+    type: Zod.string().optional(),
+    uri: Zod.string().optional(),
+    fileSize: Zod.number().max(1 << 23, 'Max file size is 8MB').optional(),
+  }).optional() as Zod.ZodType<Asset>,
+  name: Zod.string()
+    .max(50)
+    .min(5)
+    .regex(/^[a-zA-Z\u4e00-\u9fa5\u3040-\u30FF\u31F0-\u31FF\uAC00-\uD7AF]+$/u),
   domain: Zod.string().regex(/^[a-z0-9\.]+$/).max(50).min(5),
   bio: Zod.string().max(255).default(''),
 })
@@ -31,7 +38,7 @@ function SignUpSetNamePage(props: SignUpSetNamePageProps) {
   const { data } = props.route.params
 
   const client = useApolloClient()
-  const [doUpdateProfile] = useUpdateProfileMutation({
+  const [doUpdateProfile, { loading: isUpdating }] = useUpdateProfileMutation({
     onCompleted(data) {
       toast.success('Profile updated')
       client.resetStore()
@@ -47,16 +54,19 @@ function SignUpSetNamePage(props: SignUpSetNamePageProps) {
   // name, bio, avatar, domain
   // prompt premium account upgrade
 
-  const { control, formState, handleSubmit } = useForm<FormData>({
+  const { control, handleSubmit } = useForm<FormData>({
     resolver: zodResolver(formData),
   })
 
-  const { mutateAsync: doUploadImage } = useMutation({
+  const { mutateAsync: doUploadImage, isPending: isUploading } = useMutation({
     mutationFn: (photo: Asset) => uploadImage({
       name: photo.fileName,
       type: photo.type,
       uri: Platform.OS === 'ios' ? photo.uri?.replace('file://', '') : photo.uri,
     } as any),
+    onSuccess() {
+      toast.success('avatar uploaded, updating...')
+    }
   })
 
   const onFormSubmit: SubmitHandler<FormData> = async (data) => {
@@ -79,6 +89,8 @@ function SignUpSetNamePage(props: SignUpSetNamePageProps) {
     })
   }
 
+  const isSubmitting = isUploading || isUpdating
+
   return (
     <SignUpLayout title='Initialize my profile'>
       <ScrollView>
@@ -99,6 +111,7 @@ function SignUpSetNamePage(props: SignUpSetNamePageProps) {
                   </View>
                 )}
                 <Button
+                  disabled={isSubmitting}
                   onPress={async () => {
                     const result = await launchImageLibrary({
                       mediaType: 'photo',
@@ -116,9 +129,16 @@ function SignUpSetNamePage(props: SignUpSetNamePageProps) {
                       return
                     }
                     const asset = result.assets[0]
+                    if ((asset.fileSize ?? 0) > (1 << 23)) {
+                      toast.error('Image size too large, max 8MB')
+                      return
+                    }
                     onChange(asset)
                   }}
                 >
+                  {isSubmitting && (
+                    <ActivityIndicator style={{ marginRight: 10 }} />
+                  )}
                   <Text
                     color='$white'
                     sx={{
@@ -128,6 +148,14 @@ function SignUpSetNamePage(props: SignUpSetNamePageProps) {
                     }}
                   >Pick an avatar</Text>
                 </Button>
+                {formState.errors.avatar?.fileSize && (
+                  <Text
+                    mt={'$2'}
+                    color='$red500'
+                  >
+                    {formState.errors.avatar?.fileSize.message}
+                  </Text>
+                )}
               </View>
             )}
           />
@@ -182,7 +210,11 @@ function SignUpSetNamePage(props: SignUpSetNamePageProps) {
           <Button
             mt={'$5'}
             onPress={handleSubmit(onFormSubmit)}
+            disabled={isSubmitting}
           >
+            {isSubmitting && (
+              <ActivityIndicator style={{ marginRight: 10 }} />
+            )}
             <Text
               color='$white'
               sx={{

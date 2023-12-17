@@ -92,7 +92,8 @@
       "unchecked": "未分类图书",
       "notfound": "什么！你竟然还没有读书笔记？",
       "uploadTip": "还不快点我上传",
-      "emptyFullTip": "抱歉，您还没有任何数据，请将您的摘录上传到网站上，稍后再试"
+      "emptyFullTip": "抱歉，您还没有任何数据，请将您的摘录上传到网站上，稍后再试",
+      "howToVideo": "如何使用?"
     },
     "clipping": {
       "update": "书目更新",

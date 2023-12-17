@@ -17,6 +17,12 @@ export function uploadImage(file: File): Promise<TUploadResponse> {
       'Authorization': `Bearer ${token}`
     },
     method: 'POST',
-    body: fd
+    body: fd,
   }).then(res => res.json())
+    .then(response => {
+      if ('error' in response) {
+        throw new Error(response.error)
+      }
+      return response
+    })
 }

@@ -27,12 +27,12 @@ function FormField(props: FormFieldProps) {
         <FormControlLabelText>{label}</FormControlLabelText>
       </FormControlLabel>
       {type === 'text' && (
-
         <Input>
           <InputField
             type='text'
+            autoCapitalize='none'
             value={value}
-            onChange={onChange}
+            onChange={v => onChange(v.nativeEvent.text)}
             placeholder={label}
           />
         </Input>
@@ -45,7 +45,11 @@ function FormField(props: FormFieldProps) {
           isInvalid={fieldState.invalid}
           w="$full"
         >
-          <TextareaInput placeholder={label} value={value} onChange={onChange} />
+          <TextareaInput
+            placeholder={label}
+            value={value}
+            onChange={v => onChange(v.nativeEvent.text)}
+          />
         </Textarea>
       )}
 

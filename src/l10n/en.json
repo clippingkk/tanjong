@@ -92,7 +92,8 @@
       "unchecked": "Not matched books",
       "notfound": "What! No clippings for now?",
       "uploadTip": "click me and upload",
-      "emptyFullTip": "Sorry, you haven't had any data, please upload your clippings on website, and try me later"
+      "emptyFullTip": "Sorry, you haven't had any data, please upload your clippings on website, and try me later",
+      "howToVideo": "How to use it?"
     },
     "clipping": {
       "update": "Change book info",

@@ -1,9 +1,8 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import SignUpLayout from './layout';
-import { Alert, AlertIcon, AlertText, InfoIcon, Input, InputField, Text, View } from '@gluestack-ui/themed';
+import { Alert, AlertIcon, AlertText, Button, InfoIcon, Input, InputField, Text, View } from '@gluestack-ui/themed';
 import { RouteKeys, RouteParamList } from '../../routes';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { Link } from '@react-navigation/native';
 import toast from 'react-hot-toast/headless';
 
 type SignUpPasswordPageProps = NativeStackScreenProps<RouteParamList, RouteKeys.SignUpPassword>
@@ -17,7 +16,7 @@ function SignUpPasswordPage(props: SignUpPasswordPageProps) {
       return true
     }
     if (pwd.length < 6) {
-      return true
+      return false
     }
     if (pwd.length > 32) {
       return false
@@ -29,19 +28,21 @@ function SignUpPasswordPage(props: SignUpPasswordPageProps) {
     props.navigation.setOptions({
       title: email,
       headerRight: (hprops) => (
-        <Link
-          to={{
-            screen: RouteKeys.SignUpOTP, params: {
-              email,
-              password: pwd
+        <Button
+          // disabled={!pwd || !isPasswordValid}
+          variant='link'
+          onPress={() => {
+            if (!pwd || !isPasswordValid) {
+              toast.error('password at least 6 characters long')
+              return
             }
+            props.navigation.navigate(RouteKeys.SignUpOTP, { email, password: pwd })
           }}
-          disabled={!pwd || !isPasswordValid}
         >
           <Text>
             Next
           </Text>
-        </Link>
+        </Button>
       )
     })
   }, [pwd])
@@ -77,7 +78,7 @@ function SignUpPasswordPage(props: SignUpPasswordPageProps) {
           >
             <AlertIcon as={InfoIcon} w={'$4'} h={'$4'} mr={'$2'} />
             <AlertText>
-              Please enter a valid password
+              Password must be at least 6 characters long and less than 32 characters
             </AlertText>
           </Alert>
         )}

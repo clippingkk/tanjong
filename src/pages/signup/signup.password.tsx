@@ -4,6 +4,7 @@ import { Alert, AlertIcon, AlertText, InfoIcon, Input, InputField, Text, View } 
 import { RouteKeys, RouteParamList } from '../../routes';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Link } from '@react-navigation/native';
+import toast from 'react-hot-toast/headless';
 
 type SignUpPasswordPageProps = NativeStackScreenProps<RouteParamList, RouteKeys.SignUpPassword>
 
@@ -35,7 +36,7 @@ function SignUpPasswordPage(props: SignUpPasswordPageProps) {
               password: pwd
             }
           }}
-        // disabled={!isPasswordValid}
+          disabled={!pwd || !isPasswordValid}
         >
           <Text>
             Next
@@ -53,9 +54,18 @@ function SignUpPasswordPage(props: SignUpPasswordPageProps) {
           <InputField
             placeholder='password'
             type='password'
+            autoCapitalize='none'
+            autoCorrect={false}
             secureTextEntry
             returnKeyType='next'
             value={pwd}
+            onEndEditing={() => {
+              if (!isPasswordValid || !pwd) {
+                toast.error('Please enter a valid password')
+                return
+              }
+              props.navigation.navigate(RouteKeys.SignUpOTP, { email, password: pwd })
+            }}
             onChangeText={setPwd}
           />
         </Input>

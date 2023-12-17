@@ -184,9 +184,9 @@ export function useHomeLoad() {
     }
     // setTimeout(() => {
     //   linkTo({
-    //     screen: RouteKeys.SignUpSetName,
+    //     screen: RouteKeys.SignUpPassword,
     //     params: {
-    //       // email: 'annatar.he+ck@gmail.com',
+    //       email: 'annatar.he+ck@gmail.com',
     //       // password: '123456',
     //       data: { "user": { "id": 4, "name": "user-1702652537", "email": "annatar.he+ck.dev1@gmail.com", "phone": "", "password": "", "avatar": "", "checked": true, "createdAt": "2023-12-15T23:02:17+08:00", "updatedAt": "2023-12-15T23:02:17+08:00", "bio": "", "domain": "", "wechatOpenid": "", "__typename": "User" }, "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjUiLCJleHAiOjE3MTgzNzkzOTAsImlhdCI6MTcwMjgyNzM5MCwiaXNzIjoiY2stc2VydmVyQCJ9.S2Mz9byHIC0QbQc01SPEUbolz2QFPQwwqe6hzxDe4Bw", "__typename": "AuthResponse" }
     //     }

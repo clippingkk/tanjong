@@ -27,5 +27,23 @@ jest.mock('react-native-linear-gradient', () => {
   const { View } = require('react-native');
   return View
 });
+jest.mock('@sentry/react-native', () => {
+  return {
+    __esModule: true,
+    init: jest.fn(),
+  }
+})
+jest.mock('react-native-bootsplash', () => {
+  return {
+    hide: jest.fn(),
+  }
+})
+jest.mock('@leancloud/platform-adapters-react-native', () => {
+  return {}
+})
+// jest.mock('@react-native-community/push-notification-ios', () => {
+//   const { View } = require('react-native');
+//   return View
+// })
 jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');
 

@@ -193,7 +193,7 @@ export default {
   transformIgnorePatterns: [
     "\\.snap$",
     // "<rootDir>/node_modules/",
-    "node_modules/(?!(@react-native|react-native-reanimated|react-native|@gluestack-ui|@react-native-camera-roll|@expo\/html-elements|@legendapp|react-native-view-shot|react-native-webview|react-native-actions-sheet)/)"
+    "node_modules/(?!(@react-native|react-native-reanimated|react-native|@gluestack-ui|@react-native-camera-roll|@expo\/html-elements|@legendapp|react-native-view-shot|react-native-webview|react-native-actions-sheet|@react-native-community\/push-notification-ios)/)"
   ],
 
   // An array of regexp pattern strings that are matched against all modules before the module loader will automatically return a mock for them

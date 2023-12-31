@@ -64,8 +64,7 @@ function useAppWidgetType() {
 function SettingsPage(props: SettingsPageProps) {
   const hh = useHeaderHeight()
   const linkTo = useLinkTo()
-  // const uid = useAtomValue(uidAtom)
-  const uid = 18
+  const uid = useAtomValue(uidAtom)
 
   const [count, setCount] = useState(0)
   const timer = useRef<NodeJS.Timeout | null>(null)

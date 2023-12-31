@@ -4,14 +4,14 @@ import { useToaster } from 'react-hot-toast/headless'
 
 function Notifications() {
   const { toasts, handlers } = useToaster();
-  const { startPause, endPause } = handlers;
+  // const { startPause, endPause } = handlers;
   return (
     <View
       style={{
         position: 'absolute',
         top: 0,
-        left: 0,
-        right: 0,
+        left: 30,
+        right: 30,
       }}>
       {toasts.map((t) => (
         <Toast

@@ -4,9 +4,12 @@ exports[`book page renders with permission block 1`] = `
 <RNCSafeAreaProvider
   onInsetsChange={[Function]}
   style={
-    {
-      "flex": 1,
-    }
+    [
+      {
+        "flex": 1,
+      },
+      undefined,
+    ]
   }
 >
   <View
@@ -106,13 +109,6 @@ exports[`book page renders with permission block 1`] = `
                   },
                   undefined,
                 ]
-              }
-              sx={
-                {
-                  "_dark": {
-                    "backgroundColor": "$blueGray900",
-                  },
-                }
               }
             >
               <RCTSafeAreaView>
@@ -248,13 +244,6 @@ exports[`book page renders with permission block 1`] = `
                             undefined,
                           ]
                         }
-                        sx={
-                          {
-                            "_dark": {
-                              "color": "$amber100",
-                            },
-                          }
-                        }
                       >
                         created by @AnnatarHe
                       </Text>
@@ -347,13 +336,6 @@ exports[`book page renders with permission block 1`] = `
                             },
                             undefined,
                           ]
-                        }
-                        sx={
-                          {
-                            "_dark": {
-                              "color": "$amber100",
-                            },
-                          }
                         }
                       >
                         iOS Widget Type: 
@@ -499,13 +481,6 @@ exports[`book page renders with permission block 1`] = `
                             undefined,
                           ]
                         }
-                        sx={
-                          {
-                            "_dark": {
-                              "color": "$amber100",
-                            },
-                          }
-                        }
                       >
                         Cache:
                       </Text>
@@ -565,13 +540,6 @@ exports[`book page renders with permission block 1`] = `
                               },
                               undefined,
                             ]
-                          }
-                          sx={
-                            {
-                              "_dark": {
-                                "color": "$amber100",
-                              },
-                            }
                           }
                         >
                           1111
@@ -787,13 +755,6 @@ exports[`book page renders with permission block 1`] = `
                             undefined,
                           ]
                         }
-                        sx={
-                          {
-                            "_dark": {
-                              "color": "$amber100",
-                            },
-                          }
-                        }
                       >
                         Language:
                       </Text>
@@ -1003,7 +964,7 @@ exports[`book page renders with permission block 1`] = `
                                 minX={0}
                                 minY={0}
                                 role="img"
-                                size={18}
+                                size="md"
                                 style={
                                   [
                                     {
@@ -1017,6 +978,10 @@ exports[`book page renders with permission block 1`] = `
                                         "color": "#404040",
                                       },
                                       {},
+                                      {
+                                        "height": 18,
+                                        "width": 18,
+                                      },
                                       undefined,
                                       {},
                                       {
@@ -1123,131 +1088,308 @@ exports[`book page renders with permission block 1`] = `
                     }
                   />
                   <View
-                    accessibilityState={
-                      {
-                        "busy": undefined,
-                        "checked": undefined,
-                        "disabled": undefined,
-                        "expanded": undefined,
-                        "selected": undefined,
-                      }
-                    }
-                    accessibilityValue={
-                      {
-                        "max": undefined,
-                        "min": undefined,
-                        "now": undefined,
-                        "text": undefined,
-                      }
-                    }
-                    accessible={true}
-                    action="primary"
-                    collapsable={false}
                     data-style=""
                     dataSet={
                       {
                         "style": "",
                       }
                     }
-                    focusable={true}
-                    onBlur={[Function]}
-                    onClick={[Function]}
-                    onFocus={[Function]}
-                    onResponderGrant={[Function]}
-                    onResponderMove={[Function]}
-                    onResponderRelease={[Function]}
-                    onResponderTerminate={[Function]}
-                    onResponderTerminationRequest={[Function]}
-                    onStartShouldSetResponder={[Function]}
-                    role="button"
-                    size="md"
-                    states={
-                      {
-                        "active": false,
-                        "disabled": undefined,
-                        "focus": false,
-                        "focusVisible": false,
-                        "hover": false,
-                      }
-                    }
                     style={
                       [
                         undefined,
                         {},
-                        {
-                          "alignItems": "center",
-                          "backgroundColor": "#0077E6",
-                          "borderRadius": 4,
-                          "flexDirection": "row",
-                          "justifyContent": "center",
-                        },
                         {},
-                        {
-                          "backgroundColor": "#0077E6",
-                          "borderColor": "#4AA9FF",
-                        },
                         {},
-                        {
-                          "height": 40,
-                          "paddingHorizontal": 20,
-                        },
-                        {},
-                        {
-                          "backgroundColor": "#0077E6",
-                          "borderColor": "#4AA9FF",
-                        },
-                        {},
-                        {
-                          "height": 40,
-                          "paddingHorizontal": 20,
-                        },
-                        {},
-                        {
-                          "backgroundColor": "#f87171",
-                          "marginHorizontal": 16,
-                        },
                         undefined,
                       ]
                     }
-                    variant="solid"
                   >
-                    <Text
+                    <View
                       data-style=""
                       dataSet={
                         {
                           "style": "",
                         }
                       }
-                      size="md"
+                      orientation="horizontal"
                       style={
                         [
                           undefined,
                           {},
                           {
-                            "color": "#525252",
-                            "fontFamily": undefined,
-                            "fontStyle": "normal",
-                            "fontWeight": "400",
-                            "letterSpacing": 0,
+                            "backgroundColor": "#DBDBDB",
                           },
                           {},
                           {
-                            "fontSize": 16,
-                            "lineHeight": 22,
+                            "height": 1,
+                            "width": "100%",
                           },
                           {
-                            "fontSize": 16,
-                            "lineHeight": 22,
+                            "height": 1,
+                            "width": "100%",
                           },
                           {
-                            "color": "#FFFFFF",
+                            "marginBottom": 16,
                           },
                           undefined,
                         ]
                       }
+                    />
+                    <View
+                      accessibilityState={
+                        {
+                          "busy": undefined,
+                          "checked": undefined,
+                          "disabled": undefined,
+                          "expanded": undefined,
+                          "selected": undefined,
+                        }
+                      }
+                      accessibilityValue={
+                        {
+                          "max": undefined,
+                          "min": undefined,
+                          "now": undefined,
+                          "text": undefined,
+                        }
+                      }
+                      accessible={true}
+                      action="primary"
+                      collapsable={false}
+                      data-style=""
+                      dataSet={
+                        {
+                          "style": "",
+                        }
+                      }
+                      focusable={true}
+                      onBlur={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onResponderGrant={[Function]}
+                      onResponderMove={[Function]}
+                      onResponderRelease={[Function]}
+                      onResponderTerminate={[Function]}
+                      onResponderTerminationRequest={[Function]}
+                      onStartShouldSetResponder={[Function]}
+                      role="button"
+                      size="md"
+                      states={
+                        {
+                          "active": false,
+                          "disabled": undefined,
+                          "focus": false,
+                          "focusVisible": false,
+                          "hover": false,
+                        }
+                      }
+                      style={
+                        [
+                          undefined,
+                          {},
+                          {
+                            "alignItems": "center",
+                            "backgroundColor": "#0077E6",
+                            "borderRadius": 4,
+                            "flexDirection": "row",
+                            "justifyContent": "center",
+                          },
+                          {},
+                          {
+                            "backgroundColor": "#0077E6",
+                            "borderColor": "#4AA9FF",
+                          },
+                          {},
+                          {
+                            "height": 40,
+                            "paddingHorizontal": 20,
+                          },
+                          {},
+                          {
+                            "backgroundColor": "#0077E6",
+                            "borderColor": "#4AA9FF",
+                          },
+                          {},
+                          {
+                            "height": 40,
+                            "paddingHorizontal": 20,
+                          },
+                          {},
+                          {
+                            "backgroundColor": "#ef4444",
+                            "marginHorizontal": 16,
+                          },
+                          undefined,
+                        ]
+                      }
+                      variant="solid"
                     >
-                      app.menu.logout
-                    </Text>
+                      <Text
+                        data-style=""
+                        dataSet={
+                          {
+                            "style": "",
+                          }
+                        }
+                        size="md"
+                        style={
+                          [
+                            undefined,
+                            {},
+                            {
+                              "color": "#525252",
+                              "fontFamily": undefined,
+                              "fontStyle": "normal",
+                              "fontWeight": "400",
+                              "letterSpacing": 0,
+                            },
+                            {},
+                            {
+                              "fontSize": 16,
+                              "lineHeight": 22,
+                            },
+                            {
+                              "fontSize": 16,
+                              "lineHeight": 22,
+                            },
+                            {
+                              "color": "#FFFFFF",
+                            },
+                            undefined,
+                          ]
+                        }
+                      >
+                        app.menu.logout
+                      </Text>
+                    </View>
+                    <View
+                      accessibilityState={
+                        {
+                          "busy": undefined,
+                          "checked": undefined,
+                          "disabled": false,
+                          "expanded": undefined,
+                          "selected": undefined,
+                        }
+                      }
+                      accessibilityValue={
+                        {
+                          "max": undefined,
+                          "min": undefined,
+                          "now": undefined,
+                          "text": undefined,
+                        }
+                      }
+                      accessible={true}
+                      action="primary"
+                      collapsable={false}
+                      data-style=""
+                      dataSet={
+                        {
+                          "style": "",
+                        }
+                      }
+                      focusable={true}
+                      onBlur={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onResponderGrant={[Function]}
+                      onResponderMove={[Function]}
+                      onResponderRelease={[Function]}
+                      onResponderTerminate={[Function]}
+                      onResponderTerminationRequest={[Function]}
+                      onStartShouldSetResponder={[Function]}
+                      role="button"
+                      size="md"
+                      states={
+                        {
+                          "active": false,
+                          "disabled": undefined,
+                          "focus": false,
+                          "focusVisible": false,
+                          "hover": false,
+                        }
+                      }
+                      style={
+                        [
+                          undefined,
+                          {},
+                          {
+                            "alignItems": "center",
+                            "backgroundColor": "#0077E6",
+                            "borderRadius": 4,
+                            "flexDirection": "row",
+                            "justifyContent": "center",
+                          },
+                          {},
+                          {
+                            "backgroundColor": "#0077E6",
+                            "borderColor": "#4AA9FF",
+                          },
+                          {},
+                          {
+                            "height": 40,
+                            "paddingHorizontal": 20,
+                          },
+                          {},
+                          {
+                            "backgroundColor": "#0077E6",
+                            "borderColor": "#4AA9FF",
+                          },
+                          {},
+                          {
+                            "height": 40,
+                            "paddingHorizontal": 20,
+                          },
+                          {},
+                          {
+                            "backgroundColor": "#f87171",
+                            "marginHorizontal": 16,
+                            "marginTop": 8,
+                          },
+                          undefined,
+                        ]
+                      }
+                      variant="solid"
+                    >
+                      <Text
+                        data-style=""
+                        dataSet={
+                          {
+                            "style": "",
+                          }
+                        }
+                        size="md"
+                        style={
+                          [
+                            undefined,
+                            {},
+                            {
+                              "color": "#525252",
+                              "fontFamily": undefined,
+                              "fontStyle": "normal",
+                              "fontWeight": "400",
+                              "letterSpacing": 0,
+                            },
+                            {},
+                            {
+                              "fontSize": 16,
+                              "lineHeight": 22,
+                            },
+                            {
+                              "fontSize": 16,
+                              "lineHeight": 22,
+                            },
+                            {
+                              "color": "#FFFFFF",
+                            },
+                            undefined,
+                          ]
+                        }
+                      >
+                        app.settings.danger.removeButton
+                      </Text>
+                    </View>
                   </View>
                 </View>
               </RCTSafeAreaView>

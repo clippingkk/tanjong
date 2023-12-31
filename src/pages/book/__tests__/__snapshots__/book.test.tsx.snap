@@ -4,9 +4,12 @@ exports[`book page renders with permission block 1`] = `
 <RNCSafeAreaProvider
   onInsetsChange={[Function]}
   style={
-    {
-      "flex": 1,
-    }
+    [
+      {
+        "flex": 1,
+      },
+      undefined,
+    ]
   }
 >
   <View
@@ -106,13 +109,6 @@ exports[`book page renders with permission block 1`] = `
                   },
                   undefined,
                 ]
-              }
-              sx={
-                {
-                  "_dark": {
-                    "backgroundColor": "$blueGray900",
-                  },
-                }
               }
             >
               <View

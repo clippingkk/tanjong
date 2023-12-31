@@ -4,9 +4,12 @@ exports[`profile page renders with error 1`] = `
 <RNCSafeAreaProvider
   onInsetsChange={[Function]}
   style={
-    {
-      "flex": 1,
-    }
+    [
+      {
+        "flex": 1,
+      },
+      undefined,
+    ]
   }
 >
   <View
@@ -554,9 +557,12 @@ exports[`profile page renders with list 1`] = `
 <RNCSafeAreaProvider
   onInsetsChange={[Function]}
   style={
-    {
-      "flex": 1,
-    }
+    [
+      {
+        "flex": 1,
+      },
+      undefined,
+    ]
   }
 >
   <View
@@ -651,13 +657,6 @@ exports[`profile page renders with list 1`] = `
                   },
                   undefined,
                 ]
-              }
-              sx={
-                {
-                  "_dark": {
-                    "backgroundColor": "gray.900",
-                  },
-                }
               }
             >
               <View
@@ -2021,9 +2020,12 @@ exports[`profile page renders with permission block 1`] = `
 <RNCSafeAreaProvider
   onInsetsChange={[Function]}
   style={
-    {
-      "flex": 1,
-    }
+    [
+      {
+        "flex": 1,
+      },
+      undefined,
+    ]
   }
 >
   <View
@@ -2120,13 +2122,6 @@ exports[`profile page renders with permission block 1`] = `
                   },
                   undefined,
                 ]
-              }
-              sx={
-                {
-                  "_dark": {
-                    "backgroundColor": "$blueGray900",
-                  },
-                }
               }
             >
               <Text
@@ -2251,13 +2246,6 @@ exports[`profile page renders with permission block 1`] = `
                           },
                           undefined,
                         ]
-                      }
-                      sx={
-                        {
-                          "_dark": {
-                            "color": "$blueGray100",
-                          },
-                        }
                       }
                     >
                       app.auth.loginFullTip

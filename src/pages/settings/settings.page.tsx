@@ -7,16 +7,18 @@ import { useLinkTo } from '@react-navigation/native'
 import { setItem as WidgetKitSetItem, getItem as WidgetKitGetItem, reloadAllTimelines as WidgetKitReloadAllTimelines } from 'react-native-widgetkit'
 import { RouteKeys, RouteParamList } from '../../routes'
 import { useApolloClient } from '@apollo/client'
-import { useSetAtom } from 'jotai'
+import { useAtomValue, useSetAtom } from 'jotai'
 import { tokenAtom, uidAtom } from '../../atomic'
 import { updateLocalToken } from '../../utils/apollo'
 import { SharedGroupPreferencesKey } from '../../constants/config'
 import { widgetAppWidgetType } from '../../hooks/auth'
-import { Platform, SafeAreaView } from 'react-native'
+import { Alert, Platform, SafeAreaView } from 'react-native'
 import Page from '../../components/page'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { useTranslation } from 'react-i18next'
 import { CacheManager } from '@georstat/react-native-image-cache'
+import { useDeleteMyAccountMutation } from '../../schema/generated'
+import toast from 'react-hot-toast/headless'
 
 type SettingsPageProps = NativeStackScreenProps<RouteParamList, RouteKeys.ProfileSettings>
 
@@ -62,6 +64,8 @@ function useAppWidgetType() {
 function SettingsPage(props: SettingsPageProps) {
   const hh = useHeaderHeight()
   const linkTo = useLinkTo()
+  // const uid = useAtomValue(uidAtom)
+  const uid = 18
 
   const [count, setCount] = useState(0)
   const timer = useRef<NodeJS.Timeout | null>(null)
@@ -92,6 +96,29 @@ function SettingsPage(props: SettingsPageProps) {
       props.navigation.goBack()
     }
   }, [client])
+
+  const [doDelete, { loading: isDeleting }] = useDeleteMyAccountMutation()
+  const onRemoveMyAccount = useCallback(async () => {
+    try {
+      await doDelete()
+      // do logout(same as onLogout)
+      setToken(null)
+      setUid(null)
+      updateLocalToken(null)
+      client.resetStore()
+
+      // show tips
+      Alert.alert(t('app.settings.danger.removeAccountDone'), t('app.settings.danger.removeAccountDoneTip'))
+      setTimeout(() => {
+        if (props.navigation.canGoBack()) {
+          props.navigation.goBack()
+        }
+      }, 3_000)
+    } catch (err: any) {
+      console.error(err)
+      toast.error(err)
+    }
+  }, [doDelete, updateLocalToken, props.navigation])
 
   useEffect(() => {
     if (count < 10) {
@@ -198,9 +225,23 @@ function SettingsPage(props: SettingsPageProps) {
             </HStack>
           </VStack>
           <View flex={1} />
-          <Button bg='$red400' mx='$4' onPress={onLogout}>
-            <Text color='$white'>{t('app.menu.logout')}</Text>
-          </Button>
+          {uid && (
+            <View>
+              <Divider mb={'$4'} />
+              <Button bg='$red500' mx='$4' onPress={onLogout}>
+                <Text color='$white'>{t('app.menu.logout')}</Text>
+              </Button>
+              <Button
+                mt={'$2'}
+                bg='$red400'
+                mx='$4'
+                onPress={onRemoveMyAccount}
+                disabled={isDeleting}
+              >
+                <Text color='$white'>{t('app.settings.danger.removeButton')}</Text>
+              </Button>
+            </View>
+          )}
         </View>
       </SafeAreaView>
     </Page>

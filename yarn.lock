@@ -11803,6 +11803,11 @@ react-native-get-random-values@^1.9.0:
   dependencies:
     fast-base64-decode "^1.0.0"
 
+react-native-heroicons@^3.2.1:
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/react-native-heroicons/-/react-native-heroicons-3.2.1.tgz#cf599290b2774a458214ac45a15528ebd4095c3f"
+  integrity sha512-BPDEX9QTckzK0qTZB7Adfi0An1tu+hqwLf/WPoU0vwxvIv4YkyM6+LVq1cHAMIKRfwl9YlAuIcaaUvjYTcyVIA==
+
 react-native-image-colors@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/react-native-image-colors/-/react-native-image-colors-2.3.0.tgz#a4dcd6e486b5bd2bc1c07600467d925f56fed36e"

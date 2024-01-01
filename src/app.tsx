@@ -39,9 +39,13 @@ import SignUpPasswordPage from './pages/signup/signup.password';
 import SignUpOTPPage from './pages/signup/signup.otp';
 import SignUpSetNamePage from './pages/signup/signup.set.name';
 import Notifications from './components/toast/notifications';
+import SquarePage from './pages/square';
+import { HomeIcon, UserIcon, GlobeAmericasIcon } from 'react-native-heroicons/outline'
 
 const RootRouteStack = createNativeStackNavigator<RouteParamList>()
 const TabStack = createBottomTabNavigator<TabRouteParamList>()
+
+const SVGIconScale = 0.8
 
 type HomeTabPagesProps = {
 }
@@ -88,7 +92,19 @@ function HomeTabPages(props: HomeTabPagesProps) {
           headerTitle: 'Books',
           tabBarLabel: 'Books',
           tabBarIcon: ({ color, size }) => (
-            <Text>📚</Text>
+            <HomeIcon width={size * SVGIconScale} height={size * SVGIconScale} stroke={color} />
+          ),
+        }}
+      />
+      <TabStack.Screen
+        name={RouteKeys.TabSquare}
+        component={SquarePage}
+        options={{
+          title: 'Square',
+          headerTitle: 'Square',
+          tabBarLabel: 'Square',
+          tabBarIcon: ({ color, size }) => (
+            <GlobeAmericasIcon width={size * SVGIconScale} height={size * SVGIconScale} stroke={color} />
           ),
         }}
       />
@@ -99,7 +115,7 @@ function HomeTabPages(props: HomeTabPagesProps) {
           title: 'Profile',
           tabBarLabel: 'Profile',
           tabBarIcon: ({ color, size }) => (
-            <Text>🏠</Text>
+            <UserIcon width={size * SVGIconScale} height={size * SVGIconScale} stroke={color} />
           ),
         }}
       />
@@ -124,6 +140,9 @@ function getRootPageOptions(props: {
       //     🤑
       //   </Link>
       // )
+      break
+    case RouteKeys.TabSquare:
+      headerTitle = 'Square'
       break
     case RouteKeys.TabProfile:
       headerTitle = 'Me'

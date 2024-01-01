@@ -15,6 +15,7 @@ export enum RouteKeys {
   AuthQRCode = 'AuthQRCode',
   TabHome = 'TabHome',
   TabProfile = 'TabProfile',
+  TabSquare = 'TabSquare',
   Book = 'Book',
   Profile = 'Profile',
   Clipping = 'Clipping',
@@ -64,5 +65,6 @@ export type RouteParamList = {
 
 export type TabRouteParamList = {
   [RouteKeys.TabHome]: object
+  [RouteKeys.TabSquare]: object
   [RouteKeys.TabProfile]: {}
 }

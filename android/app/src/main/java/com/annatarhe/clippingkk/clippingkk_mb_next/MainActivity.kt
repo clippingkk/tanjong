@@ -1,4 +1,4 @@
-package com.tanjong
+package com.annatarhe.clippingkk.clippingkk_mb_next
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate

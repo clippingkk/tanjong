@@ -42,7 +42,7 @@
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = "tanjong";
+			remoteInfo = tanjong;
 		};
 		2B3700C1297453E8002D1AFF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -68,15 +68,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		00E356EE1AD99517003FC87E /* tanjongTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "tanjongTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356EE1AD99517003FC87E /* tanjongTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tanjongTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* tanjongTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "tanjongTests.m"; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* tanjong.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "tanjong.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = "tanjong/AppDelegate.h"; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = "tanjong/AppDelegate.mm"; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "tanjong/Images.xcassets"; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "tanjong/Info.plist"; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = "tanjong/main.m"; sourceTree = "<group>"; };
+		00E356F21AD99517003FC87E /* tanjongTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = tanjongTests.m; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* tanjong.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tanjong.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = tanjong/AppDelegate.h; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = tanjong/AppDelegate.mm; sourceTree = "<group>"; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = tanjong/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = tanjong/Info.plist; sourceTree = "<group>"; };
+		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = tanjong/main.m; sourceTree = "<group>"; };
 		19C31A02128743359AA18ED2 /* LXGWWenKai-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "LXGWWenKai-Bold.ttf"; path = "../assets/fonts/LXGWWenKai-Bold.ttf"; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-tanjong-tanjongTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-tanjong-tanjongTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B095B8929954FCB006CCF0C /* BootSplash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = BootSplash.storyboard; path = tanjong/BootSplash.storyboard; sourceTree = "<group>"; };
@@ -100,7 +100,7 @@
 		5709B34CF0A7D63546082F79 /* Pods-tanjong.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tanjong.release.xcconfig"; path = "Target Support Files/Pods-tanjong/Pods-tanjong.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-tanjong-tanjongTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tanjong-tanjongTests.debug.xcconfig"; path = "Target Support Files/Pods-tanjong-tanjongTests/Pods-tanjong-tanjongTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-tanjong.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-tanjong.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = "tanjong/LaunchScreen.storyboard"; sourceTree = "<group>"; };
+		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = tanjong/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84B99AAF85C8430FAFEFE746 /* LXGWWenKai-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "LXGWWenKai-Regular.ttf"; path = "../assets/fonts/LXGWWenKai-Regular.ttf"; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-tanjong-tanjongTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tanjong-tanjongTests.release.xcconfig"; path = "Target Support Files/Pods-tanjong-tanjongTests/Pods-tanjong-tanjongTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -141,7 +141,7 @@
 				00E356F21AD99517003FC87E /* tanjongTests.m */,
 				00E356F01AD99517003FC87E /* Supporting Files */,
 			);
-			path = "tanjongTests";
+			path = tanjongTests;
 			sourceTree = "<group>";
 		};
 		00E356F01AD99517003FC87E /* Supporting Files */ = {
@@ -164,7 +164,7 @@
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
-			name = "tanjong";
+			name = tanjong;
 			sourceTree = "<group>";
 		};
 		2B3700B4297453E7002D1AFF /* clippingkk.widget */ = {
@@ -271,8 +271,8 @@
 			dependencies = (
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
-			name = "tanjongTests";
-			productname = "tanjongTests";
+			name = tanjongTests;
+			productName = tanjongTests;
 			productReference = 00E356EE1AD99517003FC87E /* tanjongTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
@@ -296,8 +296,8 @@
 			dependencies = (
 				2B3700C2297453E8002D1AFF /* PBXTargetDependency */,
 			);
-			name = "tanjong";
-			productName = "tanjong";
+			name = tanjong;
+			productName = tanjong;
 			productReference = 13B07F961A680F5B00A75B9A /* tanjong.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -616,7 +616,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "tanjongTests/Info.plist";
+				INFOPLIST_FILE = tanjongTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -640,7 +640,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
-				INFOPLIST_FILE = "tanjongTests/Info.plist";
+				INFOPLIST_FILE = tanjongTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -669,9 +669,8 @@
 				CURRENT_PROJECT_VERSION = 51;
 				DEVELOPMENT_TEAM = VY3AP6C55K;
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = "tanjong/Info.plist";
-             INFOPLIST_KEY_CFBundleDisplayName = "tanjong";
-				INFOPLIST_KEY_CFBundleDisplayName = tanjong;
+				INFOPLIST_FILE = tanjong/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ClippingKK;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -684,7 +683,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.annatarhe.clippingkk.clippingkk-ios";
-				PRODUCT_NAME = "tanjong";
+				PRODUCT_NAME = tanjong;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
@@ -705,9 +704,8 @@
 				CODE_SIGN_ENTITLEMENTS = tanjong/tanjong.entitlements;
 				CURRENT_PROJECT_VERSION = 51;
 				DEVELOPMENT_TEAM = VY3AP6C55K;
-				INFOPLIST_FILE = "tanjong/Info.plist";
-             INFOPLIST_KEY_CFBundleDisplayName = "tanjong";
-				INFOPLIST_KEY_CFBundleDisplayName = tanjong;
+				INFOPLIST_FILE = tanjong/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ClippingKK;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -720,7 +718,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.annatarhe.clippingkk.clippingkk-ios";
-				PRODUCT_NAME = "tanjong";
+				PRODUCT_NAME = tanjong;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
@@ -750,7 +748,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = clippingkk.widget/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = tanjong;
+				INFOPLIST_KEY_CFBundleDisplayName = ClippingKK;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -793,7 +791,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = clippingkk.widget/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = tanjong;
+				INFOPLIST_KEY_CFBundleDisplayName = ClippingKK;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1017,3 +1015,5 @@
 	};
 	rootObject = 83CBB9F71A601CBA00E9B192 /* Project object */;
 }
+
+

@@ -98,6 +98,7 @@ android {
     namespace "com.annatarhe.clippingkk.clippingkk_mb_next"
 
     defaultConfig {
+        resConfigs "en", "US", "zh"
         applicationId "com.annatarhe.clippingkk.clippingkk_mb_next"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion

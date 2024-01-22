@@ -72,3 +72,4 @@ src/schema/generated.tsx
 coverage/
 sentry.properties
 src/gql/
+google_play_upload_certificate.pem

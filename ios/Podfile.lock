@@ -959,6 +959,10 @@ PODS:
     - glog
     - RCT-Folly (= 2022.05.16.00)
     - React-Core
+  - react-native-compat (2.11.0):
+    - glog
+    - RCT-Folly (= 2022.05.16.00)
+    - React-Core
   - react-native-get-random-values (1.10.0):
     - React-Core
   - react-native-image-picker (7.1.0):
@@ -1290,6 +1294,7 @@ DEPENDENCIES:
   - "react-native-blur (from `../node_modules/@react-native-community/blur`)"
   - react-native-blurhash (from `../node_modules/react-native-blurhash`)
   - "react-native-cameraroll (from `../node_modules/@react-native-camera-roll/camera-roll`)"
+  - "react-native-compat (from `../node_modules/@walletconnect/react-native-compat`)"
   - react-native-get-random-values (from `../node_modules/react-native-get-random-values`)
   - react-native-image-picker (from `../node_modules/react-native-image-picker`)
   - react-native-mmkv (from `../node_modules/react-native-mmkv`)
@@ -1429,6 +1434,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-blurhash"
   react-native-cameraroll:
     :path: "../node_modules/@react-native-camera-roll/camera-roll"
+  react-native-compat:
+    :path: "../node_modules/@walletconnect/react-native-compat"
   react-native-get-random-values:
     :path: "../node_modules/react-native-get-random-values"
   react-native-image-picker:
@@ -1566,6 +1573,7 @@ SPEC CHECKSUMS:
   react-native-blur: 27113acc008facbc8accae5fb3a78b8424f64cfd
   react-native-blurhash: a59e6bf8117a0304488ed576abd440f4b0777a8c
   react-native-cameraroll: 3301d62d45616ee9da55ceed04be8d788c3de3ef
+  react-native-compat: ad00864870eceb6550aad4868d67eb80b9e2c207
   react-native-get-random-values: 384787fd76976f5aec9465aff6fa9e9129af1e74
   react-native-image-picker: 6c51359eca7a7df9f07e297218c25696eb9da976
   react-native-mmkv: e97c0c79403fb94577e5d902ab1ebd42b0715b43
@@ -1621,9 +1629,9 @@ SPEC CHECKSUMS:
   StripePaymentSheet: c8d25d4133476c6238d3cc932fb8219bb5ea49c0
   StripePaymentsUI: c12de264eda974d91e43a769f53a6c6afc9a1715
   StripeUICore: 090c4fe916d039616ce8f8de30392f4aeb33dd16
-  Yoga: 20d6a900dcc8d61d5e3b799bbf627cc34474a8c4
+  Yoga: 44003f970aa541b79dfdd59cf236fda41bd5890f
   ZIPFoundation: b1f0de4eed33e74a676f76e12559ab6b75990197
 
 PODFILE CHECKSUM: cc65ad5990a62d6664a0ff1a456316cd404c9f47
 
-COCOAPODS: 1.14.3
+COCOAPODS: 1.15.2

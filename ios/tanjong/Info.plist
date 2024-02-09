@@ -51,7 +51,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>ClippingKK needs access to your Camera to scan qrcode to login.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string/>
+	<string></string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>We need the permission to save images to your album</string>
 	<key>NSPhotoLibraryUsageDescription</key>
@@ -76,7 +76,7 @@
 	<key>UIRequiresFullScreen</key>
 	<true/>
 	<key>UIStatusBarStyle</key>
-	<string/>
+	<string></string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationLandscapeLeft</string>

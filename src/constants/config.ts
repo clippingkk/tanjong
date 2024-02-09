@@ -1,9 +1,8 @@
 // export const API_HOST = __DEV__ ?
 //   'http://127.0.0.1:19654' :
 //   'https://clippingkk-api.annatarhe.com'
-export const API_HOST = __DEV__ ?
-  // 'http://127.0.0.1:19654' :
-  'https://clippingkk-api.annatarhe.com' :
+export const API_HOST = __DEV__ ? 'http://127.0.0.1:19654' :
+  // 'http://192.168.1.11:19654'
   'https://clippingkk-api.annatarhe.com'
 
 // export const API_HOST = 'https://d446-42-60-205-243.ap.ngrok.io'
@@ -12,12 +11,12 @@ export const WENQU_SIMPLE_TOKEN = '500ae25e22b5de1b6c44a7d78908e7b7cc63f97b55ea9
 export const GithubClientID = '3659f6b0ecfe917d69e6'
 
 export const SignInWithAppleOptions = {
-  clientId: "com.annatarhe.clippingkk",
-  scope: "name email",
-  // redirectURI: "https://clippingkk.annatarhe.com/oauth/apple",
-  redirectURI: "https://local.dev.annatarhe.cn/oauth/apple",
-  state: "origin:web",
-  usePopup: true,
+  clientId: 'com.annatarhe.clippingkk',
+  scope: 'name email',
+  redirectURI: 'https://clippingkk.annatarhe.com/oauth/apple',
+  // redirectURI: "https://local.dev.annatarhe.cn/oauth/apple",
+  state: 'origin:web',
+  usePopup: true
 }
 
 // export const CDN_DEFAULT_DOMAIN = 'https://clippingkk-cdn.annatarhe.com'
@@ -31,13 +30,16 @@ export const LEANCLOUD = {
 
 export const APP_API_STEP_LIMIT = 10
 
-export const APP_URL_ORIGIN = __DEV__ ? 'http://localhost:3000' : 'https://clippingkk.annatarhe.com'
+export const APP_URL_ORIGIN = __DEV__
+  ? 'http://localhost:3000'
+  : 'https://clippingkk.annatarhe.com'
 export const CF_TURNSTILE_SITE_KEY = '0x4AAAAAAAA361EJRDzUhf_b'
 
 export const SharedGroupPreferencesKey = 'group.com.annatarhe.clippingkk'
 
 export const StripeConfigs = {
-  publishableKey: 'pk_test_51ILfvoBkj5y79CYsxX63uo8VGmfGGVPmHv7HutLJQsAVXlIO8OfFZjQ4UJyjyY9VTipOY7BNHmih49LOn1oTdK1p00LSSTtVqv',
+  publishableKey:
+    'pk_test_51ILfvoBkj5y79CYsxX63uo8VGmfGGVPmHv7HutLJQsAVXlIO8OfFZjQ4UJyjyY9VTipOY7BNHmih49LOn1oTdK1p00LSSTtVqv',
   urlScheme: 'clippingkk',
-  merchantIdentifier: 'merchant.com.annatarhe.clippingkk',
+  merchantIdentifier: 'merchant.com.annatarhe.clippingkk'
 }

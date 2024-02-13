@@ -1,4 +1,3 @@
-// import { Button, Center, CheckIcon, Divider, Pressable, Select, Switch, Text, Toast, View, VStack } from 'native-base'
 import { Toast } from 'native-base'
 import { Button, ChevronDownIcon, Divider, HStack, Icon, Pressable, Select, SelectBackdrop, SelectContent, SelectDragIndicator, SelectDragIndicatorWrapper, SelectIcon, SelectItem, SelectPortal, SelectTrigger, Switch, Text, View, VStack } from '@gluestack-ui/themed'
 import { useHeaderHeight } from '@react-navigation/elements'

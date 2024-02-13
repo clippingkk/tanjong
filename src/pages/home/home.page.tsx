@@ -15,6 +15,7 @@ import ErrorBox from '../../components/errorbox/errorbox'
 import { useBooksQuery } from '../../schema/generated'
 import PulseBox from '../../components/pulse-box/pulse-box'
 import { useHomeLoad } from '../../hooks/init'
+import HomePageSkeleton from './skeleton'
 
 type HomePageProps = {
 }
@@ -104,6 +105,9 @@ function HomePage(props: HomePageProps) {
   }
 
   if (bs.loading) {
+    return (
+      <HomePageSkeleton />
+    )
     return (
       <View
         sx={{ _dark: { backgroundColor: '$coolGray900' } }}

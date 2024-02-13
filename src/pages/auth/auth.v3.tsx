@@ -1,7 +1,7 @@
-import { Button, Divider, Image, KeyboardAvoidingView, Text, useToast, View, VStack } from 'native-base'
+import { Divider, Image, KeyboardAvoidingView, Text, useToast, View } from 'native-base'
 import React, { useCallback, useEffect } from 'react'
 import { Platform, SafeAreaView } from 'react-native';
-import { AppleVerifyPayload, useAuthLazyQuery, useAuthQuery, useLoginByAppleLazyQuery } from '../../schema/generated';
+import { AppleLoginPlatforms, AppleVerifyPayload, useLoginByAppleLazyQuery } from '../../schema/generated';
 import { usePostAuth } from '../../hooks/auth';
 import SigninWithApple from '../../components/signinWithApple/signinWithApple';
 import { Link, useLinkTo } from '@react-navigation/native';
@@ -13,7 +13,7 @@ import { FontLXGW } from '../../styles/font';
 import AuthClassicPage from './auth.classic.page';
 import { featureFlags } from '../../service/feature-flags';
 import { useColorMode } from '@gluestack-style/react';
-import { ChevronRightIcon, Icon } from '@gluestack-ui/themed';
+import { Button, ChevronRightIcon, Icon } from '@gluestack-ui/themed';
 
 type AuthV3PageProps = NativeStackScreenProps<RouteParamList, RouteKeys.AuthV3>
 
@@ -143,6 +143,21 @@ function AuthV3Page(props: AuthV3PageProps) {
               onSuccess={signinWithAppleOnSuccess}
               onError={signinWithAppleOnError}
             />
+            <Button
+              onPress={() => {
+                signinWithAppleOnSuccess({
+                  code: 'mocked',
+                  idToken: 'mocked',
+                  state: 'mocked',
+                  platform: Platform.OS === 'ios' ? AppleLoginPlatforms.IOs : AppleLoginPlatforms.Android
+                })
+              }}
+            >
+              <Text>
+                mocked button
+
+              </Text>
+            </Button>
             <WalletConnectLoginButton
               onLoggedIn={(token, userId) => onPostAuth(token, userId)}
             />

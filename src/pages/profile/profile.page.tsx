@@ -1,10 +1,9 @@
 import { BottomTabScreenProps, useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
 import { useHeaderHeight } from '@react-navigation/elements'
-import { Link, useNavigation } from '@react-navigation/native'
-import { NativeStackScreenProps } from '@react-navigation/native-stack'
+import { Link } from '@react-navigation/native'
 import { FlashList } from '@shopify/flash-list'
 import { useAtomValue } from 'jotai'
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { uidAtom } from '../../atomic'
 import AuthGuard from '../../components/auth-guard/auth-guard'
 import ClippingCell from '../../components/clipping/cell'
@@ -12,11 +11,12 @@ import EmptyBox from '../../components/empty/empty'
 import ErrorBox from '../../components/errorbox/errorbox'
 import BasicBoard from '../../components/profile/basic-board'
 import { useClippingCellAvgHeight } from '../../hooks/clipping'
-import { RouteKeys, RouteParamList, TabRouteParamList } from '../../routes'
+import { RouteKeys, TabRouteParamList } from '../../routes'
 import { useProfileQuery } from '../../schema/generated'
 import { SafeAreaView } from 'react-native'
 import { Center, VStack, View, Text } from '@gluestack-ui/themed'
 import PulseBox from '../../components/pulse-box/pulse-box'
+import ProfilePageSkeleton from './skeleton'
 
 type ProfilePageProps = BottomTabScreenProps<TabRouteParamList, RouteKeys.TabProfile>;
 
@@ -105,25 +105,7 @@ function ProfilePage(props: ProfilePageProps) {
 
   if (p.loading) {
     return (
-      <View
-        sx={{ _dark: { backgroundColor: '$coolGray900' } }}
-      >
-        <SafeAreaView>
-          <VStack mt={20}>
-            <Center mb={8}>
-              <PulseBox height={160} width={320} radius={4} />
-            </Center>
-            <Center>
-              <VStack rowGap={8}>
-                <PulseBox height={180} width={346} radius={4} />
-                <PulseBox height={180} width={346} radius={4} />
-                <PulseBox height={180} width={346} radius={4} />
-                <PulseBox height={180} width={346} radius={4} />
-              </VStack>
-            </Center>
-          </VStack>
-        </SafeAreaView>
-      </View>
+      <ProfilePageSkeleton />
     )
   }
 
@@ -135,10 +117,10 @@ function ProfilePage(props: ProfilePageProps) {
 
   return (
     <View
-      backgroundColor='gray.100'
+      backgroundColor='$coolGray100'
       sx={{
         _dark: {
-          backgroundColor: 'gray.900'
+          backgroundColor: '$coolGray900'
         }
       }}
       width='100%'

@@ -22,7 +22,10 @@ function EmptyBox(props: EmptyBoxProps) {
           bg: '$coolGray800'
         }
       }}>
-      <Text textAlign='center' fontSize='$6xl'>
+      <Text
+        pt={'$12'}
+        textAlign='center'
+        fontSize='$6xl'>
         😔
       </Text>
       <Text textAlign='center' p={'$2'}>

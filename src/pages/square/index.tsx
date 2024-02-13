@@ -9,11 +9,9 @@ import ClippingCell from '../../components/clipping/cell'
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
 import { useClippingCellAvgHeight } from '../../hooks/clipping'
 import EmptyBox from '../../components/empty/empty'
+import SkeletonClippingList from '../../components/skeleton/clippings'
 
-type SquarePageProps = {
-}
-
-function SquarePage(props: SquarePageProps) {
+function SquarePage() {
   const uid = useAtomValue(uidAtom)
   const hh = useHeaderHeight()
   const bh = useBottomTabBarHeight()
@@ -49,20 +47,27 @@ function SquarePage(props: SquarePageProps) {
       }
     })
   }, [uid, p.data?.featuredClippings.length, atEnd])
-  console.log('data', p.data)
 
   const itemSizeCellHeight = useClippingCellAvgHeight(p.data?.featuredClippings ?? [])
-  if ((p.data?.featuredClippings.length ?? 0) === 0) {
+
+  const fcs = p.data?.featuredClippings ?? []
+
+  if (fcs.length === 0 && p.loading) {
     return (
-      <EmptyBox />
+      <SkeletonClippingList />
     )
   }
+
+  if (fcs.length === 0) {
+    return <EmptyBox />
+  }
+
   return (
     <View
-      backgroundColor='gray.100'
+      backgroundColor='$coolGray100'
       sx={{
         _dark: {
-          backgroundColor: 'gray.900'
+          backgroundColor: '$coolGray900'
         }
       }}
       width='100%'

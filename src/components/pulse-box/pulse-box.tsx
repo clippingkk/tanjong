@@ -7,10 +7,11 @@ type PulseBoxProps = {
   height: number
   width: number
   radius: number
+  marginLeft?: number
 }
 
 function PulseBox(props: PulseBoxProps) {
-  const { height, width, radius } = props
+  const { height, width, marginLeft = 0, radius } = props
   const opacity = useSharedValue(0.4)
 
   useEffect(() => {
@@ -37,6 +38,7 @@ function PulseBox(props: PulseBoxProps) {
             width,
             borderRadius: radius,
             backgroundColor: baseBgColor,
+            marginLeft
           },
           style
         ]

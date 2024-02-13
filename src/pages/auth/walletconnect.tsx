@@ -86,7 +86,7 @@ function WalletConnectLoginButton(props: WalletConnectLoginButtonProps) {
         >
           {/* TODO: Add Metamask logo here */}
           <MetamaskLogo width={20} height={20} />
-          <Text style={{ marginLeft: 10 }}>
+          <Text style={{ marginLeft: 10, color: '#fff' }}>
             Web3 login
           </Text>
         </View>

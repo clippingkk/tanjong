@@ -143,21 +143,6 @@ function AuthV3Page(props: AuthV3PageProps) {
               onSuccess={signinWithAppleOnSuccess}
               onError={signinWithAppleOnError}
             />
-            <Button
-              onPress={() => {
-                signinWithAppleOnSuccess({
-                  code: 'mocked',
-                  idToken: 'mocked',
-                  state: 'mocked',
-                  platform: Platform.OS === 'ios' ? AppleLoginPlatforms.IOs : AppleLoginPlatforms.Android
-                })
-              }}
-            >
-              <Text>
-                mocked button
-
-              </Text>
-            </Button>
             <WalletConnectLoginButton
               onLoggedIn={(token, userId) => onPostAuth(token, userId)}
             />

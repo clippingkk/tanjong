@@ -1,6 +1,6 @@
 import { ApolloClient, ApolloLink, Cache, HttpLink, InMemoryCache } from '@apollo/client'
 import { onError } from "@apollo/client/link/error"
-import { API_HOST, WENQU_API_HOST, WENQU_SIMPLE_TOKEN } from '../constants/config'
+import { API_HOST } from '../constants/config'
 // import profile from '../utils/profile'
 import { offsetLimitPagination } from '@apollo/client/utilities'
 import { storage } from './storage'

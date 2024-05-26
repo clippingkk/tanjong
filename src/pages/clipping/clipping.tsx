@@ -79,11 +79,11 @@ function ClippingPage(props: ClippingPageProps) {
   return (
     <>
       <ScrollView
-        backgroundColor='$blueGray100'
+        backgroundColor='$blueGray300'
         sx={{
           _dark: { backgroundColor: '$blueGray700' }
         }}
-        height='100%'
+        height='$full'
         refreshControl={(
           <RefreshControl
             refreshing={clippingResult.loading}
@@ -94,12 +94,13 @@ function ClippingPage(props: ClippingPageProps) {
         {!content ? (
           <View
             position='absolute'
-            top={0}
+            top={20}
             left={0}
             right={0}
             bottom={0}
-            paddingTop={'$20'}
-            backgroundColor='$backgroundDark500'
+            paddingTop={'$24'}
+            height='$full'
+            backgroundColor='$blueGray300'
             alignItems='center'
             justifyContent='center'
           >
@@ -120,9 +121,12 @@ function ClippingPage(props: ClippingPageProps) {
             </View>
           </SafeAreaView>
 
-          <Actions clipping={clippingResult.data?.clipping} />
-
-          <Divider marginTop={'$4'} />
+          {content && (
+            <>
+              <Actions clipping={clippingResult.data?.clipping} />
+              <Divider marginTop={'$4'} />
+            </>
+          )}
 
           {book ? (
             <View flexDirection='row'>

@@ -163,11 +163,11 @@ function getRootPageOptions(props: {
 }
 
 const App = () => {
-  useOnInit()
   const c = useColorScheme()
   const textColor = useTextColor()
   const { t } = useTranslation()
   const navigation = useRef<NavigationContainerRef<RouteParamList>>(null)
+  useOnInit(navigation.current)
   return (
     <>
       <NavigationContainer

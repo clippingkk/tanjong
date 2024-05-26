@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from "react"
 import { profileAtom, uidAtom } from "../atomic"
 import { useBindIosDeviceTokenMutation, useProfileQuery } from "../schema/generated"
 import { Linking, Platform } from "react-native"
-import { useLinkTo } from "@react-navigation/native"
+import { NavigationContainerRef, useLinkTo } from "@react-navigation/native"
 import { RouteKeys, RouteParamList } from "../routes"
 import * as Sentry from "@sentry/react-native"
 import RNBootSplash from "react-native-bootsplash"
@@ -75,7 +75,9 @@ function useSetupIOSNotification() {
   }, []);
 }
 
-export function useOnInit() {
+export function useOnInit(
+  navigation?: NavigationContainerRef<RouteParamList> | null
+) {
   // only run once
   useEffect(() => {
     AV.init({
@@ -110,7 +112,7 @@ export function useOnInit() {
     })
   }, [np.data?.me])
 
-  useDeeplinkHandler()
+  useDeeplinkHandler(navigation)
 
   useEffect(() => {
     RNBootSplash.hide({ fade: true })
@@ -129,8 +131,9 @@ function getInfoFromDeeplinkUrl(url: string): { uid: number, cid: number } | nul
   }
 }
 
-export function useDeeplinkHandler() {
-  const lt = useLinkTo<any>()
+export function useDeeplinkHandler(
+  navigation?: NavigationContainerRef<RouteParamList> | null
+) {
 
   const { handleURLCallback } = useStripe();
   const handleDeepLink = useCallback(
@@ -145,14 +148,11 @@ export function useDeeplinkHandler() {
       }
 
       const urlInfo = getInfoFromDeeplinkUrl(url)
-      lt({
-        screen: RouteKeys.Clipping,
-        params: {
-          clippingID: urlInfo?.cid
-        }
+      navigation?.navigate(RouteKeys.Clipping, {
+        clippingID: urlInfo?.cid
       })
     },
-    [handleURLCallback]
+    [handleURLCallback, navigation?.navigate]
   );
   useEffect(() => {
     (async function () {

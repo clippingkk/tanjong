@@ -31,6 +31,7 @@
 		2B3700D429745798002D1AFF /* LXGWWenKai-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84B99AAF85C8430FAFEFE746 /* LXGWWenKai-Regular.ttf */; };
 		3D1E73B27CCB447B94A753E9 /* LXGWWenKai-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 48DBFB0344EA48849DF30A98 /* LXGWWenKai-Light.ttf */; };
 		426A1308707C4108B9A06C30 /* LXGWWenKai-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84B99AAF85C8430FAFEFE746 /* LXGWWenKai-Regular.ttf */; };
+		5EA0FCD17B35E4CE6D921ED7 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 1B152B9827D36D9B95166288 /* PrivacyInfo.xcprivacy */; };
 		7699B88040F8A987B510C191 /* libPods-tanjong-tanjongTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-tanjong-tanjongTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		E9DE66C9B35C4D36BC8DFBD7 /* LXGWWenKai-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 19C31A02128743359AA18ED2 /* LXGWWenKai-Bold.ttf */; };
@@ -77,8 +78,10 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = tanjong/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = tanjong/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = tanjong/main.m; sourceTree = "<group>"; };
+		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = tanjong/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		19C31A02128743359AA18ED2 /* LXGWWenKai-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "LXGWWenKai-Bold.ttf"; path = "../assets/fonts/LXGWWenKai-Bold.ttf"; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-tanjong-tanjongTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-tanjong-tanjongTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B152B9827D36D9B95166288 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = tanjong/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		2B095B8929954FCB006CCF0C /* BootSplash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = BootSplash.storyboard; path = tanjong/BootSplash.storyboard; sourceTree = "<group>"; };
 		2B3700AF297453E6002D1AFF /* clippingkk.widgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = clippingkk.widgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B3700B0297453E6002D1AFF /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -163,6 +166,8 @@
 				2B095B8929954FCB006CCF0C /* BootSplash.storyboard */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */,
+				1B152B9827D36D9B95166288 /* PrivacyInfo.xcprivacy */,
 			);
 			name = tanjong;
 			sourceTree = "<group>";
@@ -377,6 +382,7 @@
 				2B095B8A29954FCB006CCF0C /* BootSplash.storyboard in Resources */,
 				3D1E73B27CCB447B94A753E9 /* LXGWWenKai-Light.ttf in Resources */,
 				426A1308707C4108B9A06C30 /* LXGWWenKai-Regular.ttf in Resources */,
+				5EA0FCD17B35E4CE6D921ED7 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,7 +414,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /opt/homebrew/bin/fish;
-			shellScript = "set -x NODE_BINARY \"node\"\nset -x SENTRY_PROPERTIES sentry.properties\nset -x EXTRA_PACKAGER_ARGS \"--sourcemap-output $DERIVED_FILE_DIR/main.jsbundle.map\"\n\nset WITH_ENVIRONMENT \"../node_modules/react-native/scripts/xcode/with-environment.sh\"\nset REACT_NATIVE_XCODE \"../node_modules/react-native/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT \\\"../node_modules/@sentry/cli/bin/sentry-cli react-native xcode $REACT_NATIVE_XCODE\\\"\"\n";
+			shellScript = "set -x NODE_BINARY \"node\"\nset -x SENTRY_PROPERTIES sentry.properties\nset -x EXTRA_PACKAGER_ARGS \"--sourcemap-output $DERIVED_FILE_DIR/main.jsbundle.map\"\n\nset WITH_ENVIRONMENT \"$REACT_NATIVE_PATH/scripts/xcode/with-environment.sh\"\nset REACT_NATIVE_XCODE \"$REACT_NATIVE_PATH/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT \\\"../node_modules/@sentry/cli/bin/sentry-cli react-native xcode $REACT_NATIVE_XCODE\\\"\"\n";
 		};
 		00EEFC60759A1932668264C0 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -816,6 +822,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CC = "";
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -843,6 +850,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				CXX = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = i386;
@@ -863,6 +871,8 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD = "";
+				LDPLUSPLUS = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
 					"$(inherited)",
@@ -880,6 +890,8 @@
 					"-DFOLLY_NO_CONFIG",
 					"-DFOLLY_MOBILE=1",
 					"-DFOLLY_USE_LIBCPP=1",
+					"-DFOLLY_CFG_NO_COROUTINES=1",
+					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
@@ -892,6 +904,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CC = "";
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -919,6 +932,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				CXX = "";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = i386;
@@ -935,6 +949,8 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD = "";
+				LDPLUSPLUS = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
 					"$(inherited)",
@@ -951,6 +967,8 @@
 					"-DFOLLY_NO_CONFIG",
 					"-DFOLLY_MOBILE=1",
 					"-DFOLLY_USE_LIBCPP=1",
+					"-DFOLLY_CFG_NO_COROUTINES=1",
+					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";

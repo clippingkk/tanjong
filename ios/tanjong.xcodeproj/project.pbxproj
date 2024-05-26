@@ -81,7 +81,7 @@
 		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = tanjong/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		19C31A02128743359AA18ED2 /* LXGWWenKai-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "LXGWWenKai-Bold.ttf"; path = "../assets/fonts/LXGWWenKai-Bold.ttf"; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-tanjong-tanjongTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-tanjong-tanjongTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1B152B9827D36D9B95166288 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = tanjong/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		1B152B9827D36D9B95166288 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = tanjong/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		2B095B8929954FCB006CCF0C /* BootSplash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = BootSplash.storyboard; path = tanjong/BootSplash.storyboard; sourceTree = "<group>"; };
 		2B3700AF297453E6002D1AFF /* clippingkk.widgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = clippingkk.widgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B3700B0297453E6002D1AFF /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -672,7 +672,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = tanjong/tanjong.entitlements;
-				CURRENT_PROJECT_VERSION = 52;
+				CURRENT_PROJECT_VERSION = 53;
 				DEVELOPMENT_TEAM = VY3AP6C55K;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = tanjong/Info.plist;
@@ -682,7 +682,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.1.1;
+				MARKETING_VERSION = 3.1.2;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -708,7 +708,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = tanjong/tanjong.entitlements;
-				CURRENT_PROJECT_VERSION = 52;
+				CURRENT_PROJECT_VERSION = 53;
 				DEVELOPMENT_TEAM = VY3AP6C55K;
 				INFOPLIST_FILE = tanjong/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ClippingKK;
@@ -717,7 +717,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.1.1;
+				MARKETING_VERSION = 3.1.2;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

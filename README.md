@@ -17,3 +17,29 @@ npm run android
 npm run ios -- --no-packager --udid 00008101-00154D013410001E
 npm run ios -- --no-packager --udid 00008101-00154D013410001E --configuration ReleaseOS
 ```
+
+## Release
+
+### iOS
+
+1. open XCode and edit the version of clipping, please don't forget update the build number
+
+2. change target to `Any iOS Device(arm64)`
+
+3. Product -> Archive and wait
+
+4. open `Archives` window and click `Distribute App`
+
+### Android
+
+download the upload key(in my google drive maybe)
+
+1. open `android/app/build.gradle` and update `versionCode` and `version`
+
+2. build it
+
+```bash
+./node_modules/.bin/react-native build-android --mode=release
+```
+
+

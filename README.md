@@ -40,6 +40,8 @@ download the upload key(in my google drive maybe)
 
 ```bash
 ./node_modules/.bin/react-native build-android --mode=release
+open android/app/build/outputs/bundle/release
 ```
 
+open [Google Play Console](https://play.google.com/console/u/0/developers) and upload to a new release
 

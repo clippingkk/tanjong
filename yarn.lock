@@ -2040,9 +2040,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@gluestack-ui/icon@npm:0.1.21":
-  version: 0.1.21
-  resolution: "@gluestack-ui/icon@npm:0.1.21"
+"@gluestack-ui/icon@npm:0.1.22":
+  version: 0.1.22
+  resolution: "@gluestack-ui/icon@npm:0.1.22"
   dependencies:
     "@gluestack-ui/provider": ^0.1.6
     "@gluestack-ui/utils": ^0.1.12
@@ -2050,7 +2050,7 @@ __metadata:
   peerDependencies:
     react: ">=16"
     react-dom: ">=16"
-  checksum: 1cb2cb08e148aa1265520ceabd4b9a33f7db8c1c69fba5bfd20f71cb8467c5ce0820eefdb01b34fc731af08f54cccc7b9de5d18567a5a6399b0cd80502dfc866
+  checksum: 087d135208b6fccace891af8b7aba715ad8fa98cd398eb74199abbd32b958e33ce54802c838a4e89c91f7664c1f9488cf15a483038306f0bd4a054331dc2e1a9
   languageName: node
   linkType: hard
 
@@ -2281,9 +2281,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@gluestack-ui/slider@npm:0.1.23":
-  version: 0.1.23
-  resolution: "@gluestack-ui/slider@npm:0.1.23"
+"@gluestack-ui/slider@npm:0.1.24":
+  version: 0.1.24
+  resolution: "@gluestack-ui/slider@npm:0.1.24"
   dependencies:
     "@gluestack-ui/form-control": ^0.1.16
     "@gluestack-ui/hooks": 0.1.11
@@ -2295,7 +2295,7 @@ __metadata:
   peerDependencies:
     react: ">=16"
     react-dom: ">=16"
-  checksum: 114c724678f5e3e9e2a7d1976f84ea40e19c1be6491e44eeb40c6c30bc4a2c9955a5bbd667a70305dadf2d9f78c61c238f11a66c9072b31dff1055fa15c9cc9a
+  checksum: 5193d4c17ee645cafc11efec3afc71f524b61e16dc5b48fb7a3585ee9ea840299e44ed57a6987c8589e8be568e86262cd4d55471f555c8dc2dce8528562297dc
   languageName: node
   linkType: hard
 
@@ -2353,9 +2353,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@gluestack-ui/themed@npm:^1.1.26":
-  version: 1.1.26
-  resolution: "@gluestack-ui/themed@npm:1.1.26"
+"@gluestack-ui/themed@npm:^1.1.28":
+  version: 1.1.28
+  resolution: "@gluestack-ui/themed@npm:1.1.28"
   dependencies:
     "@expo/html-elements": latest
     "@gluestack-style/animation-resolver": 1.0.4
@@ -2370,7 +2370,7 @@ __metadata:
     "@gluestack-ui/divider": 0.1.8
     "@gluestack-ui/fab": 0.1.20
     "@gluestack-ui/form-control": 0.1.17
-    "@gluestack-ui/icon": 0.1.21
+    "@gluestack-ui/icon": 0.1.22
     "@gluestack-ui/image": 0.1.9
     "@gluestack-ui/input": 0.1.29
     "@gluestack-ui/link": 0.1.20
@@ -2383,7 +2383,7 @@ __metadata:
     "@gluestack-ui/provider": 0.1.12
     "@gluestack-ui/radio": 0.1.29
     "@gluestack-ui/select": 0.1.26
-    "@gluestack-ui/slider": 0.1.23
+    "@gluestack-ui/slider": 0.1.24
     "@gluestack-ui/spinner": 0.1.14
     "@gluestack-ui/switch": 0.1.21
     "@gluestack-ui/tabs": 0.1.16
@@ -2399,7 +2399,7 @@ __metadata:
     react-native: ">=0.72"
     react-native-svg: ">=13.4.0"
     react-native-web: ">=0.19"
-  checksum: f5a88d5262e343a2ed48c8112752d73af46c3593871eee6a45d1d8087ca4c8c9169b4b8e54a27a38dae9d9bc991c441231303ae537d885b97ccc665984ebf2db
+  checksum: debe1ee312146c4be8ed205ad7cea50461c4d17172d3d09e774d30e0f9bf3dde813fe6c2030b6a04a57f53bc0cfd4058d2f81fb1df91fc485bba38a8d93d30ff
   languageName: node
   linkType: hard
 
@@ -3332,12 +3332,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hookform/resolvers@npm:^3.4.2":
-  version: 3.4.2
-  resolution: "@hookform/resolvers@npm:3.4.2"
+"@hookform/resolvers@npm:^3.6.0":
+  version: 3.6.0
+  resolution: "@hookform/resolvers@npm:3.6.0"
   peerDependencies:
     react-hook-form: ^7.0.0
-  checksum: 5045c3b1bfa2cace97ab0708a25a5c65353a10e06b4992c43ab648cf09fa0e51cabbbec40144c53f3646d35b91823ba6a9e254156614649cefa503722900dd9a
+  checksum: a230fd2d0b571ddb8795f587284211e17f942de6b75ba235f613f54d3c17561e3a6483deee48c7dd5a6f52131769c5e59e4ed04823447084c28b6191d7e2d9dd
   languageName: node
   linkType: hard
 
@@ -3410,7 +3410,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@invertase/react-native-apple-authentication@npm:^2.2.2":
+"@invertase/react-native-apple-authentication@npm:^2.3.0":
   version: 2.3.0
   resolution: "@invertase/react-native-apple-authentication@npm:2.3.0"
   checksum: 7e70b69cdf61c81e955392fa63827dd675a7c1ae029683f21f1f591cf4564d6ca277a55e594b4a3c1636bbf056bf32ceffe699ea1da20f3fa90d00ab6422b4b0
@@ -5526,7 +5526,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-native-community/push-notification-ios@npm:^1.10.1":
+"@react-native-community/push-notification-ios@npm:^1.11.0":
   version: 1.11.0
   resolution: "@react-native-community/push-notification-ios@npm:1.11.0"
   dependencies:
@@ -7316,51 +7316,51 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/query-async-storage-persister@npm:^5.38.0":
-  version: 5.38.0
-  resolution: "@tanstack/query-async-storage-persister@npm:5.38.0"
+"@tanstack/query-async-storage-persister@npm:^5.40.0":
+  version: 5.40.0
+  resolution: "@tanstack/query-async-storage-persister@npm:5.40.0"
   dependencies:
-    "@tanstack/query-persist-client-core": 5.38.0
-  checksum: a26dc6a2b4ba45f59ee6be2cde0abcbaf6bc233d6d6b9f11d916ef0055d207b6d19dc865779e1cbd7b8b0fe4a6e6016070a1f537d8fa181b50d61e7919229d4a
+    "@tanstack/query-persist-client-core": 5.40.0
+  checksum: 265c04825e1a490b41b4c2014e71227098ecf76d0b325a10f91fae31c07830f9c540e61b48319bb23620b15cc8f4f43b202d48f757b2caaa22c5f6e6fffc9992
   languageName: node
   linkType: hard
 
-"@tanstack/query-core@npm:5.38.0":
-  version: 5.38.0
-  resolution: "@tanstack/query-core@npm:5.38.0"
-  checksum: 65ad1affab2aedc91843f387e5b1e374187e4f83262905a781d76ba4576789466ef541d99c5121dac03f6dbffbfbd569fa1da0aa59b0556336395986051a1b3c
+"@tanstack/query-core@npm:5.40.0":
+  version: 5.40.0
+  resolution: "@tanstack/query-core@npm:5.40.0"
+  checksum: 3c94bc71dd2f80db1e8fdd6f201d9fed7a008636ad6a6a89d24f54824ceb38bbc8c05b24731b8eb7cd895b9e75e7851962660d0aa5fc0841f3295fe95630d70e
   languageName: node
   linkType: hard
 
-"@tanstack/query-persist-client-core@npm:5.38.0":
-  version: 5.38.0
-  resolution: "@tanstack/query-persist-client-core@npm:5.38.0"
+"@tanstack/query-persist-client-core@npm:5.40.0":
+  version: 5.40.0
+  resolution: "@tanstack/query-persist-client-core@npm:5.40.0"
   dependencies:
-    "@tanstack/query-core": 5.38.0
-  checksum: ea3bbfc87e63d8b754d5e07f9a621ef6b5949c0cee621bac0c737b448b500c5550cf5b7e0fd7995ef7b300d063911a18f53215f04bc053a67ec5d397691ccd14
+    "@tanstack/query-core": 5.40.0
+  checksum: 8bd423a50336c024df1c8a94024fe3b5a3d954458e084bfcd9ee1e1444a70e1e0c1530d47c8561c406a17a44c380863f7b44bdb4816c343cfaee12179118d65f
   languageName: node
   linkType: hard
 
-"@tanstack/react-query-persist-client@npm:^5.39.0":
-  version: 5.39.0
-  resolution: "@tanstack/react-query-persist-client@npm:5.39.0"
+"@tanstack/react-query-persist-client@npm:^5.40.1":
+  version: 5.40.1
+  resolution: "@tanstack/react-query-persist-client@npm:5.40.1"
   dependencies:
-    "@tanstack/query-persist-client-core": 5.38.0
+    "@tanstack/query-persist-client-core": 5.40.0
   peerDependencies:
-    "@tanstack/react-query": ^5.39.0
+    "@tanstack/react-query": ^5.40.1
     react: ^18 || ^19
-  checksum: 6a0e46417e39bc6e95343d8fa6fdb891221fe9790dd4c39af3f049f1a1cf7297c7f1423c57e0689f464ba5b89afa3cccbef5ce0a5fce563e1f396140d2f29d4c
+  checksum: b70a45a96517edd1d16a20f672ccff2b13d58abef5d6d0df77c65622a77ce5f87d53e9f596ca2697f4e5f6b2342d604d48879da805c9a7c65be47e9325d577a7
   languageName: node
   linkType: hard
 
-"@tanstack/react-query@npm:^5.39.0":
-  version: 5.39.0
-  resolution: "@tanstack/react-query@npm:5.39.0"
+"@tanstack/react-query@npm:^5.40.1":
+  version: 5.40.1
+  resolution: "@tanstack/react-query@npm:5.40.1"
   dependencies:
-    "@tanstack/query-core": 5.38.0
+    "@tanstack/query-core": 5.40.0
   peerDependencies:
     react: ^18.0.0
-  checksum: d43022347a93d55700fb51e29fcb9c81bae55fc8395b066b9b37bda698ca25655affba03e40acfec668a5c1c26420bb1075fd5845658d9e4a30b966cc9d99512
+  checksum: 4d906101c797282969cd6cb89606ed4480efe3025eedea56846697f7df5218257eb147ec17c1565b4e8b6dc09a761b17b85b1a1fadb04f704304354e28899168
   languageName: node
   linkType: hard
 
@@ -14131,9 +14131,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jotai@npm:^2.8.1":
-  version: 2.8.1
-  resolution: "jotai@npm:2.8.1"
+"jotai@npm:^2.8.3":
+  version: 2.8.3
+  resolution: "jotai@npm:2.8.3"
   peerDependencies:
     "@types/react": ">=17.0.0"
     react: ">=17.0.0"
@@ -14142,7 +14142,7 @@ __metadata:
       optional: true
     react:
       optional: true
-  checksum: d31043fdcb74dcd48a7ea1df46cfff1d9ba63f9fba7b77c9f2a3bd9907d2bfc3a9a90a980d893e8f4280e99bc7b3124509b15b538a4b88630406b594c423167b
+  checksum: b4e149804d190a0262348498b5552cd16ee5f7ffa65804914e5786e1ba204e7bfcf0d77e8260461057ea0f926fc3e49bc997a6d8659e441c9cffa8d5639317a5
   languageName: node
   linkType: hard
 
@@ -15882,7 +15882,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"native-base@npm:^3.4.25":
+"native-base@npm:^3.4.28":
   version: 3.4.28
   resolution: "native-base@npm:3.4.28"
   dependencies:
@@ -17504,13 +17504,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-blurhash@npm:^2.0.2":
-  version: 2.0.2
-  resolution: "react-native-blurhash@npm:2.0.2"
+"react-native-blurhash@npm:^2.0.3":
+  version: 2.0.3
+  resolution: "react-native-blurhash@npm:2.0.3"
   peerDependencies:
     react: ">=16.8.1"
     react-native: ">=0.60.0-rc.0 <1.0.x"
-  checksum: 9277b01fa8982a1896cd1d6166cea38b3e9786681faac212b53c977aa2308ca9f153ee56e7fa5a8585eb09da6c519f986e46b9e2943872935f01f894451bfbbc
+  checksum: 3beb6a3a5b3ff119f983c8e950c81e3826ecce5e9d614155cdeb26294622eaa8fc55764902a2bad6c417cc764b8c9ae0a6a7cce3661ede50c62b62a54faceea5
   languageName: node
   linkType: hard
 
@@ -19551,9 +19551,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tailwindcss@npm:^3.4.3":
-  version: 3.4.3
-  resolution: "tailwindcss@npm:3.4.3"
+"tailwindcss@npm:^3.4.4":
+  version: 3.4.4
+  resolution: "tailwindcss@npm:3.4.4"
   dependencies:
     "@alloc/quick-lru": ^5.2.0
     arg: ^5.0.2
@@ -19580,7 +19580,7 @@ __metadata:
   bin:
     tailwind: lib/cli.js
     tailwindcss: lib/cli.js
-  checksum: 7d181a6aafb520c5760d23d0a199444a324dfa36538edd31934daa253ed9a7ac4bde18c4205aaa89c1269bc2ff11781efda04d2e27ded535a9a2547667a344b1
+  checksum: 743639b6a5c827b6f91ad8cff22ad296e25f4478202200a6f41ae49fbb28c4c6f8120e742a85e09987e33352fbc52c6a34c4ed33ce000b3810d4edf632142bac
   languageName: node
   linkType: hard
 
@@ -19596,7 +19596,7 @@ __metadata:
     "@georstat/react-native-image-cache": ^3.1.0
     "@gluestack-style/react": ^1.0.56
     "@gluestack-ui/config": ^1.1.18
-    "@gluestack-ui/themed": ^1.1.26
+    "@gluestack-ui/themed": ^1.1.28
     "@graphql-codegen/cli": ^5.0.2
     "@graphql-codegen/client-preset": ^4.2.6
     "@graphql-codegen/introspection": 4.0.3
@@ -19604,8 +19604,8 @@ __metadata:
     "@graphql-codegen/typescript-operations": 4.2.1
     "@graphql-codegen/typescript-react-apollo": 4.3.0
     "@graphql-codegen/typescript-react-query": ^6.1.0
-    "@hookform/resolvers": ^3.4.2
-    "@invertase/react-native-apple-authentication": ^2.2.2
+    "@hookform/resolvers": ^3.6.0
+    "@invertase/react-native-apple-authentication": ^2.3.0
     "@jest/globals": ^29.7.0
     "@leancloud/platform-adapters-react-native": ^0.7.0
     "@react-native-async-storage/async-storage": ^1.23.1
@@ -19614,7 +19614,7 @@ __metadata:
     "@react-native-community/blur": ^4.4.0
     "@react-native-community/cli": ^12.1.1
     "@react-native-community/netinfo": ^11.3.2
-    "@react-native-community/push-notification-ios": ^1.10.1
+    "@react-native-community/push-notification-ios": ^1.11.0
     "@react-native/babel-preset": ^0.74.83
     "@react-native/eslint-config": ^0.74.83
     "@react-native/metro-config": ^0.74.83
@@ -19626,9 +19626,9 @@ __metadata:
     "@sentry/react-native": ^5.22.2
     "@shopify/flash-list": ^1.6.4
     "@stripe/stripe-react-native": ^0.38.0
-    "@tanstack/query-async-storage-persister": ^5.38.0
-    "@tanstack/react-query": ^5.39.0
-    "@tanstack/react-query-persist-client": ^5.39.0
+    "@tanstack/query-async-storage-persister": ^5.40.0
+    "@tanstack/react-query": ^5.40.1
+    "@tanstack/react-query-persist-client": ^5.40.1
     "@testing-library/jest-native": ^5.4.3
     "@testing-library/react-native": ^12.5.1
     "@tsconfig/react-native": ^3.0.5
@@ -19653,9 +19653,9 @@ __metadata:
     graphql: ^16.8.1
     i18next: ^23.11.5
     jest: ^29.2.1
-    jotai: ^2.8.1
+    jotai: ^2.8.3
     leancloud-storage: ^4.14.0
-    native-base: ^3.4.25
+    native-base: ^3.4.28
     nock: ^13.5.4
     postcss: ^8.4.38
     react: 18.3.1
@@ -19664,7 +19664,7 @@ __metadata:
     react-i18next: ^14.1.2
     react-native: ^0.74.1
     react-native-actions-sheet: ^0.9.3
-    react-native-blurhash: ^2.0.2
+    react-native-blurhash: ^2.0.3
     react-native-bootsplash: ^5.5.3
     react-native-device-info: ^11.1.0
     react-native-file-access: ^3.1.0
@@ -19691,11 +19691,11 @@ __metadata:
     react-native-widgetkit: ^1.0.9
     react-test-renderer: 18.3.1
     standard-version: ^9.5.0
-    tailwindcss: ^3.4.3
+    tailwindcss: ^3.4.4
     ts-jest: ^29.1.3
     ts-node: ^10.9.2
     typescript: ^5.4.5
-    xstate: ^5.13.0
+    xstate: ^5.13.1
     zod: ^3.23.8
   languageName: unknown
   linkType: soft
@@ -21182,10 +21182,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"xstate@npm:^5.13.0":
-  version: 5.13.0
-  resolution: "xstate@npm:5.13.0"
-  checksum: b2795b90ee800935253c741d9d0de45fbc6fe27236cc48db71d65616af642facd15fb43fe4e370826881ddff1228e8311f754e46fee02f5e7106677ca4ecfb58
+"xstate@npm:^5.13.1":
+  version: 5.13.1
+  resolution: "xstate@npm:5.13.1"
+  checksum: 5ca567c4ca0fcda9fede612085a93a3c4286e023e6aeeb1ffd3382976fab7afcd794a003a58b259a910b96f938a9c87916d895c21334b70f929861f125ec20fc
   languageName: node
   linkType: hard
 

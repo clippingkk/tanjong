@@ -1,10 +1,11 @@
-import { Button, FormControl, Input, useToast, VStack } from 'native-base'
+import { Button, ButtonSpinner, ButtonText, FormControl, Input, InputField, Text, VStack } from '@gluestack-ui/themed'
 import { useForm, Controller } from "react-hook-form";
 import React from 'react'
 import { useAuthLazyQuery } from '../../schema/generated';
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useTranslation } from 'react-i18next';
 import { z } from 'zod'
+import toast from 'react-hot-toast/headless'
 import { CKNetworkError } from '../../utils/apollo';
 import { getTempCFToken } from '../../utils/cfToken';
 
@@ -33,9 +34,7 @@ function AuthClassicPage(props: AuthClassicPageProps) {
   const [doAuth, authResp] = useAuthLazyQuery({
     onCompleted(resp) {
       if (!resp.auth) {
-        toast.show({
-          title: 'No data'
-        })
+        toast.error('No data')
         return
       }
       onPostAuth(resp.auth.token, resp.auth.user.id)
@@ -45,19 +44,16 @@ function AuthClassicPage(props: AuthClassicPageProps) {
         const exp = err.networkError as unknown as CKNetworkError
         const innerErr = exp.result?.errors
         if (innerErr) {
-          toast.show({
-            title: innerErr[0].message
-          })
+          toast.error(
+            innerErr[0].message
+          )
         }
         return
       }
 
-      toast.show({
-        title: err.toString()
-      })
+      toast.error(err.toString())
     },
   })
-  const toast = useToast()
 
   const onSubmit = (data: { email: string, password: string }) => {
     const cfToken = getTempCFToken()
@@ -71,58 +67,80 @@ function AuthClassicPage(props: AuthClassicPageProps) {
   }
 
   return (
-    <VStack width="80%" space={4}>
+    <VStack width="80%" space='sm'>
       <FormControl isRequired isInvalid={'email' in errors}>
-        <FormControl.Label>{t('app.auth.email')}</FormControl.Label>
+        <FormControl.Label>
+          <FormControl.Label.Text>
+            {t('app.auth.email')}
+          </FormControl.Label.Text>
+        </FormControl.Label>
         <Controller
           control={control}
           render={(f) => (
-            <Input
-              onBlur={f.field.onBlur}
-              placeholder="Email"
-              onChangeText={(val) => f.field.onChange(val)}
-              value={f.field.value}
-              type='text'
-              keyboardType='email-address'
-              autoCapitalize='none'
-              returnKeyType='next'
-            />
+            <Input>
+              <InputField
+                onBlur={f.field.onBlur}
+                placeholder="Email"
+                onChangeText={(val) => f.field.onChange(val)}
+                value={f.field.value}
+                type='text'
+                keyboardType='email-address'
+                autoCapitalize='none'
+                returnKeyType='next'
+              />
+            </Input>
           )}
           name='email'
           rules={{ required: 'Field is required', minLength: 3 }}
           defaultValue=""
         />
-        <FormControl.ErrorMessage>
-          {errors.email?.message}
-        </FormControl.ErrorMessage>
+        <FormControl.Error>
+          <FormControl.Error.Text>
+            {errors.email?.message}
+          </FormControl.Error.Text>
+        </FormControl.Error>
       </FormControl>
       <FormControl isInvalid={'password' in errors}>
-        <FormControl.Label>{t('app.auth.pwd')}</FormControl.Label>
+        <FormControl.Label>
+          <FormControl.Label.Text>
+            {t('app.auth.pwd')}
+          </FormControl.Label.Text>
+        </FormControl.Label>
         <Controller
           control={control}
           render={f => (
-            <Input
-              onBlur={f.field.onBlur}
-              placeholder="Password"
-              onChangeText={(val) => f.field.onChange(val)}
-              value={f.field.value}
-              type='password'
-              returnKeyType='done'
-            />
+            <Input>
+              <InputField
+                onBlur={f.field.onBlur}
+                placeholder="Password"
+                onChangeText={(val) => f.field.onChange(val)}
+                value={f.field.value}
+                type='password'
+                returnKeyType='done'
+              />
+            </Input>
           )}
           name='password'
           defaultValue=''
         />
-        <FormControl.ErrorMessage>
-          {errors.password?.message}
-        </FormControl.ErrorMessage>
+        <FormControl.Error>
+          <FormControl.Error.Text>
+            {errors.password?.message}
+          </FormControl.Error.Text>
+        </FormControl.Error>
       </FormControl>
       <Button
-        isLoading={authResp.loading}
+        isDisabled={authResp.loading}
         onPress={handleSubmit(onSubmit)}
-        colorScheme="darkBlue"
+      // colorScheme="darkBlue"
       >
-        {t('app.auth.submit')}
+        {authResp.loading && (
+          <ButtonSpinner mr="$1" />
+        )}
+        <ButtonText>
+
+          {t('app.auth.submit')}
+        </ButtonText>
       </Button>
     </VStack>
   )

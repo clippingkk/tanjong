@@ -76,6 +76,7 @@ google_play_upload_certificate.pem
 
 # Yarn
 .yarn/*
+.yarn
 !.yarn/patches
 !.yarn/plugins
 !.yarn/releases

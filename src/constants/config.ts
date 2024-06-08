@@ -1,9 +1,11 @@
 // export const API_HOST = __DEV__ ?
 //   'http://127.0.0.1:19654' :
 //   'https://clippingkk-api.annatarhe.com'
-export const API_HOST = __DEV__ ? 'http://127.0.0.1:19654' :
-  // 'http://192.168.1.11:19654'
-  'https://clippingkk-api.annatarhe.com'
+// export const API_HOST = __DEV__ ? 'http://127.0.0.1:19654' :
+//   // 'http://192.168.1.11:19654'
+//   'https://clippingkk-api.annatarhe.com'
+
+export const API_HOST = 'https://clippingkk-api.annatarhe.com'
 
 // export const API_HOST = 'https://d446-42-60-205-243.ap.ngrok.io'
 export const WENQU_API_HOST = 'https://wenqu.annatarhe.cn/api/v1'

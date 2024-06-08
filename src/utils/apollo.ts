@@ -102,9 +102,9 @@ type GraphQLResponseError = {
 const errorLink = onError((errData) => {
   const { graphQLErrors, networkError } = errData
   if (graphQLErrors && graphQLErrors.length > 0) {
-    toast.error(
-      graphQLErrors[0].message,
-    )
+    // toast.error(
+    //   graphQLErrors[0].message,
+    // )
   }
   let ne = networkError as GraphQLResponseError
 

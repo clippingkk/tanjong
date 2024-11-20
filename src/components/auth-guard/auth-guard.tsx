@@ -13,9 +13,7 @@ function AuthGuard(props: AuthGuardProps) {
   return (
     <Page containerProps={{ flex: 1, justifyContent: 'center', justifyItems: 'center' }}>
       <Link
-        to={{
-          screen: RouteKeys.AuthV3
-        }}
+        screen={RouteKeys.AuthV3}
       >
         <View flex={1} alignItems='center' height={'100%'} justifyContent={'center'}>
           <Text textAlign='center' width='100%' fontSize={'$7xl'} lineHeight={'$7xl'}>

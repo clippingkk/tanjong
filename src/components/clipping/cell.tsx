@@ -18,12 +18,11 @@ function ClippingCell(props: ClippingCellProps) {
     <View
       paddingX={2}
     >
-      <Link to={{
-        screen: RouteKeys.Clipping,
-        params: {
+      <Link
+        screen={RouteKeys.Clipping}
+        params={{
           clipping: props.clipping
-        }
-      }}
+        }}
         style={{
           width: '100%'
         }}

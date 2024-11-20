@@ -31,10 +31,9 @@ function SignUpEmailPage(props: SignUpEmailPageProps) {
     props.navigation.setOptions({
       headerRight: (hprops) => (
         <Link
-          to={{
-            screen: RouteKeys.SignUpPassword, params: {
-              email
-            }
+          screen={RouteKeys.SignUpPassword}
+          params={{
+            email
           }}
           disabled={!checkEmailValid(email!)}
         >

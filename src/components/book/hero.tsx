@@ -45,12 +45,8 @@ function BookHero(props: BookHeroProps) {
   return (
     <Center height={250} marginTop={5} shadow='6'>
       <Link
-        to={{
-          screen: RouteKeys.BookDetail,
-          params: {
-            book: book
-          }
-        }}
+        screen={RouteKeys.BookDetail}
+        params={{ book: book }}
       >
         <View flexDirection='column' alignItems='center'>
           <CachedImage

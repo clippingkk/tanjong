@@ -42,11 +42,9 @@ function BookCell(props: BookCellProps) {
   return (
     <Center height={250} shadow='6'>
       <Link
-        to={{
-          screen: RouteKeys.BookDetail,
-          params: {
-            book: book
-          }
+        screen={RouteKeys.BookDetail}
+        params={{
+          book: book
         }}
       >
         <View flexDirection='column' alignItems='center'>

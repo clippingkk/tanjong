@@ -147,7 +147,7 @@ function getRootPageOptions(props: {
     case RouteKeys.TabProfile:
       headerTitle = 'Me'
       headerRight = () => (
-        <Link to={{ screen: RouteKeys.ProfileSettings }}>
+        <Link screen={RouteKeys.ProfileSettings}>
           ⚙️
         </Link>
       )

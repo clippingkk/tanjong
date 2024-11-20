@@ -9,7 +9,7 @@ import { usePostAuth } from '../../../hooks/auth'
 import { RouteParamList } from '../../../routes'
 import { AppleLoginPlatforms, useBindAppleUniqueMutation } from '../../../schema/generated'
 
-type SignupSkipButtonProps = HeaderButtonProps & { idToken: string, navigation: NativeStackNavigationProp<RouteParamList, any, undefined> }
+type SignupSkipButtonProps = Omit<HeaderButtonProps, 'children'> & { idToken: string, navigation: NativeStackNavigationProp<RouteParamList, any, undefined> }
 
 function SignupSkipButton(props: SignupSkipButtonProps) {
   const { t } = useTranslation()

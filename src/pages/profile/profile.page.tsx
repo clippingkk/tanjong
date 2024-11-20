@@ -40,7 +40,7 @@ function ProfilePage(props: ProfilePageProps) {
     props.navigation.setOptions({
       title: p.data?.me.name ?? 'Profile',
       headerRight: () => (
-        <Link to={{ screen: RouteKeys.ProfileSettings }}>
+        <Link screen={RouteKeys.ProfileSettings}>
           ⚙️
         </Link>
       )

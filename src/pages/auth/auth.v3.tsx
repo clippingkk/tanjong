@@ -4,7 +4,7 @@ import { Platform, SafeAreaView } from 'react-native';
 import { AppleLoginPlatforms, AppleVerifyPayload, useLoginByAppleLazyQuery } from '../../schema/generated';
 import { usePostAuth } from '../../hooks/auth';
 import SigninWithApple from '../../components/signinWithApple/signinWithApple';
-import { Link, useLinkTo } from '@react-navigation/native';
+import { Link, useLinkBuilder, useLinkTo } from '@react-navigation/native';
 import { RouteKeys, RouteParamList } from '../../routes';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
@@ -26,7 +26,7 @@ function AuthV3Page(props: AuthV3PageProps) {
         <>
           {featureFlags.enableSignUp && (
             <Link
-              to={{ screen: RouteKeys.SignUpEmail }}
+              screen={RouteKeys.SignUpEmail}
               style={{
                 alignItems: 'center',
                 flexDirection: 'row',
@@ -48,7 +48,8 @@ function AuthV3Page(props: AuthV3PageProps) {
   const toast = useToast()
 
   const onPostAuth = usePostAuth(props.navigation)
-  const linkTo = useLinkTo<RouteParamList>()
+  const { buildHref } = useLinkBuilder()
+  const linkTo = useLinkTo()
   const signinWithAppleOnSuccess = useCallback(async (data: AppleVerifyPayload) => {
     const authResp = await doAppleAuth({
       variables: {
@@ -74,12 +75,15 @@ function AuthV3Page(props: AuthV3PageProps) {
     const { noAccountFrom3rdPart, token, user } = authResp.data.loginByApple
 
     if (noAccountFrom3rdPart) {
-      linkTo({
-        screen: RouteKeys.AuthAppleBind,
+      const href = buildHref(RouteKeys.AuthAppleBind, {
         params: {
           idToken: data.idToken
         }
       })
+
+      if (href) {
+        linkTo(href)
+      }
       return
     }
     // goto auth

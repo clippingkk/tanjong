@@ -7,7 +7,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { RouteKeys, RouteParamList } from '../../../routes'
 import { ActivityIndicator, Keyboard, Platform, TouchableWithoutFeedback } from 'react-native'
 import * as Sentry from "@sentry/react-native";
-import { useLinkTo } from '@react-navigation/native'
+import { useLinkBuilder, useLinkTo } from '@react-navigation/native'
 import SignupSkipButton from './signup-skip-button'
 import { useTranslation } from 'react-i18next'
 
@@ -58,7 +58,8 @@ function AuthApplePhoneBind(props: AuthApplePhoneBindProps) {
       setLoading(false)
     }
   }, [pn])
-  const linkTo = useLinkTo<RouteParamList>()
+  const { buildHref } = useLinkBuilder()
+  const linkTo = useLinkTo()
 
   const onSMSSendPress = useCallback(async () => {
     if (!capture) {
@@ -85,13 +86,14 @@ function AuthApplePhoneBind(props: AuthApplePhoneBindProps) {
       toast.show({
         title: t('app.auth.info.smsSent')
       })
-      linkTo({
-        screen: RouteKeys.AuthPhoneOTP,
-        params: {
-          phone: pn,
-          idToken: props.route.params.idToken
-        }
+      const href = buildHref(RouteKeys.AuthPhoneOTP, {
+        phone: pn,
+        idToken: props.route.params.idToken
       })
+      if (!href) {
+        return
+      }
+      linkTo(href)
     } catch (err: any) {
       toast.show({
         title: err.toString()

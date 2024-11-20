@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from "react"
 import { profileAtom, uidAtom } from "../atomic"
 import { useBindIosDeviceTokenMutation, useProfileQuery } from "../schema/generated"
 import { Linking, Platform } from "react-native"
-import { NavigationContainerRef, useLinkTo } from "@react-navigation/native"
+import { NavigationContainerRef, useLinkBuilder, useLinkTo } from "@react-navigation/native"
 import { RouteKeys, RouteParamList } from "../routes"
 import * as Sentry from "@sentry/react-native"
 import RNBootSplash from "react-native-bootsplash"
@@ -176,8 +176,9 @@ export function useDeeplinkHandler(
 }
 
 export function useHomeLoad() {
+  // const { buildHref } = useLinkBuilder()
   // here are the debug code, just redirection
-  const linkTo = useLinkTo<RouteParamList>()
+  const linkTo = useLinkTo()
   useEffect(() => {
     if (process.env.NODE_ENV === 'production') {
       return

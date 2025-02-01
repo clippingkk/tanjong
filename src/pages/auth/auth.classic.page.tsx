@@ -75,7 +75,7 @@ function AuthClassicPage(props: AuthClassicPageProps) {
 	}
 
 	return (
-		<View style={styles.container}>
+		<View style={styles.container} className="w-96">
 			<View style={styles.formGroup}>
 				<View>
 					<Text style={styles.label}>{t('app.auth.email')}</Text>
@@ -131,7 +131,6 @@ function AuthClassicPage(props: AuthClassicPageProps) {
 				disabled={authResp.loading}
 				onPress={handleSubmit(onSubmit)}
 			>
-				{/* Keeping existing comment */}
 				<Text style={styles.buttonText}>{t('app.auth.submit')}</Text>
 			</TouchableOpacity>
 		</View>
@@ -141,9 +140,6 @@ function AuthClassicPage(props: AuthClassicPageProps) {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		paddingHorizontal: 20,
-		paddingVertical: 30,
-		backgroundColor: '#f7f7f7',
 	},
 	formGroup: {
 		marginBottom: 20,

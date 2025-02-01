@@ -48,9 +48,8 @@ function AuthV3Page() {
 					{featureFlags.enableSignUp && (
 						<Link
 							screen={RouteKeys.SignUpEmail}
+							className="flex-row items-center justify-center"
 							style={{
-								alignItems: 'center',
-								flexDirection: 'row',
 								color: cm === 'light' ? '#111111' : '#ffffff',
 							}}
 						>
@@ -104,9 +103,7 @@ function AuthV3Page() {
 		[],
 	)
 	const signinWithAppleOnError = useCallback((err: any) => {
-		toast.show({
-			title: err.toString(),
-		})
+		toast.error(err.toString())
 	}, [])
 
 	const { t } = useTranslation()
@@ -118,69 +115,66 @@ function AuthV3Page() {
 		>
 			<KeyboardAvoidingView
 				behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+				className="flex-1"
 			>
-				<View style={styles.container}>
-					<SafeAreaView>
-						<View
+				<SafeAreaView className="flex-1">
+					<View className="flex-1 items-center justify-center">
+						<Image
+							source={require('../../assets/logo.png')}
+							alt="logo"
+							width={70}
+							height={70}
+							className="mt-8 mb-4 rounded"
 							style={{
-								alignItems: 'center',
-								justifyContent: 'center',
-								height: '100%',
+								height: 70,
+								width: 70,
+								borderRadius: 8,
+								shadowOffset: {
+									width: 4,
+									height: 4,
+								},
 							}}
-						>
-							<Image
-								source={require('../../assets/logo.png')}
-								alt="logo"
-								width={70}
-								height={70}
+						/>
+						<View style={{ margin: 16 }}>
+							<Text
+								className="text-white"
 								style={{
-									height: 70,
-									width: 70,
-									borderRadius: 8,
-									shadowOffset: {
-										width: 4,
-										height: 4,
-									},
+									textAlign: 'center',
+									fontSize: 20,
+									fontWeight: 'bold',
+									padding: 6,
 								}}
-							/>
-							<View style={{ margin: 16 }}>
-								<Text
-									style={{
-										textAlign: 'center',
-										fontSize: 20,
-										fontWeight: 'bold',
-										padding: 6,
-									}}
-								>
-									ClippingKK
-								</Text>
-								<Text
-									style={{
-										width: 280,
-										textAlign: 'center',
-										fontFamily: FontLXGW,
-										fontSize: 14,
-									}}
-								>
-									{t('app.slogan')}
-								</Text>
-							</View>
+							>
+								ClippingKK
+							</Text>
+							<Text
+								className="text-white"
+								style={{
+									width: 280,
+									textAlign: 'center',
+									fontFamily: FontLXGW,
+									fontSize: 14,
+								}}
+							>
+								{t('app.slogan')}
+							</Text>
+						</View>
 
-							<View style={{ margin: 32, width: '90%' }} />
+						<View style={{ margin: 8, width: '90%' }} />
 
-							<AuthClassicPage onPostAuth={onPostAuth} />
+						<AuthClassicPage onPostAuth={onPostAuth} />
 
-							<View style={{ margin: 32, width: '90%' }} />
+						<View style={{ margin: 8, width: '90%' }} />
 
-							<SigninWithApple
-								loading={appleAuthResp.loading}
-								onSuccess={signinWithAppleOnSuccess}
-								onError={signinWithAppleOnError}
-							/>
-							{/* <WalletConnectLoginButton
+						<SigninWithApple
+							loading={appleAuthResp.loading}
+							onSuccess={signinWithAppleOnSuccess}
+							onError={signinWithAppleOnError}
+						/>
+						{/* <WalletConnectLoginButton
 								onLoggedIn={(token, userId) => onPostAuth(token, userId)}
 							/> */}
-							{/* <Button
+						{/* <Button
                 height={45}
                 bgColor={'blue.500'}
                 width={180}
@@ -194,9 +188,8 @@ function AuthV3Page() {
                   {t('app.auth.loginByScanQRCode')}
                 </Link>
               </Button> */}
-						</View>
-					</SafeAreaView>
-				</View>
+					</View>
+				</SafeAreaView>
 			</KeyboardAvoidingView>
 			<View style={styles.blur} />
 		</LinearGradient>
@@ -229,7 +222,7 @@ const styles = StyleSheet.create({
 	},
 	gradient: {
 		flex: 1,
-		...StyleSheet.absoluteFillObject,
+		// ...StyleSheet.absoluteFillObject,
 	},
 })
 

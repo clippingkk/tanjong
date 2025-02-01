@@ -27,6 +27,9 @@ export const rootStackRoutes = createNativeStackNavigator({
 		root: {
 			screen: RootTabs,
 			// options: (ps) => getRootPageOptions(ps),
+			options: {
+				headerShown: false,
+			},
 		},
 		[RouteKeys.AuthQRCode]: {
 			screen: AuthQRCodePage,

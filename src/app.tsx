@@ -26,6 +26,7 @@ import {
 import { useTranslation } from 'react-i18next'
 import { routingInstrumentation } from './utils/sentry'
 import { rootStackRoutes } from './routes/stack-routes'
+import './global.css'
 
 const Navigation = createStaticNavigation(rootStackRoutes)
 

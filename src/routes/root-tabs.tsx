@@ -48,6 +48,7 @@ const TabStack = createBottomTabNavigator({
 		[RouteKeys.TabHome]: {
 			screen: HomePage,
 			options: {
+				title: 'Home',
 				tabBarLabel: 'Books',
 				tabBarIcon: ({ color, size }) => <HomeIcon color={color} size={size} />,
 			},
@@ -55,6 +56,7 @@ const TabStack = createBottomTabNavigator({
 		[RouteKeys.TabSquare]: {
 			screen: SquarePage,
 			options: {
+				title: 'Square',
 				tabBarLabel: 'Square',
 				tabBarIcon: ({ color, size }) => (
 					<GlobeAmericasIcon color={color} size={size} />
@@ -64,6 +66,7 @@ const TabStack = createBottomTabNavigator({
 		[RouteKeys.TabProfile]: {
 			screen: ProfilePage,
 			options: {
+				title: 'Profile',
 				tabBarLabel: 'Profile',
 				tabBarIcon: ({ color, size }) => <UserIcon color={color} size={size} />,
 			},

@@ -1,249 +1,200 @@
-import { Toast } from 'native-base'
-import { Button, ChevronDownIcon, Divider, HStack, Icon, Pressable, Select, SelectBackdrop, SelectContent, SelectDragIndicator, SelectDragIndicatorWrapper, SelectIcon, SelectItem, SelectPortal, SelectTrigger, Switch, Text, View, VStack } from '@gluestack-ui/themed'
-import { useHeaderHeight } from '@react-navigation/elements'
-import React, { useCallback, useEffect, useRef, useState } from 'react'
-import { useLinkTo } from '@react-navigation/native'
-import { setItem as WidgetKitSetItem, getItem as WidgetKitGetItem, reloadAllTimelines as WidgetKitReloadAllTimelines } from 'react-native-widgetkit'
-import { RouteKeys, RouteParamList } from '../../routes'
+import React, { useCallback, useEffect, useState } from 'react'
+import { Alert, Platform, SafeAreaView, View, StyleSheet } from 'react-native'
+import { useNavigation, useLinkTo } from '@react-navigation/native'
+import { useTranslation } from 'react-i18next'
+import Page from '../../components/page'
+import SettingsSection from './SettingsSection'
+import SettingsItem from './SettingsItem'
 import { useApolloClient } from '@apollo/client'
 import { useAtomValue, useSetAtom } from 'jotai'
 import { tokenAtom, uidAtom } from '../../atomic'
 import { updateLocalToken } from '../../utils/apollo'
-import { SharedGroupPreferencesKey } from '../../constants/config'
-import { widgetAppWidgetType } from '../../hooks/auth'
-import { Alert, Platform, SafeAreaView } from 'react-native'
-import Page from '../../components/page'
-import { NativeStackScreenProps } from '@react-navigation/native-stack'
-import { useTranslation } from 'react-i18next'
-import { CacheManager } from '@georstat/react-native-image-cache'
 import { useDeleteMyAccountMutation } from '../../schema/generated'
 import toast from 'react-hot-toast/headless'
+import {
+	setItem as WidgetKitSetItem,
+	getItem as WidgetKitGetItem,
+	reloadAllTimelines as WidgetKitReloadAllTimelines,
+} from 'react-native-widgetkit'
 
-type SettingsPageProps = NativeStackScreenProps<RouteParamList, RouteKeys.ProfileSettings>
+import { SharedGroupPreferencesKey } from '../../constants/config'
+
+import { widgetAppWidgetType } from '../../hooks/auth'
+import { CacheManager } from '@georstat/react-native-image-cache'
 
 type AppWidgetType = 'public' | 'own'
 
-const languages: Record<string, { name: string, icon: string }> = {
-  en: {
-    name: 'English',
-    icon: '🇬🇧'
-  },
-  zh: {
-    name: '中文',
-    icon: '🇨🇳'
-  },
-  ko: {
-    name: '한국',
-    icon: '🇰🇷'
-  }
+const languages: Record<string, { name: string; icon: string }> = {
+	en: {
+		name: 'English',
+		icon: '🇬🇧',
+	},
+	zh: {
+		name: '中文',
+		icon: '🇨🇳',
+	},
+	ko: {
+		name: '한국',
+		icon: '🇰🇷',
+	},
 }
 
 function useAppWidgetType() {
-  const [widgetType, setWidgetType] = useState<AppWidgetType>('public')
+	const [widgetType, setWidgetType] = useState<AppWidgetType>('public')
 
-  useEffect(() => {
-    (async function () {
-      const t = (await WidgetKitGetItem(widgetAppWidgetType, SharedGroupPreferencesKey) as AppWidgetType) ?? 'public'
-      setWidgetType(t);
-    })()
-  }, [])
+	useEffect(() => {
+		;(async function () {
+			const t =
+				((await WidgetKitGetItem(
+					widgetAppWidgetType,
+					SharedGroupPreferencesKey,
+				)) as AppWidgetType) ?? 'public'
+			setWidgetType(t)
+		})()
+	}, [])
 
-  const toggleWidgetType = useCallback(async (v: AppWidgetType) => {
-    setWidgetType(v);
-    await WidgetKitSetItem(widgetAppWidgetType, v, SharedGroupPreferencesKey)
-    WidgetKitReloadAllTimelines()
-  }, [setWidgetType])
+	const toggleWidgetType = useCallback(
+		async (v: AppWidgetType) => {
+			setWidgetType(v)
+			await WidgetKitSetItem(widgetAppWidgetType, v, SharedGroupPreferencesKey)
+			WidgetKitReloadAllTimelines()
+		},
+		[setWidgetType],
+	)
 
-  return {
-    widgetType,
-    toggleWidgetType
-  }
+	return {
+		widgetType,
+		toggleWidgetType,
+	}
 }
 
-function SettingsPage(props: SettingsPageProps) {
-  const hh = useHeaderHeight()
-  const linkTo = useLinkTo()
-  const uid = useAtomValue(uidAtom)
+function SettingsPage() {
+	const navigation = useNavigation()
+	const linkTo = useLinkTo()
+	const { t, i18n } = useTranslation()
+	const client = useApolloClient()
+	const setToken = useSetAtom(tokenAtom)
+	const setUid = useSetAtom(uidAtom)
+	const uid = useAtomValue(uidAtom)
+	const { widgetType, toggleWidgetType } = useAppWidgetType()
 
-  const [count, setCount] = useState(0)
-  const timer = useRef<NodeJS.Timeout | null>(null)
-  const { widgetType, toggleWidgetType } = useAppWidgetType()
+	const [cacheSize, setCacheSize] = useState(0)
+	useEffect(() => {
+		CacheManager.getCacheSize().then((res) => {
+			setCacheSize(res)
+		})
+	}, [])
 
-  const onDebugClick = useCallback(() => {
-    if (!timer.current) {
-      timer.current = setTimeout(() => {
-        timer.current = null
-      }, 10000)
-    }
-    setCount(c => c + 1)
-  }, [])
+	const onLogout = useCallback(() => {
+		setToken(null)
+		setUid(null)
+		updateLocalToken(null)
+		client.resetStore()
+		toast.success(t('Logged out'))
+		if (navigation.canGoBack()) {
+			navigation.goBack()
+		}
+	}, [client, navigation, setToken, setUid, t])
 
-  const client = useApolloClient()
-  const setToken = useSetAtom(tokenAtom)
-  const setUid = useSetAtom(uidAtom)
+	const [doDelete, { loading: isDeleting }] = useDeleteMyAccountMutation()
+	const onRemoveMyAccount = useCallback(async () => {
+		try {
+			await doDelete()
+			setToken(null)
+			setUid(null)
+			updateLocalToken(null)
+			client.resetStore()
+			Alert.alert(t('Account Removed'), t('Your account has been removed.'))
+			setTimeout(() => {
+				if (navigation.canGoBack()) {
+					navigation.goBack()
+				}
+			}, 3000)
+		} catch (err) {
+			console.error(err)
+			toast.error(t('Error removing account'))
+		}
+	}, [doDelete, navigation, setToken, setUid, t, client])
 
-  const onLogout = useCallback(() => {
-    setToken(null)
-    setUid(null)
-    updateLocalToken(null)
-    client.resetStore()
-    Toast.show({
-      title: 'logged out'
-    })
-    if (props.navigation.canGoBack()) {
-      props.navigation.goBack()
-    }
-  }, [client])
-
-  const [doDelete, { loading: isDeleting }] = useDeleteMyAccountMutation()
-  const onRemoveMyAccount = useCallback(async () => {
-    try {
-      await doDelete()
-      // do logout(same as onLogout)
-      setToken(null)
-      setUid(null)
-      updateLocalToken(null)
-      client.resetStore()
-
-      // show tips
-      Alert.alert(t('app.settings.danger.removeAccountDone'), t('app.settings.danger.removeAccountDoneTip'))
-      setTimeout(() => {
-        if (props.navigation.canGoBack()) {
-          props.navigation.goBack()
-        }
-      }, 3_000)
-    } catch (err: any) {
-      console.error(err)
-      toast.error(err)
-    }
-  }, [doDelete, updateLocalToken, props.navigation])
-
-  useEffect(() => {
-    if (count < 10) {
-      return
-    }
-    timer.current = null
-    setCount(0)
-    linkTo('/' + RouteKeys.ProfileDebug)
-  }, [count])
-
-  const { t, i18n } = useTranslation()
-
-  const [cacheSize, setCacheSize] = useState(0)
-  useEffect(() => {
-    CacheManager.getCacheSize().then(res => {
-      setCacheSize(res)
-    })
-  }, [])
-
-  return (
-    <Page>
-      <SafeAreaView>
-        <View height='100%'>
-          <VStack
-            marginTop={'$4'}
-            padding={'$2'}
-          >
-            <Pressable onPress={onDebugClick}>
-              <Text color='$blueGray900' sx={{ _dark: { color: '$amber100' } }}>created by @AnnatarHe</Text>
-            </Pressable>
-
-            {Platform.OS === 'ios' ? (
-              <>
-                <Divider my={'$6'} />
-                <HStack justifyContent='space-between' alignItems='center' width='100%'>
-                  <Text color='$blueGray900' sx={{ _dark: { color: '$amber100' } }}>
-                    iOS Widget Type: {widgetType}
-                  </Text>
-                  <Switch
-                    value={widgetType === 'own'}
-                    onChange={() => {
-                      toggleWidgetType(widgetType === 'own' ? 'public' : 'own')
-                    }}
-                  />
-                </HStack>
-              </>
-            ) : null}
-            <Divider my={'$6'} />
-            <HStack justifyContent='space-between' alignItems='center' width='100%'>
-              <Text color='$blueGray900' sx={{ _dark: { color: '$amber100' } }}>
-                Cache:
-              </Text>
-              <HStack alignItems='center' gap={'$2'}>
-                <Text color='$blueGray900' sx={{ _dark: { color: '$amber100' } }}>
-                  {cacheSize} B
-                </Text>
-                <Button
-                  bgColor='$red400'
-                  onPress={() => {
-                    CacheManager.clearCache()
-                    Toast.show({
-                      title: 'cache cleared'
-                    })
-                  }}
-                >
-                  <Text>
-                    Clear
-                  </Text>
-                </Button>
-              </HStack>
-            </HStack>
-            <Divider my={'$6'} />
-            <HStack justifyContent='space-between' alignItems='center' width='100%'>
-              <Text color='$blueGray900' sx={{ _dark: { color: '$amber100' } }}>
-                Language:
-              </Text>
-              <Select
-                selectedValue={i18n.language ?? 'en'}
-                selectedLabel={languages[i18n.language ?? 'en'].name}
-                mt={'$1'}
-                onValueChange={itemValue => i18n.changeLanguage(itemValue)}
-              >
-                <SelectTrigger variant="outline" size="md">
-                  {/* <SelectInput placeholder="Select option" value={(i18n.language ?? 'en')} color='$red400' width={'$48'} /> */}
-                  <Text mx='$4'>
-                    {languages[i18n.language ?? 'en'].name}
-                  </Text>
-                  <SelectIcon mr="$3">
-                    <Icon as={ChevronDownIcon} />
-                  </SelectIcon>
-                </SelectTrigger>
-                <SelectPortal>
-                  <SelectBackdrop />
-                  <SelectContent paddingBottom={'$8'}>
-                    <SelectDragIndicatorWrapper>
-                      <SelectDragIndicator />
-                    </SelectDragIndicatorWrapper>
-                    {Object.keys(languages).map(key => (
-                      <SelectItem key={key} label={(languages as any)[key].name} value={key} />
-                    ))}
-                  </SelectContent>
-                </SelectPortal>
-              </Select>
-            </HStack>
-          </VStack>
-          <View flex={1} />
-          {uid && (
-            <View>
-              <Divider mb={'$4'} />
-              <Button bg='$red500' mx='$4' onPress={onLogout}>
-                <Text color='$white'>{t('app.menu.logout')}</Text>
-              </Button>
-              <Button
-                mt={'$2'}
-                bg='$red400'
-                mx='$4'
-                onPress={onRemoveMyAccount}
-                disabled={isDeleting}
-              >
-                <Text color='$white'>{t('app.settings.danger.removeButton')}</Text>
-              </Button>
-            </View>
-          )}
-        </View>
-      </SafeAreaView>
-    </Page>
-  )
+	return (
+		<Page>
+			<SafeAreaView style={styles.safeArea}>
+				<View style={styles.container}>
+					{/* Header with gradient and blur effect */}
+					<View style={styles.header}>
+						<View style={styles.headerGradient}>
+							<View style={styles.headerContent}>
+								<SettingsItem label="Created by" value="@AnnatarHe" />
+							</View>
+						</View>
+					</View>
+					{/* General Section */}
+					<SettingsSection title="General">
+						{Platform.OS === 'ios' && (
+							<SettingsItem
+								label="WidgetType"
+								value={widgetType}
+								onPress={() => {
+									toggleWidgetType(widgetType === 'own' ? 'public' : 'own')
+								}}
+							/>
+						)}
+						<SettingsItem
+							label="Language"
+							value={i18n.language?.toUpperCase()}
+							onPress={() => {
+								// do the language change
+							}}
+						/>
+						<SettingsItem
+							label="Cache"
+							value={`${cacheSize} B`}
+							onPress={() => {
+								CacheManager.clearCache()
+								setCacheSize(0)
+								toast.success(t('Cache cleared'))
+							}}
+						/>
+					</SettingsSection>
+					{/* Account Section */}
+					{uid && (
+						<SettingsSection title="Account">
+							<SettingsItem label={t('Logout')} onPress={onLogout} />
+							<SettingsItem
+								label={t('Remove Account')}
+								onPress={onRemoveMyAccount}
+							/>
+						</SettingsSection>
+					)}
+				</View>
+			</SafeAreaView>
+		</Page>
+	)
 }
+
+const styles = StyleSheet.create({
+	safeArea: {
+		flex: 1,
+		backgroundColor: '#F2F2F2',
+	},
+	container: {
+		flex: 1,
+		padding: 16,
+	},
+	header: {
+		marginBottom: 32,
+		borderRadius: 12,
+		overflow: 'hidden',
+	},
+	headerGradient: {
+		padding: 16,
+		// Placeholder for gradient and blur effect, replace with actual gradient if available
+		backgroundColor: '#ff5f6d',
+	},
+	headerContent: {
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
+})
 
 export default SettingsPage

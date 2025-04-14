@@ -16,8 +16,7 @@ import BasicBoard from '../../components/profile/basic-board'
 import { useClippingCellAvgHeight } from '../../hooks/clipping'
 import { RouteKeys, TabRouteParamList } from '../../routes'
 import { useProfileQuery } from '../../schema/generated'
-import { SafeAreaView } from 'react-native'
-import { Center, VStack, View, Text } from '@gluestack-ui/themed'
+import { View, Text } from 'react-native'
 import PulseBox from '../../components/pulse-box/pulse-box'
 import ProfilePageSkeleton from './skeleton'
 
@@ -41,7 +40,11 @@ function ProfilePage() {
 	useEffect(() => {
 		navigation.setOptions({
 			title: p.data?.me.name ?? 'Profile',
-			headerRight: () => <Link screen={RouteKeys.ProfileSettings}>⚙️</Link>,
+			headerRight: () => (
+				<View className="flex-row mr-4 items-center">
+					<Link screen={RouteKeys.ProfileSettings}>⚙️</Link>
+				</View>
+			),
 		})
 	}, [navigation, p.data?.me.name])
 
@@ -110,40 +113,28 @@ function ProfilePage() {
 	}
 
 	return (
-		<View
-			backgroundColor="$coolGray100"
-			sx={{
-				_dark: {
-					backgroundColor: '$coolGray900',
-				},
-			}}
-			width="100%"
-			height="100%"
-		>
+		<View className="flex-1 w-full h-full">
 			<FlashList
 				onRefresh={p.refetch}
 				refreshing={p.loading}
 				ListHeaderComponent={
-					<View paddingTop={hh}>
+					<View style={{ paddingTop: hh }}>
 						<BasicBoard profile={p.data?.me} />
 					</View>
 				}
 				data={p.data?.me.recents ?? []}
 				renderItem={({ item }) => <ClippingCell clipping={item} />}
 				ItemSeparatorComponent={() => (
-					<View
-						paddingTop={'$1'}
-						paddingBottom={'$1'}
-						width="100%"
-						height={'$1'}
-					/>
+					<View className="w-full h-1 py-1 bg-gray-200 dark:bg-gray-800" />
 				)}
 				ListEmptyComponent={
 					<View>
 						<Text>empty</Text>
 					</View>
 				}
-				ListFooterComponent={<View width="100%" height={bh + 16} />}
+				ListFooterComponent={
+					<View style={{ height: bh + 16, width: '100%' }} />
+				}
 				estimatedItemSize={itemSizeCellHeight}
 				onEndReached={onReachedEnd}
 				onEndReachedThreshold={1}

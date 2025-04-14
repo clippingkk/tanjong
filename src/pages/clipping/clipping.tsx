@@ -1,9 +1,12 @@
 import { CachedImage } from '@georstat/react-native-image-cache'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { useAtomValue } from 'jotai'
-import { ScrollView, Button, Divider, Text, View } from '@gluestack-ui/themed'
 import React, { useEffect, useMemo, useRef } from 'react'
 import {
+	ScrollView,
+	Button,
+	Text,
+	View,
 	ActivityIndicator,
 	RefreshControl,
 	SafeAreaView,
@@ -64,14 +67,11 @@ function ClippingPage(props: ClippingPageProps) {
 			headerRight() {
 				return (
 					<Button
-						variant="link"
-						size="xs"
 						onPress={() => {
 							bsr.current?.show()
 						}}
-					>
-						<Text> 🌐 </Text>
-					</Button>
+						title="🌐"
+					/>
 				)
 			},
 		})
@@ -90,11 +90,7 @@ function ClippingPage(props: ClippingPageProps) {
 	return (
 		<>
 			<ScrollView
-				backgroundColor="$blueGray300"
-				sx={{
-					_dark: { backgroundColor: '$blueGray700' },
-				}}
-				height="$full"
+				className="flex-1 h-full"
 				refreshControl={
 					<RefreshControl
 						refreshing={clippingResult.loading}
@@ -103,26 +99,19 @@ function ClippingPage(props: ClippingPageProps) {
 				}
 			>
 				{!content ? (
-					<View
-						position="absolute"
-						top={20}
-						left={0}
-						right={0}
-						bottom={0}
-						paddingTop={'$24'}
-						height="$full"
-						backgroundColor="$blueGray300"
-						alignItems="center"
-						justifyContent="center"
-					>
+					<View className="h-full flex-1 absolute top-4 left-0 right-0 bottom-0 pt-24 items-center justify-center">
 						<ActivityIndicator size={'large'} />
 						<Text>Loading</Text>
 					</View>
 				) : null}
-				<View paddingLeft={'$4'} paddingRight={'$4'} height="100%">
+				<View className="pl-4 pr-4 h-full">
 					<SafeAreaView>
-						<View pt={'$8'}>
-							<Text fontFamily={FontLXGW} fontSize={'$lg'} selectable>
+						<View className="pt-8">
+							<Text
+								style={{ fontFamily: FontLXGW }}
+								className="text-xl"
+								selectable
+							>
 								{content}
 							</Text>
 						</View>
@@ -131,12 +120,12 @@ function ClippingPage(props: ClippingPageProps) {
 					{content && (
 						<>
 							<Actions clipping={clippingResult.data?.clipping} />
-							<Divider marginTop={'$4'} />
+							<View className="mt-16 h-1" />
 						</>
 					)}
 
 					{book ? (
-						<View flexDirection="row">
+						<View className="pt-1">
 							<View
 								style={{
 									shadowColor: 'black',
@@ -157,11 +146,11 @@ function ClippingPage(props: ClippingPageProps) {
 									]}
 								/>
 							</View>
-							<View paddingLeft={'$4'} paddingTop={'$8'}>
-								<Text fontFamily={FontLXGW} selectable>
+							<View className="px-4 pt-8">
+								<Text style={{ fontFamily: FontLXGW }} selectable>
 									{book.title}
 								</Text>
-								<Text fontFamily={FontLXGW} fontSize={'$sm'} selectable>
+								<Text style={{ fontFamily: FontLXGW, fontSize: 14 }} selectable>
 									{book.author}
 								</Text>
 							</View>

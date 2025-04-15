@@ -1,5 +1,4 @@
 import { WENQU_SIMPLE_TOKEN, WENQU_API_HOST } from "../constants/config"
-import { storage } from "../utils/storage"
 
 type WenquErrorResponse = {
   code: number

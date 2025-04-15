@@ -32,7 +32,7 @@ export default defineConfig([{
         'no-shadow': 'off',
         'no-undef': 'off',
         'no-comma-dangle': 'off',
-        semi: 'never',
-        'comma-dangle': 'never',
+        semi: 2,
+        'comma-dangle': 2,
     },
 }]);

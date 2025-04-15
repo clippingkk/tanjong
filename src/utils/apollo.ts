@@ -2,9 +2,7 @@ import { ApolloClient, ApolloLink, Cache, HttpLink, InMemoryCache } from '@apoll
 import { onError } from "@apollo/client/link/error"
 import { API_HOST } from '../constants/config'
 // import profile from '../utils/profile'
-import { offsetLimitPagination } from '@apollo/client/utilities'
 import { storage } from './storage'
-import toast from 'react-hot-toast/headless'
 
 export type IBaseResponseData = {
   status: number

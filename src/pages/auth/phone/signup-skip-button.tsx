@@ -1,29 +1,38 @@
-import { HeaderButtonProps } from '@react-navigation/elements'
-import { useNavigation } from '@react-navigation/native'
-import { NativeStackNavigationProp } from '@react-navigation/native-stack'
-import { Button, Pressable, Text, Toast } from 'native-base'
-import React, { useCallback, useMemo } from 'react'
-import { useTranslation } from 'react-i18next'
-import { Platform } from 'react-native'
-import { usePostAuth } from '../../../hooks/auth'
-import { RouteParamList } from '../../../routes'
-import { AppleLoginPlatforms, useBindAppleUniqueMutation } from '../../../schema/generated'
+import {HeaderButtonProps} from '@react-navigation/elements'
+import {useNavigation} from '@react-navigation/native'
+import {NativeStackNavigationProp} from '@react-navigation/native-stack'
+import {Button, Pressable, Text, Toast} from 'native-base'
+import React, {useCallback, useMemo} from 'react'
+import {useTranslation} from 'react-i18next'
+import {Platform} from 'react-native'
+import {usePostAuth} from '../../../hooks/auth'
+import {RouteParamList} from '../../../routes'
+import {
+  AppleLoginPlatforms,
+  useBindAppleUniqueMutation
+} from '../../../schema/generated'
 
-type SignupSkipButtonProps = Omit<HeaderButtonProps, 'children'> & { idToken: string, navigation: NativeStackNavigationProp<RouteParamList, any, undefined> }
+type SignupSkipButtonProps = Omit<HeaderButtonProps, 'children'> & {
+  idToken: string
+  navigation: NativeStackNavigationProp<RouteParamList, any, undefined>
+}
 
 function SignupSkipButton(props: SignupSkipButtonProps) {
-  const { t } = useTranslation()
+  const {t} = useTranslation()
   const requestPayload = useMemo(() => {
     return {
       code: '',
       idToken: props.idToken,
       state: '',
-      platform: Platform.OS === 'ios' ? AppleLoginPlatforms.IOs : AppleLoginPlatforms.Android
+      platform:
+        Platform.OS === 'ios'
+          ? AppleLoginPlatforms.IOs
+          : AppleLoginPlatforms.Android
     }
   }, [props.idToken])
 
   const [doBind, doBindResult] = useBindAppleUniqueMutation()
-  const onPostAuth = usePostAuth(props.navigation)
+  const onPostAuth = usePostAuth()
 
   const onSkip = useCallback(async () => {
     try {
@@ -44,11 +53,7 @@ function SignupSkipButton(props: SignupSkipButtonProps) {
     }
   }, [requestPayload])
   return (
-    <Button
-      variant='ghost'
-      isLoading={doBindResult.loading}
-      onPress={onSkip}
-    >
+    <Button variant="ghost" isLoading={doBindResult.loading} onPress={onSkip}>
       <Text>{t('app.common.skip')}</Text>
     </Button>
   )

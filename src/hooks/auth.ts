@@ -14,14 +14,14 @@ import * as Sentry from '@sentry/react-native'
 import {NativeStackNavigationProp} from '@react-navigation/native-stack'
 import {RouteParamList} from '../routes'
 import toast from 'react-hot-toast/headless'
+import { useNavigation } from '@react-navigation/native'
 
 export const widgetAppIDKey = 'app:my:id'
 export const widgetAppTokenKey = 'app:token'
 export const widgetAppWidgetType = 'app:widgetType'
 
-export function usePostAuth(
-  nav: NativeStackNavigationProp<RouteParamList, any, undefined>
-) {
+export function usePostAuth() {
+  const nav = useNavigation()
   const setToken = useSetAtom(tokenAtom)
   const setUid = useSetAtom(uidAtom)
   const client = useApolloClient()
@@ -55,7 +55,7 @@ export function usePostAuth(
 
       toast.success('Welcome!')
       client.resetStore()
-      nav.popToTop()
+      nav.goBack()
     },
     [setToken, setUid, nav]
   )

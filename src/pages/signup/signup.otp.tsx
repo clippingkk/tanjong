@@ -13,6 +13,7 @@ import toast from 'react-hot-toast/headless'
 import {getTempCFToken} from '../../utils/cfToken'
 import {ActivityIndicator} from 'react-native'
 import {usePostAuth} from '../../hooks/auth'
+import {useNavigation} from '@react-navigation/native'
 
 type SignUpOTPPageProps = NativeStackScreenProps<
   RouteParamList,
@@ -21,8 +22,9 @@ type SignUpOTPPageProps = NativeStackScreenProps<
 
 function SignUpOTPPage(props: SignUpOTPPageProps) {
   const {email, password: pwd} = props.route.params
+  const navigation = useNavigation()
   useEffect(() => {
-    props.navigation.setOptions({
+    navigation.setOptions({
       title: email
     })
   }, [])
@@ -76,9 +78,12 @@ function SignUpOTPPage(props: SignUpOTPPageProps) {
   const [doSignUp, {loading: isSigningUp}] = useSignupMutation({
     async onCompleted(data) {
       await onPostAuth(data.signup.token, data.signup.user.id)
-      props.navigation.push(RouteKeys.SignUpSetName, {
-        data: data.signup
-      })
+      navigation.navigate({
+        screen: RouteKeys.SignUpSetName,
+        params: {
+          data: data.signup
+        }
+      } as never)
     }
   })
   const onSignUp = useCallback(

@@ -14,7 +14,6 @@ import {
 
 type SignupSkipButtonProps = Omit<HeaderButtonProps, 'children'> & {
   idToken: string
-  navigation: NativeStackNavigationProp<RouteParamList, any, undefined>
 }
 
 function SignupSkipButton(props: SignupSkipButtonProps) {

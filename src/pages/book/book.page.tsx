@@ -29,6 +29,7 @@ type BookPageProps = NativeStackScreenProps<
 
 function BookPage(props: BookPageProps) {
   const cs = useColorScheme()
+  const isDarkMode = cs === 'dark'
   const {route} = props
   const navigation = useNavigation()
   const book = route.params.book
@@ -175,6 +176,7 @@ function BookPage(props: BookPageProps) {
             bookDBID={book.doubanId}
             uid={uid}
             scrollHandler={scrollHandlers}
+            isDarkMode={isDarkMode}
           />
         </ActionSheet>
       </>

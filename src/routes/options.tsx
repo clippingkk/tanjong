@@ -18,6 +18,10 @@ export function getRootPageOptions(props: {
 }): NativeStackNavigationOptions {
   let headerTitle = ''
   let headerRight: NativeStackHeaderProps['options']['headerRight'] = undefined
+  const isRoot = props.route.name === 'root'
+  if (!isRoot) {
+    return {}
+  }
 
   const routeName =
     (getFocusedRouteNameFromRoute(props.route) as RouteKeys) ??

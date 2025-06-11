@@ -1,39 +1,39 @@
-import { VStack, View } from '@gluestack-ui/themed'
-import React, { useMemo } from 'react'
-import { Dimensions, SafeAreaView } from 'react-native'
-import PulseBox from '../../components/pulse-box/pulse-box'
+import React from 'react';
+import { View, StyleSheet, SafeAreaView } from 'react-native';
+import PulseBox from '../../components/pulse-box/pulse-box';
 
-type ProfilePageSkeletonProps = {
-}
-
-function ProfilePageSkeleton(props: ProfilePageSkeletonProps) {
-  const width = useMemo(() => {
-    return Dimensions.get('screen').width - 8 * 2
-  }, [])
+function ProfilePageSkeleton() {
   return (
-    <View
-      sx={{ _dark: { backgroundColor: '$coolGray900' } }}
-    >
-      <SafeAreaView>
-        <VStack mt={20}>
-          <View mb={8}>
-            <PulseBox height={160} width={width} marginLeft={8} radius={4} />
-          </View>
-          <VStack rowGap={8}>
-            {new Array(4).fill(0).map((_, index) => (
-              <PulseBox
-                key={index}
-                height={180}
-                width={width - 8 * 2}
-                marginLeft={8 * 2}
-                radius={4}
-              />
-            ))}
-          </VStack>
-        </VStack>
-      </SafeAreaView>
-    </View>
-  )
+    <SafeAreaView style={styles.flexOne}>
+      <View style={styles.container}>
+        <PulseBox height={98} width={'100%'} radius={16} />
+        <View style={styles.listContainer}>
+          {new Array(4).fill(0).map((_, index) => (
+            <PulseBox
+              key={index}
+              height={120}
+              width={'100%'}
+              radius={16}
+            />
+          ))}
+        </View>
+      </View>
+    </SafeAreaView>
+  );
 }
 
-export default ProfilePageSkeleton
+const styles = StyleSheet.create({
+  flexOne: {
+    flex: 1,
+  },
+  container: {
+    flex: 1,
+    padding: 16,
+  },
+  listContainer: {
+    marginTop: 16,
+    gap: 16,
+  },
+});
+
+export default ProfilePageSkeleton;

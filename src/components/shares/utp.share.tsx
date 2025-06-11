@@ -1,13 +1,26 @@
-import { CachedImage } from '@georstat/react-native-image-cache'
-import { Button, Center, Text, Toast, View, ScrollView } from 'native-base'
-import React, { useCallback, useMemo, useState } from 'react'
-import { CameraRoll } from "@react-native-camera-roll/camera-roll";
-import { ImageLoadEventData, ActivityIndicator, Share, PermissionsAndroid, Platform, Image as NativeImage, ScrollView as RNScrollView } from 'react-native'
-import { getKonzertLink, getUTPLink, KonzertThemeMap, UTPService } from '../../service/utp'
+import {CachedImage} from '@georstat/react-native-image-cache'
+import {Button, Center, Text, Toast, View, ScrollView} from 'native-base'
+import React, {useCallback, useMemo, useState} from 'react'
+import {CameraRoll} from '@react-native-camera-roll/camera-roll'
+import {
+  ImageLoadEventData,
+  ActivityIndicator,
+  Share,
+  PermissionsAndroid,
+  Platform,
+  Image as NativeImage,
+  ScrollView as RNScrollView
+} from 'react-native'
+import {
+  getKonzertLink,
+  getUTPLink,
+  KonzertThemeMap,
+  UTPService
+} from '../../service/utp'
 import Page from '../page'
-import { useTranslation } from 'react-i18next';
-import UTPWebview from './utp-webview';
-import { useScrollHandlers } from 'react-native-actions-sheet';
+import {useTranslation} from 'react-i18next'
+import UTPWebview from './utp-webview'
+import {useScrollHandlers} from 'react-native-actions-sheet'
 
 type BookShareViewProps = {
   kind: UTPService
@@ -15,12 +28,19 @@ type BookShareViewProps = {
   cid?: number
   bookDBID: number
   uid: number | null
-  scrollHandler: ReturnType<typeof useScrollHandlers<RNScrollView>>
+  scrollHandler?: ReturnType<typeof useScrollHandlers<RNScrollView>>
+  isDarkMode?: boolean
 }
 
 async function hasAndroidPermission() {
-  const v = typeof Platform.Version === 'string' ? parseInt(Platform.Version, 10) : Platform.Version
-  const permission = v >= 33 ? PermissionsAndroid.PERMISSIONS.READ_MEDIA_IMAGES : PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE
+  const v =
+    typeof Platform.Version === 'string'
+      ? parseInt(Platform.Version, 10)
+      : Platform.Version
+  const permission =
+    v >= 33
+      ? PermissionsAndroid.PERMISSIONS.READ_MEDIA_IMAGES
+      : PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE
 
   const hasPermission = await PermissionsAndroid.check(permission)
   if (hasPermission) {
@@ -32,39 +52,37 @@ async function hasAndroidPermission() {
 }
 
 function UTPShareView(props: BookShareViewProps) {
-  const { kind, bookID, cid, bookDBID, uid, scrollHandler } = props
-  const { t } = useTranslation()
+  const {kind, bookID, cid, bookDBID, uid, isDarkMode} = props
+  const {t} = useTranslation()
   const [currentTheme, setCurrentTheme] = useState(KonzertThemeMap.light.id)
 
   const konzertUrl = useMemo(() => {
     if (!uid) {
       return
     }
-    return getKonzertLink(
-      kind,
-      {
-        uid,
-        bid: bookID,
-        cid: cid,
-        theme: currentTheme
-      })
+    return getKonzertLink(kind, {
+      uid,
+      bid: bookID,
+      cid: cid,
+      theme: isDarkMode ? KonzertThemeMap.dark.id : currentTheme
+    })
   }, [props.uid, props.kind, props.bookID, currentTheme])
 
   const shareImageUrl = useMemo(() => {
     if (!props.uid) {
       return
     }
-    return getUTPLink(
-      kind,
-      {
-        uid: uid || -1,
-        bid: bookID,
-        cid: cid,
-        theme: currentTheme
-      })
+    return getUTPLink(kind, {
+      uid: uid || -1,
+      bid: bookID,
+      cid: cid,
+      theme: isDarkMode ? KonzertThemeMap.dark.id : currentTheme
+    })
   }, [props.uid, props.kind, props.bookID, currentTheme])
 
-  const [loadedImage, setLoadedImage] = useState<ImageLoadEventData['source'] | null>(null)
+  const [loadedImage, setLoadedImage] = useState<
+    ImageLoadEventData['source'] | null
+  >(null)
 
   const [loading, setLoading] = useState(false)
 
@@ -72,7 +90,7 @@ function UTPShareView(props: BookShareViewProps) {
     if (!loadedImage?.uri) {
       return
     }
-    if (Platform.OS === "android" && !(await hasAndroidPermission())) {
+    if (Platform.OS === 'android' && !(await hasAndroidPermission())) {
       return
     }
     try {
@@ -82,7 +100,7 @@ function UTPShareView(props: BookShareViewProps) {
         title: 'Saved to album'
       })
     } catch (err: any) {
-      Toast.show({ title: err.toString() })
+      Toast.show({title: err.toString()})
     } finally {
       setLoading(false)
     }
@@ -90,7 +108,10 @@ function UTPShareView(props: BookShareViewProps) {
 
   const onShareLinkClick = useCallback(() => {
     const prefix = `https://clippingkk.annatarhe.com`
-    const distUrl = props.kind === UTPService.book ? `/dash/${uid}/book/${bookDBID}` : `/dash/${uid}/clippings/${cid}`
+    const distUrl =
+      props.kind === UTPService.book
+        ? `/dash/${uid}/book/${bookDBID}`
+        : `/dash/${uid}/clippings/${cid}`
     Share.share({
       url: prefix + distUrl
     })
@@ -114,11 +135,9 @@ function UTPShareView(props: BookShareViewProps) {
 
   return (
     <ScrollView
-      backgroundColor='gray.100'
-      _dark={{ backgroundColor: 'gray.900' }}
-      pt={4}
-      {...scrollHandler}
-    >
+      backgroundColor={isDarkMode ? 'gray.900' : 'gray.100'}
+      _dark={{backgroundColor: 'gray.900'}}
+      pt={4}>
       <Center>
         <View pb={4}>
           <Button.Group>
@@ -127,20 +146,14 @@ function UTPShareView(props: BookShareViewProps) {
                 key={v.id}
                 variant={v.id === currentTheme ? 'solid' : 'outline'}
                 onPress={() => setCurrentTheme(v.id)}>
-                <Text>
-                  {v.name}
-                </Text>
+                <Text>{v.name}</Text>
               </Button>
             ))}
           </Button.Group>
-          <Button
-            my={4}
-            isLoading={loading}
-            onPress={onSaveImage}>
+          <Button my={4} isLoading={loading} onPress={onSaveImage}>
             <Text>{t('app.clipping.save')}</Text>
           </Button>
-          <Button
-            onPress={onShareLinkClick}>
+          <Button onPress={onShareLinkClick}>
             <Text>{t('app.clipping.shares')}</Text>
           </Button>
         </View>
@@ -150,8 +163,7 @@ function UTPShareView(props: BookShareViewProps) {
             width={'100%'}
             justifyContent={'center'}
             alignItems={'center'}
-            paddingBottom={4}
-          >
+            paddingBottom={4}>
             <NativeImage
               source={loadedImage}
               alt={t('app.clipping.share') ?? ''}
@@ -161,18 +173,18 @@ function UTPShareView(props: BookShareViewProps) {
                 // TODO: calc
                 aspectRatio: loadedImage.width / loadedImage.height,
                 width: 320,
-                height: loadedImage.height * 320 / loadedImage.width,
+                height: (loadedImage.height * 320) / loadedImage.width
               }}
-              resizeMode='cover'
+              resizeMode="cover"
             />
           </View>
         ) : (
           <View flex={1} background={'red.300'}>
             <UTPWebview
               url={konzertUrl!}
-              onGetImage={(file) => {
+              onGetImage={file => {
                 NativeImage.getSize(file, (width, height) => {
-                  setLoadedImage({ uri: file, width, height })
+                  setLoadedImage({uri: file, width, height})
                 })
               }}
             />

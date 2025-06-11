@@ -1,31 +1,39 @@
-import { VStack } from '@gluestack-ui/themed'
-import React, { useMemo } from 'react'
-import PulseBox from '../pulse-box/pulse-box'
-import { Dimensions, SafeAreaView } from 'react-native'
+import React from 'react';
+import { View, StyleSheet, SafeAreaView, useWindowDimensions } from 'react-native';
+import PulseBox from '../pulse-box/pulse-box';
 
-type SkeletonClippingListProps = {}
+const SKELETON_COUNT = 4;
 
-const SKELETON_COUNT = 4
+function SkeletonClippingList() {
+  const { width } = useWindowDimensions();
+  const itemWidth = width - 32; // 16 padding on each side
 
-function SkeletonClippingList(props: SkeletonClippingListProps) {
-	const width = useMemo(() => {
-		return Dimensions.get('screen').width - 8 * 2
-	}, [])
-	return (
-		<SafeAreaView>
-			<VStack height="$full" marginTop={'$4'} rowGap={'$4'}>
-				{new Array(SKELETON_COUNT).fill(0).map((_, index) => (
-					<PulseBox
-						key={index}
-						height={200}
-						width={width}
-						marginLeft={8}
-						radius={8}
-					/>
-				))}
-			</VStack>
-		</SafeAreaView>
-	)
+  return (
+    <SafeAreaView style={styles.safeArea}>
+      <View style={styles.container}>
+        {new Array(SKELETON_COUNT).fill(0).map((_, index) => (
+          <PulseBox
+            key={index}
+            height={150} // Approximate height of a ClippingCell
+            width={itemWidth}
+            radius={16} // Match ClippingCell border radius
+          />
+        ))}
+      </View>
+    </SafeAreaView>
+  );
 }
 
-export default SkeletonClippingList
+const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+  },
+  container: {
+    flex: 1,
+    paddingHorizontal: 16,
+    paddingTop: 16, // To account for header if any, or just top padding
+    gap: 16, // Spacing between skeleton items
+  },
+});
+
+export default SkeletonClippingList;

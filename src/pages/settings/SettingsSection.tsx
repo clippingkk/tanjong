@@ -1,36 +1,57 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, useColorScheme } from 'react-native';
+import { FontLXGW } from '../../styles/font';
 
 type SettingsSectionProps = {
   title?: string;
   children: React.ReactNode;
 };
 
+const lightColors = {
+  background: 'rgba(255, 255, 255, 0.8)',
+  title: '#666',
+  shadow: '#000',
+};
+
+const darkColors = {
+  background: 'rgba(50, 50, 50, 0.6)',
+  title: '#ccc',
+  shadow: '#fff',
+};
+
 const SettingsSection = ({ title, children }: SettingsSectionProps) => {
+  const isDarkMode = useColorScheme() === 'dark';
+  const colors = isDarkMode ? darkColors : lightColors;
+
   return (
     <View style={styles.container}>
-      {title && <Text style={styles.title}>{title}</Text>}
-      <View style={styles.content}>{children}</View>
+      {title && <Text style={[styles.title, { color: colors.title }]}>{title}</Text>}
+      <View style={[styles.content, { backgroundColor: colors.background, shadowColor: colors.shadow }]}>
+        {children}
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 32,
+    marginBottom: 24,
   },
   title: {
     paddingHorizontal: 16,
-    paddingVertical: 8,
-    fontSize: 13,
-    color: '#666',
+    paddingBottom: 8,
+    fontSize: 14,
+    fontFamily: FontLXGW,
     textTransform: 'uppercase',
+    fontWeight: '600',
   },
   content: {
-    backgroundColor: '#fff',
-    borderTopWidth: StyleSheet.hairlineWidth,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderColor: '#ccc',
+    borderRadius: 12,
+    overflow: 'hidden',
+    elevation: 2,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
   },
 });
 

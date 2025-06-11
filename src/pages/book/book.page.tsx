@@ -43,7 +43,7 @@ function BookPage(props: BookPageProps) {
       title: book.title,
       headerTransparent: true,
       headerBlurEffect: cs === 'dark' ? 'dark' : 'light',
-      headerRight(props) {
+      headerRight() {
         return (
           <Button
             variant="link"
@@ -141,7 +141,7 @@ function BookPage(props: BookPageProps) {
           refreshing={bs.loading}
           data={bs.data?.book.clippings}
           renderItem={({item}) => {
-            return <ClippingCell clipping={item} />
+            return <ClippingCell clipping={item} book={book} />
           }}
           ListEmptyComponent={
             <View>

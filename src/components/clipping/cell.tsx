@@ -1,84 +1,203 @@
-import { Link } from '@react-navigation/native'
-import { Text, View } from 'native-base'
-import React, { useMemo } from 'react'
-import { Dimensions } from 'react-native'
-import { RouteKeys } from '../../routes'
-import { Clipping } from '../../schema/generated'
-import { FontLXGW } from '../../styles/font'
+import {Link} from '@react-navigation/native'
+import {Text, View} from 'native-base'
+import React from 'react'
+import {StyleSheet, useColorScheme} from 'react-native'
+import LinearGradient from 'react-native-linear-gradient'
+import {BlurView, BlurViewProps} from '@react-native-community/blur'
+import {RouteKeys} from '../../routes'
+import {Clipping} from '../../schema/generated'
+import {FontLXGW} from '../../styles/font' // Assuming FontLXGW might be used later or for specific text
+import {WenquBook} from '../../service/wenqu'
 
 type ClippingCellProps = {
-	clipping: Pick<Clipping, 'id' | 'bookID' | 'content' | 'title'>
+  clipping: Pick<Clipping, 'id' | 'bookID' | 'content' | 'title'>
+  book?: WenquBook
 }
+
+const lightColors = {
+  gradient: ['#FF6B6B', '#FFD166'], // Lively Coral to Sunny Yellow
+  textPrimary: '#222222',
+  textSecondary: '#444444',
+  textOnPrimaryBg: '#FFFFFF',
+  footerText: '#555555',
+  blurType: 'light' as BlurViewProps['blurType'],
+  cardBorder: 'rgba(0,0,0,0.1)'
+} as const
+
+const darkColors = {
+  gradient: ['#7B2CBF', '#C71F66'], // Deep Purple to Magenta
+  textPrimary: '#FFFFFF',
+  textSecondary: '#DDDDDD',
+  textOnPrimaryBg: '#FFFFFF',
+  footerText: '#BBBBBB',
+  blurType: 'dark' as BlurViewProps['blurType'],
+  cardBorder: 'rgba(255,255,255,0.2)'
+} as const
 
 function ClippingCell(props: ClippingCellProps) {
-	const clipping = props.clipping
-	const width = useMemo(() => {
-		return Dimensions.get('screen').width - 8 * 2
-	}, [])
-	return (
-		<View paddingX={2}>
-			<Link
-				screen={RouteKeys.Clipping}
-				params={{
-					clipping: props.clipping,
-				}}
-				style={{
-					width: '100%',
-				}}
-			>
-				<View
-					className="w-full rounded-lg overflow-hidden transition-all duration-200 
-        bg-white dark:bg-gray-800 
-        hover:bg-gray-50 dark:hover:bg-gray-700
-        shadow-md hover:shadow-lg
-        border border-gray-100 dark:border-gray-700"
-				>
-					{/* Header with book info */}
-					<View className="px-4 py-3 border-b border-gray-100 dark:border-gray-700 flex items-center gap-3">
-						{/* <Book className="w-4 h-4 text-blue-500 dark:text-blue-400" /> */}
-						<View className="flex-1">
-							<Text className="text-sm font-medium text-gray-900 dark:text-gray-100">
-								{clipping.title}
-							</Text>
-							<Text className="text-xs text-gray-500 dark:text-gray-400">
-								{clipping.bookID}
-							</Text>
-						</View>
-					</View>
+  const {clipping, book} = props
+  const colorScheme = useColorScheme()
+  const isDarkMode = colorScheme === 'dark'
+  const currentColors = isDarkMode ? darkColors : lightColors
 
-					{/* Clipping content */}
-					<View className="p-4 relative">
-						{/* <Quote className="absolute top-3 left-3 w-4 h-4 text-gray-300 dark:text-gray-600" /> */}
-						<View className="pl-6">
-							<Text className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
-								{clipping.content}
-							</Text>
-						</View>
-					</View>
+  return (
+    <View style={styles.outerContainer}>
+      <Link
+        screen={RouteKeys.Clipping}
+        params={{
+          clippingId: clipping.id,
+          clipping: clipping,
+          bookId: clipping.bookID
+        }}
+        style={styles.linkStyle}>
+        <LinearGradient
+          colors={currentColors.gradient as unknown as string[]}
+          start={{x: 0, y: 0}}
+          end={{x: 1, y: 1}}
+          style={[styles.cardBase, {borderColor: currentColors.cardBorder}]} // Added borderColor from theme
+        >
+          <BlurView
+            style={styles.absoluteFill}
+            blurType={currentColors.blurType}
+            blurAmount={15} // Increased blur amount for a more pronounced effect
+            reducedTransparencyFallbackColor={
+              isDarkMode ? 'rgba(0,0,0,0.5)' : 'rgba(255,255,255,0.5)'
+            }
+          />
+          <View style={styles.contentOverlay}>
+            {/* Header with book info */}
+            <View style={styles.headerContainer}>
+              <View style={styles.headerTextContainer}>
+                <Text
+                  style={[
+                    styles.titleText,
+                    {color: currentColors.textOnPrimaryBg}
+                  ]}>
+                  {book?.title || clipping.title || 'Untitled Clipping'}
+                </Text>
+                {/* <Text
+                  style={[
+                    styles.bookIdText,
+                    {color: currentColors.textOnPrimaryBg}
+                  ]}>
+                  Book: {clipping.bookID}
+                </Text> */}
+              </View>
+            </View>
 
-					{/* Footer with metadata */}
-					<View
-						className="px-4 py-2 bg-gray-50 dark:bg-gray-750/50 
-          text-xs text-gray-500 dark:text-gray-400 flex justify-between items-center"
-					>
-						<Text>Page 23</Text>
-						<Text>Chapter 3</Text>
-					</View>
-				</View>
+            {/* Clipping content */}
+            <View style={styles.contentContainer}>
+              <Text
+                style={[
+                  styles.contentText,
+                  {color: currentColors.textOnPrimaryBg}
+                ]}
+                numberOfLines={5}
+                ellipsizeMode="tail">
+                {clipping.content}
+              </Text>
+            </View>
 
-				{/* <View
-					backgroundColor={'blue.300'}
-					_dark={{ backgroundColor: 'blue.900' }}
-					borderRadius={8}
-					shadow={4}
-					padding={4}
-					width={width}
-				>
-					<Text fontFamily={FontLXGW}>{props.clipping.content}</Text>
-				</View> */}
-			</Link>
-		</View>
-	)
+            {/* Footer with metadata - kept simple */}
+            <View style={styles.footerContainer}>
+              <Text
+                style={[
+                  styles.footerText,
+                  {color: currentColors.textOnPrimaryBg, opacity: 0.8}
+                ]}>
+                Page 23
+              </Text>
+              <Text
+                style={[
+                  styles.footerText,
+                  {color: currentColors.textOnPrimaryBg, opacity: 0.8}
+                ]}>
+                Chapter 3
+              </Text>
+            </View>
+          </View>
+        </LinearGradient>
+      </Link>
+    </View>
+  )
 }
+
+const styles = StyleSheet.create({
+  outerContainer: {
+    paddingHorizontal: 16, // Standardized padding
+    paddingVertical: 8
+  },
+  linkStyle: {
+    width: '100%'
+  },
+  cardBase: {
+    borderRadius: 16, // Bolder radius
+    overflow: 'hidden',
+    elevation: 8, // Android shadow
+    shadowColor: '#000',
+    shadowOffset: {width: 0, height: 4},
+    shadowOpacity: 0.3,
+    shadowRadius: 6,
+    borderWidth: 1 // Subtle border
+  },
+  absoluteFill: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0
+  },
+  contentOverlay: {
+    // This view sits on top of the BlurView
+    padding: 16,
+    backgroundColor: 'rgba(0,0,0,0.1)', // Slight dimming for text contrast on blur
+    flex: 1,
+    justifyContent: 'space-between'
+  },
+  headerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 12
+  },
+  headerTextContainer: {
+    flex: 1
+  },
+  titleText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    // fontFamily: FontLXGW, // Uncomment if you want to use this font
+    marginBottom: 4,
+    fontFamily: FontLXGW
+  },
+  bookIdText: {
+    fontSize: 14,
+    fontWeight: '600',
+    opacity: 0.9,
+    fontFamily: FontLXGW
+  },
+  contentContainer: {
+    marginVertical: 12
+  },
+  contentText: {
+    fontSize: 15,
+    lineHeight: 22, // Improved readability
+    fontWeight: '500',
+    fontFamily: FontLXGW
+  },
+  footerContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: 12,
+    paddingTop: 8,
+    borderTopWidth: 1,
+    borderTopColor: 'rgba(255,255,255,0.2)' // Subtle separator for footer
+  },
+  footerText: {
+    fontSize: 12,
+    fontWeight: '600',
+    fontFamily: FontLXGW
+  }
+})
 
 export default ClippingCell

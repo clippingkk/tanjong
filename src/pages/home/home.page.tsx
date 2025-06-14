@@ -1,17 +1,9 @@
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
-import { useHeaderHeight } from '@react-navigation/elements'
 import { MasonryFlashList } from '@shopify/flash-list'
 import { useAtomValue } from 'jotai'
-import {
-	VStack,
-	HStack,
-	View,
-	Center,
-	useColorMode,
-} from '@gluestack-ui/themed'
+import { View } from '@gluestack-ui/themed'
 import React, { useCallback, useMemo, useState } from 'react'
-import { SafeAreaView } from 'react-native'
-import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import { SafeAreaView, useColorScheme, StyleSheet } from 'react-native'
 import { uidAtom } from '../../atomic'
 import AuthGuard from '../../components/auth-guard/auth-guard'
 import BookCell from '../../components/book/cell'
@@ -19,9 +11,20 @@ import BookHero from '../../components/book/hero'
 import EmptyBox from '../../components/empty/empty'
 import ErrorBox from '../../components/errorbox/errorbox'
 import { useBooksQuery } from '../../schema/generated'
-import PulseBox from '../../components/pulse-box/pulse-box'
 import { useHomeLoad } from '../../hooks/init'
 import HomePageSkeleton from './skeleton'
+import LinearGradient from 'react-native-linear-gradient'
+import { BlurView } from '@react-native-community/blur'
+
+const lightColors = {
+  gradient: ['#FFDAB9', '#FFA07A'],
+  blur: 'light',
+}
+
+const darkColors = {
+  gradient: ['#483D8B', '#8A2BE2'],
+  blur: 'dark',
+}
 
 type HomePageProps = {}
 
@@ -67,8 +70,9 @@ function HomePage(props: HomePageProps) {
 			})
 	}, [uid, bs.data?.books.length, atEnd])
 
-	const bh = useBottomTabBarHeight()
-	const hh = useHeaderHeight()
+	const bh = useBottomTabBarHeight();
+	const isDarkMode = useColorScheme() === 'dark';
+	const colors = isDarkMode ? darkColors : lightColors;
 
 	const theReadingBook = useMemo(() => {
 		const lbs = bs.data?.books ?? []
@@ -110,72 +114,51 @@ function HomePage(props: HomePageProps) {
 	}
 
 	if (bs.loading) {
-		return <HomePageSkeleton />
 		return (
-			<View sx={{ _dark: { backgroundColor: '$coolGray900' } }}>
-				<SafeAreaView>
-					<VStack marginTop={20}>
-						<Center>
-							<PulseBox height={200} width={150} radius={4} />
-						</Center>
-						<HStack marginTop={8} padding={8} justifyContent="space-around">
-							<PulseBox height={150} width={100} radius={4} />
-							<PulseBox height={150} width={100} radius={4} />
-						</HStack>
-						<HStack marginTop={8} padding={8} justifyContent="space-around">
-							<PulseBox height={150} width={100} radius={4} />
-							<PulseBox height={150} width={100} radius={4} />
-						</HStack>
-						<HStack marginTop={8} padding={8} justifyContent="space-around">
-							<PulseBox height={150} width={100} radius={4} />
-							<PulseBox height={150} width={100} radius={4} />
-						</HStack>
-					</VStack>
-				</SafeAreaView>
-			</View>
+		  <LinearGradient colors={colors.gradient} style={styles.flexOne}>
+		    <BlurView
+		      style={styles.flexOne}
+		      blurType={colors.blur as any}
+		      blurAmount={10}
+		    />
+		    <HomePageSkeleton />
+		  </LinearGradient>
 		)
 	}
-
 	if ((bs.data?.books.length ?? 0) === 0) {
 		return <EmptyBox />
 	}
 
 	return (
-		<SafeAreaView>
-			<View
-				sx={{
-					_light: {
-						backgroundColor: '$coolGray100',
-					},
-					_dark: {
-						backgroundColor: '$coolGray900',
-					},
-				}}
-				width="100%"
-				height="100%"
-			>
-				<MasonryFlashList
-					ListHeaderComponent={() => (
-						<View sx={{ _dark: { backgroundColor: '$coolGray900' } }}>
-							<BookHero bookDoubanID={theReadingBook} />
-						</View>
-					)}
-					onRefresh={() => bs.refetch()}
-					refreshing={bs.loading}
-					numColumns={2}
-					data={listedBook}
-					renderItem={({ item }) => {
-						return <BookCell bookDoubanID={item.doubanId} />
-					}}
-					estimatedItemSize={250}
-					onEndReached={onReachedEnd}
-					onEndReachedThreshold={1}
-					ListFooterComponent={<View width="100%" height={bh} />}
-					ItemSeparatorComponent={() => <View height={4} />}
-				/>
-			</View>
-		</SafeAreaView>
+	  <LinearGradient colors={colors.gradient} style={styles.flexOne}>
+	    <SafeAreaView style={styles.flexOne}>
+	      <MasonryFlashList
+	        contentContainerStyle={styles.listContent}
+	        ListHeaderComponent={() => (
+	          <BookHero bookDoubanID={theReadingBook} />
+	        )}
+	        onRefresh={() => bs.refetch()}
+	        refreshing={bs.loading}
+	        numColumns={2}
+	        data={listedBook}
+	        renderItem={({ item }) => (
+	          <BookCell bookDoubanID={item.doubanId} />
+	        )}
+	        estimatedItemSize={250}
+	        onEndReached={onReachedEnd}
+	        onEndReachedThreshold={1}
+	        ListFooterComponent={<View style={{ height: bh + 16 }} />}
+	        ItemSeparatorComponent={() => <View style={styles.separator} />}
+	      />
+	    </SafeAreaView>
+	  </LinearGradient>
 	)
 }
+
+const styles = StyleSheet.create({
+  flexOne: { flex: 1 },
+  listContent: { paddingHorizontal: 8 },
+  separator: { height: 8 },
+})
 
 export default HomePage

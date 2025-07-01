@@ -1,26 +1,28 @@
-import {NativeStackScreenProps} from '@react-navigation/native-stack'
-import {FlashList} from '@shopify/flash-list'
-import {useAtomValue} from 'jotai'
-import {Center, Spinner, Text} from '@gluestack-ui/themed'
-import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react'
-import {ScrollView, useColorScheme} from 'react-native'
-import {uidAtom} from '../../atomic'
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
+import { FlashList } from '@shopify/flash-list'
+import { useAtomValue } from 'jotai'
+import { Center, Spinner, Text } from '@gluestack-ui/themed'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { ScrollView, useColorScheme, RefreshControl, StyleSheet, TouchableOpacity } from 'react-native'
+import { uidAtom } from '../../atomic'
 import BookHead from '../../components/book/head'
 import ClippingCell from '../../components/clipping/cell'
 import Page from '../../components/page'
 import UTPShareView from '../../components/shares/utp.share'
-import {useClippingCellAvgHeight} from '../../hooks/clipping'
-import {RouteKeys, RouteParamList} from '../../routes'
-import {useBookQuery} from '../../schema/generated'
-import {UTPService} from '../../service/utp'
+import { useClippingCellAvgHeight } from '../../hooks/clipping'
+import { RouteKeys, RouteParamList } from '../../routes'
+import { useBookQuery } from '../../schema/generated'
+import { UTPService } from '../../service/utp'
 import ActionSheet, {
   ActionSheetRef,
   useScrollHandlers
 } from 'react-native-actions-sheet'
-import {VStack, View, Button} from '@gluestack-ui/themed'
-import {SafeAreaView} from 'react-native'
+import { VStack, View, Button } from '@gluestack-ui/themed'
+import { SafeAreaView } from 'react-native'
 import PulseBox from '../../components/pulse-box/pulse-box'
-import {useNavigation} from '@react-navigation/native'
+import { useNavigation } from '@react-navigation/native'
+import { GradientBackground, Card, SectionHeader } from '../../components/ui'
+import { FontLXGW } from '../../styles/font'
 
 type BookPageProps = NativeStackScreenProps<
   RouteParamList,
@@ -30,7 +32,7 @@ type BookPageProps = NativeStackScreenProps<
 function BookPage(props: BookPageProps) {
   const cs = useColorScheme()
   const isDarkMode = cs === 'dark'
-  const {route} = props
+  const { route } = props
   const navigation = useNavigation()
   const book = route.params.book
   const uid = useAtomValue(uidAtom)
@@ -46,15 +48,13 @@ function BookPage(props: BookPageProps) {
       headerBlurEffect: cs === 'dark' ? 'dark' : 'light',
       headerRight() {
         return (
-          <Button
-            variant="link"
-            size="xs"
+          <TouchableOpacity
+            style={styles.shareButton}
             onPress={() => {
-              // bsr.current?.present()
               actionSheetRef.current?.show()
             }}>
-            <Text> 🌐 </Text>
-          </Button>
+            <Text style={{ fontSize: 20 }}>🌐</Text>
+          </TouchableOpacity>
         )
       }
     })
@@ -103,8 +103,8 @@ function BookPage(props: BookPageProps) {
 
   if (bs.loading) {
     return (
-      <View sx={{_dark: {backgroundColor: '$coolGray900'}}}>
-        <SafeAreaView>
+      <GradientBackground blur>
+        <SafeAreaView style={styles.flexOne}>
           <VStack mt={20}>
             <Center mb={8}>
               <PulseBox height={310} width={400} radius={4} />
@@ -119,56 +119,76 @@ function BookPage(props: BookPageProps) {
             </Center>
           </VStack>
         </SafeAreaView>
-      </View>
+      </GradientBackground>
     )
   }
 
   if ((bs.data?.book.clippingsCount ?? 0) === 0) {
     return (
-      <Page>
-        <VStack alignItems="center" mt={'$40'} height={'100%'}>
-          <Spinner />
-        </VStack>
-      </Page>
+      <GradientBackground>
+        <SafeAreaView style={styles.flexOne}>
+          <Center style={styles.emptyContainer}>
+            <Text style={[styles.emptyText, { color: isDarkMode ? '#E2E8F0' : '#475569', fontFamily: FontLXGW }]}>
+              No clippings found for this book
+            </Text>
+          </Center>
+        </SafeAreaView>
+      </GradientBackground>
     )
   }
 
   return (
-    <Page>
-      <>
+    <GradientBackground>
+      <SafeAreaView style={styles.flexOne}>
         <FlashList
-          ListHeaderComponent={() => <BookHead book={book} />}
-          onRefresh={() => bs.refetch()}
-          refreshing={bs.loading}
+          ListHeaderComponent={() => (
+            <View>
+              <BookHead book={book} />
+              <SectionHeader
+                title="Clippings"
+                subtitle={`${bs.data?.book.clippingsCount ?? 0} highlights from this book`}
+              />
+            </View>
+          )}
+          refreshControl={
+            <RefreshControl
+              refreshing={bs.loading}
+              onRefresh={() => bs.refetch()}
+              tintColor={isDarkMode ? '#60A5FA' : '#3B82F6'}
+            />
+          }
+          contentContainerStyle={styles.listContent}
           data={bs.data?.book.clippings}
-          renderItem={({item}) => {
-            return <ClippingCell clipping={item} book={book} />
+          renderItem={({ item }) => {
+            return (
+              <ClippingCell clipping={item} book={book} />
+            )
           }}
           ListEmptyComponent={
-            <View>
-              <Text>empty</Text>
-            </View>
+            <Center style={styles.emptyContainer}>
+              <Text style={[styles.emptyText, { color: isDarkMode ? '#E2E8F0' : '#475569' }]}>No clippings yet</Text>
+            </Center>
           }
           estimatedItemSize={itemSizeCellHeight}
           onEndReached={onReachedEnd}
           onEndReachedThreshold={1}
-          ListFooterComponent={<View width="100%" height={0} />}
-          ItemSeparatorComponent={() => <View height={4} />}
+          ListFooterComponent={<View style={{ height: 20 }} />}
+          ItemSeparatorComponent={() => <View style={styles.separator} />}
         />
         <ActionSheet
           ref={actionSheetRef}
           snapPoints={[80, 90]}
-          // backgroundStyle={{ backgroundColor: bg }}
-          // style={{
-          //   shadowColor: "#000",
-          //   shadowOffset: {
-          //     width: 0,
-          //     height: 12,
-          //   },
-          //   shadowOpacity: 0.58,
-          //   shadowRadius: 16.00,
-          //   elevation: 24,
-          // }}
+        // backgroundStyle={{ backgroundColor: bg }}
+        // style={{
+        //   shadowColor: "#000",
+        //   shadowOffset: {
+        //     width: 0,
+        //     height: 12,
+        //   },
+        //   shadowOpacity: 0.58,
+        //   shadowRadius: 16.00,
+        //   elevation: 24,
+        // }}
         >
           <UTPShareView
             kind={UTPService.book}
@@ -179,9 +199,35 @@ function BookPage(props: BookPageProps) {
             isDarkMode={isDarkMode}
           />
         </ActionSheet>
-      </>
-    </Page>
+      </SafeAreaView>
+    </GradientBackground>
   )
 }
+
+const styles = StyleSheet.create({
+  flexOne: {
+    flex: 1,
+  },
+  listContent: {
+  },
+  separator: {
+    height: 12,
+  },
+  shareButton: {
+    marginRight: 16,
+    padding: 8,
+  },
+  clippingCard: {
+    marginHorizontal: 4,
+  },
+  emptyContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  emptyText: {
+    fontSize: 16,
+  },
+})
 
 export default BookPage

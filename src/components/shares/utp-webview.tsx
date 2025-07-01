@@ -13,7 +13,7 @@ type UTPWebviewProps = {
 
 function UTPWebview(props: UTPWebviewProps) {
   const { url, onGetImage } = props
-  const ref = useRef()
+  const ref = useRef(null)
 
   const [size, setSize] = useState({ width: 375 - 30, height: 2000 })
 

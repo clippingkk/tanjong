@@ -1,7 +1,7 @@
-import {CachedImage} from '@georstat/react-native-image-cache'
-import {NativeStackScreenProps} from '@react-navigation/native-stack'
-import {useAtomValue} from 'jotai'
-import React, {useEffect, useMemo, useRef} from 'react'
+import { CachedImage } from '@georstat/react-native-image-cache'
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
+import { useAtomValue } from 'jotai'
+import React, { useEffect, useMemo, useRef } from 'react'
 import {
   ScrollView,
   Text,
@@ -14,54 +14,29 @@ import {
   useColorScheme,
   Platform
 } from 'react-native'
-import LinearGradient from 'react-native-linear-gradient'
-import {BlurView, BlurViewProps} from '@react-native-community/blur'
 import ActionSheet, {
   ActionSheetRef,
   useScrollHandlers
 } from 'react-native-actions-sheet'
-import {useNavigation} from '@react-navigation/native'
+import { useNavigation } from '@react-navigation/native'
 
-import {uidAtom} from '../../atomic'
+import { uidAtom } from '../../atomic'
 import UTPShareView from '../../components/shares/utp.share'
-import {useSingleBook} from '../../hooks/wenqu'
-import {RouteParamList} from '../../routes'
-import {useFetchClippingQuery} from '../../schema/generated'
-import {UTPService} from '../../service/utp'
-import {FontLXGW} from '../../styles/font'
-import Actions from './actions' // Assuming Actions component is styled or will be handled separately
+import { useSingleBook } from '../../hooks/wenqu'
+import { RouteParamList } from '../../routes'
+import { useFetchClippingQuery } from '../../schema/generated'
+import { UTPService } from '../../service/utp'
+import { FontLXGW } from '../../styles/font'
+import Actions from './actions'
+import { GradientBackground, Card, SectionHeader } from '../../components/ui'
 
 type ClippingPageProps = NativeStackScreenProps<RouteParamList, 'Clipping'>
 
-const lightColors = {
-  gradient: ['#E0EAFC', '#CFDEF3'], // Light Blue to Soft Blue
-  textPrimary: '#1A202C', // Dark Gray
-  textSecondary: '#4A5568', // Medium Gray
-  cardBackground: 'rgba(255, 255, 255, 0.7)',
-  blurType: (Platform.OS === 'ios'
-    ? 'xlight'
-    : 'light') as BlurViewProps['blurType'],
-  iconColor: '#2D3748',
-  separator: 'rgba(0,0,0,0.1)'
-} as const
-
-const darkColors = {
-  gradient: ['#1A202C', '#2D3748'], // Dark Gray to Slightly Lighter Dark Gray
-  textPrimary: '#E2E8F0', // Light Gray
-  textSecondary: '#A0AEC0', // Medium Light Gray
-  cardBackground: 'rgba(45, 55, 72, 0.7)', // Semi-transparent Dark Gray
-  blurType: (Platform.OS === 'ios'
-    ? 'dark'
-    : 'dark') as BlurViewProps['blurType'],
-  iconColor: '#CBD5E0',
-  separator: 'rgba(255,255,255,0.1)'
-} as const
 
 function ClippingPage(props: ClippingPageProps) {
   const navigation = useNavigation()
   const colorScheme = useColorScheme()
   const isDarkMode = colorScheme === 'dark'
-  const currentColors = isDarkMode ? darkColors : lightColors
 
   const paramClipping = props.route.params.clipping
   const cid = props.route.params.clippingID
@@ -70,8 +45,8 @@ function ClippingPage(props: ClippingPageProps) {
   const bsr = useRef<ActionSheetRef>(null)
   const uid = useAtomValue(uidAtom)
 
-  const {data, loading, refetch} = useFetchClippingQuery({
-    variables: {id: id!},
+  const { data, loading, refetch } = useFetchClippingQuery({
+    variables: { id: id! },
     skip: !id
   })
 
@@ -92,16 +67,14 @@ function ClippingPage(props: ClippingPageProps) {
         <TouchableOpacity
           onPress={() => bsr.current?.show()}
           style={styles.headerButton}>
-          <Text style={{color: currentColors.iconColor, fontSize: 24}}>🌐</Text>
+          <Text style={{ fontSize: 20 }}>🌐</Text>
         </TouchableOpacity>
       ),
       headerTitleStyle: {
-        color: currentColors.textPrimary,
         fontFamily: FontLXGW
-      },
-      headerTintColor: currentColors.iconColor // For back button
+      }
     })
-  }, [pageTitle, navigation, isDarkMode, currentColors])
+  }, [pageTitle, navigation, isDarkMode])
 
   const booksResult = useSingleBook(bookID)
   const book = useMemo(() => {
@@ -111,34 +84,20 @@ function ClippingPage(props: ClippingPageProps) {
 
   if (loading && !content) {
     return (
-      <LinearGradient
-        colors={currentColors.gradient as unknown as string[]}
-        style={styles.flexGrow}>
-        <BlurView
-          style={styles.absoluteFill}
-          blurType={currentColors.blurType}
-          blurAmount={20}
-        />
+      <GradientBackground blur blurAmount={20}>
         <View style={styles.loadingContainer}>
-          <ActivityIndicator size="large" color={currentColors.textPrimary} />
+          <ActivityIndicator size="large" color={isDarkMode ? '#60A5FA' : '#3B82F6'} />
           <Text
-            style={[styles.loadingText, {color: currentColors.textPrimary}]}>
+            style={[styles.loadingText, { color: isDarkMode ? '#E2E8F0' : '#1E293B', fontFamily: FontLXGW }]}>
             Loading Clipping...
           </Text>
         </View>
-      </LinearGradient>
+      </GradientBackground>
     )
   }
 
   return (
-    <LinearGradient
-      colors={currentColors.gradient as unknown as string[]}
-      style={styles.flexGrow}>
-      <BlurView
-        style={styles.absoluteFill}
-        blurType={currentColors.blurType}
-        blurAmount={Platform.OS === 'ios' ? 25 : 5}
-      />
+    <GradientBackground>
       <SafeAreaView style={styles.flexGrow}>
         <ScrollView
           style={styles.scrollView}
@@ -146,62 +105,61 @@ function ClippingPage(props: ClippingPageProps) {
           refreshControl={
             <RefreshControl
               refreshing={loading}
-              onRefresh={() => refetch({id: id!})}
-              tintColor={currentColors.textPrimary}
+              onRefresh={() => refetch({ id: id! })}
+              tintColor={isDarkMode ? '#60A5FA' : '#3B82F6'}
             />
           }>
           {content && (
-            <View
-              style={[
-                styles.contentCard,
-                {backgroundColor: currentColors.cardBackground}
-              ]}>
+            <Card variant="elevated" style={styles.contentCard}>
               <Text
                 style={[
                   styles.contentText,
-                  {color: currentColors.textPrimary, fontFamily: FontLXGW}
+                  { color: isDarkMode ? '#E2E8F0' : '#1E293B', fontFamily: FontLXGW }
                 ]}
                 selectable>
                 {content}
               </Text>
+            </Card>
+          )}
+
+          {content && (
+            <View style={styles.actionsContainer}>
+              <Actions clipping={remoteClipping} />
             </View>
           )}
 
-          {content && <Actions clipping={remoteClipping} />}
-
           {book && (
-            <View
-              style={[
-                styles.bookInfoCard,
-                {
-                  backgroundColor: currentColors.cardBackground,
-                  borderColor: currentColors.separator
-                }
-              ]}>
-              <CachedImage
-                source={book.image}
-                style={styles.bookImage}
-                resizeMode="cover"
+            <>
+              <SectionHeader
+                title="From the book"
+                subtitle="Source of this highlight"
               />
-              <View style={styles.bookTextContainer}>
-                <Text
-                  style={[
-                    styles.bookTitle,
-                    {color: currentColors.textPrimary, fontFamily: FontLXGW}
-                  ]}
-                  selectable>
-                  {book.title}
-                </Text>
-                <Text
-                  style={[
-                    styles.bookAuthor,
-                    {color: currentColors.textSecondary, fontFamily: FontLXGW}
-                  ]}
-                  selectable>
-                  {book.author}
-                </Text>
-              </View>
-            </View>
+              <Card variant="glass" style={styles.bookInfoCard}>
+                <CachedImage
+                  source={book.image}
+                  style={styles.bookImage}
+                  resizeMode="cover"
+                />
+                <View style={styles.bookTextContainer}>
+                  <Text
+                    style={[
+                      styles.bookTitle,
+                      { color: isDarkMode ? '#E2E8F0' : '#1E293B', fontFamily: FontLXGW }
+                    ]}
+                    selectable>
+                    {book.title}
+                  </Text>
+                  <Text
+                    style={[
+                      styles.bookAuthor,
+                      { color: isDarkMode ? '#94A3B8' : '#64748B', fontFamily: FontLXGW }
+                    ]}
+                    selectable>
+                    {book.author}
+                  </Text>
+                </View>
+              </Card>
+            </>
           )}
           <View style={styles.spacer} />
         </ScrollView>
@@ -209,8 +167,8 @@ function ClippingPage(props: ClippingPageProps) {
 
       <ActionSheet
         ref={bsr}
-        containerStyle={{backgroundColor: currentColors.cardBackground}}
-        indicatorStyle={{backgroundColor: currentColors.separator}}
+        containerStyle={{ backgroundColor: isDarkMode ? '#1E293B' : '#FFFFFF' }}
+        indicatorStyle={{ backgroundColor: isDarkMode ? '#475569' : '#CBD5E0' }}
         gestureEnabled={true}>
         {book ? (
           <UTPShareView
@@ -220,30 +178,22 @@ function ClippingPage(props: ClippingPageProps) {
             cid={id}
             uid={uid}
             isDarkMode={isDarkMode}
-            // scrollHandler={scrollHandlers} // scrollHandlers from react-native-actions-sheet are for internal scrollviews
           />
         ) : (
           <View style={styles.emptyActionSheet}>
-            <Text style={{color: currentColors.textSecondary}}>
+            <Text style={{ color: isDarkMode ? '#94A3B8' : '#64748B' }}>
               No share options available.
             </Text>
           </View>
         )}
       </ActionSheet>
-    </LinearGradient>
+    </GradientBackground>
   )
 }
 
 const styles = StyleSheet.create({
   flexGrow: {
     flex: 1
-  },
-  absoluteFill: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0
   },
   loadingContainer: {
     flex: 1,
@@ -266,32 +216,18 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10
   },
   contentCard: {
-    padding: 20,
-    borderRadius: 15,
     marginBottom: 20,
-    shadowColor: '#000',
-    shadowOffset: {width: 0, height: 5},
-    shadowOpacity: 0.1,
-    shadowRadius: 10,
-    elevation: 5
   },
   contentText: {
-    fontSize: 18,
-    lineHeight: 28,
-    fontWeight: '500'
+    fontSize: 17,
+    lineHeight: 26,
+    fontWeight: '400'
   },
   bookInfoCard: {
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 15,
-    borderRadius: 15,
-    marginTop: 20,
-    borderWidth: 1,
-    shadowColor: '#000',
-    shadowOffset: {width: 0, height: 3},
-    shadowOpacity: 0.08,
-    shadowRadius: 8,
-    elevation: 4
+    marginTop: 12,
+    marginHorizontal: 20,
   },
   bookImage: {
     width: 80,
@@ -300,7 +236,8 @@ const styles = StyleSheet.create({
     marginRight: 15
   },
   bookTextContainer: {
-    flex: 1
+    flex: 1,
+    paddingRight: 12
   },
   bookTitle: {
     fontSize: 17,
@@ -311,13 +248,16 @@ const styles = StyleSheet.create({
     fontSize: 14
   },
   spacer: {
-    height: 100 // To ensure content can scroll above ActionSheet snap point
+    height: 100
   },
   emptyActionSheet: {
     padding: 20,
     alignItems: 'center',
     justifyContent: 'center',
     height: 150
+  },
+  actionsContainer: {
+    marginBottom: 20,
   }
 })
 

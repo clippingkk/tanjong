@@ -27,8 +27,8 @@ function BookHead(props: BookHeadProps) {
     return loadedImage.width / loadedImage.height
   }, [loadedImage?.height, loadedImage?.width])
   return (
-    <View marginBottom={-31}>
-      <View height={300 + hh}>
+    <View marginBottom={11}>
+      <View height={120 + hh}>
         <CachedImage
           source={book.image}
           resizeMode='cover'
@@ -46,7 +46,7 @@ function BookHead(props: BookHeadProps) {
           flexDirection='row'
           marginLeft={2}
           marginRight={2}
-          marginTop={hh + 50}
+          marginTop={10}
         >
           <CachedImage
             source={book.image}

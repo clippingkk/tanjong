@@ -2,47 +2,40 @@ import {
   BottomTabScreenProps,
   useBottomTabBarHeight
 } from '@react-navigation/bottom-tabs'
-import {useHeaderHeight} from '@react-navigation/elements'
-import {Link, useNavigation} from '@react-navigation/native'
-import {FlashList} from '@shopify/flash-list'
-import {useAtomValue} from 'jotai'
-import React, {useCallback, useEffect, useState} from 'react'
-import {uidAtom} from '../../atomic'
+import { useHeaderHeight } from '@react-navigation/elements'
+import { Link, useNavigation } from '@react-navigation/native'
+import { FlashList } from '@shopify/flash-list'
+import { useAtomValue } from 'jotai'
+import React, { useCallback, useEffect, useState } from 'react'
+import { uidAtom } from '../../atomic'
 import AuthGuard from '../../components/auth-guard/auth-guard'
 import ClippingCell from '../../components/clipping/cell'
 import EmptyBox from '../../components/empty/empty'
 import ErrorBox from '../../components/errorbox/errorbox'
 import BasicBoard from '../../components/profile/basic-board'
-import {useClippingCellAvgHeight} from '../../hooks/clipping'
-import {RouteKeys, TabRouteParamList} from '../../routes'
-import {useProfileQuery} from '../../schema/generated'
+import { useClippingCellAvgHeight } from '../../hooks/clipping'
+import { RouteKeys, TabRouteParamList } from '../../routes'
+import { useProfileQuery } from '../../schema/generated'
 import {
   View,
   Text,
   StyleSheet,
   useColorScheme,
-  SafeAreaView
+  RefreshControl,
+  TouchableOpacity
 } from 'react-native'
 import ProfilePageSkeleton from './skeleton'
-import LinearGradient from 'react-native-linear-gradient'
-import {BlurView} from '@react-native-community/blur'
-
-const lightColors = {
-  gradient: ['#FFDAB9', '#FFA07A'],
-  blur: 'light'
-}
-
-const darkColors = {
-  gradient: ['#483D8B', '#8A2BE2'],
-  blur: 'dark'
-}
+import { GradientBackground, SectionHeader, Card } from '../../components/ui'
+import { FontLXGW } from '../../styles/font'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 function ProfilePage() {
   const navigation = useNavigation()
-  const isDarkMode = useColorScheme() === 'dark'
-  const colors = isDarkMode ? darkColors : lightColors
+  const colorScheme = useColorScheme()
+  const isDarkMode = colorScheme === 'dark'
   const uid = useAtomValue(uidAtom)
   const hh = useHeaderHeight()
+  const insets = useSafeAreaInsets()
 
   const p = useProfileQuery({
     variables: {
@@ -60,9 +53,12 @@ function ProfilePage() {
     navigation.setOptions({
       title: p.data?.me.name ?? 'Profile',
       headerRight: () => (
-        <View className="flex-row mr-4 items-center">
-          <Link screen={RouteKeys.ProfileSettings}>⚙️</Link>
-        </View>
+        <TouchableOpacity
+          onPress={() => navigation.navigate(RouteKeys.ProfileSettings as any)}
+          style={styles.settingsButton}
+        >
+          <Text style={{ fontSize: 20 }}>⚙️</Text>
+        </TouchableOpacity>
       )
     })
   }, [navigation, p.data?.me.name])
@@ -125,14 +121,9 @@ function ProfilePage() {
 
   if (p.loading) {
     return (
-      <LinearGradient colors={colors.gradient} style={styles.flexOne}>
-        <BlurView
-          style={styles.flexOne}
-          blurType={colors.blur as any}
-          blurAmount={10}
-        />
+      <GradientBackground blur>
         <ProfilePageSkeleton />
-      </LinearGradient>
+      </GradientBackground>
     )
   }
 
@@ -141,33 +132,58 @@ function ProfilePage() {
   }
 
   return (
-    <LinearGradient colors={colors.gradient} style={styles.flexOne}>
-      <SafeAreaView style={styles.flexOne}>
+    <GradientBackground>
+      <View style={styles.flexOne}>
         <FlashList
-          contentContainerStyle={styles.listContent}
-          onRefresh={p.refetch}
-          refreshing={p.loading}
-          ListHeaderComponent={<BasicBoard profile={p.data?.me} />}
+          contentContainerStyle={{
+            ...styles.listContent,
+            paddingTop: insets.top
+          }}
+          refreshControl={
+            <RefreshControl
+              refreshing={p.loading}
+              onRefresh={p.refetch}
+              tintColor={isDarkMode ? '#60A5FA' : '#3B82F6'}
+            />
+          }
+          ListHeaderComponent={
+            <View>
+              <BasicBoard profile={p.data?.me} />
+              <SectionHeader
+                title="Recent Clippings"
+                subtitle="Your latest highlights and notes"
+              />
+            </View>
+          }
           data={p.data?.me.recents ?? []}
-          renderItem={({item}) => <ClippingCell clipping={item} />}
+          renderItem={({ item }) => (
+            <ClippingCell clipping={item} />
+          )}
           ItemSeparatorComponent={() => <View style={styles.separator} />}
-          ListFooterComponent={<View style={{height: bh + 16}} />}
+          ListFooterComponent={<View style={{ height: bh + insets.bottom + 16 }} />}
           estimatedItemSize={itemSizeCellHeight}
           onEndReached={onReachedEnd}
           onEndReachedThreshold={1}
         />
-      </SafeAreaView>
-    </LinearGradient>
+      </View>
+    </GradientBackground>
   )
 }
 
 const styles = StyleSheet.create({
-  flexOne: {flex: 1},
+  flexOne: { flex: 1 },
   listContent: {
-    paddingHorizontal: 16
+    paddingHorizontal: 20
   },
   separator: {
-    height: 16
+    height: 12
+  },
+  settingsButton: {
+    marginRight: 16,
+    padding: 8
+  },
+  clippingCard: {
+    marginHorizontal: 4
   }
 })
 

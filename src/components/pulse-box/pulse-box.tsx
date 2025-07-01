@@ -1,6 +1,5 @@
 import { useColorMode } from '@gluestack-style/react'
 import React, { useEffect, useMemo } from 'react'
-import { View } from 'react-native'
 import Animated, { useAnimatedStyle, useSharedValue, withRepeat, withSpring } from 'react-native-reanimated'
 
 type PulseBoxProps = {

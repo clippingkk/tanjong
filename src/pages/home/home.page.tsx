@@ -3,7 +3,7 @@ import { MasonryFlashList } from '@shopify/flash-list'
 import { useAtomValue } from 'jotai'
 import { View } from '@gluestack-ui/themed'
 import React, { useCallback, useMemo, useState } from 'react'
-import { SafeAreaView, useColorScheme, StyleSheet } from 'react-native'
+import { useColorScheme, StyleSheet, Text, RefreshControl, Platform } from 'react-native'
 import { uidAtom } from '../../atomic'
 import AuthGuard from '../../components/auth-guard/auth-guard'
 import BookCell from '../../components/book/cell'
@@ -13,18 +13,9 @@ import ErrorBox from '../../components/errorbox/errorbox'
 import { useBooksQuery } from '../../schema/generated'
 import { useHomeLoad } from '../../hooks/init'
 import HomePageSkeleton from './skeleton'
-import LinearGradient from 'react-native-linear-gradient'
-import { BlurView } from '@react-native-community/blur'
-
-const lightColors = {
-  gradient: ['#FFDAB9', '#FFA07A'],
-  blur: 'light',
-}
-
-const darkColors = {
-  gradient: ['#483D8B', '#8A2BE2'],
-  blur: 'dark',
-}
+import { GradientBackground, SectionHeader } from '../../components/ui'
+import { FontLXGW } from '../../styles/font'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 type HomePageProps = {}
 
@@ -71,8 +62,9 @@ function HomePage(props: HomePageProps) {
 	}, [uid, bs.data?.books.length, atEnd])
 
 	const bh = useBottomTabBarHeight();
-	const isDarkMode = useColorScheme() === 'dark';
-	const colors = isDarkMode ? darkColors : lightColors;
+	const colorScheme = useColorScheme();
+	const isDarkMode = colorScheme === 'dark';
+	const insets = useSafeAreaInsets();
 
 	const theReadingBook = useMemo(() => {
 		const lbs = bs.data?.books ?? []
@@ -115,14 +107,9 @@ function HomePage(props: HomePageProps) {
 
 	if (bs.loading) {
 		return (
-		  <LinearGradient colors={colors.gradient} style={styles.flexOne}>
-		    <BlurView
-		      style={styles.flexOne}
-		      blurType={colors.blur as any}
-		      blurAmount={10}
-		    />
+		  <GradientBackground blur>
 		    <HomePageSkeleton />
-		  </LinearGradient>
+		  </GradientBackground>
 		)
 	}
 	if ((bs.data?.books.length ?? 0) === 0) {
@@ -130,35 +117,69 @@ function HomePage(props: HomePageProps) {
 	}
 
 	return (
-	  <LinearGradient colors={colors.gradient} style={styles.flexOne}>
-	    <SafeAreaView style={styles.flexOne}>
+	  <GradientBackground>
+	    <View style={styles.flexOne}>
 	      <MasonryFlashList
-	        contentContainerStyle={styles.listContent}
+	        contentContainerStyle={{
+	          ...styles.listContent,
+	          paddingTop: insets.top
+	        }}
 	        ListHeaderComponent={() => (
-	          <BookHero bookDoubanID={theReadingBook} />
+	          <View>
+	            <SectionHeader 
+	              title="Currently Reading"
+	              subtitle={`${bs.data?.books.length ?? 0} books in your library`}
+	            />
+	            {theReadingBook && (
+	              <View style={styles.heroContainer}>
+	                <BookHero bookDoubanID={theReadingBook} />
+	              </View>
+	            )}
+	            {listedBook.length > 0 && (
+	              <SectionHeader 
+	                title="Your Library"
+	                subtitle="Continue exploring your collection"
+	              />
+	            )}
+	          </View>
 	        )}
-	        onRefresh={() => bs.refetch()}
-	        refreshing={bs.loading}
+	        refreshControl={
+	          <RefreshControl
+	            refreshing={bs.loading}
+	            onRefresh={() => bs.refetch()}
+	            tintColor={isDarkMode ? '#60A5FA' : '#3B82F6'}
+	          />
+	        }
 	        numColumns={2}
 	        data={listedBook}
 	        renderItem={({ item }) => (
-	          <BookCell bookDoubanID={item.doubanId} />
+	          <View style={styles.bookCellWrapper}>
+	            <BookCell bookDoubanID={item.doubanId} />
+	          </View>
 	        )}
 	        estimatedItemSize={250}
 	        onEndReached={onReachedEnd}
 	        onEndReachedThreshold={1}
-	        ListFooterComponent={<View style={{ height: bh + 16 }} />}
+	        ListFooterComponent={<View style={{ height: bh + insets.bottom + 16 }} />}
 	        ItemSeparatorComponent={() => <View style={styles.separator} />}
 	      />
-	    </SafeAreaView>
-	  </LinearGradient>
+	    </View>
+	  </GradientBackground>
 	)
 }
 
 const styles = StyleSheet.create({
   flexOne: { flex: 1 },
-  listContent: { paddingHorizontal: 8 },
-  separator: { height: 8 },
+  listContent: { paddingHorizontal: 16 },
+  separator: { height: 12 },
+  heroContainer: {
+    paddingHorizontal: 20,
+    paddingBottom: 24,
+  },
+  bookCellWrapper: {
+    flex: 1,
+    paddingHorizontal: 4,
+  },
 })
 
 export default HomePage

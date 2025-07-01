@@ -84,7 +84,7 @@ The application follows a feature-based organization with clear separation of co
 ### Key Architectural Decisions
 
 1. **Authentication**: Multi-method authentication (email, phone, Apple Sign In, Web3) managed through XState state machines
-2. **Styling**: Utility-first approach using NativeWind with component library from Gluestack UI
+2. **Styling**: Utility-first approach using NativeWind with native components. primary color should be light blue.
 3. **Internationalization**: Multi-language support (EN, ZH, KO) using i18next
 4. **Native Integration**: iOS widget extension for home screen widgets
 5. **Premium Features**: Stripe integration for subscription management
@@ -109,3 +109,18 @@ When making changes:
 - iOS: Requires CocoaPods installation (`cd ios && pod install`)
 - Android: Gradle configuration in `/android/` directory
 - Both platforms share the same React Native codebase with minimal platform-specific code
+
+### iOS Widget Extension
+
+The iOS app includes a widget extension (`/ios/clippingkk.widget/clippingkk_widget.swift`) that displays book clippings on the home screen:
+
+- **Widget Provider**: Fetches clippings either from public API or user's profile based on authentication status
+- **Timeline**: Updates hourly with new clippings
+- **Widget Families**: Supports all iOS widget sizes (small, medium, large, extra large)
+- **Features**:
+  - Displays clipping content with book title
+  - Uses custom font "LXGWWenKai" for better readability
+  - Blurred background image with overlay for text contrast
+  - Deep linking to specific clipping in app via widget URL
+  - Adapts text size and line limits based on widget size
+  - Dark mode support with appropriate color adjustments

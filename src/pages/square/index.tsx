@@ -1,8 +1,7 @@
 import React, { useCallback, useState } from 'react';
-import { Text, View, StyleSheet, useColorScheme, SafeAreaView } from 'react-native';
+import { Text, View, StyleSheet, useColorScheme, RefreshControl } from 'react-native';
 import { useFetchSquareDataQuery } from '../../schema/generated';
 import { FlashList } from '@shopify/flash-list';
-import { useHeaderHeight } from '@react-navigation/elements';
 import { useAtomValue } from 'jotai';
 import { uidAtom } from '../../atomic';
 import ClippingCell from '../../components/clipping/cell';
@@ -10,27 +9,15 @@ import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import { useClippingCellAvgHeight } from '../../hooks/clipping';
 import EmptyBox from '../../components/empty/empty';
 import SkeletonClippingList from '../../components/skeleton/clippings';
-import LinearGradient from 'react-native-linear-gradient';
-import { BlurView } from '@react-native-community/blur';
-
-const lightColors = {
-  gradient: ['#FFE4E1', '#FFDAB9'], // Lighter, softer gradient for SquarePage
-  blur: 'light',
-  headerText: '#333',
-};
-
-const darkColors = {
-  gradient: ['#2E0854', '#483D8B'], // Deeper purple/blue gradient for dark mode
-  blur: 'dark',
-  headerText: '#fff',
-};
+import { GradientBackground, SectionHeader, Card } from '../../components/ui';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 function SquarePage() {
-    const uid = useAtomValue(uidAtom);
-  const hh = useHeaderHeight();
+  const uid = useAtomValue(uidAtom);
   const bh = useBottomTabBarHeight();
-  const isDarkMode = useColorScheme() === 'dark';
-  const colors = isDarkMode ? darkColors : lightColors;
+  const colorScheme = useColorScheme();
+  const isDarkMode = colorScheme === 'dark';
+  const insets = useSafeAreaInsets();
   const p = useFetchSquareDataQuery({
     variables: {
       pagination: {
@@ -72,41 +59,53 @@ function SquarePage() {
 
   if (fcs.length === 0 && p.loading) {
     return (
-      <LinearGradient colors={colors.gradient} style={styles.flexOne}>
-        <BlurView style={styles.flexOne} blurType={colors.blur as any} blurAmount={10} />
+      <GradientBackground blur>
         <SkeletonClippingList />
-      </LinearGradient>
+      </GradientBackground>
     );
   }
 
   if (fcs.length === 0) {
     return (
-      <LinearGradient colors={colors.gradient} style={styles.flexOne}>
-        <BlurView style={styles.flexOne} blurType={colors.blur as any} blurAmount={10}>
-          <EmptyBox />
-        </BlurView>
-      </LinearGradient>
+      <GradientBackground>
+        <EmptyBox />
+      </GradientBackground>
     );
   }
 
   return (
-    <LinearGradient colors={colors.gradient} style={styles.flexOne}>
-      <SafeAreaView style={styles.flexOne}>
+    <GradientBackground>
+      <View style={styles.flexOne}>
         <FlashList
-          contentContainerStyle={styles.listContentContainer}
-          onRefresh={p.refetch}
-          refreshing={p.loading}
+          contentContainerStyle={{
+            ...styles.listContentContainer,
+            paddingTop: insets.top
+          }}
+          refreshControl={
+            <RefreshControl
+              refreshing={p.loading}
+              onRefresh={p.refetch}
+              tintColor={isDarkMode ? '#60A5FA' : '#3B82F6'}
+            />
+          }
           data={p.data?.featuredClippings ?? []}
-          ListHeaderComponent={<View style={{ height: hh + 10 }} />}
-          renderItem={({ item }) => <ClippingCell clipping={item} />}
+          ListHeaderComponent={
+            <SectionHeader
+              title="Discover"
+              subtitle="Featured clippings from the community"
+            />
+          }
+          renderItem={({ item }) => (
+            <ClippingCell clipping={item} />
+          )}
           ItemSeparatorComponent={() => <View style={styles.separator} />}
-          ListFooterComponent={<View style={{ height: bh + 16 }} />}
+          ListFooterComponent={<View style={{ height: bh + insets.bottom + 16 }} />}
           estimatedItemSize={itemSizeCellHeight}
           onEndReached={onReachedEnd}
           onEndReachedThreshold={1}
         />
-      </SafeAreaView>
-    </LinearGradient>
+      </View>
+    </GradientBackground>
   );
 }
 
@@ -115,10 +114,13 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   listContentContainer: {
-    paddingHorizontal: 16,
+    paddingHorizontal: 20,
   },
   separator: {
-    height: 16,
+    height: 12,
+  },
+  clippingCard: {
+    marginHorizontal: 4,
   },
 });
 

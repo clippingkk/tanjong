@@ -19,9 +19,9 @@ import { useTextColor } from './hooks/color'
 import HomePage from './pages/home/home.page'
 import ProfilePage from './pages/profile/profile.page'
 import {
-	NavigationContainer,
-	NavigationContainerRef,
-	createStaticNavigation,
+  NavigationContainer,
+  NavigationContainerRef,
+  createStaticNavigation,
 } from '@react-navigation/native'
 import { useTranslation } from 'react-i18next'
 import { routingInstrumentation } from './utils/sentry'
@@ -31,22 +31,22 @@ import './global.css'
 const Navigation = createStaticNavigation(rootStackRoutes)
 
 const App = () => {
-	const c = useColorScheme()
-	const textColor = useTextColor()
-	const { t } = useTranslation()
-	const navigation = useRef<NavigationContainerRef<RouteParamList>>(null)
-	useOnInit(navigation.current)
-	return (
-		<>
-			{/* <NavigationContainer
+  const c = useColorScheme()
+  const textColor = useTextColor()
+  const { t } = useTranslation()
+  const navigation = useRef<NavigationContainerRef<RouteParamList>>(null)
+  useOnInit(navigation.current)
+  return (
+    <>
+      {/* <NavigationContainer
         ref={navigation}
         onReady={() => {
           // Register the navigation container with the instrumentation
           routingInstrumentation.registerNavigationContainer(navigation);
         }}
       > */}
-			<Navigation ref={navigation} />
-			{/* <RootRouteStack.Navigator
+      <Navigation ref={navigation} />
+      {/* <RootRouteStack.Navigator
           screenOptions={{
             headerTransparent: true,
             headerShown: true,
@@ -56,9 +56,9 @@ const App = () => {
             },
           }}
         /> */}
-			{/* </NavigationContainer> */}
-		</>
-	)
+      {/* </NavigationContainer> */}
+    </>
+  )
 }
 
 export default App

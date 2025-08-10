@@ -202,19 +202,7 @@ struct clippingkkEntryView : View {
   
   var randomBackgroundImage: String {
     get {
-      //            var w = Int(UIScreen.main.bounds.width)
-      //            var h = Int(UIScreen.main.bounds.height)
-      //
-      //            if w < 300 {
-      //                w = 300
-      //            }
-      //            if h < 100 {
-      //                h = 100
-      //            }
-      
       return placeholderImage
-      
-      //            return "https://picsum.photos/\(h)/\(w)?blur=10&random=\(Int.random(in: 0..<1<<12))"
     }
   }
   
@@ -222,84 +210,233 @@ struct clippingkkEntryView : View {
     get {
       switch family {
       case .systemExtraLarge:
-        return 11
+        return 12
       case .systemLarge:
         return 10
       case .systemMedium:
-        return 4
+        return 5
+      case .systemSmall:
+        return 3
       default:
-        return 11
+        return 10
       }
     }
   }
   
-  var fontSzie: Int {
+  var fontSize: CGFloat {
     get {
       switch family {
+      case .systemSmall:
+        return entry.clipping.content.count > 40 ? 13 : 15
       case .systemMedium:
-        if entry.clipping.content.count > 50 {
-          return 14
-        }
-        return 18
+        return entry.clipping.content.count > 60 ? 15 : 17
       case .systemLarge:
-        fallthrough
+        return entry.clipping.content.count > 100 ? 16 : 19
       case .systemExtraLarge:
-        if entry.clipping.content.count > 100 {
-          return 14
-        }
-        return 18
+        return entry.clipping.content.count > 120 ? 17 : 20
       default:
-        return 14
+        return 16
       }
     }
   }
   
-  var baseOverlayColor: some View {
+  var titleFontSize: CGFloat {
     get {
-      if (colorScheme == .dark) {
-        return Color.black.opacity(0.7)
+      switch family {
+      case .systemSmall:
+        return 11
+      case .systemMedium:
+        return 12
+      case .systemLarge, .systemExtraLarge:
+        return 13
+      default:
+        return 12
       }
-      
-      return Color.white.opacity(0.6)
     }
   }
   
-  var textColor: Color {
+  var padding: EdgeInsets {
     get {
-      if (colorScheme == .dark) {
-        return Color.white
+      switch family {
+      case .systemSmall:
+        return EdgeInsets(top: 14, leading: 14, bottom: 14, trailing: 14)
+      case .systemMedium:
+        return EdgeInsets(top: 18, leading: 18, bottom: 18, trailing: 18)
+      case .systemLarge, .systemExtraLarge:
+        return EdgeInsets(top: 22, leading: 22, bottom: 22, trailing: 22)
+      default:
+        return EdgeInsets(top: 18, leading: 18, bottom: 18, trailing: 18)
       }
-      return Color.black
+    }
+  }
+  
+  var glassMorphismOverlay: some View {
+    get {
+      ZStack {
+        if colorScheme == .dark {
+          // Dark mode: Deep blues and purples with hints of cyan
+          LinearGradient(
+            gradient: Gradient(colors: [
+              Color(red: 0.05, green: 0.1, blue: 0.3).opacity(0.85),
+              Color(red: 0.15, green: 0.05, blue: 0.35).opacity(0.7),
+              Color(red: 0.1, green: 0.2, blue: 0.4).opacity(0.6),
+              Color(red: 0.05, green: 0.15, blue: 0.35).opacity(0.75)
+            ]),
+            startPoint: .topLeading,
+            endPoint: .bottomTrailing
+          )
+          
+          // Additional gradient layer for depth
+          LinearGradient(
+            gradient: Gradient(colors: [
+              Color(red: 0.2, green: 0.3, blue: 0.5).opacity(0.3),
+              Color(red: 0.1, green: 0.4, blue: 0.6).opacity(0.2),
+              Color.clear
+            ]),
+            startPoint: .top,
+            endPoint: .bottom
+          )
+          
+          // Subtle material effect
+          RoundedRectangle(cornerRadius: 0)
+            .fill(
+              LinearGradient(
+                gradient: Gradient(colors: [
+                  Color(red: 0.1, green: 0.15, blue: 0.25).opacity(0.3),
+                  Color(red: 0.05, green: 0.1, blue: 0.2).opacity(0.2)
+                ]),
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+              )
+            )
+            .background(.ultraThinMaterial)
+        } else {
+          // Light mode: Soft pastels with warm tones
+          LinearGradient(
+            gradient: Gradient(colors: [
+              Color(red: 0.95, green: 0.95, blue: 1.0).opacity(0.85),
+              Color(red: 0.85, green: 0.9, blue: 1.0).opacity(0.7),
+              Color(red: 0.9, green: 0.85, blue: 0.95).opacity(0.65),
+              Color(red: 0.95, green: 0.9, blue: 0.85).opacity(0.75)
+            ]),
+            startPoint: .topLeading,
+            endPoint: .bottomTrailing
+          )
+          
+          // Additional gradient for luminosity
+          LinearGradient(
+            gradient: Gradient(colors: [
+              Color(red: 0.7, green: 0.85, blue: 1.0).opacity(0.25),
+              Color(red: 0.9, green: 0.75, blue: 0.95).opacity(0.15),
+              Color.clear
+            ]),
+            startPoint: .topTrailing,
+            endPoint: .bottomLeading
+          )
+          
+          // Soft material overlay
+          RoundedRectangle(cornerRadius: 0)
+            .fill(
+              LinearGradient(
+                gradient: Gradient(colors: [
+                  Color(red: 1.0, green: 0.98, blue: 0.95).opacity(0.3),
+                  Color(red: 0.95, green: 0.97, blue: 1.0).opacity(0.2)
+                ]),
+                startPoint: .top,
+                endPoint: .bottom
+              )
+            )
+            .background(.ultraThinMaterial)
+        }
+      }
+    }
+  }
+  
+  var quoteTextColor: Color {
+    get {
+      if colorScheme == .dark {
+        return Color(white: 0.98)
+      }
+      return Color(white: 0.08)
+    }
+  }
+  
+  var titleTextColor: Color {
+    get {
+      if colorScheme == .dark {
+        return Color(white: 0.85).opacity(0.9)
+      }
+      return Color(white: 0.25).opacity(0.85)
+    }
+  }
+  
+  var accentColor: Color {
+    get {
+      if colorScheme == .dark {
+        return Color(red: 0.4, green: 0.7, blue: 1.0)
+      }
+      return Color(red: 0.2, green: 0.5, blue: 0.9)
     }
   }
   
   var body: some View {
     let clipping = entry.clipping
     let bookTitle = entry.book.title
-    ZStack {
-      VStack {
-        Text(clipping.content)
-          .padding(.all, 2)
-          .font(.custom("LXGWWenKai-Regular", size: CGFloat(self.fontSzie)))
-          .lineSpacing(12 * 1.1)
-          .foregroundColor(textColor)
-          .lineLimit(self.lineLimit)
-        Text(bookTitle)
-          .foregroundColor(textColor)
-          .font(.custom("LXGWWenKai-Bold", size: 12))
-          .frame(maxWidth: .infinity, alignment: .trailing)
-          .padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 2))
-          .lineLimit(1)
+    
+    GeometryReader { geometry in
+      ZStack {
+        VStack(alignment: .leading, spacing: 0) {
+          HStack(alignment: .top, spacing: 6) {
+            Image(systemName: "quote.opening")
+              .font(.system(size: family == .systemSmall ? 14 : 18, weight: .light))
+              .foregroundColor(accentColor.opacity(0.6))
+              .offset(y: -2)
+            
+            Spacer()
+          }
+          .padding(.bottom, family == .systemSmall ? 6 : 10)
+          
+          Text(clipping.content)
+            .font(.custom("LXGWWenKai-Regular", size: fontSize))
+            .fontWeight(.regular)
+            .foregroundColor(quoteTextColor)
+            .lineSpacing(fontSize * 0.4)
+            .lineLimit(lineLimit)
+            .multilineTextAlignment(.leading)
+            .fixedSize(horizontal: false, vertical: true)
+          
+          Spacer(minLength: family == .systemSmall ? 8 : 12)
+          
+          HStack {
+            Rectangle()
+              .fill(accentColor.opacity(0.6))
+              .frame(width: 3, height: family == .systemSmall ? 12 : 14)
+              .cornerRadius(1.5)
+            
+            Text(bookTitle)
+              .font(.custom("LXGWWenKai-Bold", size: titleFontSize))
+              .fontWeight(.medium)
+              .foregroundColor(titleTextColor)
+              .lineLimit(1)
+              .truncationMode(.tail)
+            
+            Spacer()
+          }
+        }
+        .padding(padding)
       }
+      .frame(width: geometry.size.width, height: geometry.size.height)
     }
     .containerBackground(for: .widget, content: {
-      Image(uiImage: UIImage(data: entry.bgImage)!)
-        .resizable()
-        .aspectRatio(contentMode: .fill)
-        .blur(radius: 10)
-        .overlay{
-          baseOverlayColor
-        }
+      ZStack {
+        Image(uiImage: UIImage(data: entry.bgImage)!)
+          .resizable()
+          .aspectRatio(contentMode: .fill)
+          .blur(radius: colorScheme == .dark ? 20 : 25)
+          .saturation(colorScheme == .dark ? 0.6 : 0.4)
+        
+        glassMorphismOverlay
+      }
     })
     .widgetURL(URL(string: "clippingkk:///dash/\(clipping.creator.id)/clippings/\(clipping.id)"))
   }

@@ -13,9 +13,10 @@ import ErrorBox from '../../components/errorbox/errorbox'
 import { useBooksQuery } from '../../schema/generated'
 import { useHomeLoad } from '../../hooks/init'
 import HomePageSkeleton from './skeleton'
-import { GradientBackground, SectionHeader } from '../../components/ui'
+import { GradientBackground } from '../../components/ui'
 import { FontLXGW } from '../../styles/font'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import { useHeaderHeight } from '@react-navigation/elements'
 
 type HomePageProps = {}
 
@@ -65,6 +66,7 @@ function HomePage(props: HomePageProps) {
 	const colorScheme = useColorScheme();
 	const isDarkMode = colorScheme === 'dark';
 	const insets = useSafeAreaInsets();
+	const headerHeight = useHeaderHeight();
 
 	const theReadingBook = useMemo(() => {
 		const lbs = bs.data?.books ?? []
@@ -122,24 +124,39 @@ function HomePage(props: HomePageProps) {
 	      <MasonryFlashList
 	        contentContainerStyle={{
 	          ...styles.listContent,
-	          paddingTop: insets.top
+	          paddingTop: headerHeight
 	        }}
 	        ListHeaderComponent={() => (
 	          <View>
-	            <SectionHeader 
-	              title="Currently Reading"
-	              subtitle={`${bs.data?.books.length ?? 0} books in your library`}
-	            />
+	            {/* Currently Reading Section */}
+	            <View style={[styles.sectionHeaderCard, { backgroundColor: isDarkMode ? 'rgba(30, 41, 59, 0.5)' : 'rgba(248, 250, 252, 0.8)' }]}>
+	              <View style={styles.sectionHeaderContent}>
+	                <View style={[styles.sectionIcon, { backgroundColor: isDarkMode ? '#6366F1' : '#818CF8' }]}>
+	                  <Text style={styles.sectionIconText}>📚</Text>
+	                </View>
+	                <View style={styles.sectionTextContainer}>
+	                  <Text style={[styles.sectionTitle, { color: isDarkMode ? '#E0E7FF' : '#1E293B' }]}>Currently Reading</Text>
+	                  <Text style={[styles.sectionSubtitle, { color: isDarkMode ? '#94A3B8' : '#64748B' }]}>{bs.data?.books.length ?? 0} books in progress</Text>
+	                </View>
+	              </View>
+	            </View>
 	            {theReadingBook && (
 	              <View style={styles.heroContainer}>
 	                <BookHero bookDoubanID={theReadingBook} />
 	              </View>
 	            )}
 	            {listedBook.length > 0 && (
-	              <SectionHeader 
-	                title="Your Library"
-	                subtitle="Continue exploring your collection"
-	              />
+	              <View style={[styles.sectionHeaderCard, { backgroundColor: isDarkMode ? 'rgba(30, 41, 59, 0.5)' : 'rgba(248, 250, 252, 0.8)' }]}>
+	                <View style={styles.sectionHeaderContent}>
+	                  <View style={[styles.sectionIcon, { backgroundColor: isDarkMode ? '#6366F1' : '#818CF8' }]}>
+	                    <Text style={styles.sectionIconText}>📖</Text>
+	                  </View>
+	                  <View style={styles.sectionTextContainer}>
+	                    <Text style={[styles.sectionTitle, { color: isDarkMode ? '#E0E7FF' : '#1E293B' }]}>Your Library</Text>
+	                    <Text style={[styles.sectionSubtitle, { color: isDarkMode ? '#94A3B8' : '#64748B' }]}>{listedBook.length} books collected</Text>
+	                  </View>
+	                </View>
+	              </View>
 	            )}
 	          </View>
 	        )}
@@ -147,7 +164,7 @@ function HomePage(props: HomePageProps) {
 	          <RefreshControl
 	            refreshing={bs.loading}
 	            onRefresh={() => bs.refetch()}
-	            tintColor={isDarkMode ? '#60A5FA' : '#3B82F6'}
+	            tintColor={isDarkMode ? '#818CF8' : '#6366F1'}
 	          />
 	        }
 	        numColumns={2}
@@ -170,15 +187,54 @@ function HomePage(props: HomePageProps) {
 
 const styles = StyleSheet.create({
   flexOne: { flex: 1 },
-  listContent: { paddingHorizontal: 16 },
-  separator: { height: 12 },
-  heroContainer: {
+  listContent: { 
     paddingHorizontal: 20,
-    paddingBottom: 24,
+  },
+  separator: { height: 16 },
+  heroContainer: {
+    marginBottom: 32,
+    marginTop: 8,
   },
   bookCellWrapper: {
     flex: 1,
-    paddingHorizontal: 4,
+    paddingHorizontal: 6,
+    marginBottom: 4,
+  },
+  sectionHeaderCard: {
+    marginHorizontal: -4,
+    marginBottom: 20,
+    paddingVertical: 16,
+    paddingHorizontal: 20,
+    borderRadius: 16,
+  },
+  sectionHeaderContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  sectionIcon: {
+    width: 44,
+    height: 44,
+    borderRadius: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 14,
+  },
+  sectionIconText: {
+    fontSize: 20,
+  },
+  sectionTextContainer: {
+    flex: 1,
+  },
+  sectionTitle: {
+    fontSize: 24,
+    fontWeight: '300',
+    letterSpacing: -0.5,
+    marginBottom: 4,
+  },
+  sectionSubtitle: {
+    fontSize: 14,
+    fontWeight: '400',
+    opacity: 0.7,
   },
 })
 

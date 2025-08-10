@@ -21,6 +21,27 @@ const TabStack = createBottomTabNavigator({
       headerTransparent: true,
       headerShown: true,
       headerTitleStyle: {
+        color: c === 'dark' ? '#E0E7FF' : '#1E293B',
+        fontSize: 18,
+        fontWeight: '400',
+        letterSpacing: -0.3
+      },
+      headerBackground: () => (
+        <BlurView
+          blurType={c === 'dark' ? 'dark' : 'light'}
+          blurAmount={25}
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: c === 'dark' ? 'rgba(15,23,42,0.4)' : 'rgba(248,250,252,0.7)'
+          }}
+        />
+      ),
+      headerShadowVisible: false,
+      headerLargeTitleStyle: {
         color: c === 'dark' ? '#ffffff' : '#000000'
       },
       tabBarStyle: {
@@ -48,7 +69,7 @@ const TabStack = createBottomTabNavigator({
     [RouteKeys.TabHome]: {
       screen: HomePage,
       options: {
-        title: 'Home',
+        title: 'Library',
         tabBarLabel: 'Books',
         tabBarIcon: ({color, size}) => <HomeIcon color={color} size={size} />
       }
@@ -56,8 +77,8 @@ const TabStack = createBottomTabNavigator({
     [RouteKeys.TabSquare]: {
       screen: SquarePage,
       options: {
-        title: 'Square',
-        tabBarLabel: 'Square',
+        title: 'Discovery',
+        tabBarLabel: 'Discover',
         tabBarIcon: ({color, size}) => (
           <GlobeAmericasIcon color={color} size={size} />
         )
@@ -73,8 +94,6 @@ const TabStack = createBottomTabNavigator({
     }
   }
 })
-
-const SVGIconScale = 0.8
 
 // type HomeTabPagesProps = {
 // }

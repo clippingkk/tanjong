@@ -1,13 +1,11 @@
 import {Link} from '@react-navigation/native'
-import {Text, View} from 'native-base'
 import React from 'react'
-import {StyleSheet, useColorScheme} from 'react-native'
-import LinearGradient from 'react-native-linear-gradient'
-import {BlurView, BlurViewProps} from '@react-native-community/blur'
+import {StyleSheet, useColorScheme, View, Text, TouchableOpacity} from 'react-native'
 import {RouteKeys} from '../../routes'
 import {Clipping} from '../../schema/generated'
-import {FontLXGW} from '../../styles/font' // Assuming FontLXGW might be used later or for specific text
+import {FontLXGW} from '../../styles/font'
 import {WenquBook} from '../../service/wenqu'
+import { useNavigation } from '@react-navigation/native'
 
 type ClippingCellProps = {
   clipping: Pick<Clipping, 'id' | 'bookID' | 'content' | 'title'>
@@ -15,189 +13,171 @@ type ClippingCellProps = {
 }
 
 const lightColors = {
-  gradient: ['#FF6B6B', '#FFD166'], // Lively Coral to Sunny Yellow
-  textPrimary: '#222222',
-  textSecondary: '#444444',
-  textOnPrimaryBg: '#FFFFFF',
-  footerText: '#555555',
-  blurType: 'light' as BlurViewProps['blurType'],
-  cardBorder: 'rgba(0,0,0,0.1)'
+  cardBg: 'rgba(255, 255, 255, 0.95)',
+  titleText: '#1E293B',
+  contentText: '#475569',
+  metaText: '#94A3B8',
+  cardBorder: 'rgba(99, 102, 241, 0.1)',
+  shadowColor: '#6366F1'
 } as const
 
 const darkColors = {
-  gradient: ['#7B2CBF', '#C71F66'], // Deep Purple to Magenta
-  textPrimary: '#FFFFFF',
-  textSecondary: '#DDDDDD',
-  textOnPrimaryBg: '#FFFFFF',
-  footerText: '#BBBBBB',
-  blurType: 'dark' as BlurViewProps['blurType'],
-  cardBorder: 'rgba(255,255,255,0.2)'
+  cardBg: 'rgba(30, 41, 59, 0.95)',
+  titleText: '#E0E7FF',
+  contentText: '#CBD5E1',
+  metaText: '#94A3B8',
+  cardBorder: 'rgba(99, 102, 241, 0.2)',
+  shadowColor: '#6366F1'
 } as const
 
 function ClippingCell(props: ClippingCellProps) {
   const {clipping, book} = props
   const colorScheme = useColorScheme()
   const isDarkMode = colorScheme === 'dark'
-  const currentColors = isDarkMode ? darkColors : lightColors
+  const colors = isDarkMode ? darkColors : lightColors
+  const navigation = useNavigation()
+
+  const handlePress = () => {
+    (navigation as any).navigate(RouteKeys.Clipping, {
+      clippingId: clipping.id,
+      clipping: clipping,
+      bookId: clipping.bookID
+    })
+  }
 
   return (
-    <View style={styles.outerContainer}>
-      <Link
-        screen={RouteKeys.Clipping}
-        params={{
-          clippingId: clipping.id,
-          clipping: clipping,
-          bookId: clipping.bookID
-        }}
-        style={styles.linkStyle}>
-        <LinearGradient
-          colors={currentColors.gradient as unknown as string[]}
-          start={{x: 0, y: 0}}
-          end={{x: 1, y: 1}}
-          style={[styles.cardBase, {borderColor: currentColors.cardBorder}]} // Added borderColor from theme
-        >
-          <BlurView
-            style={styles.absoluteFill}
-            blurType={currentColors.blurType}
-            blurAmount={15} // Increased blur amount for a more pronounced effect
-            reducedTransparencyFallbackColor={
-              isDarkMode ? 'rgba(0,0,0,0.5)' : 'rgba(255,255,255,0.5)'
-            }
-          />
-          <View style={styles.contentOverlay}>
-            {/* Header with book info */}
-            <View style={styles.headerContainer}>
-              <View style={styles.headerTextContainer}>
-                <Text
-                  style={[
-                    styles.titleText,
-                    {color: currentColors.textOnPrimaryBg}
-                  ]}>
-                  {book?.title || clipping.title || 'Untitled Clipping'}
-                </Text>
-                {/* <Text
-                  style={[
-                    styles.bookIdText,
-                    {color: currentColors.textOnPrimaryBg}
-                  ]}>
-                  Book: {clipping.bookID}
-                </Text> */}
-              </View>
-            </View>
+    <TouchableOpacity 
+      activeOpacity={0.95}
+      onPress={handlePress}
+      style={styles.touchable}
+    >
+      <View style={[
+        styles.card,
+        {
+          backgroundColor: colors.cardBg,
+          borderColor: colors.cardBorder,
+          shadowColor: colors.shadowColor
+        }
+      ]}>
+        {/* Quote decoration */}
+        <View style={styles.quoteMarkContainer}>
+          <Text style={[styles.quoteMark, { color: isDarkMode ? '#6366F1' : '#818CF8' }]}>"</Text>
+        </View>
+        
+        {/* Content */}
+        <View style={styles.content}>
+          <Text
+            style={[
+              styles.clippingText,
+              {color: colors.contentText}
+            ]}
+            numberOfLines={4}
+            ellipsizeMode="tail">
+            {clipping.content}
+          </Text>
+        </View>
 
-            {/* Clipping content */}
-            <View style={styles.contentContainer}>
-              <Text
-                style={[
-                  styles.contentText,
-                  {color: currentColors.textOnPrimaryBg}
-                ]}
-                numberOfLines={5}
-                ellipsizeMode="tail">
-                {clipping.content}
-              </Text>
-            </View>
-
-            {/* Footer with metadata - kept simple */}
-            <View style={styles.footerContainer}>
-              <Text
-                style={[
-                  styles.footerText,
-                  {color: currentColors.textOnPrimaryBg, opacity: 0.8}
-                ]}>
-                Page 23
-              </Text>
-              <Text
-                style={[
-                  styles.footerText,
-                  {color: currentColors.textOnPrimaryBg, opacity: 0.8}
-                ]}>
-                Chapter 3
-              </Text>
-            </View>
+        {/* Footer */}
+        <View style={styles.footer}>
+          <View style={styles.bookInfo}>
+            <View style={[styles.bookIndicator, { backgroundColor: isDarkMode ? '#6366F1' : '#818CF8' }]} />
+            <Text
+              style={[
+                styles.bookTitle,
+                {color: colors.titleText}
+              ]}
+              numberOfLines={1}>
+              {book?.title || clipping.title || 'Unknown Book'}
+            </Text>
           </View>
-        </LinearGradient>
-      </Link>
-    </View>
+          {book?.author && (
+            <Text
+              style={[
+                styles.authorText,
+                {color: colors.metaText}
+              ]}
+              numberOfLines={1}>
+              {book.author}
+            </Text>
+          )}
+        </View>
+      </View>
+    </TouchableOpacity>
   )
 }
 
 const styles = StyleSheet.create({
-  outerContainer: {
-    paddingHorizontal: 16, // Standardized padding
-    paddingVertical: 8
+  touchable: {
+    marginHorizontal: 4,
+    marginVertical: 8,
   },
-  linkStyle: {
-    width: '100%'
-  },
-  cardBase: {
-    borderRadius: 16, // Bolder radius
+  card: {
+    borderRadius: 20,
+    padding: 20,
+    borderWidth: 1,
+    position: 'relative',
     overflow: 'hidden',
-    elevation: 8, // Android shadow
-    shadowColor: '#000',
-    shadowOffset: {width: 0, height: 4},
-    shadowOpacity: 0.3,
-    shadowRadius: 6,
-    borderWidth: 1 // Subtle border
+    // Shadow for iOS
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.08,
+    shadowRadius: 12,
+    // Shadow for Android
+    elevation: 3,
   },
-  absoluteFill: {
+  quoteMarkContainer: {
     position: 'absolute',
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0
+    top: -5,
+    left: 8,
+    opacity: 0.15,
   },
-  contentOverlay: {
-    // This view sits on top of the BlurView
-    padding: 16,
-    backgroundColor: 'rgba(0,0,0,0.1)', // Slight dimming for text contrast on blur
-    flex: 1,
-    justifyContent: 'space-between'
+  quoteMark: {
+    fontSize: 80,
+    fontWeight: '300',
+    fontFamily: FontLXGW,
   },
-  headerContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 12
+  content: {
+    marginTop: 16,
+    marginBottom: 20,
   },
-  headerTextContainer: {
-    flex: 1
+  clippingText: {
+    fontSize: 16,
+    lineHeight: 26,
+    fontWeight: '400',
+    fontFamily: FontLXGW,
+    letterSpacing: 0.2,
   },
-  titleText: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    // fontFamily: FontLXGW, // Uncomment if you want to use this font
-    marginBottom: 4,
-    fontFamily: FontLXGW
-  },
-  bookIdText: {
-    fontSize: 14,
-    fontWeight: '600',
-    opacity: 0.9,
-    fontFamily: FontLXGW
-  },
-  contentContainer: {
-    marginVertical: 12
-  },
-  contentText: {
-    fontSize: 15,
-    lineHeight: 22, // Improved readability
-    fontWeight: '500',
-    fontFamily: FontLXGW
-  },
-  footerContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginTop: 12,
-    paddingTop: 8,
+  footer: {
     borderTopWidth: 1,
-    borderTopColor: 'rgba(255,255,255,0.2)' // Subtle separator for footer
+    borderTopColor: 'rgba(99, 102, 241, 0.1)',
+    paddingTop: 12,
   },
-  footerText: {
+  bookInfo: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 4,
+  },
+  bookIndicator: {
+    width: 3,
+    height: 16,
+    borderRadius: 2,
+    marginRight: 10,
+  },
+  bookTitle: {
+    fontSize: 14,
+    fontWeight: '500',
+    fontFamily: FontLXGW,
+    flex: 1,
+  },
+  authorText: {
     fontSize: 12,
-    fontWeight: '600',
-    fontFamily: FontLXGW
-  }
+    fontWeight: '300',
+    fontFamily: FontLXGW,
+    marginLeft: 13,
+    opacity: 0.8,
+  },
 })
 
 export default ClippingCell

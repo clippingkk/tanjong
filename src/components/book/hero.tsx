@@ -1,12 +1,11 @@
 import { CachedImage } from '@georstat/react-native-image-cache'
 import { useHeaderHeight } from '@react-navigation/elements'
 import { Link } from '@react-navigation/native'
-import { Center, Divider, Text, View } from 'native-base'
 import React, { useMemo, useState } from 'react'
-import { ImageLoadEventData } from 'react-native'
+import { ImageLoadEventData, View, Text, StyleSheet, useColorScheme, TouchableOpacity } from 'react-native'
 import { useSingleBook } from '../../hooks/wenqu'
 import { RouteKeys } from '../../routes'
-import { Blurhash } from 'react-native-blurhash';
+import { Blurhash } from 'react-native-blurhash'
 import { FontLXGW } from '../../styles/font'
 import PulseBox from '../pulse-box/pulse-box'
 
@@ -33,58 +32,117 @@ function BookHero(props: BookHeroProps) {
   const book = books?.books ? books.books[0] : null
 
   const hh = useHeaderHeight()
+  const colorScheme = useColorScheme()
+  const isDarkMode = colorScheme === 'dark'
 
   if (!book) {
     return (
-      <Center style={{ marginVertical: hh }}>
-        <PulseBox height={250} width={200} radius={4} />
-      </Center>
+      <View style={styles.loadingContainer}>
+        <PulseBox height={220} width={150} radius={12} />
+      </View>
     )
   }
 
   return (
-    <Center height={250} marginTop={5} shadow='6'>
-      <Link
-        screen={RouteKeys.BookDetail}
-        params={{ book: book }}
-      >
-        <View flexDirection='column' alignItems='center'>
+    <Link
+      screen={RouteKeys.BookDetail}
+      params={{ book: book }}
+    >
+      <View style={styles.heroContainer}>
+        <View style={styles.imageWrapper}>
           <CachedImage
             source={book.image}
             onLoad={e => {
               setLoadedImage(e.nativeEvent.source)
             }}
             loadingImageComponent={() => (
-              <Center>
+              <View style={styles.blurhashContainer}>
                 <Blurhash
                   blurhash={book.edges?.imageInfo?.blurHashValue || 'LGFFaXYk^6#M@-5c,1J5@[or[Q6.'}
-                  style={{ height: 200, aspectRatio: ratio, borderRadius: 4 }}
+                  style={[styles.blurhash, { aspectRatio: ratio }]}
                 />
-              </Center>
+              </View>
             )}
-            style={{
-              aspectRatio: ratio,
-              height: 200,
-              borderRadius: 4,
-              overflow: 'hidden'
-              // width: 100
-            }}
+            style={[
+              styles.bookImage,
+              { aspectRatio: ratio }
+            ]}
             resizeMode='cover'
           />
-          <Text
-            marginTop={2}
-            fontFamily={FontLXGW}
-            numberOfLines={2}
-            fontSize='sm'
-            textAlign='center'
-          >
-            {book.title}
-          </Text>
         </View>
-      </Link>
-      <Divider />
-    </Center>
+        <Text
+          style={[
+            styles.bookTitle,
+            { color: isDarkMode ? '#E0E7FF' : '#1E293B' }
+          ]}
+          numberOfLines={2}
+        >
+          {book.title}
+        </Text>
+        <Text
+          style={[
+            styles.bookAuthor,
+            { color: isDarkMode ? '#94A3B8' : '#64748B' }
+          ]}
+          numberOfLines={1}
+        >
+          {book.author}
+        </Text>
+      </View>
+    </Link>
   )
 }
+
+const styles = StyleSheet.create({
+  loadingContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 280,
+  },
+  heroContainer: {
+    alignItems: 'center',
+    paddingVertical: 16,
+  },
+  imageWrapper: {
+    shadowColor: '#6366F1',
+    shadowOffset: {
+      width: 0,
+      height: 8,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 16,
+    elevation: 12,
+  },
+  bookImage: {
+    height: 220,
+    borderRadius: 16,
+    overflow: 'hidden',
+  },
+  blurhashContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  blurhash: {
+    height: 220,
+    borderRadius: 16,
+  },
+  bookTitle: {
+    marginTop: 16,
+    fontSize: 18,
+    fontWeight: '400',
+    fontFamily: FontLXGW,
+    textAlign: 'center',
+    paddingHorizontal: 20,
+    letterSpacing: -0.3,
+  },
+  bookAuthor: {
+    marginTop: 4,
+    fontSize: 14,
+    fontWeight: '300',
+    fontFamily: FontLXGW,
+    textAlign: 'center',
+    opacity: 0.7,
+  },
+})
 
 export default BookHero

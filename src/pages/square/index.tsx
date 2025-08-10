@@ -9,8 +9,9 @@ import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import { useClippingCellAvgHeight } from '../../hooks/clipping';
 import EmptyBox from '../../components/empty/empty';
 import SkeletonClippingList from '../../components/skeleton/clippings';
-import { GradientBackground, SectionHeader, Card } from '../../components/ui';
+import { GradientBackground } from '../../components/ui';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useHeaderHeight } from '@react-navigation/elements';
 
 function SquarePage() {
   const uid = useAtomValue(uidAtom);
@@ -18,6 +19,7 @@ function SquarePage() {
   const colorScheme = useColorScheme();
   const isDarkMode = colorScheme === 'dark';
   const insets = useSafeAreaInsets();
+  const headerHeight = useHeaderHeight();
   const p = useFetchSquareDataQuery({
     variables: {
       pagination: {
@@ -79,24 +81,33 @@ function SquarePage() {
         <FlashList
           contentContainerStyle={{
             ...styles.listContentContainer,
-            paddingTop: insets.top
+            paddingTop: headerHeight
           }}
           refreshControl={
             <RefreshControl
               refreshing={p.loading}
               onRefresh={p.refetch}
-              tintColor={isDarkMode ? '#60A5FA' : '#3B82F6'}
+              tintColor={isDarkMode ? '#818CF8' : '#6366F1'}
             />
           }
           data={p.data?.featuredClippings ?? []}
           ListHeaderComponent={
-            <SectionHeader
-              title="Discover"
-              subtitle="Featured clippings from the community"
-            />
+            <View style={[styles.headerCard, { backgroundColor: isDarkMode ? 'rgba(30, 41, 59, 0.5)' : 'rgba(248, 250, 252, 0.8)' }]}>
+              <View style={styles.headerContent}>
+                <View style={[styles.headerIcon, { backgroundColor: isDarkMode ? '#6366F1' : '#818CF8' }]}>
+                  <Text style={styles.headerIconEmoji}>✨</Text>
+                </View>
+                <View style={styles.headerTextContainer}>
+                  <Text style={[styles.headerTitle, { color: isDarkMode ? '#E0E7FF' : '#1E293B' }]}>Featured Today</Text>
+                  <Text style={[styles.headerSubtitle, { color: isDarkMode ? '#94A3B8' : '#64748B' }]}>Handpicked quotes from the community</Text>
+                </View>
+              </View>
+            </View>
           }
           renderItem={({ item }) => (
-            <ClippingCell clipping={item} />
+            <View style={styles.clippingWrapper}>
+              <ClippingCell clipping={item} />
+            </View>
           )}
           ItemSeparatorComponent={() => <View style={styles.separator} />}
           ListFooterComponent={<View style={{ height: bh + insets.bottom + 16 }} />}
@@ -117,10 +128,45 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   separator: {
-    height: 12,
+    height: 16,
   },
-  clippingCard: {
-    marginHorizontal: 4,
+  clippingWrapper: {
+    marginVertical: 4,
+  },
+  headerCard: {
+    marginBottom: 20,
+    paddingVertical: 16,
+    paddingHorizontal: 20,
+    borderRadius: 16,
+  },
+  headerContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  headerIcon: {
+    width: 44,
+    height: 44,
+    borderRadius: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 14,
+  },
+  headerIconEmoji: {
+    fontSize: 20,
+  },
+  headerTextContainer: {
+    flex: 1,
+  },
+  headerTitle: {
+    fontSize: 24,
+    fontWeight: '300',
+    letterSpacing: -0.5,
+    marginBottom: 6,
+  },
+  headerSubtitle: {
+    fontSize: 14,
+    fontWeight: '400',
+    opacity: 0.7,
   },
 });
 

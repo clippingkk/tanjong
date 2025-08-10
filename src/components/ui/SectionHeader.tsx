@@ -52,19 +52,22 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: 20,
-    paddingVertical: 16,
+    paddingHorizontal: 4,
+    paddingVertical: 12,
+    marginBottom: 8,
   },
   textContainer: {
     flex: 1,
   },
   title: {
-    fontSize: 20,
-    fontWeight: '700',
-    marginBottom: 4,
+    fontSize: 18,
+    fontWeight: '600',
+    marginBottom: 2,
+    letterSpacing: -0.3,
   },
   subtitle: {
-    fontSize: 14,
+    fontSize: 13,
+    opacity: 0.7,
   },
   actionButton: {
     paddingHorizontal: 12,

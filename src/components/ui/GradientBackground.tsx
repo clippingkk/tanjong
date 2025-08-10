@@ -14,8 +14,8 @@ interface GradientBackgroundProps extends ViewProps {
 }
 
 const defaultColors = {
-  light: ['#E3F2FD', '#BBDEFB'], // Light blue gradient
-  dark: ['#0D47A1', '#1565C0'] // Dark blue gradient
+  light: ['#F8FAFC', '#EDE9FE'], // Light gradient with purple tint
+  dark: ['#0F172A', '#1E1B4B'] // Dark gradient with purple tint
 }
 
 export function GradientBackground({

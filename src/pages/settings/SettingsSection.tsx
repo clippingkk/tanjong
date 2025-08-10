@@ -1,31 +1,42 @@
 import React from 'react';
 import { View, Text, StyleSheet, useColorScheme } from 'react-native';
-import { FontLXGW } from '../../styles/font';
 
 type SettingsSectionProps = {
   title?: string;
+  icon?: string;
   children: React.ReactNode;
 };
 
 const lightColors = {
-  background: 'rgba(255, 255, 255, 0.8)',
-  title: '#666',
-  shadow: '#000',
+  background: 'rgba(255, 255, 255, 0.95)',
+  title: '#64748B',
+  shadow: '#6366F1',
+  iconBg: 'rgba(99, 102, 241, 0.1)',
 };
 
 const darkColors = {
-  background: 'rgba(50, 50, 50, 0.6)',
-  title: '#ccc',
-  shadow: '#fff',
+  background: 'rgba(30, 41, 59, 0.95)',
+  title: '#94A3B8',
+  shadow: '#6366F1',
+  iconBg: 'rgba(99, 102, 241, 0.2)',
 };
 
-const SettingsSection = ({ title, children }: SettingsSectionProps) => {
+const SettingsSection = ({ title, icon, children }: SettingsSectionProps) => {
   const isDarkMode = useColorScheme() === 'dark';
   const colors = isDarkMode ? darkColors : lightColors;
 
   return (
     <View style={styles.container}>
-      {title && <Text style={[styles.title, { color: colors.title }]}>{title}</Text>}
+      {title && (
+        <View style={styles.titleContainer}>
+          {icon && (
+            <View style={[styles.iconContainer, { backgroundColor: colors.iconBg }]}>
+              <Text style={styles.icon}>{icon}</Text>
+            </View>
+          )}
+          <Text style={[styles.title, { color: colors.title }]}>{title}</Text>
+        </View>
+      )}
       <View style={[styles.content, { backgroundColor: colors.background, shadowColor: colors.shadow }]}>
         {children}
       </View>
@@ -35,23 +46,39 @@ const SettingsSection = ({ title, children }: SettingsSectionProps) => {
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 24,
+    marginBottom: 32,
+  },
+  titleContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 4,
+    marginBottom: 12,
+  },
+  iconContainer: {
+    width: 28,
+    height: 28,
+    borderRadius: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 10,
+  },
+  icon: {
+    fontSize: 14,
   },
   title: {
-    paddingHorizontal: 16,
-    paddingBottom: 8,
-    fontSize: 14,
-    fontFamily: FontLXGW,
+    fontSize: 12,
+    // fontFamily: FontLXGW,
     textTransform: 'uppercase',
-    fontWeight: '600',
+    fontWeight: '700',
+    letterSpacing: 0.8,
   },
   content: {
-    borderRadius: 12,
+    borderRadius: 16,
     overflow: 'hidden',
-    elevation: 2,
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 8,
+    elevation: 3,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.08,
+    shadowRadius: 12,
   },
 });
 

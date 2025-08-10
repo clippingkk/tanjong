@@ -1,6 +1,8 @@
 {
   "cSpell.words": [
-    "mantine"
+    "LXGW",
+    "mantine",
+    "Pressable"
   ],
   "files.associations": {
     "*.json": "jsonc"

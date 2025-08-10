@@ -1,59 +1,61 @@
 query profile($id: Int!, $domain: String, $pagination: MeQueryPagination) {
-  me(id: $id, domain: $domain, pagination: $pagination) {
-    id
-    name
-    email
-    password
-    phone
-    avatar
-    checked
-    bio
-    createdAt
-    updatedAt
-    wechatOpenid
-    isFan
-    domain
-	premiumEndAt
-    followers {
-      id
-      name
-      avatar
-      bio
-    }
+	me(id: $id, domain: $domain, pagination: $pagination) {
+		id
+		name
+		email
+		password
+		phone
+		avatar
+		checked
+		bio
+		createdAt
+		updatedAt
+		wechatOpenid
+		isFan
+		domain
+		premiumEndAt
+		followers {
+			id
+			name
+			avatar
+			bio
+		}
 
-    recents {
-      id
-      bookID
-      title
-      content
-      createdAt
-      pageAt
-    }
-    analysis {
-      monthly {
-        date
-        count
-      }
-      daily {
-        date
-        count
-      }
-    }
-    comments {
-      id
-      content
-      belongsTo {
-        id
-        content
-        bookID
-        creator {
-          id
-          avatar
-          name
-        }
-      }
-    }
+		recents {
+			id
+			bookID
+			title
+			content
+			createdAt
+			pageAt
+		}
+		analysis {
+			monthly {
+				date
+				count
+			}
+			daily {
+				date
+				count
+			}
+		}
+		comments {
+			id
+			content
+			belongsTo {
+				id
+				content
+				bookID
+				creator {
+					id
+					avatar
+					name
+				}
+			}
+		}
 
-    clippingsCount
-  }
+		clippingsCount
+		booksCount
+		recent3mReadings
+	}
 }

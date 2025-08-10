@@ -128,7 +128,7 @@ function BasicBoard(props: BasicBoardProps) {
             </View>
             <View style={[styles.statItem, { backgroundColor: colors.statsBg }]}>
               <Text style={[styles.statValue, { color: colors.text }]}>{props.stats?.recent || 0}</Text>
-              <Text style={[styles.statLabel, { color: colors.statsText }]}>This Month</Text>
+              <Text style={[styles.statLabel, { color: colors.statsText }]}>Last 3 Months</Text>
             </View>
           </View>
         </View>

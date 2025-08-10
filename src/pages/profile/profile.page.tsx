@@ -149,9 +149,9 @@ function ProfilePage() {
           ListHeaderComponent={
             <View>
               <BasicBoard profile={p.data?.me} stats={{
-                books: p.data?.me.clippingsCount,
+                books: p.data?.me.booksCount,
                 clippings: p.data?.me.clippingsCount,
-                recent: p.data?.me.recents?.length,
+                recent: p.data?.me.recent3mReadings.length,
               }} />
               <View style={[styles.sectionHeaderCard, { backgroundColor: isDarkMode ? 'rgba(30, 41, 59, 0.5)' : 'rgba(248, 250, 252, 0.8)' }]}>
                 <View style={styles.sectionHeaderContent}>

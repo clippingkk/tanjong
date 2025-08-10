@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react'
 import { AppleButton, appleAuth } from '@invertase/react-native-apple-authentication'
 import { SigninWithAppleProps } from './type';
-import { View } from 'native-base';
+import { View, StyleSheet } from 'react-native';
 import { AppleLoginPlatforms } from '../../schema/generated';
 import { ActivityIndicator } from 'react-native';
 
@@ -46,23 +46,51 @@ function SigninWithApple(props: SigninWithAppleProps) {
   }, [props.onError, props.onSuccess])
 
   return (
-    <View>
+    <View style={styles.container}>
       <AppleButton
-        style={{
-          height: 45,
-          width: 180
-        }}
-        buttonStyle={AppleButton.Style.BLACK}
+        style={styles.appleButton}
+        buttonStyle={AppleButton.Style.WHITE_OUTLINE}
         buttonType={AppleButton.Type.SIGN_IN}
         onPress={onAppleButtonPress}
       />
-      {props.loading ? (
-        <View position='absolute' top={0} left={0} bottom={0} right={0} justifyContent='center' alignItems='center' background='rgba(255,255,255, 0.8)'>
-          <ActivityIndicator />
+      {props.loading && (
+        <View style={styles.loadingOverlay}>
+          <ActivityIndicator size="small" color="#ffffff" />
         </View>
-      ) : null}
+      )}
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    position: 'relative',
+    alignItems: 'center',
+  },
+  appleButton: {
+    height: 52,
+    width: 220,
+    borderRadius: 12,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  loadingOverlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0.3)',
+    borderRadius: 12,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
 
 export default SigninWithApple

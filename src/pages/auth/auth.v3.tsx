@@ -6,10 +6,10 @@ import {
   SafeAreaView,
   StyleSheet,
   Text,
-  View
+  View,
+  ScrollView
 } from 'react-native'
 import {
-  AppleLoginPlatforms,
   AppleVerifyPayload,
   useLoginByAppleLazyQuery
 } from '../../schema/generated'
@@ -21,17 +21,16 @@ import {
   useLinkTo,
   useNavigation
 } from '@react-navigation/native'
-import {RouteKeys, RouteParamList} from '../../routes'
+import {RouteKeys} from '../../routes'
 import {useTranslation} from 'react-i18next'
-import WalletConnectLoginButton from './walletconnect'
 import {FontLXGW} from '../../styles/font'
 import AuthClassicPage from './auth.classic.page'
 import {featureFlags} from '../../service/feature-flags'
 import {useColorMode} from '@gluestack-style/react'
 import {ChevronRightIcon, Icon} from '@gluestack-ui/themed'
-import Toast from '../../components/toast/toast'
 import toast from 'react-hot-toast/headless'
 import {LinearGradient} from 'react-native-linear-gradient'
+import {BlurView} from '@react-native-community/blur'
 
 function AuthV3Page() {
   const navigation = useNavigation()
@@ -103,118 +102,167 @@ function AuthV3Page() {
 
   const {t} = useTranslation()
 
+
   return (
-    <LinearGradient
-      colors={['#4c669f', '#3b5998', '#192f6a']}
-      style={styles.gradient}>
+    <View style={styles.container}>
+      <LinearGradient
+        colors={['#60a5fa', '#3b82f6', '#2563eb']}
+        style={StyleSheet.absoluteFillObject}
+        start={{x: 0, y: 0}}
+        end={{x: 1, y: 1}}
+      />
+      
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         className="flex-1">
         <SafeAreaView className="flex-1">
-          <View className="flex-1 items-center justify-center">
-            <Image
-              source={require('../../assets/logo.png')}
-              alt="logo"
-              width={70}
-              height={70}
-              className="mt-8 mb-4 rounded"
-              style={{
-                height: 70,
-                width: 70,
-                borderRadius: 8,
-                shadowOffset: {
-                  width: 4,
-                  height: 4
-                }
-              }}
-            />
-            <View style={{margin: 16}}>
-              <Text
-                className="text-white"
-                style={{
-                  textAlign: 'center',
-                  fontSize: 20,
-                  fontWeight: 'bold',
-                  padding: 6
-                }}>
+          <ScrollView 
+            contentContainerStyle={styles.scrollContent}
+            showsVerticalScrollIndicator={false}
+            keyboardShouldPersistTaps="handled">
+            
+            <View style={styles.logoContainer}>
+              <View style={styles.logoWrapper}>
+                <Image
+                  source={require('../../assets/logo.png')}
+                  alt="logo"
+                  style={styles.logo}
+                />
+              </View>
+              
+              <Text style={styles.appName}>
                 ClippingKK
               </Text>
-              <Text
-                className="text-white"
-                style={{
-                  width: 280,
-                  textAlign: 'center',
-                  fontFamily: FontLXGW,
-                  fontSize: 14
-                }}>
+              
+              <Text style={styles.slogan}>
                 {t('app.slogan')}
               </Text>
             </View>
 
-            <View style={{margin: 8, width: '90%'}} />
-
-            <AuthClassicPage onPostAuth={onPostAuth} />
-
-            <View style={{margin: 8, width: '90%'}} />
-
-            <SigninWithApple
-              loading={appleAuthResp.loading}
-              onSuccess={signinWithAppleOnSuccess}
-              onError={signinWithAppleOnError}
-            />
-            {/* <WalletConnectLoginButton
-								onLoggedIn={(token, userId) => onPostAuth(token, userId)}
-							/> */}
-            {/* <Button
-                height={45}
-                bgColor={'blue.500'}
-                width={180}
-                color='gray.900'
-                _dark={{
-                  color: 'gray.100'
-                }}
-              >
-                <Link
-                  to={{ screen: RouteKeys.AuthQRCode }}>
-                  {t('app.auth.loginByScanQRCode')}
-                </Link>
-              </Button> */}
-          </View>
+            <View style={styles.formContainer}>
+              {Platform.OS === 'ios' && (
+                <BlurView
+                  style={StyleSheet.absoluteFillObject}
+                  blurType={cm === 'dark' ? 'dark' : 'light'}
+                  blurAmount={20}
+                />
+              )}
+              
+              <View style={styles.formContent}>
+                <AuthClassicPage onPostAuth={onPostAuth} />
+                
+                <View style={styles.dividerContainer}>
+                  <View style={styles.dividerLine} />
+                  <Text style={styles.dividerText}>OR</Text>
+                  <View style={styles.dividerLine} />
+                </View>
+                
+                <View style={styles.socialLoginContainer}>
+                  <SigninWithApple
+                    loading={appleAuthResp.loading}
+                    onSuccess={signinWithAppleOnSuccess}
+                    onError={signinWithAppleOnError}
+                  />
+                </View>
+              </View>
+            </View>
+            
+          </ScrollView>
         </SafeAreaView>
       </KeyboardAvoidingView>
-      <View style={styles.blur} />
-    </LinearGradient>
+    </View>
   )
 }
-
-const cm = 'dark'
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  scrollContent: {
+    flexGrow: 1,
+    paddingHorizontal: 20,
+    paddingVertical: 40,
+    justifyContent: 'center',
+  },
+  logoContainer: {
+    alignItems: 'center',
+    marginBottom: 40,
+  },
+  logoWrapper: {
+    width: 100,
+    height: 100,
+    borderRadius: 25,
+    backgroundColor: 'rgba(255, 255, 255, 0.95)',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: cm === 'dark' ? '#000' : '#fff'
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 10,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 20,
+    elevation: 10,
+    marginBottom: 20,
   },
-  header: {
-    fontSize: 24,
-    fontWeight: '700',
-    color: cm === 'dark' ? '#fff' : '#222',
-    textShadowColor: 'rgba(0, 0, 0, 0.75)',
-    textShadowOffset: {width: -1, height: 1},
-    textShadowRadius: 10
+  logo: {
+    width: 70,
+    height: 70,
+    borderRadius: 15,
   },
-  blur: {
-    ...Platform.select({
-      ios: {backgroundColor: 'rgba(255,255,255,0.3)'},
-      android: {backgroundColor: 'rgba(255,255,255,0.3)'},
-      default: {backgroundColor: 'transparent'}
-    })
+  appName: {
+    fontSize: 32,
+    fontWeight: 'bold',
+    color: '#ffffff',
+    marginBottom: 8,
+    textShadowColor: 'rgba(0, 0, 0, 0.2)',
+    textShadowOffset: { width: 0, height: 2 },
+    textShadowRadius: 4,
   },
-  gradient: {
-    flex: 1
-    // ...StyleSheet.absoluteFillObject,
-  }
+  slogan: {
+    fontSize: 16,
+    color: 'rgba(255, 255, 255, 0.9)',
+    textAlign: 'center',
+    fontFamily: FontLXGW,
+    paddingHorizontal: 40,
+    lineHeight: 24,
+  },
+  formContainer: {
+    borderRadius: 30,
+    backgroundColor: Platform.OS === 'ios' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(255, 255, 255, 0.95)',
+    overflow: 'hidden',
+    marginHorizontal: 0,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 20,
+    },
+    shadowOpacity: 0.15,
+    shadowRadius: 30,
+    elevation: 15,
+  },
+  formContent: {
+    padding: 30,
+  },
+  dividerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginVertical: 25,
+  },
+  dividerLine: {
+    flex: 1,
+    height: 1,
+    backgroundColor: Platform.OS === 'ios' ? 'rgba(255, 255, 255, 0.3)' : 'rgba(0, 0, 0, 0.1)',
+  },
+  dividerText: {
+    marginHorizontal: 15,
+    fontSize: 14,
+    fontWeight: '600',
+    color: Platform.OS === 'ios' ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.4)',
+  },
+  socialLoginContainer: {
+    alignItems: 'center',
+  },
 })
 
 export default AuthV3Page

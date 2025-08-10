@@ -1,5 +1,5 @@
 import { useForm, Controller } from 'react-hook-form'
-import React from 'react'
+import React, { useState } from 'react'
 import { useAuthLazyQuery } from '../../schema/generated'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useTranslation } from 'react-i18next'
@@ -13,6 +13,8 @@ import {
 	View,
 	StyleSheet,
 	TouchableOpacity,
+	Platform,
+	ActivityIndicator,
 } from 'react-native'
 
 type AuthClassicPageProps = {
@@ -74,64 +76,96 @@ function AuthClassicPage(props: AuthClassicPageProps) {
 		})
 	}
 
+	const [focusedField, setFocusedField] = useState<string | null>(null)
+
 	return (
-		<View style={styles.container} className="w-96">
+		<View style={styles.container}>
 			<View style={styles.formGroup}>
-				<View>
-					<Text style={styles.label}>{t('app.auth.email')}</Text>
-				</View>
-				<Controller
-					control={control}
-					render={(f) => (
-						<TextInput
-							onBlur={f.field.onBlur}
-							placeholder="Email"
-							onChangeText={(val) => f.field.onChange(val)}
-							value={f.field.value}
-							keyboardType="email-address"
-							autoCapitalize="none"
-							returnKeyType="next"
-							style={styles.input}
-						/>
+				<Text style={styles.label}>{t('app.auth.email')}</Text>
+				<View style={[
+					styles.inputContainer,
+					focusedField === 'email' && styles.inputContainerFocused,
+					errors.email && styles.inputContainerError
+				]}>
+					<Controller
+						control={control}
+						render={(f) => (
+							<TextInput
+								onBlur={() => {
+									f.field.onBlur()
+									setFocusedField(null)
+								}}
+								onFocus={() => setFocusedField('email')}
+								placeholder="you@example.com"
+								placeholderTextColor={Platform.OS === 'ios' ? 'rgba(255, 255, 255, 0.5)' : 'rgba(0, 0, 0, 0.4)'}
+								onChangeText={(val) => f.field.onChange(val)}
+								value={f.field.value}
+								keyboardType="email-address"
+								autoCapitalize="none"
+								returnKeyType="next"
+								style={styles.input}
+								autoCorrect={false}
+							/>
 					)}
 					name="email"
 					rules={{ required: 'Field is required', minLength: 3 }}
 					defaultValue=""
 				/>
-				<View>
-					<Text style={styles.errorText}>{errors.email?.message}</Text>
 				</View>
+				{errors.email && (
+					<Text style={styles.errorText}>{errors.email.message}</Text>
+				)}
 			</View>
+			
 			<View style={styles.formGroup}>
-				<View>
-					<Text style={styles.label}>{t('app.auth.pwd')}</Text>
-				</View>
-				<Controller
-					control={control}
-					render={(f) => (
-						<TextInput
-							onBlur={f.field.onBlur}
-							placeholder="Password"
-							onChangeText={(val) => f.field.onChange(val)}
-							value={f.field.value}
-							returnKeyType="done"
-							secureTextEntry
-							style={styles.input}
-						/>
+				<Text style={styles.label}>{t('app.auth.pwd')}</Text>
+				<View style={[
+					styles.inputContainer,
+					focusedField === 'password' && styles.inputContainerFocused,
+					errors.password && styles.inputContainerError
+				]}>
+					<Controller
+						control={control}
+						render={(f) => (
+							<TextInput
+								onBlur={() => {
+									f.field.onBlur()
+									setFocusedField(null)
+								}}
+								onFocus={() => setFocusedField('password')}
+								placeholder="••••••••"
+								placeholderTextColor={Platform.OS === 'ios' ? 'rgba(255, 255, 255, 0.5)' : 'rgba(0, 0, 0, 0.4)'}
+								onChangeText={(val) => f.field.onChange(val)}
+								value={f.field.value}
+								returnKeyType="done"
+								secureTextEntry
+								style={styles.input}
+								autoCorrect={false}
+							/>
 					)}
 					name="password"
 					defaultValue=""
 				/>
-				<View>
-					<Text style={styles.errorText}>{errors.password?.message}</Text>
 				</View>
+				{errors.password && (
+					<Text style={styles.errorText}>{errors.password.message}</Text>
+				)}
 			</View>
+			
 			<TouchableOpacity
-				style={styles.button}
+				style={[
+					styles.button,
+					authResp.loading && styles.buttonDisabled
+				]}
 				disabled={authResp.loading}
 				onPress={handleSubmit(onSubmit)}
+				activeOpacity={0.8}
 			>
-				<Text style={styles.buttonText}>{t('app.auth.submit')}</Text>
+				{authResp.loading ? (
+					<ActivityIndicator color="#ffffff" size="small" />
+				) : (
+					<Text style={styles.buttonText}>{t('app.auth.submit')}</Text>
+				)}
 			</TouchableOpacity>
 		</View>
 	)
@@ -139,40 +173,77 @@ function AuthClassicPage(props: AuthClassicPageProps) {
 
 const styles = StyleSheet.create({
 	container: {
-		flex: 1,
+		width: '100%',
 	},
 	formGroup: {
-		marginBottom: 20,
+		marginBottom: 24,
 	},
 	label: {
-		fontSize: 16,
+		fontSize: 14,
 		fontWeight: '600',
-		color: '#333',
-		marginBottom: 5,
+		color: Platform.OS === 'ios' ? 'rgba(255, 255, 255, 0.9)' : '#1f2937',
+		marginBottom: 8,
+		letterSpacing: 0.3,
+	},
+	inputContainer: {
+		borderWidth: 2,
+		borderColor: Platform.OS === 'ios' ? 'rgba(255, 255, 255, 0.2)' : '#e5e7eb',
+		borderRadius: 12,
+		backgroundColor: Platform.OS === 'ios' ? 'rgba(255, 255, 255, 0.1)' : '#ffffff',
+		overflow: 'hidden',
+	},
+	inputContainerFocused: {
+		borderColor: '#3b82f6',
+		backgroundColor: Platform.OS === 'ios' ? 'rgba(255, 255, 255, 0.15)' : '#ffffff',
+		shadowColor: '#3b82f6',
+		shadowOffset: {
+			width: 0,
+			height: 0,
+		},
+		shadowOpacity: 0.2,
+		shadowRadius: 8,
+		elevation: 2,
+	},
+	inputContainerError: {
+		borderColor: '#ef4444',
 	},
 	input: {
-		borderWidth: 1,
-		borderColor: '#ccc',
-		borderRadius: 8,
-		padding: 10,
-		backgroundColor: '#fff',
+		paddingVertical: Platform.OS === 'ios' ? 16 : 14,
+		paddingHorizontal: 16,
+		fontSize: 16,
+		color: Platform.OS === 'ios' ? '#ffffff' : '#1f2937',
 	},
 	errorText: {
-		color: '#ff6b6b',
-		marginTop: 5,
-		fontSize: 12,
+		color: '#ef4444',
+		marginTop: 6,
+		fontSize: 13,
+		fontWeight: '500',
 	},
 	button: {
-		backgroundColor: '#4c669f',
-		padding: 15,
-		borderRadius: 8,
+		backgroundColor: '#2563eb',
+		paddingVertical: 16,
+		borderRadius: 12,
 		alignItems: 'center',
-		marginTop: 20,
+		justifyContent: 'center',
+		marginTop: 8,
+		shadowColor: '#2563eb',
+		shadowOffset: {
+			width: 0,
+			height: 4,
+		},
+		shadowOpacity: 0.3,
+		shadowRadius: 8,
+		elevation: 4,
+		minHeight: 52,
+	},
+	buttonDisabled: {
+		opacity: 0.7,
 	},
 	buttonText: {
-		color: '#fff',
+		color: '#ffffff',
 		fontSize: 16,
-		fontWeight: '600',
+		fontWeight: '700',
+		letterSpacing: 0.5,
 	},
 })
 

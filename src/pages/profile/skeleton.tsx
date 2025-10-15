@@ -6,14 +6,14 @@ function ProfilePageSkeleton() {
   return (
     <SafeAreaView style={styles.flexOne}>
       <View style={styles.container}>
-        <PulseBox height={98} width={'100%'} radius={16} />
+        <PulseBox height={98} radius={16} style={{ width: '100%' }} />
         <View style={styles.listContainer}>
           {new Array(4).fill(0).map((_, index) => (
             <PulseBox
               key={index}
               height={120}
-              width={'100%'}
               radius={16}
+              style={{ width: '100%' }}
             />
           ))}
         </View>

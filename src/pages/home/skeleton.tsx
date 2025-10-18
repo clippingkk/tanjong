@@ -1,6 +1,7 @@
 import { HStack, VStack, View } from '@gluestack-ui/themed'
 import React, { useMemo } from 'react'
-import { Dimensions, SafeAreaView } from 'react-native'
+import { Dimensions } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
 import PulseBox from '../../components/pulse-box/pulse-box'
 
 function HomePageSkeleton() {

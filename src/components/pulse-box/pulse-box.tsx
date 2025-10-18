@@ -1,5 +1,6 @@
 import { useColorMode } from '@gluestack-style/react'
 import React, { useEffect, useMemo } from 'react'
+import { ViewStyle } from 'react-native'
 import Animated, { useAnimatedStyle, useSharedValue, withRepeat, withSpring } from 'react-native-reanimated'
 
 type PulseBoxProps = {
@@ -7,10 +8,11 @@ type PulseBoxProps = {
   width: number
   radius: number
   marginLeft?: number
+  style?: ViewStyle
 }
 
 function PulseBox(props: PulseBoxProps) {
-  const { height, width, marginLeft = 0, radius } = props
+  const { height, width, marginLeft = 0, radius, style: customStyle } = props
   const opacity = useSharedValue(0.4)
 
   useEffect(() => {
@@ -39,7 +41,8 @@ function PulseBox(props: PulseBoxProps) {
             backgroundColor: baseBgColor,
             marginLeft
           },
-          style
+          style,
+          customStyle
         ]
       }
     />

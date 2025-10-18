@@ -1,5 +1,5 @@
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
-import { MasonryFlashList } from '@shopify/flash-list'
+import { FlashList } from '@shopify/flash-list'
 import { useAtomValue } from 'jotai'
 import { View } from '@gluestack-ui/themed'
 import React, { useCallback, useMemo, useState } from 'react'
@@ -121,7 +121,7 @@ function HomePage(props: HomePageProps) {
 	return (
 	  <GradientBackground>
 	    <View style={styles.flexOne}>
-	      <MasonryFlashList
+	      <FlashList
 	        contentContainerStyle={{
 	          ...styles.listContent,
 	          paddingTop: headerHeight

@@ -1,14 +1,9 @@
 module.exports = {
   presets: [
     'module:@react-native/babel-preset',
-    'nativewind/babel'
+    'nativewind/babel',
   ],
   plugins: [
-    [
-      'react-native-reanimated/plugin',
-      {
-        globals: ['__scanCodes'],
-      },
-    ]
-  ]
+    'react-native-worklets/plugin'
+  ],
 };

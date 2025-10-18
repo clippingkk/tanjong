@@ -4,12 +4,6 @@ module.exports = {
     'nativewind/babel',
   ],
   plugins: [
-    [
-      'react-native-reanimated/plugin',
-      {
-        globals: ['__scanCodes'],
-      },
-      'react-native-worklets/plugin',
-    ],
+    'react-native-worklets/plugin'
   ],
 };

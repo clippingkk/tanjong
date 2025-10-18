@@ -17,10 +17,9 @@ const languageDetector: any = {
       return Promise.resolve(storedLng)
     }
     const locale =
-      Platform.OS === 'ios'
-        ? NativeModules.SettingsManager.settings.AppleLocale ||
-        NativeModules.SettingsManager.settings.AppleLanguages[0] // iOS 13
-        : NativeModules.I18nManager.localeIdentifier;
+      Platform.OS === 'ios' ?
+        NativeModules.SettingsManager.getConstants().settings.AppleLocale :
+        NativeModules.I18nManager.localeIdentifier;
 
     const l = locale.split('_')[0]
     return Promise.resolve(l)

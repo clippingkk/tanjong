@@ -68,6 +68,9 @@
       "accountTip": "如果对于账户有任何疑问，请发邮件给 annatar.he+ck@gmail.com 不必担心，我们很乐意收到邮件 🫡",
       "legacyLogin": "旧版登录",
       "loginWithPassword": "密码登录",
+      "welcome": "欢迎回来",
+      "welcomeSubtitle": "登录以继续使用您的账户",
+      "termsHint": "继续即表示您同意我们的服务条款和隐私政策",
       "code": {
         "placeholder": "手机中的验证码"
       },

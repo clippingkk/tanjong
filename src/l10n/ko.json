@@ -68,6 +68,9 @@
       "accountTip": "계정에 대해 질문이 있는 경우 annatar.he+ck@gmail.com으로 이메일을 보내주십시오. 걱정하지 마세요. 🫡",
       "legacyLogin": "기존 로그인",
       "loginWithPassword": "비밀번호로 로그인",
+      "welcome": "다시 오신 것을 환영합니다",
+      "welcomeSubtitle": "계속하려면 로그인하세요",
+      "termsHint": "계속하면 이용 약관 및 개인정보 보호정책에 동의하는 것입니다",
       "code": {
         "placeholder": "휴대폰의 인증 코드"
       },

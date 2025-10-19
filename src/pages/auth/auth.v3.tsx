@@ -3,10 +3,10 @@ import {
   Image,
   KeyboardAvoidingView,
   Platform,
-  StyleSheet,
   Text,
   View,
-  ScrollView
+  ScrollView,
+  StyleSheet
 } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import {
@@ -26,41 +26,35 @@ import { useTranslation } from 'react-i18next'
 import { FontLXGW } from '../../styles/font'
 import AuthClassicPage from './auth.classic.page'
 import { featureFlags } from '../../service/feature-flags'
-import { useColorMode } from '@gluestack-style/react'
-import { ChevronRightIcon, Icon } from '@gluestack-ui/themed'
 import toast from 'react-hot-toast/headless'
 import { LinearGradient } from 'react-native-linear-gradient'
-import { BlurView } from '@react-native-community/blur'
 
 function AuthV3Page() {
   const navigation = useNavigation()
-  const cm = useColorMode()
+  const { t } = useTranslation()
+
   useEffect(() => {
     navigation.setOptions({
-      title: 'Account',
-      headerRight: () => (
-        <>
-          {featureFlags.enableSignUp && (
-            <Link
-              screen={RouteKeys.SignUpEmail}
-              className="flex-row items-center justify-center"
-              style={{
-                color: cm === 'light' ? '#111111' : '#ffffff'
-              }}>
-              <Text>{t('app.auth.signup')}</Text>
-              <Icon as={ChevronRightIcon} w={'$4'} h={'$4'} />
-            </Link>
-          )}
-        </>
-      )
+      title: '',
+      headerTransparent: true,
+      headerRight: featureFlags.enableSignUp ? () => (
+        <Link
+          screen={RouteKeys.SignUpEmail}
+          className="px-4 py-2 rounded-full bg-white/20 mr-2">
+          <Text className="text-white font-semibold text-sm">
+            {t('app.auth.signup')}
+          </Text>
+        </Link>
+      ) : undefined
     })
-  }, [navigation])
+  }, [navigation, t])
 
   const [doAppleAuth, appleAuthResp] = useLoginByAppleLazyQuery()
 
   const onPostAuth = usePostAuth()
   const { buildHref } = useLinkBuilder()
   const linkTo = useLinkTo()
+
   const signinWithAppleOnSuccess = useCallback(
     async (data: AppleVerifyPayload) => {
       const authResp = await doAppleAuth({
@@ -94,18 +88,19 @@ function AuthV3Page() {
       // goto auth
       return onPostAuth(token, user.id)
     },
-    []
+    [buildHref, doAppleAuth, linkTo, onPostAuth]
   )
+
   const signinWithAppleOnError = useCallback((err: any) => {
     toast.error(err.toString())
   }, [])
 
-  const { t } = useTranslation()
-
   return (
-    <View style={styles.container}>
+    <View className="flex-1">
+      {/* Gradient Background */}
       <LinearGradient
         colors={['#60a5fa', '#3b82f6', '#2563eb']}
+        className="absolute inset-0"
         style={StyleSheet.absoluteFill}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
@@ -115,153 +110,83 @@ function AuthV3Page() {
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         className="flex-1">
         <ScrollView
-          contentContainerStyle={styles.scrollContent}
+          className="flex-1"
+          contentContainerClassName="flex-grow"
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps="handled">
 
-          <SafeAreaView className='flex-1'>
-            <View style={styles.logoContainer} className='mt-4'>
-              <View style={styles.logoWrapper}>
+          <SafeAreaView className="flex-1 px-6">
+            {/* Logo Section */}
+            <View className="items-center pt-12 pb-8">
+              <View className="w-24 h-24 rounded-3xl bg-white/95 items-center justify-center mb-5 shadow-2xl">
                 <Image
                   source={require('../../assets/logo.png')}
-                  alt="logo"
-                  style={styles.logo}
+                  alt="ClippingKK Logo"
+                  className="w-16 h-16 rounded-2xl"
                 />
               </View>
 
-              <Text style={styles.appName}>
+              <Text className="text-4xl font-bold text-white mb-2 tracking-tight">
                 ClippingKK
               </Text>
 
-              <Text style={styles.slogan}>
+              <Text
+                className="text-base text-white/90 text-center px-8 leading-6"
+                style={{ fontFamily: FontLXGW }}>
                 {t('app.slogan')}
               </Text>
             </View>
 
-            <View style={styles.formContainer}>
-              {Platform.OS === 'ios' && (
-                <BlurView
-                  style={StyleSheet.absoluteFillObject}
-                  blurType={cm === 'dark' ? 'dark' : 'light'}
-                  blurAmount={20}
-                />
-              )}
-
-              <View style={styles.formContent}>
-                <AuthClassicPage onPostAuth={onPostAuth} />
-
-                <View style={styles.dividerContainer}>
-                  <View style={styles.dividerLine} />
-                  <Text style={styles.dividerText}>OR</Text>
-                  <View style={styles.dividerLine} />
+            {/* Auth Form Card */}
+            <View className="flex-1 justify-center pb-8">
+              <View className="bg-white/95 rounded-3xl p-6 shadow-2xl backdrop-blur-xl">
+                {/* Welcome Text */}
+                <View className="mb-6">
+                  <Text className="text-2xl font-bold text-gray-900 mb-1">
+                    {t('app.auth.welcome') || 'Welcome back'}
+                  </Text>
+                  <Text className="text-sm text-gray-500">
+                    {t('app.auth.welcomeSubtitle') || 'Sign in to continue to your account'}
+                  </Text>
                 </View>
 
-                <View style={styles.socialLoginContainer}>
+                {/* Email/Password Form */}
+                <AuthClassicPage onPostAuth={onPostAuth} />
+
+                {/* Divider */}
+                <View className="flex-row items-center my-6">
+                  <View className="flex-1 h-px bg-gray-200" />
+                  <Text className="px-4 text-sm font-medium text-gray-400">
+                    OR
+                  </Text>
+                  <View className="flex-1 h-px bg-gray-200" />
+                </View>
+
+                {/* Social Login */}
+                <View className="items-center">
                   <SigninWithApple
                     loading={appleAuthResp.loading}
                     onSuccess={signinWithAppleOnSuccess}
                     onError={signinWithAppleOnError}
                   />
                 </View>
+
+                {/* Footer Links */}
+                <View className="mt-6 items-center">
+                  <Text className="text-xs text-gray-500 text-center">
+                    {t('app.auth.termsHint') || 'By continuing, you agree to our Terms & Privacy Policy'}
+                  </Text>
+                </View>
               </View>
+
+              {/* Bottom spacing for safe area */}
+              <View className="h-8" />
             </View>
           </SafeAreaView>
-
         </ScrollView>
       </KeyboardAvoidingView>
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  scrollContent: {
-    flexGrow: 1,
-    paddingHorizontal: 20,
-    paddingVertical: 40,
-    justifyContent: 'center',
-  },
-  logoContainer: {
-    alignItems: 'center',
-    marginBottom: 40,
-  },
-  logoWrapper: {
-    width: 100,
-    height: 100,
-    borderRadius: 25,
-    backgroundColor: 'rgba(255, 255, 255, 0.95)',
-    justifyContent: 'center',
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 10,
-    },
-    shadowOpacity: 0.2,
-    shadowRadius: 20,
-    elevation: 10,
-    marginBottom: 20,
-  },
-  logo: {
-    width: 70,
-    height: 70,
-    borderRadius: 15,
-  },
-  appName: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    color: '#ffffff',
-    marginBottom: 8,
-    textShadowColor: 'rgba(0, 0, 0, 0.2)',
-    textShadowOffset: { width: 0, height: 2 },
-    textShadowRadius: 4,
-  },
-  slogan: {
-    fontSize: 16,
-    color: 'rgba(255, 255, 255, 0.9)',
-    textAlign: 'center',
-    fontFamily: FontLXGW,
-    paddingHorizontal: 40,
-    lineHeight: 24,
-  },
-  formContainer: {
-    borderRadius: 30,
-    backgroundColor: Platform.OS === 'ios' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(255, 255, 255, 0.95)',
-    overflow: 'hidden',
-    marginHorizontal: 0,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 20,
-    },
-    shadowOpacity: 0.15,
-    shadowRadius: 30,
-    elevation: 15,
-  },
-  formContent: {
-    padding: 30,
-  },
-  dividerContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginVertical: 25,
-  },
-  dividerLine: {
-    flex: 1,
-    height: 1,
-    backgroundColor: Platform.OS === 'ios' ? 'rgba(255, 255, 255, 0.3)' : 'rgba(0, 0, 0, 0.1)',
-  },
-  dividerText: {
-    marginHorizontal: 15,
-    fontSize: 14,
-    fontWeight: '600',
-    color: Platform.OS === 'ios' ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.4)',
-  },
-  socialLoginContainer: {
-    alignItems: 'center',
-  },
-})
 
 export default AuthV3Page

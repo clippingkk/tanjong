@@ -75,7 +75,7 @@ function SquarePage() {
 
   return (
     <GradientBackground>
-      <View style={styles.flexOne}>
+      <SafeAreaView style={styles.flexOne}>
         <FlashList
           contentContainerStyle={{
             ...styles.listContentContainer,
@@ -112,7 +112,7 @@ function SquarePage() {
           onEndReached={onReachedEnd}
           onEndReachedThreshold={1}
         />
-      </View>
+      </SafeAreaView>
     </GradientBackground>
   );
 }

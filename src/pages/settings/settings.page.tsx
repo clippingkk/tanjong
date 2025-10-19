@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useState } from 'react'
 import {
   Alert,
   Platform,
-  SafeAreaView,
   View,
   StyleSheet,
   ScrollView,
@@ -30,6 +29,7 @@ import { widgetAppWidgetType } from '../../hooks/auth'
 import { CacheManager } from '@georstat/react-native-image-cache'
 import { FontLXGW } from '../../styles/font'
 import { GradientBackground } from '../../components/ui'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 type AppWidgetType = 'public' | 'own'
 

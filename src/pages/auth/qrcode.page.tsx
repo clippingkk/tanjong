@@ -1,21 +1,15 @@
-import {NativeStackScreenProps} from '@react-navigation/native-stack'
-import {View, Text, Toast} from 'native-base'
-import React, {useEffect} from 'react'
-import {useTranslation} from 'react-i18next'
-import {Linking, StyleSheet} from 'react-native'
-import {SafeAreaView} from 'react-native-safe-area-context'
+import { View, Text, Toast } from 'native-base'
+import React, { useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
+import { SafeAreaView } from 'react-native-safe-area-context'
 // import { Camera, useCameraDevices } from 'react-native-vision-camera'
 // import { useScanBarcodes, BarcodeFormat } from 'vision-camera-code-scanner'
 import Page from '../../components/page'
-import {usePostAuth} from '../../hooks/auth'
-import {RouteKeys, RouteParamList} from '../../routes'
-import {JwtPayload} from '../../service/jwt'
-import AuthClassicPage from './auth.classic.page'
-import {useNavigation} from '@react-navigation/native'
+import { usePostAuth } from '../../hooks/auth'
+import { useNavigation } from '@react-navigation/native'
 
 function AuthQRCodePage() {
-  const navigation = useNavigation()
-  const {t} = useTranslation()
+  const { t } = useTranslation()
   useEffect(() => {
     // Camera.getCameraPermissionStatus().then(p => {
     //   if (p === 'denied' || p === 'restricted') {
@@ -77,7 +71,7 @@ function AuthQRCodePage() {
         frameProcessor={frameProcessor}
         frameProcessorFps={5}
       /> */}
-      <SafeAreaView style={{flex: 1}}>
+      <SafeAreaView style={{ flex: 1 }}>
         <View flex={1} alignItems="center" justifyContent="space-between">
           <View alignItems="center">
             <Text>{t('app.auth.loginByScanQRCodeTip')}</Text>

@@ -1,19 +1,19 @@
-import React, {useCallback, useEffect} from 'react'
+import React, { useCallback, useEffect } from 'react'
 import {
   Image,
   KeyboardAvoidingView,
   Platform,
-  SafeAreaView,
   StyleSheet,
   Text,
   View,
   ScrollView
 } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
 import {
   AppleVerifyPayload,
   useLoginByAppleLazyQuery
 } from '../../schema/generated'
-import {usePostAuth} from '../../hooks/auth'
+import { usePostAuth } from '../../hooks/auth'
 import SigninWithApple from '../../components/signinWithApple/signinWithApple'
 import {
   Link,
@@ -21,16 +21,16 @@ import {
   useLinkTo,
   useNavigation
 } from '@react-navigation/native'
-import {RouteKeys} from '../../routes'
-import {useTranslation} from 'react-i18next'
-import {FontLXGW} from '../../styles/font'
+import { RouteKeys } from '../../routes'
+import { useTranslation } from 'react-i18next'
+import { FontLXGW } from '../../styles/font'
 import AuthClassicPage from './auth.classic.page'
-import {featureFlags} from '../../service/feature-flags'
-import {useColorMode} from '@gluestack-style/react'
-import {ChevronRightIcon, Icon} from '@gluestack-ui/themed'
+import { featureFlags } from '../../service/feature-flags'
+import { useColorMode } from '@gluestack-style/react'
+import { ChevronRightIcon, Icon } from '@gluestack-ui/themed'
 import toast from 'react-hot-toast/headless'
-import {LinearGradient} from 'react-native-linear-gradient'
-import {BlurView} from '@react-native-community/blur'
+import { LinearGradient } from 'react-native-linear-gradient'
+import { BlurView } from '@react-native-community/blur'
 
 function AuthV3Page() {
   const navigation = useNavigation()
@@ -59,7 +59,7 @@ function AuthV3Page() {
   const [doAppleAuth, appleAuthResp] = useLoginByAppleLazyQuery()
 
   const onPostAuth = usePostAuth()
-  const {buildHref} = useLinkBuilder()
+  const { buildHref } = useLinkBuilder()
   const linkTo = useLinkTo()
   const signinWithAppleOnSuccess = useCallback(
     async (data: AppleVerifyPayload) => {
@@ -77,7 +77,7 @@ function AuthV3Page() {
         return
       }
 
-      const {noAccountFrom3rdPart, token, user} = authResp.data.loginByApple
+      const { noAccountFrom3rdPart, token, user } = authResp.data.loginByApple
 
       if (noAccountFrom3rdPart) {
         const href = buildHref(RouteKeys.AuthAppleBind, {
@@ -100,28 +100,27 @@ function AuthV3Page() {
     toast.error(err.toString())
   }, [])
 
-  const {t} = useTranslation()
-
+  const { t } = useTranslation()
 
   return (
     <View style={styles.container}>
       <LinearGradient
         colors={['#60a5fa', '#3b82f6', '#2563eb']}
-        style={StyleSheet.absoluteFillObject}
-        start={{x: 0, y: 0}}
-        end={{x: 1, y: 1}}
+        style={StyleSheet.absoluteFill}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 1 }}
       />
-      
+
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         className="flex-1">
-        <SafeAreaView className="flex-1">
-          <ScrollView 
-            contentContainerStyle={styles.scrollContent}
-            showsVerticalScrollIndicator={false}
-            keyboardShouldPersistTaps="handled">
-            
-            <View style={styles.logoContainer}>
+        <ScrollView
+          contentContainerStyle={styles.scrollContent}
+          showsVerticalScrollIndicator={false}
+          keyboardShouldPersistTaps="handled">
+
+          <SafeAreaView className='flex-1'>
+            <View style={styles.logoContainer} className='mt-4'>
               <View style={styles.logoWrapper}>
                 <Image
                   source={require('../../assets/logo.png')}
@@ -129,11 +128,11 @@ function AuthV3Page() {
                   style={styles.logo}
                 />
               </View>
-              
+
               <Text style={styles.appName}>
                 ClippingKK
               </Text>
-              
+
               <Text style={styles.slogan}>
                 {t('app.slogan')}
               </Text>
@@ -147,16 +146,16 @@ function AuthV3Page() {
                   blurAmount={20}
                 />
               )}
-              
+
               <View style={styles.formContent}>
                 <AuthClassicPage onPostAuth={onPostAuth} />
-                
+
                 <View style={styles.dividerContainer}>
                   <View style={styles.dividerLine} />
                   <Text style={styles.dividerText}>OR</Text>
                   <View style={styles.dividerLine} />
                 </View>
-                
+
                 <View style={styles.socialLoginContainer}>
                   <SigninWithApple
                     loading={appleAuthResp.loading}
@@ -166,9 +165,9 @@ function AuthV3Page() {
                 </View>
               </View>
             </View>
-            
-          </ScrollView>
-        </SafeAreaView>
+          </SafeAreaView>
+
+        </ScrollView>
       </KeyboardAvoidingView>
     </View>
   )

@@ -8,12 +8,12 @@ import {
   View,
   ActivityIndicator,
   RefreshControl,
-  SafeAreaView,
   StyleSheet,
   TouchableOpacity,
   useColorScheme,
   Platform
 } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
 import ActionSheet, {
   ActionSheetRef,
   useScrollHandlers
@@ -61,7 +61,6 @@ function ClippingPage(props: ClippingPageProps) {
   useEffect(() => {
     navigation.setOptions({
       title: pageTitle,
-      headerTransparent: true,
       headerBlurEffect: isDarkMode ? 'dark' : 'light',
       headerRight: () => (
         <TouchableOpacity
@@ -98,17 +97,17 @@ function ClippingPage(props: ClippingPageProps) {
 
   return (
     <GradientBackground>
-      <SafeAreaView style={styles.flexGrow}>
-        <ScrollView
-          style={styles.scrollView}
-          contentContainerStyle={styles.scrollContentContainer}
-          refreshControl={
-            <RefreshControl
-              refreshing={loading}
-              onRefresh={() => refetch({ id: id! })}
-              tintColor={isDarkMode ? '#60A5FA' : '#3B82F6'}
-            />
-          }>
+      <ScrollView
+        style={styles.scrollView}
+        contentContainerStyle={styles.scrollContentContainer}
+        refreshControl={
+          <RefreshControl
+            refreshing={loading}
+            onRefresh={() => refetch({ id: id! })}
+            tintColor={isDarkMode ? '#60A5FA' : '#3B82F6'}
+          />
+        }>
+        <SafeAreaView style={styles.flexGrow}>
           {content && (
             <Card variant="elevated" style={styles.contentCard}>
               <Text
@@ -162,8 +161,8 @@ function ClippingPage(props: ClippingPageProps) {
             </>
           )}
           <View style={styles.spacer} />
-        </ScrollView>
-      </SafeAreaView>
+        </SafeAreaView>
+      </ScrollView>
 
       <ActionSheet
         ref={bsr}

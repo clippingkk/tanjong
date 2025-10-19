@@ -5,7 +5,7 @@ import {
 import BookPage from '../pages/book/book.page'
 import DebugPage from '../pages/settings/debug.page'
 import SettingsPage from '../pages/settings/settings.page'
-import {RouteKeys} from '../routes'
+import { RouteKeys } from '../routes'
 import HomeTabPages from '../pages/home/home.page'
 import AuthQRCodePage from '../pages/auth/qrcode.page.mock'
 import ClippingPage from '../pages/clipping/clipping'
@@ -17,7 +17,7 @@ import SignUpEmailPage from '../pages/signup/signup.email'
 import SignUpPasswordPage from '../pages/signup/signup.password'
 import SignUpOTPPage from '../pages/signup/signup.otp'
 import SignUpSetNamePage from '../pages/signup/signup.set.name'
-import {getRootPageOptions} from './options'
+import { getRootPageOptions } from './options'
 import RootTabs from './root-tabs'
 
 export const rootStackRoutes = createNativeStackNavigator({

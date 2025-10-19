@@ -9,7 +9,7 @@ import {
   NativeStackHeaderProps,
   NativeStackNavigationProp
 } from '@react-navigation/native-stack'
-import {RouteKeys} from '../routes'
+import { RouteKeys } from '../routes'
 
 export function getRootPageOptions(props: {
   route: RouteProp<ParamListBase, string>
@@ -47,6 +47,7 @@ export function getRootPageOptions(props: {
   }
 
   return {
+    headerTransparent: true,
     headerTitle,
     headerRight
   }

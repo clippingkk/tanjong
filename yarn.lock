@@ -1828,6 +1828,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@bottom-tabs/react-navigation@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@bottom-tabs/react-navigation@npm:1.0.0"
+  dependencies:
+    color: ^5.0.0
+  peerDependencies:
+    "@react-navigation/native": ">=7"
+    react: "*"
+    react-native: "*"
+    react-native-bottom-tabs: "*"
+  checksum: 902bead6dcb6bde0a218808eb83ab1d17c06e460f6768d9498963c1ee2e02a7b2ef62b72a8240ec684601b6fd43e79cc83d83f3ac76b7784fb5e54d4d8eec761
+  languageName: node
+  linkType: hard
+
 "@callstack/react-theme-provider@npm:3.0.3":
   version: 3.0.3
   resolution: "@callstack/react-theme-provider@npm:3.0.3"
@@ -10247,6 +10261,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"color-convert@npm:^3.0.1":
+  version: 3.1.2
+  resolution: "color-convert@npm:3.1.2"
+  dependencies:
+    color-name: ^2.0.0
+  checksum: 6817f4de27dd847129d84aa3695978c93a8eac8b67c496b9be1de78b33e1c96318edb4b814da25d7fe15fcedc62ede48a940ce24e258cde71e56eb3bb6e077de
+  languageName: node
+  linkType: hard
+
 "color-name@npm:1.1.3":
   version: 1.1.3
   resolution: "color-name@npm:1.1.3"
@@ -10261,6 +10284,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"color-name@npm:^2.0.0":
+  version: 2.0.2
+  resolution: "color-name@npm:2.0.2"
+  checksum: 58e5fa3853a0dac813179e75a1fe07ff362abacb9fd456fcaae702b74d4ed5f6de2cbaee07ff2660f3495c7a6ceabc4ef0420165db0018e7150a6d4045f6539e
+  languageName: node
+  linkType: hard
+
 "color-string@npm:^1.9.0":
   version: 1.9.1
   resolution: "color-string@npm:1.9.1"
@@ -10271,6 +10301,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"color-string@npm:^2.0.0":
+  version: 2.1.2
+  resolution: "color-string@npm:2.1.2"
+  dependencies:
+    color-name: ^2.0.0
+  checksum: 8468bf79a56da7b4d75628d7fd36b6c214f2013bcafd618c1d92194960f202e656add3395eb82e208ac6038707b882c01dea9bbe182e325ca090f5ea1695d48e
+  languageName: node
+  linkType: hard
+
 "color@npm:^4.2.3":
   version: 4.2.3
   resolution: "color@npm:4.2.3"
@@ -10278,6 +10317,16 @@ __metadata:
     color-convert: ^2.0.1
     color-string: ^1.9.0
   checksum: 0579629c02c631b426780038da929cca8e8d80a40158b09811a0112a107c62e10e4aad719843b791b1e658ab4e800558f2e87ca4522c8b32349d497ecb6adeb4
+  languageName: node
+  linkType: hard
+
+"color@npm:^5.0.0":
+  version: 5.0.2
+  resolution: "color@npm:5.0.2"
+  dependencies:
+    color-convert: ^3.0.1
+    color-string: ^2.0.0
+  checksum: 59f343e54652c4589e3f6517cda56fb53637cbb2e468d85024ea2634ce530f6b9cf772e069beae680d716bbbee4c980bfd013a47baa2a75d75552176fc5a3529
   languageName: node
   linkType: hard
 
@@ -18011,6 +18060,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-bottom-tabs@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "react-native-bottom-tabs@npm:1.0.0"
+  dependencies:
+    react-freeze: ^1.0.0
+    sf-symbols-typescript: ^2.0.0
+    use-latest-callback: ^0.2.1
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: cc8c9f032b5b3be05c5a5af92646d8c8984b54282098916cfaff00c96922372a7f5cf1db9e8b4cd394d6b6853d57e9031b5dde913b22f5a835e1839424cd0a44
+  languageName: node
+  linkType: hard
+
 "react-native-country-picker-modal@npm:^2.0.0":
   version: 2.0.0
   resolution: "react-native-country-picker-modal@npm:2.0.0"
@@ -19170,6 +19233,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"sf-symbols-typescript@npm:^2.0.0":
+  version: 2.1.0
+  resolution: "sf-symbols-typescript@npm:2.1.0"
+  checksum: 63ddd79f660268e82889618bcf73d111e013b11d8795c6c89232c21b6770e58a37c7e103590caa4d2a6077b1e211fbaeaf39b665cfaf25f5507e03365e0faebe
+  languageName: node
+  linkType: hard
+
 "sharp@npm:^0.32.6":
   version: 0.32.6
   resolution: "sharp@npm:0.32.6"
@@ -20140,6 +20210,7 @@ __metadata:
     "@babel/plugin-transform-template-literals": ^7.27.1
     "@babel/runtime": ^7.28.4
     "@biomejs/biome": 2.2.6
+    "@bottom-tabs/react-navigation": ^1.0.0
     "@formatjs/intl-pluralrules": ^5.4.6
     "@georstat/react-native-image-cache": ^3.1.0
     "@gluestack-style/react": ^1.0.57
@@ -20218,6 +20289,7 @@ __metadata:
     react-native-actions-sheet: ^0.9.7
     react-native-blurhash: ^2.1.2
     react-native-bootsplash: ^6.3.11
+    react-native-bottom-tabs: ^1.0.0
     react-native-device-info: ^14.1.1
     react-native-file-access: ^3.2.0
     react-native-gesture-handler: ^2.28.0
@@ -21229,7 +21301,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"use-latest-callback@npm:^0.2.4":
+"use-latest-callback@npm:^0.2.1, use-latest-callback@npm:^0.2.4":
   version: 0.2.6
   resolution: "use-latest-callback@npm:0.2.6"
   peerDependencies:

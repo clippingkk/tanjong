@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.14.0",
+    "@bottom-tabs/react-navigation": "^1.0.0",
     "@formatjs/intl-pluralrules": "^5.4.6",
     "@georstat/react-native-image-cache": "^3.1.0",
     "@gluestack-style/react": "^1.0.57",
@@ -62,6 +63,7 @@
     "react-native-actions-sheet": "^0.9.7",
     "react-native-blurhash": "^2.1.2",
     "react-native-bootsplash": "^6.3.11",
+    "react-native-bottom-tabs": "^1.0.0",
     "react-native-device-info": "^14.1.1",
     "react-native-file-access": "^3.2.0",
     "react-native-gesture-handler": "^2.28.0",

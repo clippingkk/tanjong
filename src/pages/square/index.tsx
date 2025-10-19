@@ -5,17 +5,15 @@ import { FlashList } from '@shopify/flash-list';
 import { useAtomValue } from 'jotai';
 import { uidAtom } from '../../atomic';
 import ClippingCell from '../../components/clipping/cell';
-import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import { useClippingCellAvgHeight } from '../../hooks/clipping';
 import EmptyBox from '../../components/empty/empty';
 import SkeletonClippingList from '../../components/skeleton/clippings';
 import { GradientBackground } from '../../components/ui';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useHeaderHeight } from '@react-navigation/elements';
 
 function SquarePage() {
   const uid = useAtomValue(uidAtom);
-  const bh = useBottomTabBarHeight();
   const colorScheme = useColorScheme();
   const isDarkMode = colorScheme === 'dark';
   const insets = useSafeAreaInsets();
@@ -110,8 +108,7 @@ function SquarePage() {
             </View>
           )}
           ItemSeparatorComponent={() => <View style={styles.separator} />}
-          ListFooterComponent={<View style={{ height: bh + insets.bottom + 16 }} />}
-          estimatedItemSize={itemSizeCellHeight}
+          ListFooterComponent={<View style={{ height: 0 + insets.bottom + 16 }} />}
           onEndReached={onReachedEnd}
           onEndReachedThreshold={1}
         />

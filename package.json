@@ -92,6 +92,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.28.4",
+    "@babel/plugin-transform-export-namespace-from": "^7.27.1",
     "@babel/plugin-transform-template-literals": "^7.27.1",
     "@babel/runtime": "^7.28.4",
     "@biomejs/biome": "2.2.6",

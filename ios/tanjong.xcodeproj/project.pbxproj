@@ -398,7 +398,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /opt/homebrew/bin/fish;
-			shellScript = "set -x NODE_BINARY \"node\"\nset -x SENTRY_PROPERTIES sentry.properties\n# set -x EXTRA_PACKAGER_ARGS \"--sourcemap-output $DERIVED_FILE_DIR/main.jsbundle.map\"\nset -x SENTRY_PROPERTIES path/to/sentry.properties\nset -x SENTRY_DISABLE_AUTO_UPLOAD true # Temporarily disable source map upload\n\nset WITH_ENVIRONMENT \"$REACT_NATIVE_PATH/scripts/xcode/with-environment.sh\"\n# set REACT_NATIVE_XCODE \"$REACT_NATIVE_PATH/scripts/react-native-xcode.sh\"\n\nset SENTRY_XCODE=\"../node_modules/@sentry/react-native/scripts/sentry-xcode.sh\"\n\n# /bin/sh -c \"$WITH_ENVIRONMENT \\\"../node_modules/@sentry/cli/bin/sentry-cli react-native xcode $REACT_NATIVE_XCODE\\\"\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $SENTRY_XCODE\"\n";
+			shellScript = "set -x NODE_BINARY \"node\"\nset -x SENTRY_PROPERTIES sentry.properties\n# set -x EXTRA_PACKAGER_ARGS \"--sourcemap-output $DERIVED_FILE_DIR/main.jsbundle.map\"\nset -x SENTRY_PROPERTIES path/to/sentry.properties\nset -x SENTRY_DISABLE_AUTO_UPLOAD true # Temporarily disable source map upload\n\nset WITH_ENVIRONMENT \"$REACT_NATIVE_PATH/scripts/xcode/with-environment.sh\"\nset REACT_NATIVE_XCODE \"$REACT_NATIVE_PATH/scripts/react-native-xcode.sh\"\n\n# set SENTRY_XCODE=\"../node_modules/@sentry/react-native/scripts/sentry-xcode.sh\"\n\n# /bin/sh -c \"$WITH_ENVIRONMENT \\\"../node_modules/@sentry/cli/bin/sentry-cli react-native xcode $REACT_NATIVE_XCODE\\\"\"\n\n# /bin/sh -c \"$WITH_ENVIRONMENT $SENTRY_XCODE\"\n/bin/sh \"$WITH_ENVIRONMENT\" \"$REACT_NATIVE_XCODE\"\n";
 		};
 		26C1C1A2974A238C12A928F7 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -408,9 +408,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-tanjong/Pods-tanjong-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-tanjong/Pods-tanjong-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -461,9 +465,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-tanjong/Pods-tanjong-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-tanjong/Pods-tanjong-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -602,7 +610,7 @@
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = tanjong/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ClippingKK;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -637,7 +645,7 @@
 				DEVELOPMENT_TEAM = VY3AP6C55K;
 				INFOPLIST_FILE = tanjong/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ClippingKK;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -681,7 +689,7 @@
 				INFOPLIST_FILE = clippingkk.widget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ClippingKK;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -724,7 +732,7 @@
 				INFOPLIST_FILE = clippingkk.widget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ClippingKK;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

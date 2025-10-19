@@ -24,10 +24,12 @@ function BookHead(props: BookHeadProps) {
     }
     return loadedImage.width / loadedImage.height
   }, [loadedImage?.height, loadedImage?.width])
-  
+
   return (
     <View style={styles.container}>
-      <View style={[styles.headerContainer, { height: 280 + hh }]}>
+      <View style={[styles.headerContainer, { height: 280 + hh }, {
+        paddingTop: hh,
+      }]}>
         <CachedImage
           source={book.image}
           resizeMode='cover'
@@ -60,13 +62,13 @@ function BookHead(props: BookHeadProps) {
             />
           </View>
           <View style={styles.bookInfo}>
-            <Text 
+            <Text
               style={[styles.bookTitle, { color: '#FFFFFF' }]}
               numberOfLines={2}
             >
               {book.title}
             </Text>
-            <Text 
+            <Text
               style={[styles.bookAuthor, { color: 'rgba(255,255,255,0.9)' }]}
               numberOfLines={1}
             >
@@ -89,6 +91,8 @@ function BookHead(props: BookHeadProps) {
 const styles = StyleSheet.create({
   container: {
     marginBottom: 0,
+    borderRadius: 8,
+    overflow: 'hidden',
   },
   headerContainer: {
     position: 'relative',

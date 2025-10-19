@@ -8,7 +8,6 @@ import { uidAtom } from '../../atomic'
 import BookHead from '../../components/book/head'
 import ClippingCell from '../../components/clipping/cell'
 import UTPShareView from '../../components/shares/utp.share'
-import { useClippingCellAvgHeight } from '../../hooks/clipping'
 import { RouteKeys, RouteParamList } from '../../routes'
 import { useBookQuery } from '../../schema/generated'
 import { UTPService } from '../../service/utp'
@@ -20,6 +19,7 @@ import PulseBox from '../../components/pulse-box/pulse-box'
 import { useNavigation } from '@react-navigation/native'
 import { GradientBackground } from '../../components/ui'
 import { FontLXGW } from '../../styles/font'
+import { useHeaderHeight } from '@react-navigation/elements'
 
 type BookPageProps = NativeStackScreenProps<
   RouteParamList,
@@ -34,13 +34,14 @@ function BookPage(props: BookPageProps) {
   const book = route.params.book
   const uid = useAtomValue(uidAtom)
 
+  const h = useHeaderHeight()
+  console.log('hhhhh', h)
+
   const actionSheetRef = useRef<ActionSheetRef>(null)
 
   useEffect(() => {
     navigation.setOptions({
       title: book.title,
-      headerTransparent: true,
-      headerBlurEffect: cs === 'dark' ? 'dark' : 'light',
       headerRight() {
         return (
           <TouchableOpacity
@@ -88,10 +89,6 @@ function BookPage(props: BookPageProps) {
       })
   }, [book.doubanId, bs.fetchMore, bs.data?.book.clippings.length, atEnd])
 
-  const itemSizeCellHeight = useClippingCellAvgHeight(
-    bs.data?.book.clippings ?? []
-  )
-
   const scrollHandlers = useScrollHandlers<ScrollView>({
     refreshControlBoundary: 0
   })
@@ -137,12 +134,14 @@ function BookPage(props: BookPageProps) {
 
   return (
     <GradientBackground>
-      <SafeAreaView style={styles.flexOne}>
+      <View style={styles.flexOne}>
         <FlashList
           ListHeaderComponent={() => (
-            <View>
+            <>
               <BookHead book={book} />
-              <View style={[styles.sectionHeaderCard, { backgroundColor: isDarkMode ? 'rgba(30, 41, 59, 0.5)' : 'rgba(248, 250, 252, 0.8)' }]}>
+              <View style={[styles.sectionHeaderCard,
+              { backgroundColor: isDarkMode ? 'rgba(30, 41, 59, 0.5)' : 'rgba(248, 250, 252, 0.8)' },
+              ]}>
                 <View style={styles.sectionHeaderContent}>
                   <View style={[styles.sectionIcon, { backgroundColor: isDarkMode ? '#6366F1' : '#818CF8' }]}>
                     <Text style={styles.sectionIconText}>🔖</Text>
@@ -153,7 +152,7 @@ function BookPage(props: BookPageProps) {
                   </View>
                 </View>
               </View>
-            </View>
+            </>
           )}
           refreshControl={
             <RefreshControl
@@ -179,38 +178,37 @@ function BookPage(props: BookPageProps) {
               <Text style={[styles.emptyText, { color: isDarkMode ? '#94A3B8' : '#64748B' }]}>No clippings yet</Text>
             </View>
           }
-          estimatedItemSize={itemSizeCellHeight}
           onEndReached={onReachedEnd}
           onEndReachedThreshold={1}
           ListFooterComponent={<View style={{ height: 20 }} />}
           ItemSeparatorComponent={() => <View style={styles.separator} />}
         />
-        <ActionSheet
-          ref={actionSheetRef}
-          snapPoints={[80, 90]}
-        // backgroundStyle={{ backgroundColor: bg }}
-        // style={{
-        //   shadowColor: "#000",
-        //   shadowOffset: {
-        //     width: 0,
-        //     height: 12,
-        //   },
-        //   shadowOpacity: 0.58,
-        //   shadowRadius: 16.00,
-        //   elevation: 24,
-        // }}
-        >
-          <UTPShareView
-            kind={UTPService.book}
-            bookID={book.id}
-            bookDBID={book.doubanId}
-            uid={uid}
-            scrollHandler={scrollHandlers}
-            isDarkMode={isDarkMode}
-          />
-        </ActionSheet>
-      </SafeAreaView>
-    </GradientBackground>
+      </View>
+      <ActionSheet
+        ref={actionSheetRef}
+        snapPoints={[80, 90]}
+      // backgroundStyle={{ backgroundColor: bg }}
+      // style={{
+      //   shadowColor: "#000",
+      //   shadowOffset: {
+      //     width: 0,
+      //     height: 12,
+      //   },
+      //   shadowOpacity: 0.58,
+      //   shadowRadius: 16.00,
+      //   elevation: 24,
+      // }}
+      >
+        <UTPShareView
+          kind={UTPService.book}
+          bookID={book.id}
+          bookDBID={book.doubanId}
+          uid={uid}
+          scrollHandler={scrollHandlers}
+          isDarkMode={isDarkMode}
+        />
+      </ActionSheet>
+    </GradientBackground >
   )
 }
 
@@ -264,7 +262,6 @@ const styles = StyleSheet.create({
     lineHeight: 20,
   },
   sectionHeaderCard: {
-    marginHorizontal: 20,
     marginVertical: 20,
     paddingVertical: 16,
     paddingHorizontal: 20,

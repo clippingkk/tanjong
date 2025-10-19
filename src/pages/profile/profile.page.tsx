@@ -13,7 +13,7 @@ import EmptyBox from '../../components/empty/empty'
 import ErrorBox from '../../components/errorbox/errorbox'
 import BasicBoard from '../../components/profile/basic-board'
 import { useClippingCellAvgHeight } from '../../hooks/clipping'
-import { RouteKeys, TabRouteParamList } from '../../routes'
+import { RouteKeys } from '../../routes'
 import { useProfileQuery } from '../../schema/generated'
 import {
   View,
@@ -26,7 +26,7 @@ import {
 import ProfilePageSkeleton from './skeleton'
 import { GradientBackground } from '../../components/ui'
 import { FontLXGW } from '../../styles/font'
-import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context'
 
 function ProfilePage() {
   const navigation = useNavigation()
@@ -62,7 +62,6 @@ function ProfilePage() {
     })
   }, [navigation, p.data?.me.name])
 
-  const itemSizeCellHeight = useClippingCellAvgHeight(p.data?.me.recents ?? [])
   const bh = useBottomTabBarHeight()
 
   const [atEnd, setAtEnd] = useState(false)
@@ -132,7 +131,7 @@ function ProfilePage() {
 
   return (
     <GradientBackground>
-      <View style={styles.flexOne}>
+      <SafeAreaView edges={['top', 'bottom', 'left', 'right']} style={styles.flexOne}>
         <FlashList
           contentContainerStyle={{
             ...styles.listContent,
@@ -173,11 +172,10 @@ function ProfilePage() {
           )}
           ItemSeparatorComponent={() => <View style={styles.separator} />}
           ListFooterComponent={<View style={{ height: bh + insets.bottom + 16 }} />}
-          estimatedItemSize={itemSizeCellHeight}
           onEndReached={onReachedEnd}
           onEndReachedThreshold={1}
         />
-      </View>
+      </SafeAreaView>
     </GradientBackground>
   )
 }

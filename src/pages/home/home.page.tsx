@@ -15,7 +15,7 @@ import { useHomeLoad } from '../../hooks/init'
 import HomePageSkeleton from './skeleton'
 import { GradientBackground } from '../../components/ui'
 import { FontLXGW } from '../../styles/font'
-import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context'
 import { useHeaderHeight } from '@react-navigation/elements'
 
 type HomePageProps = {}
@@ -120,7 +120,7 @@ function HomePage(props: HomePageProps) {
 
   return (
     <GradientBackground>
-      <View style={styles.flexOne}>
+      <SafeAreaView style={styles.flexOne}>
         <FlashList
           contentContainerStyle={{
             ...styles.listContent,
@@ -174,13 +174,12 @@ function HomePage(props: HomePageProps) {
               <BookCell bookDoubanID={item.doubanId} />
             </View>
           )}
-          estimatedItemSize={250}
           onEndReached={onReachedEnd}
           onEndReachedThreshold={1}
           ListFooterComponent={<View style={{ height: bh + insets.bottom + 16 }} />}
           ItemSeparatorComponent={() => <View style={styles.separator} />}
         />
-      </View>
+      </SafeAreaView>
     </GradientBackground>
   )
 }

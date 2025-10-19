@@ -1,3 +1,3 @@
 export const featureFlags = {
-  enableSignUp: true
-}
+  enableSignUp: false
+};

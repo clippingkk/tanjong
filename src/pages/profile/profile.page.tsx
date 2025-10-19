@@ -1,7 +1,6 @@
 import {
-  BottomTabScreenProps,
   useBottomTabBarHeight
-} from '@react-navigation/bottom-tabs'
+} from 'react-native-bottom-tabs'
 import { useHeaderHeight } from '@react-navigation/elements'
 import { Link, useNavigation } from '@react-navigation/native'
 import { FlashList } from '@shopify/flash-list'

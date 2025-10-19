@@ -1,4 +1,4 @@
-import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
+import { useBottomTabBarHeight } from 'react-native-bottom-tabs'
 import { FlashList } from '@shopify/flash-list'
 import { useAtomValue } from 'jotai'
 import { View } from '@gluestack-ui/themed'
@@ -21,173 +21,173 @@ import { useHeaderHeight } from '@react-navigation/elements'
 type HomePageProps = {}
 
 function HomePage(props: HomePageProps) {
-	const uid = useAtomValue(uidAtom)
-	useHomeLoad()
+  const uid = useAtomValue(uidAtom)
+  useHomeLoad()
 
-	const bs = useBooksQuery({
-		variables: {
-			id: uid!,
-			pagination: {
-				limit: 10,
-				offset: 0,
-			},
-		},
-		skip: !uid,
-	})
+  const bs = useBooksQuery({
+    variables: {
+      id: uid!,
+      pagination: {
+        limit: 10,
+        offset: 0,
+      },
+    },
+    skip: !uid,
+  })
 
-	const [atEnd, setAtEnd] = useState(false)
+  const [atEnd, setAtEnd] = useState(false)
 
-	const onReachedEnd = useCallback(() => {
-		if (atEnd) {
-			return
-		}
-		if (!uid) {
-			return
-		}
-		const allLength = bs.data?.books.length ?? 0
-		return bs
-			.fetchMore({
-				variables: {
-					id: uid,
-					pagination: {
-						limit: 10,
-						offset: allLength,
-					},
-				},
-			})
-			.then((res) => {
-				if (res.data.books.length < 10) {
-					setAtEnd(true)
-				}
-			})
-	}, [uid, bs.data?.books.length, atEnd])
+  const onReachedEnd = useCallback(() => {
+    if (atEnd) {
+      return
+    }
+    if (!uid) {
+      return
+    }
+    const allLength = bs.data?.books.length ?? 0
+    return bs
+      .fetchMore({
+        variables: {
+          id: uid,
+          pagination: {
+            limit: 10,
+            offset: allLength,
+          },
+        },
+      })
+      .then((res) => {
+        if (res.data.books.length < 10) {
+          setAtEnd(true)
+        }
+      })
+  }, [uid, bs.data?.books.length, atEnd])
 
-	const bh = useBottomTabBarHeight();
-	const colorScheme = useColorScheme();
-	const isDarkMode = colorScheme === 'dark';
-	const insets = useSafeAreaInsets();
-	const headerHeight = useHeaderHeight();
+  const bh = useBottomTabBarHeight();
+  const colorScheme = useColorScheme();
+  const isDarkMode = colorScheme === 'dark';
+  const insets = useSafeAreaInsets();
+  const headerHeight = useHeaderHeight();
 
-	const theReadingBook = useMemo(() => {
-		const lbs = bs.data?.books ?? []
-		if (lbs.length === 0) {
-			return null
-		}
-		return lbs[0].doubanId
-	}, [bs.data?.books])
+  const theReadingBook = useMemo(() => {
+    const lbs = bs.data?.books ?? []
+    if (lbs.length === 0) {
+      return null
+    }
+    return lbs[0].doubanId
+  }, [bs.data?.books])
 
-	const listedBook = useMemo(() => {
-		let lbs = [...(bs.data?.books ?? [])]
+  const listedBook = useMemo(() => {
+    let lbs = [...(bs.data?.books ?? [])]
 
-		if (theReadingBook) {
-			lbs = lbs.filter((x) => x.doubanId !== theReadingBook)
-		}
+    if (theReadingBook) {
+      lbs = lbs.filter((x) => x.doubanId !== theReadingBook)
+    }
 
-		return lbs
-	}, [bs.data?.books, theReadingBook])
+    return lbs
+  }, [bs.data?.books, theReadingBook])
 
-	if (!uid) {
-		return <AuthGuard />
-	}
+  if (!uid) {
+    return <AuthGuard />
+  }
 
-	if (bs.error) {
-		return (
-			<ErrorBox
-				err={bs.error}
-				onRefresh={() =>
-					bs.refetch({
-						id: uid,
-						pagination: {
-							limit: 10,
-							offset: 0,
-						},
-					})
-				}
-			/>
-		)
-	}
+  if (bs.error) {
+    return (
+      <ErrorBox
+        err={bs.error}
+        onRefresh={() =>
+          bs.refetch({
+            id: uid,
+            pagination: {
+              limit: 10,
+              offset: 0,
+            },
+          })
+        }
+      />
+    )
+  }
 
-	if (bs.loading) {
-		return (
-		  <GradientBackground blur>
-		    <HomePageSkeleton />
-		  </GradientBackground>
-		)
-	}
-	if ((bs.data?.books.length ?? 0) === 0) {
-		return <EmptyBox />
-	}
+  if (bs.loading) {
+    return (
+      <GradientBackground blur>
+        <HomePageSkeleton />
+      </GradientBackground>
+    )
+  }
+  if ((bs.data?.books.length ?? 0) === 0) {
+    return <EmptyBox />
+  }
 
-	return (
-	  <GradientBackground>
-	    <View style={styles.flexOne}>
-	      <FlashList
-	        contentContainerStyle={{
-	          ...styles.listContent,
-	          paddingTop: headerHeight
-	        }}
-	        ListHeaderComponent={() => (
-	          <View>
-	            {/* Currently Reading Section */}
-	            <View style={[styles.sectionHeaderCard, { backgroundColor: isDarkMode ? 'rgba(30, 41, 59, 0.5)' : 'rgba(248, 250, 252, 0.8)' }]}>
-	              <View style={styles.sectionHeaderContent}>
-	                <View style={[styles.sectionIcon, { backgroundColor: isDarkMode ? '#6366F1' : '#818CF8' }]}>
-	                  <Text style={styles.sectionIconText}>📚</Text>
-	                </View>
-	                <View style={styles.sectionTextContainer}>
-	                  <Text style={[styles.sectionTitle, { color: isDarkMode ? '#E0E7FF' : '#1E293B' }]}>Currently Reading</Text>
-	                  <Text style={[styles.sectionSubtitle, { color: isDarkMode ? '#94A3B8' : '#64748B' }]}>{bs.data?.books.length ?? 0} books in progress</Text>
-	                </View>
-	              </View>
-	            </View>
-	            {theReadingBook && (
-	              <View style={styles.heroContainer}>
-	                <BookHero bookDoubanID={theReadingBook} />
-	              </View>
-	            )}
-	            {listedBook.length > 0 && (
-	              <View style={[styles.sectionHeaderCard, { backgroundColor: isDarkMode ? 'rgba(30, 41, 59, 0.5)' : 'rgba(248, 250, 252, 0.8)' }]}>
-	                <View style={styles.sectionHeaderContent}>
-	                  <View style={[styles.sectionIcon, { backgroundColor: isDarkMode ? '#6366F1' : '#818CF8' }]}>
-	                    <Text style={styles.sectionIconText}>📖</Text>
-	                  </View>
-	                  <View style={styles.sectionTextContainer}>
-	                    <Text style={[styles.sectionTitle, { color: isDarkMode ? '#E0E7FF' : '#1E293B' }]}>Your Library</Text>
-	                    <Text style={[styles.sectionSubtitle, { color: isDarkMode ? '#94A3B8' : '#64748B' }]}>{listedBook.length} books collected</Text>
-	                  </View>
-	                </View>
-	              </View>
-	            )}
-	          </View>
-	        )}
-	        refreshControl={
-	          <RefreshControl
-	            refreshing={bs.loading}
-	            onRefresh={() => bs.refetch()}
-	            tintColor={isDarkMode ? '#818CF8' : '#6366F1'}
-	          />
-	        }
-	        numColumns={2}
-	        data={listedBook}
-	        renderItem={({ item }) => (
-	          <View style={styles.bookCellWrapper}>
-	            <BookCell bookDoubanID={item.doubanId} />
-	          </View>
-	        )}
-	        estimatedItemSize={250}
-	        onEndReached={onReachedEnd}
-	        onEndReachedThreshold={1}
-	        ListFooterComponent={<View style={{ height: bh + insets.bottom + 16 }} />}
-	        ItemSeparatorComponent={() => <View style={styles.separator} />}
-	      />
-	    </View>
-	  </GradientBackground>
-	)
+  return (
+    <GradientBackground>
+      <View style={styles.flexOne}>
+        <FlashList
+          contentContainerStyle={{
+            ...styles.listContent,
+            paddingTop: headerHeight
+          }}
+          ListHeaderComponent={() => (
+            <View>
+              {/* Currently Reading Section */}
+              <View style={[styles.sectionHeaderCard, { backgroundColor: isDarkMode ? 'rgba(30, 41, 59, 0.5)' : 'rgba(248, 250, 252, 0.8)' }]}>
+                <View style={styles.sectionHeaderContent}>
+                  <View style={[styles.sectionIcon, { backgroundColor: isDarkMode ? '#6366F1' : '#818CF8' }]}>
+                    <Text style={styles.sectionIconText}>📚</Text>
+                  </View>
+                  <View style={styles.sectionTextContainer}>
+                    <Text style={[styles.sectionTitle, { color: isDarkMode ? '#E0E7FF' : '#1E293B' }]}>Currently Reading</Text>
+                    <Text style={[styles.sectionSubtitle, { color: isDarkMode ? '#94A3B8' : '#64748B' }]}>{bs.data?.books.length ?? 0} books in progress</Text>
+                  </View>
+                </View>
+              </View>
+              {theReadingBook && (
+                <View style={styles.heroContainer}>
+                  <BookHero bookDoubanID={theReadingBook} />
+                </View>
+              )}
+              {listedBook.length > 0 && (
+                <View style={[styles.sectionHeaderCard, { backgroundColor: isDarkMode ? 'rgba(30, 41, 59, 0.5)' : 'rgba(248, 250, 252, 0.8)' }]}>
+                  <View style={styles.sectionHeaderContent}>
+                    <View style={[styles.sectionIcon, { backgroundColor: isDarkMode ? '#6366F1' : '#818CF8' }]}>
+                      <Text style={styles.sectionIconText}>📖</Text>
+                    </View>
+                    <View style={styles.sectionTextContainer}>
+                      <Text style={[styles.sectionTitle, { color: isDarkMode ? '#E0E7FF' : '#1E293B' }]}>Your Library</Text>
+                      <Text style={[styles.sectionSubtitle, { color: isDarkMode ? '#94A3B8' : '#64748B' }]}>{listedBook.length} books collected</Text>
+                    </View>
+                  </View>
+                </View>
+              )}
+            </View>
+          )}
+          refreshControl={
+            <RefreshControl
+              refreshing={bs.loading}
+              onRefresh={() => bs.refetch()}
+              tintColor={isDarkMode ? '#818CF8' : '#6366F1'}
+            />
+          }
+          numColumns={2}
+          data={listedBook}
+          renderItem={({ item }) => (
+            <View style={styles.bookCellWrapper}>
+              <BookCell bookDoubanID={item.doubanId} />
+            </View>
+          )}
+          estimatedItemSize={250}
+          onEndReached={onReachedEnd}
+          onEndReachedThreshold={1}
+          ListFooterComponent={<View style={{ height: bh + insets.bottom + 16 }} />}
+          ItemSeparatorComponent={() => <View style={styles.separator} />}
+        />
+      </View>
+    </GradientBackground>
+  )
 }
 
 const styles = StyleSheet.create({
   flexOne: { flex: 1 },
-  listContent: { 
+  listContent: {
     paddingHorizontal: 20,
   },
   separator: { height: 16 },

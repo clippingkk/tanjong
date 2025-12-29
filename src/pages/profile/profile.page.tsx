@@ -2,17 +2,16 @@ import {
   useBottomTabBarHeight
 } from 'react-native-bottom-tabs'
 import { useHeaderHeight } from '@react-navigation/elements'
-import { Link, useNavigation } from '@react-navigation/native'
+import { useNavigation } from '@react-navigation/native'
 import { FlashList } from '@shopify/flash-list'
 import { useAtomValue } from 'jotai'
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { uidAtom } from '../../atomic'
 import AuthGuard from '../../components/auth-guard/auth-guard'
 import ClippingCell from '../../components/clipping/cell'
 import EmptyBox from '../../components/empty/empty'
 import ErrorBox from '../../components/errorbox/errorbox'
 import BasicBoard from '../../components/profile/basic-board'
-import { useClippingCellAvgHeight } from '../../hooks/clipping'
 import { RouteKeys } from '../../routes'
 import { useProfileQuery } from '../../schema/generated'
 import {
@@ -20,12 +19,10 @@ import {
   Text,
   StyleSheet,
   useColorScheme,
-  RefreshControl,
-  TouchableOpacity
+  RefreshControl
 } from 'react-native'
 import ProfilePageSkeleton from './skeleton'
 import { GradientBackground } from '../../components/ui'
-import { FontLXGW } from '../../styles/font'
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context'
 
 function ProfilePage() {
@@ -48,19 +45,9 @@ function ProfilePage() {
     },
     skip: !uid
   })
-  useEffect(() => {
-    navigation.setOptions({
-      title: p.data?.me.name ?? 'Profile',
-      headerRight: () => (
-        <TouchableOpacity
-          onPress={() => (navigation as any).navigate(RouteKeys.ProfileSettings)}
-          style={styles.settingsButton}
-        >
-          <Text style={{ fontSize: 20 }}>⚙️</Text>
-        </TouchableOpacity>
-      )
-    })
-  }, [navigation, p.data?.me.name])
+  const handleSettingsPress = useCallback(() => {
+    (navigation as any).navigate(RouteKeys.ProfileSettings)
+  }, [navigation])
 
   const bh = useBottomTabBarHeight()
 
@@ -146,11 +133,15 @@ function ProfilePage() {
           }
           ListHeaderComponent={
             <View>
-              <BasicBoard profile={p.data?.me} stats={{
-                books: p.data?.me.booksCount,
-                clippings: p.data?.me.clippingsCount,
-                recent: p.data?.me.recent3mReadings.length,
-              }} />
+              <BasicBoard
+                profile={p.data?.me}
+                stats={{
+                  books: p.data?.me.booksCount,
+                  clippings: p.data?.me.clippingsCount,
+                  recent: p.data?.me.recent3mReadings.length,
+                }}
+                onSettingsPress={handleSettingsPress}
+              />
               <View style={[styles.sectionHeaderCard, { backgroundColor: isDarkMode ? 'rgba(30, 41, 59, 0.5)' : 'rgba(248, 250, 252, 0.8)' }]}>
                 <View style={styles.sectionHeaderContent}>
                   <View style={[styles.sectionIcon, { backgroundColor: isDarkMode ? '#6366F1' : '#818CF8' }]}>
@@ -187,10 +178,6 @@ const styles = StyleSheet.create({
   },
   separator: {
     height: 16
-  },
-  settingsButton: {
-    marginRight: 16,
-    padding: 8
   },
   clippingWrapper: {
     marginVertical: 4

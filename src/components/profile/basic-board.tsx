@@ -4,7 +4,8 @@ import {
   Text,
   StyleSheet,
   useColorScheme,
-  useWindowDimensions
+  useWindowDimensions,
+  TouchableOpacity
 } from 'react-native'
 import { CachedImage } from '@georstat/react-native-image-cache'
 import LinearGradient from 'react-native-linear-gradient'
@@ -51,6 +52,7 @@ type BasicBoardProps = {
     clippings?: number
     recent?: number
   }
+  onSettingsPress?: () => void
 }
 
 function BasicBoard(props: BasicBoardProps) {
@@ -89,6 +91,15 @@ function BasicBoard(props: BasicBoardProps) {
           end={{ x: 1, y: 1 }}
           style={styles.gradientHeader}
         >
+          {/* Settings Button */}
+          {props.onSettingsPress && (
+            <TouchableOpacity
+              onPress={props.onSettingsPress}
+              style={styles.settingsButton}
+            >
+              <Text style={styles.settingsIcon}>&#x2699;&#xFE0E;</Text>
+            </TouchableOpacity>
+          )}
           <View style={styles.avatarContainer}>
             <View style={styles.avatarWrapper}>
               <CachedImage
@@ -156,6 +167,22 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     position: 'relative'
+  },
+  settingsButton: {
+    position: 'absolute',
+    top: 12,
+    right: 12,
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 10
+  },
+  settingsIcon: {
+    fontSize: 20,
+    color: 'rgba(255, 255, 255, 0.9)'
   },
   avatarContainer: {
     position: 'absolute',
